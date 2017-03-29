@@ -1,5 +1,6 @@
 ---
 title: How to run Prolog in the Lab machines
+headerImg: books.jpg
 ---
 
 
@@ -9,7 +10,7 @@ Here is a sample session. We use `$` for the Unix shell prompt, and `?-` for
 the Prolog shell prompt.
 
 ~~~~~{.prolog}
-$ rlwrap swipl 
+$ rlwrap swipl
 
 130f@ieng6-202]:~:501$ swipl
 Welcome to SWI-Prolog (Multi-threaded, 32 bits, Version 5.10.5)
@@ -47,4 +48,3 @@ Z = dana.
 Z = albert ;
 false.
 ~~~~~
-
