@@ -1,24 +1,23 @@
 ---
 title: Contact
-headerImg: world-map.jpg 
+headerImg: world-map.jpg
 ---
 
-## Co-ordinates 
+## Co-ordinates
 
-- *Course ID:*         849836
-- *Lectures:*          MWF 3:00-4:50p in CENTER 212
-- *Section:*           TBD
-- *Final:*             Friday December 9, 3-6PM.
-- *Announcements:*     [Posted on Piazza. Please check often!](https://www.piazza.com/ucsd/fall2016/cse131/)
+- **Course ID:**         903734  
+- **Lectures:**          MWF 9:00-9:50p in WLH 2005
+- **Section:**           TBD
+- **Final:**             Wednesday June 14 8-11 AM.
+- **Announcements:**     [Posted on Piazza. Please check often!](https://www.piazza.com/ucsd/fall2016/cse131/)
 
 
-## Instructor 
+## Instructor
 
 * [Ranjit Jhala](http://ranjitjhala.github.io)
 
 ## Teaching Assistants
 
-* [Alexander Bakst](http://www.cs.ucsd.edu/~abakst)
-* [Panagiotis Vekris](http://www.cs.ucsd.edu/~pvekris)
-* [Rami Gokhan Kici](http://www.cs.ucsd.edu/~rkici)
-
+* [Eric Seidel](http://www.cs.ucsd.edu/~eseidel)
+* [Valentin Robert](http://www.cs.ucsd.edu/~vrobert)
+* [Mario Alvarez](http://www.cs.ucsd.edu/~mmalvare)
