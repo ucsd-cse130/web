@@ -3,28 +3,23 @@ title: <b>Programming Languages</b>
 headerImg: angles.jpg
 ---
 
-CSE 130 is an introduction to modern Compiler Design.
-According to the venerable [Wikipedia](https://en.wikipedia.org/wiki/Compiler)
+## Overview
 
-> A compiler is a computer program (or a set of programs)
-> that transforms source code written in a programming
-> language (the source language) into another computer
-> language (the target language), with the latter often
-> having a binary form known as object code.[1]
->  The most common reason for converting source code is
-> to create an executable program.
-
-In the course of the next ten weeks, we will look at
-how to convert programs written in a high-level language
-think ML from [CSE 130](http://ucsd-progsys.github.io/cse130/),
-all the way down to bare metal, i.e. x86 assembly.
-While doing so, we will *also* learn important lessons about
-Software Engineering and Testing. As an added bonus, CSE 131
-will reinforce and tie together concepts learnt in
-Computer Organization and Programming Languages, in
-particular showing the connections between assembly (x86),
-systems (C) and functional (Haskell) programming.
-
+Programming Languages are the duct tape, bricks, mortar
+and steel of the information age. Over the last thirty
+years, a variety of languages with diverse features have
+been developed, expressive radically different perspectives
+of the idea of computation. CSE 130 is an introduction to
+these different perspectives, the fundamental concepts of
+languages, and how modern language techniques and idioms
+can be used to engineer software systems. For this purpose,
+we shall focus on three different paradigms -- functional,
+object-oriented and logic programming as embodied in Haskell,
+Scala and Prolog. Many students will be encountering these
+paradigms, languages and idioms for the first time. As with
+spoken languages, these are best absorbed by immersing yourself
+in the different environments and practicing your skills by
+experimentation.
 
 ## Integrity of Scholarship
 

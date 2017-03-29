@@ -5,7 +5,7 @@ headerImg: road.jpg
 
 ## Clicker Groups
 
-- [Groups](/static/img/groups.txt)
+- [Groups](/static/raw/seating.txt)
 - [Seating Chart](/static/img/seating-WLH-2005.pdf)
 
 
