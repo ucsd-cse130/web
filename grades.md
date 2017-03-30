@@ -31,4 +31,7 @@ headerImg: beach.jpg
   The final is **closed book**, but you may use a
   double-sided **"cheat sheet"**.
 
+- **Piazza (5%)** : 
+  Extra credit for top-20 best participants on Piazza.
+
 [clickers]: https://goo.gl/forms/yk1BzTlgAcBlrBLv1

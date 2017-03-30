@@ -3,10 +3,10 @@ title: Lecture Notes
 headerImg: books.jpg
 ---
 
-| Date       | Topic                         | Notes                     |  Notes      |  Code      |
-|:----------:|:------------------------------|:-------------------------:|:-----------:|:----------:|
-| 4/3        | Hello, World                  | [pdf][lec1] [pdf4][lec1s] |             |            |
-| 4/5        | The Lambda Calculus           |                           |             |            |
+| Date       | Topic                         | Notes                     |  Code       |
+|:----------:|:------------------------------|:-------------------------:|:-----------:|
+| 4/3        | Hello, World                  | [pdf][lec1] [pdf4][lec1s] |             |
+| 4/5        | The Lambda Calculus           |                           |             |
 
 
 ## Discussions

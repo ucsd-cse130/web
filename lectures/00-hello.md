@@ -1,237 +1,360 @@
 ---
-title: Hello, world! 
-headerImg: Eiffel.png
-date: 2016-09-23
+title: Hello, world!
+headerImg: sea.jpg
+date: 2017-03-28
 ---
 
+## A Programming Language
 
-## What *is* a Compiler?
+### Two Variables
 
-A function that maps an _input_ string to an _output_ string.
+- `x`, `y`
 
-```haskell
-compiler :: String -> String
+### Three Operations
+
+- `x++`     
+- `x--`           
+- `x = 0 ? L1 : L2`
+
+### Example Program
+
+(What _does_ it do?)
+
+```
+L1: x++
+    y--
+    y = 0 ? L2 : L1
+L2: ...
 ```
 
-Typically, the _input_ and _output_ strings are _"programs"_
+**Fact** The above language is _equivalent to_ every PL!
 
-```haskell
-compiler :: SourceProgram -> TargetProgram
-```
+- But good luck writing QuickSort ...
+- ... or Plants v. Zombies
+- ... or Spotify!
 
-For example, here are some well-known _compilers_
+## So Why Study Programming Languages?
 
-```haskell
-gcc, clang :: C          -> Binary          -- a.out, .exe
-ghc        :: Haskell    -> Binary                 
-javac      :: Java       -> JvmByteCode     -- .class
-scalac     :: Scala      -> JvmByteCode      
-ocamlc     :: Ocaml      -> OcamlByteCode   -- .cmo
-ocamlopt   :: Ocaml      -> Binary               
-gwt        :: Java       -> JavaScript      -- .js
-v8         :: JavaScript -> Binary
-nasm       :: X86        -> Binary    
-pdftex     :: LaTeX      -> PDF
-pandoc     :: Markdown   -> PDF | Html | Doc  
-```
+![Federico Fellini](/static/img/fellini.png)
 
-Key Requirements on output program:
+> A different language
+> is
+> a different vision
+> of life.
 
-1. Has the _same meaning_ ("semantics") as input,
-2. Is _executable_ in relevant _context_ (VM, microprocessor, web browser).
+## So Why Study Programming Languages?
 
-### A Bit of History
+> The principle of **linguistic relativity**
+> holds that the structure of a language
+> affects its speakers world view or cognition.
 
-Compilers were invented to [avoid writing machine code by hand][soap-fortran-assembly]
+Or more simply:
 
-![From Binary to FORTRAN](/static/img/binary-soap-fortran.png)
+> Programming Language
+> shapes
+> Programming Thought.
 
-Richard Hamming -- The Art of Doing Science and Engineering, p25:
+Language affects how:
 
-> In the beginning we programmed in absolute binary...
-> Finally, a Symbolic Assembly Program was devised --
-> after more years than you are apt to believe during
-> which most programmers continued their heroic absolute
-> binary programming. At the time [the assembler] first
-> appeared I would guess about 1% of the older programmers
-> were interested in it -- using [assembly] was "sissy stuff",
-> and a real programmer would not stoop to wasting machine
-> capacity to do the assembly.
+- **Ideas** are expressed
+- **Computation** is expressed
 
-John A.N. Lee, Dept of Computer Science, Virginia Polytechnical Institute
+## Course Goals
 
-> One of von Neumann's students at Princeton recalled that
-> graduate students were being used to hand assemble programs
-> into binary for their early machine. This student took time
-> out to build an assembler, but when von Neumann found out
-> about it he was very angry, saying that it was a waste of
-> a valuable scientific computing instrument to use it to do
-> clerical work.
+![Morpheus, The Matrix](/static/img/morpheus.png)
+
+> Free Your Mind.
 
 
-### What does a Compiler *look like*?
+## Goal: Learn New Languages / Constructs
 
-![Compiler Pipeline](/static/img/compiler-pipeline.png)
+![Musical Score](/static/img/music-score.png)
 
-An input source program is converted to an executable binary in many stages:
+New ways to **describe** and **organize** computation,
 
-* **Parsed** into a data structure called an **Abstract Syntax Tree**
-* **Checked** to make sure code is well-formed (and well-typed)
-* **Simplified** into some convenient **Intermediate Representation**
-* **Optimized** into (equivalent) but faster program
-* **Generated** into assembly `x86`
-* **Linked** against a run-time (usually written in C)
+To create programs that are:
 
-### What is CSE 131 ?
-
-* A *bridge* between two worlds
-
-  * _High-level:_ ML        (**CSE 130**)
-  * _Machine Code:_ X86/ARM (**CSE  30**)
-
-A sequel to both those classes.
-
-* How to write **a compiler** for `NanoML -> X86`
-
-  1. Parsing
-  2. Checking & Validation
-  3. Simplification & Normalizing
-  4. Optimization
-  5. Code Generation
+- **Readable**
+- **Correct**
+- **Extendable**
+- **Modifiable**
+- **Reusable**
 
 
-* But also, how to write **complex programs**
+## New languages come (and go ...)
 
-  1. Design
-  2. Implement
-  3. Test
-  4. **Iterate**
+There was no
 
-### How write a Compiler?
+* Java 20 years ago,
+* C#   15 years ago,
+* Rust 10 years ago,
+* Go   5  years ago...
 
-General recipe, applies to any large system
+## Goal: Learn to Learn
 
-+ *gradually, one feature at a time!*
+In 130 you will learn the **anatomy** of a PL
 
-We will
+- Fundamental **building blocks**
+- Different guises in different PLs
 
-1. Start with a teeny tiny language,
-2. Build a full compiler for it,
-3. Add a few features,
-4. **Go to** step 2.
+Help to better understand the PLs you already "know".
 
-(Yes, loops forever, but we will hit Ctrl-C in 10 weeks...)
+![Anatomy](/static/img/anatomy.png)
 
-## Mechanics
+## Goal: How to Design new Languages
 
-### Who *are* we?
+Buried in **every extensible** system is a PL
 
-* **Boss:** Ranjit Jhala
-* **TAs:** Alexander Bakst, Rami Gokhan, Panagiotis Vekris
-* **Tutors:** TBA
+- Emacs, Android: LISP
+- Word, Powerpoint: Macros, VBScript
+- Firefox, Chrome, Safari: JavaScript
+- SQL, Renderman, Latex, XML ...
 
-### How will we *grade*?
+If **you** work on a large system, you **will** design a new PL!
+
+## Goal: Enable You To Choose Right PL
+
+But isn't that decided by
+
+- Libraries
+- Standards
+- Hiring
+- Your Boss?!
+
+Yes.
+
+**My goal:** Educate tomorrow's leaders so you'll make **informed** choices.
+
+## Speaking of Right and Wrong
+
+![x = x + 1](/static/img/wtf-x-plus-one.png)
+
+## Imperative Programming is Wrong (default)
+
+![Gears of War](/static/img/unreal.png)
+
+Tim Sweeney (Epic, Creator of the UNREAL Gaming Engine)
+
+> In a concurrent world,
+> imperative is the wrong default.
+
+
+
+## Imperative Programming is Wrong (default)
+
+John Carmack, creator of FPS (Doom, Quake, ...)
+
+![Carmack discourages variable mutation](/static/img/carmack-tweet.png)
+
+## Functional Programming
+
+- No assignment
+- No mutation
+- No loops
+
+## OMG! Who uses FP?!
+
+- Google    (MapReduce, ...)
+- Microsoft (LinQ, F#, ...)
+- Facebook  (Erlang, Reason,...)
+- Twitter   (Scala, ...)
+- Wall St.  (Haskell, Ocaml, ...)
+
+and, most importantly ....
+
+- **CSE 130**
+
+## Course Mechanics: Web Page
+
+All information lives online:
+
+- [github](https://github.com/ucsd-progsys/130-web)
+- [webpage](http://ucsd-progsys.github.io/130-web)
+- [piazza]()
+
+## Course Mechanics: Clickers
+
+Make class interactive
+
+– Help **you** and **me** understand whats tricky
+
+Clickers Are Not Optional
+
+– **Cheap** ones are fine
+– **Respond** to 75% questions
+– **Worth** 5% of your grade
+
+Laptops are welcome in lecture (but optional)
+
+## Course Mechanics: In Class Exercises
+
+1. **Solo Vote:** Think for yourself, select answer
+
+2. **Discuss:** Analyze Problem in Groups
+  + Reach consensus
+  + Have questions, raise your hand!
+
+3. **Group Vote:** Everyone in group votes
+  + Must have same vote to get points
+
+4. **Class Discuss:** What was easy or tricky?
+
+## Course Mechanics: Grading
 
 **(30%) Assignments**
 
-+ 7 assignments
++ 6-7 assignments
 + All programming
-+ Groups of 2
-
 
 **(30%) Midterm**
 
-+ In-class (TBA) 
++ In-class (TBA)
 + 2-sided printed "cheat sheet"
-
 
 **(35%) Final**
 
 + 2-sided printed cheat sheet
 
-
 **(05%) Clickers**
 
 + *Attempting to answer* > 75% questions
 
-
 **(05%) Piazza Extra Credit**
 
-+ To top-20 best participants
++ To **top 20** best participants
 
+## Course Mechanics: Grading
 
-## Course Outline
+**CSE 130 is graded on a curve**
 
-## What will *we do* ?
+- Lots of work
+- Don't worry (too much) about grade
 
-Write **a compiler** for `NanoML -> X86`
+## Course Mechanics: No Recommended Text
 
-But Rome wasn't built in a day ... and neither is any serious software.
+- Online lecture notes and links
 
-![Rome wasn't built in a day](/static/img/Eiffel.jpg)
+- **Pay attention to lecture**
 
-So we will write _many_ compilers:
+- **Do Assignments Yourself**
 
-* Numbers and increment/decrement
-* Local Variables
-* Nested Binary Operations
-* Booleans, Branches and Dynamic Types
-* Functions
-* Tuples and Structures
-* Lambdas and closures
-* Garbage Collection
+## Weekly (ish) Programming Assignments
 
-## What will *you learn* ?
+- Accessed and submitted via `github`
 
-**Core principles of compiler construction**
+- Schedule up on webpage (due Fridays 5 PM)
 
-* Managing Stacks & Heap
-* Type Checking
-* Intermediate forms
-* Optimization
+## Weekly (ish) Programming Assignments
 
-**Several new languages**
+Unfamiliar **Languages** and **Environments**
 
-* `Haskell` to write the compiler
-* `C`       to write the "run-time"
-* `X86`     compilation target
+**Forget**
 
-**_More importantly_ how to write a large program**
+- Java, C, C++ ...
+- ... and other 20th century languages
 
-* How to use types for design
-* How to add new features / refactor
-* How to test & validate   
+**Don't Complain**
 
+- That X-language is hard
+- That X-language is @!%$#$
 
-## What do you *need to know* ?
+**Do**
 
-This 131 **depends very heavily** on CSE 130
+- Start early
+- Ask lots of questions!
 
-* Familiarity with Functional Programming and Ocaml
-* Datatypes (e.g. Lists, Trees, ADTs)
-* Polymorphism
-* Recursion
-* HOFs (e.g. `map`, `filter`, `fold`)
+## Weekly (ish) Programming Assignments
 
-Also **depends on** CSE 30
+No Deadline Extension
 
-* Experience with some `C` programming
-* Experience with some assembly (`x86`)
+– Four **late days**, used as **whole unit**
+– 5 mins late = 1 late day
+– *Plan ahead* no other extensions
 
-### A few words on the medium of instruction
+## A Word from Our Sponsor
 
-We will use [Haskell](https://haskell-lang.org/) which, for our
-purposes is like Ocaml but with nicer syntax.
+- Programming Assignments done **alone**
 
-Haskell has many advanced features beyond what we saw in 130,
-but we won't be using them; in the few cases we do, I'll explain
-them as we go.
+- We use plagiarism detection software
+  - I am an expert
+  - Have code from all previous classes
+  - MOSS is fantastic, plagiarize at your own risk
 
-Here are some links to get you started:
+- Zero Tolerance
+  - Offenders punished ruthlessly
 
-* [Haskell for Ocaml Programmers][haskell-for-ocamlers]
-* [Hoogle: Type-based API Search][hoogle]
+- Please see academic integrity statement
 
-[hoogle]: https://www.haskell.org/hoogle/
-[haskell-for-ocamlers]: http://science.raphael.poss.name/haskell-for-ocaml-programmers.html
-[soap-fortran-assembly]: http://worrydream.com/dbx/
+## Plan
+
+**FP**
+
+- Haskell
+- 5 weeks
+
+**OO**
+
+- Scala
+- 3 weeks
+
+**Logic**
+
+- Prolog
+- 2 weeks
+
+## Hello Haskell
+
+Here is **QuickSort** in C
+
+```c
+void sort(int arr[], int beg, int end){
+  if (end > beg + 1){
+    int piv = arr[beg];
+    int l = beg + 1;
+    int r = end;
+    while (l != r-1){
+       if(arr[l] <= piv)
+          l++;
+       else
+          swap(&arr[l], &arr[r--]);
+    }
+    if(arr[l]<=piv && arr[r]<=piv)
+       l=r+1;
+    else if(arr[l]<=piv && arr[r]>piv)
+       {l++; r--;}
+    else if (arr[l]>piv && arr[r]<=piv)
+       swap(&arr[l++], &arr[r--]);
+    else
+       r=l-1;
+    swap(&arr[r--], &arr[beg]);
+    sort(arr, beg, r);
+    sort(arr, l, end);
+  }
+}
+```
+
+and here it is in Haskell
+
+```Haskell
+sort []     = []
+sort (x:xs) = sort ls ++ [x] ++ sort rs
+  where
+    ls      = [ l | l <- xs, l <= x ]
+    rs      = [ r | r <- xs, x <  r ]
+```
+
+## Why Readability Matters
+
+QuickSort in `J`
+
+```j
+sort =: (($:@(<#[),(=#[),$:@(>#[))({~ ?@#))^: (1:<#)
+```
+
+## Plan for next 5 weeks
+
+- **Tiny core** language (Lambda Calculus)
+
+- **Fast forward** intro to Haskell
+
+- **Rewind** and go over anatomy individually
