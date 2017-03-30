@@ -12,8 +12,8 @@ date: 2017-03-28
 
 ### Three Operations
 
-- `x++`     
-- `x--`           
+- `x++`
+- `x--`
 - `x = 0 ? L1 : L2`
 
 ### Example Program
@@ -58,6 +58,9 @@ Language affects how:
 
 - **Ideas** are expressed
 - **Computation** is expressed
+
+![No spoilers here](/static/img/arrival-symbol.jpg)
+
 
 ## Course Goals
 
@@ -267,9 +270,9 @@ Unfamiliar **Languages** and **Environments**
 
 No Deadline Extension
 
-– Four **late days**, used as **whole unit**
-– 5 mins late = 1 late day
-– *Plan ahead* no other extensions
+- Four **late days**, used as **whole unit**
+- 5 mins late = 1 late day
+- *Plan ahead* no other extensions
 
 ## A Word from Our Sponsor
 
