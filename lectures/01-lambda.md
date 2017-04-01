@@ -540,79 +540,70 @@ let OR = \b1 b2 -> b1 TRUE b2
 
 (Can you see why?)
 
-HEREHEREHEREHERE
 
 ## $\lambda$-calculus: Records
 
-What can we *do* with **pairs** ?
+What can we *do* with **records** ?
 
-1. Put **two** items into a pair.
-2. Get **first** item.
-3. Get **second** item.
+1. **Pack two** items into a record.
+2. **Get first** item.
+3. **Get second** item.
 
 ## Records : API
 
 ```haskell
-(put v1 v2)  -- makes a pair out of v1, v2 s.t.
+(PACK v1 v2)  -- makes a pair out of v1, v2 s.t.
 
-(getFst p)   -- returns the first element
+(FST p)       -- returns the first element
 
-(getSnd p)   -- returns the second element
+(SND p)       -- returns the second element
 ```
 
 such that
 
 ```haskell
-getFst (put v1 v2) = v1
-getSnd (put v1 v2) = v2
+FST (PACK v1 v2) = v1
+
+SND (PACK v1 v2) = v2
 ```
 
-## Records : Implementation
+## Records: Implementation
+
+A **create** a record as a **function**
 
 ```haskell
-put v1 v2 = \b. ite b v1 v2
-
-getFst p  = p true
-
-getSnd p  = p false
+let PACK = \v1 v2 -> (\b -> ITE b v1 v2)
 ```
 
-## QUIZ
+- Is called with a Boolean `b`
+- Returns *first* element if `b` is `TRUE`
+- Returns *second* element if `b` is `FALSE`
 
-Suppose we have
+We **access** a record by **calling** it with `TRUE` or `FALSE`
 
 ```haskell
-one   = \f x. f x
-two   = \f x. f (f x)
-three = \f x. f (f (f x))
-four  = \f x. f (f (f (f x)))
+let FST  = \p -> p TRUE   -- call w/ TRUE, get first value
+
+let SND  = \p -> p FALSE  -- call w/ FALSE, get second value
 ```
 
-What is the value of
+## Exercise: Records with 3 values?
 
+How can we implement a record that contains **three** values?
+
+```haskell
+let PACK3 = \v1 v2 v3 -> ???
+
+let fst3  = \r -> ???
+
+let snd3  = \r -> ???
+
+let thd3  = \r -> ???
 ```
-foo (mkPair true) false
 
-foo (mkPair true) false =
-
-mkPair 1 (mkPair 2 (mkPair 3 false))
-```
-
-A. `true`
-B. `false`
-C. `mkPair true false`
-D. `mkPair true (mkPair true false)`
-E. `mkPair true (mkPair true (mkPair true false))`
+## HEREHEREHEREHEREHERE
 
 ## $\lambda$-calculus: Numbers
-
-## $\lambda$-calculus: Arithmetic
-
-## $\lambda$-calculus: Recursion
-
-
-Naturals
---------
 
 `n f s` means run `f` on `s` exactly `n` times
 
@@ -626,8 +617,9 @@ Naturals
 4 = \f x. f (f (f (f x)))
 ```
 
-QUIZ: Church Numerals
----------------------
+## QUIZ: Church Numerals
+
+TODO
 
 Which of these is a valid encoding of `0` ?
 
@@ -648,27 +640,9 @@ zero = \x. x
 -- none of the above!
 ```
 
-sub1 n = getSnd (n (\(flag, res) -> if (flag) (true, res + 1) (true, res))  (false, 0))
+## $\lambda$-calculus: Arithmetic
 
-
-function sub1(n){
- var res = (false, 0);
-
-
-  var flag = false;
- for (var i=0; i<n; i++){
-   if (flag)
-     res += 1;
-   else
-     flag = true;
- }
- return res;
-}
-
-
-
-Operating on numbers
---------------------
+TODO
 
 Lets implement a small API for numbers:
 
@@ -696,8 +670,9 @@ plus   = \n1 n2. n1 plus1 n2
 mult   = \n1 n2. n2 (plus n1) zero
 ```
 
-Recursion
----------
+## $\lambda$-calculus: Recursion
+
+TODO
 
 [elsa-ite]: http://goto.ucsd.edu:8095/index.html#?demo=ite.lc
 
