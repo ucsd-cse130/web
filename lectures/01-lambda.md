@@ -314,10 +314,10 @@ Huh? What was that Landin fellow going on about?
 
 *Real languages have lots of features*
 
-- Local Variables
-- Booleans, Branches
+- Booleans
+- Branches
 - Records
-- Integers
+- Numbers
 - Arithmetic
 - Functions (ok, we got those)
 - Recursion
@@ -330,106 +330,227 @@ with the $\lambda$-calculus.
 - Free your mind
 - Build intuition about **evaluation-by-substitution**
 
-HEREHEREHERE
-
-## THE END
-
-Super brief notes, see details
-
-## Booleans
+## QUIZ
 
 ```haskell
-true  = \x y. x
-false = \x y. y
-ite   = \b x y. b x y
+let bar = \x y -> x
 ```
 
-QUIZ
-----
+What does `(bar apple orange)` evaluate to?
+
+**A.**  `bar orange`
+
+**B.**  `bar apple`
+
+**C.**  `apple`
+
+**D.**  `orange`
+
+**E.**  `bar`
+
+## $\lambda$-calculus: Booleans
+
+**What can we _do_ with a Boolean?**
+- Make a _binary choice_
+
+**How can we encode _choice_ as a function?**
+- A Boolean is a function that
+- Takes _two_ inputs
+- Returns _one of_ them as output
+
+**True and False**
+
+```haskell
+let TRUE  = \x y -> x       -- returns FIRST  input
+let FALSE = \x y -> y       -- returns SECOND input
+```
+
+Here, `let NAME = e` means `NAME` is an _abbreviation_ for `e`
+
+- We don't want to keep _re-typing_ the whole expression out.
+
+
+## QUIZ
 
 Given
 
-```
-foo = \b x y. b x y
-bar = \p q. p
-```
-
-What does the following evaluate to?
-
-```
-foo bar apple orange
+```haskell
+let TRUE  = \x y -> x
+let FALSE = \x y -> y
 ```
 
-A. `foo bar apple orange`
-B. `bar apple`
-C. `apple`
-D. `orange`
-E. `bar`
+What does `(TRUE apple orange)` evaluate to?
 
-QUIZ
-----
+**A.**  `apple`
 
-Given
+**B.**  `orange`
 
-```
-foo = \b x y. b x y
-bar = \p q. p
-baz = \b x y. b y x
-```
-
-What does the following evaluate to?
-
-```
-foo (baz bar) apple orange
-```
-
-A. `foo bar apple orange`
-B. `bar apple`
-C. `apple`
-D. `orange`
-E. `bar`
+**C.**  None of the above
 
 
-Boolean Operators
------------------
+## $\lambda$-calculus: Branches
 
-We can develop the operators from their **truth tables**
+A **branch** is a function that takes _three_ inputs
 
 ```haskell
-not = \b. ite b false true
-and = \b1 b2. ite b1 b2 false
-or  = \b1 b2. ite b1 true b2
+let ITE = \b x y -> ...
 ```
 
-Note that **for any** `a`, `b` and `c` we have:
+- If `b` evaluates to `TRUE`  return `x`
+- If `b` evaluates to `FALSE` return `y`
 
-```
-ite a b c
-  = (\b x y. b x y) a b c
-  = a b c
+In other languages like C or JavaScript you would write
+
+```javascript
+ b ? x : y
 ```
 
-hence we can simplify the above to
+How shall we implement `ITE` as a $\lambda$-expression?
 
 ```haskell
-not = \b.     b false true
-and = \b1 b2. b1 b2 false
-or  = \b1 b2. b1 true b2
+let ITE   = \b x y -> b x y
 ```
 
-Pairs
------
+## Example: Branches
+
+We want
+
+- `if TRUE  then e1 else e2` to evaluate to `e1`
+
+Does it?
+
+```haskell
+eval ite_true:
+  ITE TRUE e1 e2
+  =d> (\b x y -> b    x  y) TRUE e1 e2    -- expand def ITE  
+  =b>   (\x y -> TRUE x  y)      e1 e2    -- beta-step
+  =b>     (\y -> TRUE e1 y)         e2    -- beta-step
+  =b>            TRUE e1 e2               -- expand def TRUE
+  =d>     (\x y -> x) e1 e2               -- beta-step
+  =b>       (\y -> e1)   e2               -- beta-step
+  =b> e1
+```
+
+## Example: Branches
+
+Now you try it! We want
+
+- `if FALSE then e1 else e2` to evaluate to `e2`
+
+Can you [fill in the blanks to make it happen?][elsa-ite]
+
+
+```haskell
+eval ite_false:
+  ITE FALSE e1 e2
+
+  -- fill the steps in!
+
+  =*> e2  
+```
+
+## QUIZ
+
+```
+let TRUE  = \p q   -> p
+let FALSE = \p q   -> q
+let HAHA  = \b x y -> ITE b FALSE TRUE
+```
+
+What does `HAHA TRUE` evaluate to?
+
+**A.** `HAHA TRUE`
+
+**B.** `TRUE`
+
+**C.** `FALSE`
+
+**D.** `HAHA`
+
+**E.** `HAHA FALSE`
+
+
+## Boolean Operators: NOT
+
+
+We can develop the Boolean operators from **truth tables**
+
+| `b`   | `NOT b` |
+|:-----:|:-------:|
+| TRUE  | FALSE   |
+| FALSE | TRUE    |
+
+We can encode the above as:
+
+```haskell
+let NOT = \b -> ITE b FALSE TRUE
+```
+
+That is, `HAHA` is actually the [`NOT` operator!][elsa-not]
+
+
+## Boolean Operators: AND
+
+Similarly, `AND b1 b2` is defined by the truth table
+
+| `b1`   | `b2`   |  `AND b1 b2` |
+|:-----:|:-------:|:------------:|
+| FALSE | FALSE   |  FALSE       |
+| FALSE | TRUE    |  FALSE       |
+| TRUE  | FALSE   |  FALSE       |
+| TRUE  | TRUE    |  TRUE        |
+
+We can encode the truth table as a function
+
+```haskell
+let AND = \b1 b2 -> ITE b1 (ITE b2 TRUE FALSE) FALSE
+```
+
+which can be simplified to
+
+```haskell
+let AND = \b1 b2 -> b1 b2 FALSE
+```
+
+(Can you see why?)
+
+
+## Boolean Operators: OR
+
+Similarly, `OR b1 b2` is defined by the truth table
+
+| `b1`   | `b2`   |  `AND b1 b2` |
+|:-----:|:-------:|:------------:|
+| FALSE | FALSE   |  FALSE       |
+| FALSE | TRUE    |  TRUE        |
+| TRUE  | FALSE   |  TRUE        |
+| TRUE  | TRUE    |  TRUE        |
+
+We can encode the truth table as a function
+
+```haskell
+let OR = \b1 b2 -> ITE b1 TRUE (ITE b2 TRUE FALSE)
+```
+
+which can be simplified to
+
+```haskell
+let OR = \b1 b2 -> b1 TRUE b2
+```
+
+(Can you see why?)
+
+HEREHEREHEREHERE
+
+## $\lambda$-calculus: Records
 
 What can we *do* with **pairs** ?
 
-1. put **two** items into a pair.
-2. get **first** item.
-3. get **second** item.
+1. Put **two** items into a pair.
+2. Get **first** item.
+3. Get **second** item.
 
-
-
-Pairs : API
------------
+## Records : API
 
 ```haskell
 (put v1 v2)  -- makes a pair out of v1, v2 s.t.
@@ -446,8 +567,7 @@ getFst (put v1 v2) = v1
 getSnd (put v1 v2) = v2
 ```
 
-Pairs : Implementation
-----------------------
+## Records : Implementation
 
 ```haskell
 put v1 v2 = \b. ite b v1 v2
@@ -457,9 +577,7 @@ getFst p  = p true
 getSnd p  = p false
 ```
 
-
-QUIZ
-----
+## QUIZ
 
 Suppose we have
 
@@ -485,6 +603,12 @@ B. `false`
 C. `mkPair true false`
 D. `mkPair true (mkPair true false)`
 E. `mkPair true (mkPair true (mkPair true false))`
+
+## $\lambda$-calculus: Numbers
+
+## $\lambda$-calculus: Arithmetic
+
+## $\lambda$-calculus: Recursion
 
 
 Naturals
@@ -574,3 +698,7 @@ mult   = \n1 n2. n2 (plus n1) zero
 
 Recursion
 ---------
+
+[elsa-ite]: http://goto.ucsd.edu:8095/index.html#?demo=ite.lc
+
+[elsa-not]: http://goto.ucsd.edu:8095/index.html#?demo=permalink%2F1491005489_149.lc
