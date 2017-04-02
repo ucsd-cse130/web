@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="dcterms.date" content="2017-03-28">
+  <title>Hello, world!</title>
+
+  <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/css/ronacher.css" type="text/css">
+  <link rel="stylesheet" href="../static/css/syntax.css">
+  <link rel="stylesheet" href="../static/css/liquid-light.css">
+
+  <link rel="stylesheet" href="anim.css">
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+
+<section class="title">
+  <h1 class="title">Hello, world!</h1>
+  <footer>
+     · <span class="date">2017-03-28</span>
+  </footer>
+</section>
+<section id="a-programming-language" class="slide level2">
+<h1>A Programming Language</h1>
+<h3 id="two-variables">Two Variables</h3>
+<ul>
+<li><code>x</code>, <code>y</code></li>
+</ul>
+<h3 id="three-operations">Three Operations</h3>
+<ul>
+<li><code>x++</code></li>
+<li><code>x--</code></li>
+<li><code>x = 0 ? L1 : L2</code></li>
+</ul>
+<h3 id="example-program">Example Program</h3>
+<p>(What <em>does</em> it do?)</p>
+<pre><code>L1: x++
+    y--
+    y = 0 ? L2 : L1
+L2: ...</code></pre>
+<p><strong>Fact</strong> The above language is <em>equivalent to</em> every PL!</p>
+<ul>
+<li>But good luck writing QuickSort ...</li>
+<li>... or Plants v. Zombies</li>
+<li>... or Spotify!</li>
+</ul>
+</section>
+<section id="so-why-study-programming-languages" class="slide level2">
+<h1>So Why Study Programming Languages?</h1>
+<figure>
+<img src="/static/img/fellini.png" alt="Federico Fellini" /><figcaption>Federico Fellini</figcaption>
+</figure>
+<blockquote>
+<p>A different language is a different vision of life.</p>
+</blockquote>
+</section>
+<section id="so-why-study-programming-languages-1" class="slide level2">
+<h1>So Why Study Programming Languages?</h1>
+<blockquote>
+<p>The principle of <strong>linguistic relativity</strong> holds that the structure of a language affects its speakers world view or cognition.</p>
+</blockquote>
+<p>Or more simply:</p>
+<blockquote>
+<p>Programming Language shapes Programming Thought.</p>
+</blockquote>
+<p>Language affects how:</p>
+<ul>
+<li><strong>Ideas</strong> are expressed</li>
+<li><strong>Computation</strong> is expressed</li>
+</ul>
+<figure>
+<img src="/static/img/arrival-symbol.jpg" alt="No spoilers here" /><figcaption>No spoilers here</figcaption>
+</figure>
+</section>
+<section id="course-goals" class="slide level2">
+<h1>Course Goals</h1>
+<figure>
+<img src="/static/img/morpheus.png" alt="Morpheus, The Matrix" /><figcaption>Morpheus, The Matrix</figcaption>
+</figure>
+<blockquote>
+<p>Free Your Mind.</p>
+</blockquote>
+</section>
+<section id="goal-learn-new-languages-constructs" class="slide level2">
+<h1>Goal: Learn New Languages / Constructs</h1>
+<figure>
+<img src="/static/img/music-score.png" alt="Musical Score" /><figcaption>Musical Score</figcaption>
+</figure>
+<p>New ways to <strong>describe</strong> and <strong>organize</strong> computation,</p>
+<p>To create programs that are:</p>
+<ul>
+<li><strong>Readable</strong></li>
+<li><strong>Correct</strong></li>
+<li><strong>Extendable</strong></li>
+<li><strong>Modifiable</strong></li>
+<li><strong>Reusable</strong></li>
+</ul>
+</section>
+<section id="new-languages-come-and-go-..." class="slide level2">
+<h1>New languages come (and go ...)</h1>
+<p>There was no</p>
+<ul>
+<li>Java 20 years ago,</li>
+<li>C# 15 years ago,</li>
+<li>Rust 10 years ago,</li>
+<li>Go 5 years ago...</li>
+</ul>
+</section>
+<section id="goal-learn-to-learn" class="slide level2">
+<h1>Goal: Learn to Learn</h1>
+<p>In 130 you will learn the <strong>anatomy</strong> of a PL</p>
+<ul>
+<li>Fundamental <strong>building blocks</strong></li>
+<li>Different guises in different PLs</li>
+</ul>
+<p>Help to better understand the PLs you already &quot;know&quot;.</p>
+<figure>
+<img src="/static/img/anatomy.png" alt="Anatomy" /><figcaption>Anatomy</figcaption>
+</figure>
+</section>
+<section id="goal-how-to-design-new-languages" class="slide level2">
+<h1>Goal: How to Design new Languages</h1>
+<p>Buried in <strong>every extensible</strong> system is a PL</p>
+<ul>
+<li>Emacs, Android: LISP</li>
+<li>Word, Powerpoint: Macros, VBScript</li>
+<li>Firefox, Chrome, Safari: JavaScript</li>
+<li>SQL, Renderman, Latex, XML ...</li>
+</ul>
+<p>If <strong>you</strong> work on a large system, you <strong>will</strong> design a new PL!</p>
+</section>
+<section id="goal-enable-you-to-choose-right-pl" class="slide level2">
+<h1>Goal: Enable You To Choose Right PL</h1>
+<p>But isn't that decided by</p>
+<ul>
+<li>Libraries</li>
+<li>Standards</li>
+<li>Hiring</li>
+<li>Your Boss?!</li>
+</ul>
+<p>Yes.</p>
+<p><strong>My goal:</strong> Educate tomorrow's leaders so you'll make <strong>informed</strong> choices.</p>
+</section>
+<section id="speaking-of-right-and-wrong" class="slide level2">
+<h1>Speaking of Right and Wrong</h1>
+<figure>
+<img src="/static/img/wtf-x-plus-one.png" alt="x = x + 1" /><figcaption>x = x + 1</figcaption>
+</figure>
+</section>
+<section id="imperative-programming-is-wrong-default" class="slide level2">
+<h1>Imperative Programming is Wrong (default)</h1>
+<figure>
+<img src="/static/img/unreal.png" alt="Gears of War" /><figcaption>Gears of War</figcaption>
+</figure>
+<p>Tim Sweeney (Epic, Creator of the UNREAL Gaming Engine)</p>
+<blockquote>
+<p>In a concurrent world, imperative is the wrong default.</p>
+</blockquote>
+</section>
+<section id="imperative-programming-is-wrong-default-1" class="slide level2">
+<h1>Imperative Programming is Wrong (default)</h1>
+<p>John Carmack, creator of FPS (Doom, Quake, ...)</p>
+<figure>
+<img src="/static/img/carmack-tweet.png" alt="Carmack discourages variable mutation" /><figcaption>Carmack discourages variable mutation</figcaption>
+</figure>
+</section>
+<section id="functional-programming" class="slide level2">
+<h1>Functional Programming</h1>
+<ul>
+<li>No assignment</li>
+<li>No mutation</li>
+<li>No loops</li>
+</ul>
+</section>
+<section id="omg-who-uses-fp" class="slide level2">
+<h1>OMG! Who uses FP?!</h1>
+<ul>
+<li>Google (MapReduce, ...)</li>
+<li>Microsoft (LinQ, F#, ...)</li>
+<li>Facebook (Erlang, Reason,...)</li>
+<li>Twitter (Scala, ...)</li>
+<li>Wall St. (Haskell, Ocaml, ...)</li>
+</ul>
+<p>and, most importantly ....</p>
+<ul>
+<li><strong>CSE 130</strong></li>
+</ul>
+</section>
+<section id="course-mechanics-web-page" class="slide level2">
+<h1>Course Mechanics: Web Page</h1>
+<p>All information lives online:</p>
+<ul>
+<li><a href="https://github.com/ucsd-progsys/130-web">github</a></li>
+<li><a href="http://ucsd-progsys.github.io/130-web">webpage</a></li>
+<li><a href="">piazza</a></li>
+</ul>
+</section>
+<section id="course-mechanics-clickers" class="slide level2">
+<h1>Course Mechanics: Clickers</h1>
+<p>Make class interactive</p>
+<ul>
+<li>Help <strong>you</strong> and <strong>me</strong> understand whats tricky</li>
+</ul>
+<p>Clickers Are Not Optional</p>
+<ul>
+<li><strong>Cheap</strong> ones are fine</li>
+<li><strong>Respond</strong> to 75% questions</li>
+<li><strong>Worth</strong> 5% of your grade</li>
+</ul>
+<p>Laptops are welcome in lecture (but optional)</p>
+</section>
+<section id="course-mechanics-in-class-exercises" class="slide level2">
+<h1>Course Mechanics: In Class Exercises</h1>
+<ol type="1">
+<li><strong>Solo Vote</strong></li>
+</ol>
+<ul>
+<li>Think for yourself, select answer</li>
+</ul>
+<ol start="2" type="1">
+<li><strong>Discuss</strong></li>
+</ol>
+<ul>
+<li>Analyze Problem in Groups</li>
+<li>Reach consensus</li>
+<li>Have questions, raise your hand!</li>
+</ul>
+<ol start="3" type="1">
+<li><strong>Group Vote</strong></li>
+</ol>
+<ul>
+<li>Everyone in group votes</li>
+<li>Must have same vote to get points</li>
+</ul>
+<ol start="4" type="1">
+<li><strong>Class Discuss</strong></li>
+</ol>
+<ul>
+<li>What was easy or tricky?</li>
+</ul>
+</section>
+<section id="course-mechanics-grading" class="slide level2">
+<h1>Course Mechanics: Grading</h1>
+<p><strong>(30%) Assignments</strong></p>
+<ul>
+<li>6-7 assignments</li>
+<li>All programming</li>
+</ul>
+<p><strong>(30%) Midterm</strong></p>
+<ul>
+<li>In-class (TBA)</li>
+<li>2-sided printed &quot;cheat sheet&quot;</li>
+</ul>
+<p><strong>(35%) Final</strong></p>
+<ul>
+<li>2-sided printed cheat sheet</li>
+</ul>
+<p><strong>(05%) Clickers</strong></p>
+<ul>
+<li><em>Attempting to answer</em> &gt; 75% questions</li>
+</ul>
+<p><strong>(05%) Piazza Extra Credit</strong></p>
+<ul>
+<li>To <strong>top 20</strong> best participants</li>
+</ul>
+</section>
+<section id="course-mechanics-grading-1" class="slide level2">
+<h1>Course Mechanics: Grading</h1>
+<p><strong>CSE 130 is graded on a curve</strong></p>
+<ul>
+<li>Lots of work</li>
+<li>Don't worry (too much) about grade</li>
+</ul>
+</section>
+<section id="course-mechanics-no-text" class="slide level2">
+<h1>Course Mechanics: No Text</h1>
+<ul>
+<li><p>Online lecture notes and links</p></li>
+<li><p><strong>Pay attention to lecture</strong></p></li>
+<li><p><strong>Do Assignments Yourself</strong></p></li>
+</ul>
+</section>
+<section id="programming-assignments" class="slide level2">
+<h1>Programming Assignments</h1>
+<ul>
+<li><p>About 6-7 over the quarter</p></li>
+<li><p>Accessed via <code>github</code></p></li>
+<li><p>Schedule up on webpage (due Fridays 5 PM)</p></li>
+</ul>
+</section>
+<section id="programming-assignments-1" class="slide level2">
+<h1>Programming Assignments</h1>
+<p>Unfamiliar <strong>Languages</strong> and <strong>Environments</strong></p>
+<figure>
+<img src="http://core0.staticworld.net/images/article/2015/09/frustrated_developer-100614973-gallery.idge.jpg" alt="Don&#39;t complain" /><figcaption>Don't complain</figcaption>
+</figure>
+<p><strong>Forget</strong></p>
+<ul>
+<li>Java, C, C++ ...</li>
+<li>... and other 20th century languages</li>
+</ul>
+<p><strong>Don't Complain</strong></p>
+<ul>
+<li>That X-language is hard</li>
+<li>That X-language is @!%<span class="math inline">\(#\)</span></li>
+</ul>
+<p><strong>Do</strong></p>
+<ul>
+<li>Start early</li>
+<li>Ask lots of questions!</li>
+</ul>
+</section>
+<section id="programming-assignments-2" class="slide level2">
+<h1>Programming Assignments</h1>
+<p>No Deadline Extension</p>
+<ul>
+<li>Four <strong>late days</strong>, used as <strong>whole unit</strong></li>
+<li>5 mins late = 1 late day</li>
+<li><em>Plan ahead</em> no other extensions</li>
+</ul>
+</section>
+<section id="a-word-from-our-sponsor" class="slide level2">
+<h1>A Word from Our Sponsor</h1>
+<p>Programming Assignments done <strong>alone</strong></p>
+<ul>
+<li>Zero Tolerance</li>
+<li>Offenders punished ruthlessly</li>
+<li>Please see academic integrity statement</li>
+</ul>
+<p>We use <strong>plagiarism detection</strong> software</p>
+<ul>
+<li>I am an expert</li>
+<li>Have code from all previous classes</li>
+<li>MOSS is fantastic, plagiarize at your own risk</li>
+</ul>
+</section>
+<section id="plan" class="slide level2">
+<h1>Plan</h1>
+<p><strong>FP</strong></p>
+<ul>
+<li>Haskell</li>
+<li>5 weeks</li>
+</ul>
+<p><strong>OO</strong></p>
+<ul>
+<li>Scala</li>
+<li>3 weeks</li>
+</ul>
+<p><strong>Logic</strong></p>
+<ul>
+<li>Prolog</li>
+<li>2 weeks</li>
+</ul>
+</section>
+<section id="hello-haskell" class="slide level2">
+<h1>Hello Haskell</h1>
+<p>Here is <strong>QuickSort</strong> in C</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">void</span> sort(<span class="dt">int</span> arr[], <span class="dt">int</span> beg, <span class="dt">int</span> end){
+  <span class="kw">if</span> (end &gt; beg + <span class="dv">1</span>){
+    <span class="dt">int</span> piv = arr[beg];
+    <span class="dt">int</span> l = beg + <span class="dv">1</span>;
+    <span class="dt">int</span> r = end;
+    <span class="kw">while</span> (l != r<span class="dv">-1</span>)
+       <span class="kw">if</span>(arr[l] &lt;= piv) l++;
+       <span class="kw">else</span> swap(&amp;arr[l], &amp;arr[r--]);
+    <span class="kw">if</span>(arr[l]&lt;=piv &amp;&amp; arr[r]&lt;=piv)
+       l=r<span class="dv">+1</span>;
+    <span class="kw">else</span> <span class="kw">if</span>(arr[l]&lt;=piv &amp;&amp; arr[r]&gt;piv)
+       {l++; r--;}
+    <span class="kw">else</span> <span class="kw">if</span> (arr[l]&gt;piv &amp;&amp; arr[r]&lt;=piv)
+       swap(&amp;arr[l++], &amp;arr[r--]);
+    <span class="kw">else</span> r=l<span class="dv">-1</span>;
+    swap(&amp;arr[r--], &amp;arr[beg]);
+    sort(arr, beg, r);
+    sort(arr, l, end);
+  }
+}</code></pre></div>
+<p>and here it is in Haskell</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">sort []     <span class="fu">=</span> []
+sort (x<span class="fu">:</span>xs) <span class="fu">=</span> sort ls <span class="fu">++</span> [x] <span class="fu">++</span> sort rs
+  <span class="kw">where</span>
+    ls      <span class="fu">=</span> [ l <span class="fu">|</span> l <span class="ot">&lt;-</span> xs, l <span class="fu">&lt;=</span> x ]
+    rs      <span class="fu">=</span> [ r <span class="fu">|</span> r <span class="ot">&lt;-</span> xs, x <span class="fu">&lt;</span>  r ]</code></pre></div>
+</section>
+<section id="why-readability-matters" class="slide level2">
+<h1>Why Readability Matters</h1>
+<p>QuickSort in <code>J</code></p>
+<pre class="j"><code>sort =: (($:@(&lt;#[),(=#[),$:@(&gt;#[))({~ ?@#))^: (1:&lt;#)</code></pre>
+</section>
+<section id="plan-for-next-5-weeks" class="slide level2">
+<h1>Plan for next 5 weeks</h1>
+<ul>
+<li><p><strong>Tiny core</strong> language (Lambda Calculus)</p></li>
+<li><p><strong>Fast forward</strong> intro to Haskell</p></li>
+<li><p><strong>Rewind</strong> and go over anatomy individually</p></li>
+</ul>
+</section>
+<!-- {{{{ dzslides core
+#
+#
+#     __  __  __       .  __   ___  __
+#    |  \  / /__` |    | |  \ |__  /__`
+#    |__/ /_ .__/ |___ | |__/ |___ .__/ core :€
+#
+#
+# The following block of code is not supposed to be edited.
+# But if you want to change the behavior of these slides,
+# feel free to hack it!
+#
+-->
+
+<div id="progress-bar"></div>
+
+<!-- Default Style -->
+<style>
+  * { margin: 0; padding: 0; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+  [role="note"] { display: none; }
+  body {
+    width: 800px; height: 600px;
+    margin-left: -400px; margin-top: -300px;
+    position: absolute; top: 50%; left: 50%;
+    overflow: hidden;
+    display: none;
+  }
+  .view body {
+    position: static;
+    margin: 0; padding: 0;
+    width: 100%; height: 100%;
+    display: inline-block;
+    overflow: visible; overflow-x: hidden;
+    /* undo Dz.onresize */
+    transform: none !important;
+    -moz-transform: none !important;
+    -webkit-transform: none !important;
+    -o-transform: none !important;
+    -ms-transform: none !important;
+  }
+  .view head, .view head > title { display: block }
+  section {
+    position: absolute;
+    pointer-events: none;
+    width: 100%; height: 100%;
+  }
+  .view section {
+    pointer-events: auto;
+    position: static;
+    width: 800px; height: 600px;
+    margin: -150px -200px;
+    float: left;
+
+    transform: scale(.4);
+    -moz-transform: scale(.4);
+    -webkit-transform: scale(.4);
+    -o-transform: scale(.4);
+    -ms-transform: scale(.4);
+  }
+  .view section > * { pointer-events: none; }
+  section[aria-selected] { pointer-events: auto; }
+  html { overflow: hidden; }
+  html.view { overflow: visible; }
+  body.loaded { display: block; }
+  .incremental {visibility: hidden; }
+  .incremental[active] {visibility: visible; }
+  #progress-bar{
+    bottom: 0;
+    position: absolute;
+    -moz-transition: width 400ms linear 0s;
+    -webkit-transition: width 400ms linear 0s;
+    -ms-transition: width 400ms linear 0s;
+    transition: width 400ms linear 0s;
+  }
+  .view #progress-bar {
+    display: none;
+  }
+</style>
+
+<script>
+  var Dz = {
+    remoteWindows: [],
+    idx: -1,
+    step: 0,
+    html: null,
+    slides: null,
+    progressBar : null,
+    params: {
+      autoplay: "1"
+    }
+  };
+
+  Dz.init = function() {
+    document.body.className = "loaded";
+    this.slides = Array.prototype.slice.call($$("body > section"));
+    this.progressBar = $("#progress-bar");
+    this.html = document.body.parentNode;
+    this.setupParams();
+    this.onhashchange();
+    this.setupTouchEvents();
+    this.onresize();
+    this.setupView();
+  }
+
+  Dz.setupParams = function() {
+    var p = window.location.search.substr(1).split('&');
+    p.forEach(function(e, i, a) {
+      var keyVal = e.split('=');
+      Dz.params[keyVal[0]] = decodeURIComponent(keyVal[1]);
+    });
+  // Specific params handling
+    if (!+this.params.autoplay)
+      $$.forEach($$("video"), function(v){ v.controls = true });
+  }
+
+  Dz.onkeydown = function(aEvent) {
+    // Don't intercept keyboard shortcuts
+    if (aEvent.altKey
+      || aEvent.ctrlKey
+      || aEvent.metaKey
+      || aEvent.shiftKey) {
+      return;
+    }
+    if ( aEvent.keyCode == 37 // left arrow
+      || aEvent.keyCode == 38 // up arrow
+      || aEvent.keyCode == 33 // page up
+    ) {
+      aEvent.preventDefault();
+      this.back();
+    }
+    if ( aEvent.keyCode == 39 // right arrow
+      || aEvent.keyCode == 40 // down arrow
+      || aEvent.keyCode == 34 // page down
+    ) {
+      aEvent.preventDefault();
+      this.forward();
+    }
+    if (aEvent.keyCode == 35) { // end
+      aEvent.preventDefault();
+      this.goEnd();
+    }
+    if (aEvent.keyCode == 36) { // home
+      aEvent.preventDefault();
+      this.goStart();
+    }
+    if (aEvent.keyCode == 32) { // space
+      aEvent.preventDefault();
+      this.toggleContent();
+    }
+    if (aEvent.keyCode == 70) { // f
+      aEvent.preventDefault();
+      this.goFullscreen();
+    }
+    if (aEvent.keyCode == 79) { // o
+      aEvent.preventDefault();
+      this.toggleView();
+    }
+  }
+
+  /* Touch Events */
+
+  Dz.setupTouchEvents = function() {
+    var orgX, newX;
+    var tracking = false;
+
+    var db = document.body;
+    db.addEventListener("touchstart", start.bind(this), false);
+    db.addEventListener("touchmove", move.bind(this), false);
+
+    function start(aEvent) {
+      aEvent.preventDefault();
+      tracking = true;
+      orgX = aEvent.changedTouches[0].pageX;
+    }
+
+    function move(aEvent) {
+      if (!tracking) return;
+      newX = aEvent.changedTouches[0].pageX;
+      if (orgX - newX > 100) {
+        tracking = false;
+        this.forward();
+      } else {
+        if (orgX - newX < -100) {
+          tracking = false;
+          this.back();
+        }
+      }
+    }
+  }
+
+  Dz.setupView = function() {
+    document.body.addEventListener("click", function ( e ) {
+      if (!Dz.html.classList.contains("view")) return;
+      if (!e.target || e.target.nodeName != "SECTION") return;
+
+      Dz.html.classList.remove("view");
+      Dz.setCursor(Dz.slides.indexOf(e.target) + 1);
+    }, false);
+  }
+
+  /* Adapt the size of the slides to the window */
+
+  Dz.onresize = function() {
+    var db = document.body;
+    var sx = db.clientWidth / window.innerWidth;
+    var sy = db.clientHeight / window.innerHeight;
+    var transform = "scale(" + (1/Math.max(sx, sy)) + ")";
+
+    db.style.MozTransform = transform;
+    db.style.WebkitTransform = transform;
+    db.style.OTransform = transform;
+    db.style.msTransform = transform;
+    db.style.transform = transform;
+  }
+
+
+  Dz.getNotes = function(aIdx) {
+    var s = $("section:nth-of-type(" + aIdx + ")");
+    var d = s.$("[role='note']");
+    return d ? d.innerHTML : "";
+  }
+
+  Dz.onmessage = function(aEvent) {
+    var argv = aEvent.data.split(" "), argc = argv.length;
+    argv.forEach(function(e, i, a) { a[i] = decodeURIComponent(e) });
+    var win = aEvent.source;
+    if (argv[0] === "REGISTER" && argc === 1) {
+      this.remoteWindows.push(win);
+      this.postMsg(win, "REGISTERED", document.title, this.slides.length);
+      this.postMsg(win, "CURSOR", this.idx + "." + this.step);
+      return;
+    }
+    if (argv[0] === "BACK" && argc === 1)
+      this.back();
+    if (argv[0] === "FORWARD" && argc === 1)
+      this.forward();
+    if (argv[0] === "START" && argc === 1)
+      this.goStart();
+    if (argv[0] === "END" && argc === 1)
+      this.goEnd();
+    if (argv[0] === "TOGGLE_CONTENT" && argc === 1)
+      this.toggleContent();
+    if (argv[0] === "SET_CURSOR" && argc === 2)
+      window.location.hash = "#" + argv[1];
+    if (argv[0] === "GET_CURSOR" && argc === 1)
+      this.postMsg(win, "CURSOR", this.idx + "." + this.step);
+    if (argv[0] === "GET_NOTES" && argc === 1)
+      this.postMsg(win, "NOTES", this.getNotes(this.idx));
+  }
+
+  Dz.toggleContent = function() {
+    // If a Video is present in this new slide, play it.
+    // If a Video is present in the previous slide, stop it.
+    var s = $("section[aria-selected]");
+    if (s) {
+      var video = s.$("video");
+      if (video) {
+        if (video.ended || video.paused) {
+          video.play();
+        } else {
+          video.pause();
+        }
+      }
+    }
+  }
+
+  Dz.setCursor = function(aIdx, aStep) {
+    // If the user change the slide number in the URL bar, jump
+    // to this slide.
+    aStep = (aStep != 0 && typeof aStep !== "undefined") ? "." + aStep : ".0";
+    window.location.hash = "#" + aIdx + aStep;
+  }
+
+  Dz.onhashchange = function() {
+    var cursor = window.location.hash.split("#"),
+        newidx = 1,
+        newstep = 0;
+    if (cursor.length == 2) {
+      newidx = ~~cursor[1].split(".")[0];
+      newstep = ~~cursor[1].split(".")[1];
+      if (newstep > Dz.slides[newidx - 1].$$('.incremental > *').length) {
+        newstep = 0;
+        newidx++;
+      }
+    }
+    this.setProgress(newidx, newstep);
+    if (newidx != this.idx) {
+      this.setSlide(newidx);
+    }
+    if (newstep != this.step) {
+      this.setIncremental(newstep);
+    }
+    for (var i = 0; i < this.remoteWindows.length; i++) {
+      this.postMsg(this.remoteWindows[i], "CURSOR", this.idx + "." + this.step);
+    }
+  }
+
+  Dz.back = function() {
+    if (this.idx == 1 && this.step == 0) {
+      return;
+    }
+    if (this.step == 0) {
+      this.setCursor(this.idx - 1,
+                     this.slides[this.idx - 2].$$('.incremental > *').length);
+    } else {
+      this.setCursor(this.idx, this.step - 1);
+    }
+  }
+
+  Dz.forward = function() {
+    if (this.idx >= this.slides.length &&
+        this.step >= this.slides[this.idx - 1].$$('.incremental > *').length) {
+        return;
+    }
+    if (this.step >= this.slides[this.idx - 1].$$('.incremental > *').length) {
+      this.setCursor(this.idx + 1, 0);
+    } else {
+      this.setCursor(this.idx, this.step + 1);
+    }
+  }
+
+  Dz.goStart = function() {
+    this.setCursor(1, 0);
+  }
+
+  Dz.goEnd = function() {
+    var lastIdx = this.slides.length;
+    var lastStep = this.slides[lastIdx - 1].$$('.incremental > *').length;
+    this.setCursor(lastIdx, lastStep);
+  }
+
+  Dz.toggleView = function() {
+    this.html.classList.toggle("view");
+
+    if (this.html.classList.contains("view")) {
+      $("section[aria-selected]").scrollIntoView(true);
+    }
+  }
+
+  Dz.setSlide = function(aIdx) {
+    this.idx = aIdx;
+    var old = $("section[aria-selected]");
+    var next = $("section:nth-of-type("+ this.idx +")");
+    if (old) {
+      old.removeAttribute("aria-selected");
+      var video = old.$("video");
+      if (video) {
+        video.pause();
+      }
+    }
+    if (next) {
+      next.setAttribute("aria-selected", "true");
+      if (this.html.classList.contains("view")) {
+        next.scrollIntoView();
+      }
+      var video = next.$("video");
+      if (video && !!+this.params.autoplay) {
+        video.play();
+      }
+    } else {
+      // That should not happen
+      this.idx = -1;
+      // console.warn("Slide doesn't exist.");
+    }
+  }
+
+  Dz.setIncremental = function(aStep) {
+    this.step = aStep;
+    var old = this.slides[this.idx - 1].$('.incremental > *[aria-selected]');
+    if (old) {
+      old.removeAttribute('aria-selected');
+    }
+    var incrementals = $$('.incremental');
+    if (this.step <= 0) {
+      $$.forEach(incrementals, function(aNode) {
+        aNode.removeAttribute('active');
+      });
+      return;
+    }
+    var next = this.slides[this.idx - 1].$$('.incremental > *')[this.step - 1];
+    if (next) {
+      next.setAttribute('aria-selected', true);
+      next.parentNode.setAttribute('active', true);
+      var found = false;
+      $$.forEach(incrementals, function(aNode) {
+        if (aNode != next.parentNode)
+          if (found)
+            aNode.removeAttribute('active');
+          else
+            aNode.setAttribute('active', true);
+        else
+          found = true;
+      });
+    } else {
+      setCursor(this.idx, 0);
+    }
+    return next;
+  }
+
+  Dz.goFullscreen = function() {
+    var html = $('html'),
+        requestFullscreen = html.requestFullscreen || html.requestFullScreen || html.mozRequestFullScreen || html.webkitRequestFullScreen;
+    if (requestFullscreen) {
+      requestFullscreen.apply(html);
+    }
+  }
+
+  Dz.setProgress = function(aIdx, aStep) {
+    var slide = $("section:nth-of-type("+ aIdx +")");
+    if (!slide)
+      return;
+    var steps = slide.$$('.incremental > *').length + 1,
+        slideSize = 100 / (this.slides.length - 1),
+        stepSize = slideSize / steps;
+    this.progressBar.style.width = ((aIdx - 1) * slideSize + aStep * stepSize) + '%';
+  }
+
+  Dz.postMsg = function(aWin, aMsg) { // [arg0, [arg1...]]
+    aMsg = [aMsg];
+    for (var i = 2; i < arguments.length; i++)
+      aMsg.push(encodeURIComponent(arguments[i]));
+    aWin.postMessage(aMsg.join(" "), "*");
+  }
+
+  function init() {
+    Dz.init();
+    window.onkeydown = Dz.onkeydown.bind(Dz);
+    window.onresize = Dz.onresize.bind(Dz);
+    window.onhashchange = Dz.onhashchange.bind(Dz);
+    window.onmessage = Dz.onmessage.bind(Dz);
+  }
+
+  window.onload = init;
+</script>
+
+
+<script> // Helpers
+  if (!Function.prototype.bind) {
+    Function.prototype.bind = function (oThis) {
+
+      // closest thing possible to the ECMAScript 5 internal IsCallable
+      // function
+      if (typeof this !== "function")
+      throw new TypeError(
+        "Function.prototype.bind - what is trying to be fBound is not callable"
+      );
+
+      var aArgs = Array.prototype.slice.call(arguments, 1),
+          fToBind = this,
+          fNOP = function () {},
+          fBound = function () {
+            return fToBind.apply( this instanceof fNOP ? this : oThis || window,
+                   aArgs.concat(Array.prototype.slice.call(arguments)));
+          };
+
+      fNOP.prototype = this.prototype;
+      fBound.prototype = new fNOP();
+
+      return fBound;
+    };
+  }
+
+  var $ = (HTMLElement.prototype.$ = function(aQuery) {
+    return this.querySelector(aQuery);
+  }).bind(document);
+
+  var $$ = (HTMLElement.prototype.$$ = function(aQuery) {
+    return this.querySelectorAll(aQuery);
+  }).bind(document);
+
+  $$.forEach = function(nodeList, fun) {
+    Array.prototype.forEach.call(nodeList, fun);
+  }
+
+</script>
+<!-- vim: set fdm=marker: }}} -->
+</body>
+</html>
