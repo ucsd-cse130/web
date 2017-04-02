@@ -1,0 +1,296 @@
+<HTML><head> 
+  <link rel="stylesheet" type="text/css" href="../styles.css">
+  <title>Practice Problems for Midterm</title></head>
+<TITLE> </TITLE>
+
+<BODY>
+<BODY BGCOLOR="WHITE"> 
+
+<br>
+<P>
+<H2> Practice Problems for Midterm </H2> 
+
+<hr>
+<H3>Programming Assignments 1, 2 and 3</H3>
+
+<p>PA 1, 2, and 3 are all practice problems for the mideterm, and you
+will get questions similar in nature to those assignments.
+
+<p>In addition, here are some additional practice problems.
+
+<hr>
+<h3>Additional Practice Problem 1</h3>
+Suppose that the following list of bindings was entered into the OCaml 
+interpreter.
+For each binding, the interpreter responds with either: 
+(a) the name of the variable, its value, and its type, as shown for the
+first binding in <i> italics </i>, or (b) a type error.<br>
+Fill in the blanks ("<tt>...</tt>") with how the interpreter
+would respond if each of the bindings was entered in the sequence shown
+below. Recall that if a type error occurs, then the variable binding does not
+happen. Note that you could just enter this sequence into the interpreter
+and see what happens, but this is a luxury you will not have during the
+quiz.
+
+
+<tt>
+  <p>- let x = 2 ;; </p>
+  <p> <i>val x : int = 2 </i> </p>
+  
+  
+  <p>- let x = 2 + 3 - 4.0 ;; </p>
+
+  <p>...</p>
+
+<p>- let x = 2 + 3 ;;</p>
+<p>...</p>
+
+<p>- let x = "a" ;;</p>
+<p>...</p>
+
+<p>- let x = (x,3) ;; </p>
+<p>...</p>
+
+<p>- let y = ((snd x)^"b" , 2) ;;</p>
+<p>...</p>
+
+<p>- let y = ((fst x)^"c" , 4) ;;</p>
+<p>...</p>
+
+<p>- let z = if (x = y) then (snd x) else (snd y) ;;</p>
+<p>...</p>
+
+<p>- type myrecord = {f1 : int; f2 : string ; f3 : int} ;;</p>
+
+<p>- let a = {f1 = x; f2 = (fst y); f3 = z} ;;</p>
+<p>...</p>
+
+<p>- let b = z::(snd y)::[] ;;</p>
+<p>...</p>
+
+<p>- let c = (x;y;z) ;;</p>
+<p>...</p>
+
+<p>- let c = (x,y,z) ;;</p>
+<p>...</p>
+
+<p>- let m = if (snd x) = (snd y) then b else [] ;;</p>
+<p>...</p>
+
+<p>- let n = if (1 > 2) then ["a";"b"] else [] ;;</p>
+<p>...</p>
+
+<p>- let o = if (m = n) then 2 else 3 ;;</p>
+<p>...</p>
+
+</tt>
+
+
+<P>
+
+<hr>
+<h3>Additional Practice Problem 2</h3>
+
+Suppose that the following list of bindings was entered into the OCaml 
+interpreter in the sequence shown. For each binding, write down : <br>
+(a) If the expression is accepted, the value bound ("fn" for functions) and its type,<br>
+(b) If the expression is rejected due to a type error, "type error",<br>
+(c) If the expression is rejected due to an unbound variable, 
+the name of the variable that is not bound. 
+Recall that if a type error occurs, then the variable binding does not
+happen. Check your answers by entering this sequence into the interpreter.
+
+<code>
+  <pre>
+- let a =
+    let x = 20 in
+    let y = 
+      let x = 5 in
+	x + x 
+    in
+      x + y
+    ;;
+
+- let b = 
+    let x = "ab" in
+    let y = (let x = "cd" in x) ^ x in
+      x ^ y
+    ;;
+
+- let c = 
+    let x = 22 in
+      x::y
+    ;;
+
+</pre>
+</code>
+
+<hr>
+<h3>Additional Practice Problem 3</h3>
+In each part below you are required to complete the implementation of a
+function by filling in the appropriate expressions in the blanks (parts marked
+<code> ... </code>).
+
+<ul>
+<li>
+<b> (a) </b> 
+<tt> everyOther : 'a list -&gt; 'a list </tt>, a function that takes a list and
+returns every other element of the list, i.e. the application <tt>
+  everyOther [v1;v2;3;v4;v5;...] </tt> evaluates to <tt> [v1;v3;v5;...]
+</tt>. <br>
+<pre>
+<code>
+let everyOther l =
+  let rec helper (b,l) = 
+    match l with
+      [] -> ...
+    | h::t -> if b then ... else ...
+  in
+    helper (true,l)
+;;
+</code>
+</pre>
+</li>
+
+<li>
+<b> (b) </b>
+<tt> zip : 'a list * 'b list -&gt; ('a * 'b) list </tt>, a function that
+takes two lists (of equal length) and returns a list of pairs of
+corresponding elements, i.e. the application <tt>
+  zip ([x1;x2;x3;...;xn],[y1;y2;y3;...;yn]) </tt> evaluates to <tt>
+  ([(x1,y1);(x2,y2);(x3,y3);...;(xn,yn)]).
+</tt>. 
+<br>
+<pre>
+<code>
+let rec zip (l1,l2) = 
+  match (l1,l2) with 
+    ([],_) -> ...
+  | (_,[]) -> ...
+  | (h1::t1,h2::t2) -> (...) :: (...)
+</code>
+</pre>
+</li>
+
+<li>
+<b> (c) </b>
+<tt> unzip : 'a * 'b list -&gt; ('a list * 'b list ) </tt>, a function that
+takes a list of pairs and returns two lists (of equal length) of the first
+elements of the second elements of the pairs, respectively, i.e. the application <tt>
+  unzip [(x1,y1);(x2,y2);(x3,y3);...;(xn,yn)] </tt> evaluates to <tt>
+  ([x1;x2;x3;...;xn],[y1;y2;y3;...;yn]) </tt>. 
+<br>
+<pre>
+<code>
+let rec unzip l = 
+  match l with
+    (...) -> ([],[])
+  | (...) -> 
+      let ... = ... in
+        ((...)::(...),(...)::(...))
+      ;;
+</code>
+</pre>
+</li>
+</ul>
+
+<P>
+<HR><P>
+
+<h3>Additional Practice Problem 4</h3>
+Suppose that the following list of bindings was entered into the OCaml 
+interpreter in the sequence shown. For each binding, write down : <br>
+(a) If the expression is accepted, the value bound ("fn" for functions) and its type,<br>
+(b) If the expression is rejected due to a type error, "type error",<br>
+(c) If the expression is rejected due to an unbound variable, 
+the name of the variable that is not bound. 
+Recall that if a type error occurs, then the variable binding does not
+happen. Check your answers by entering this sequence into the interpreter.
+
+<code>
+  <pre>
+# type tree = 
+      Leaf of int
+    | Node of tree * tree;;
+
+# let b = Leaf [3];;
+
+# let c = Node (Leaf 3,Leaf 5);;
+
+# let d = Node (Leaf 0,c);;
+
+# let b = Node (c,d);;
+
+# let f = fun a -&gt; fun b -&gt; a &lt; b;;
+
+# let g = f 0;;
+
+# let z = g 4;;
+
+# let x = g (-3);;
+
+
+
+</pre>
+</code>
+
+<hr>
+<h3>Additional Practice Problem 5</h3>
+For each function below, determine if the function is tail recursive.
+
+<code>
+  <pre>
+# let rec fact1 x = x * (fact (x-1));;
+
+# let fact2 x = 
+      let rec helper (n,r) = 
+        match n with 
+	  0 -> r
+	| _ -> helper ((n-1),(x*r))
+      in
+         helper (x,1)
+  ;;
+
+
+# let rec add1 (n,y) = 
+    match n with 
+      0 -> y 
+    | _ -> 1 + add1 (n-1,y)
+  ;;
+
+# let rec add2 (n,y) = 
+    match n with 
+      0 -> y 
+    | _ -> add2 (n-1,y+1);;
+
+</pre>
+</code>
+
+<hr>
+
+<h3>Additional Practice Problem 6</h3>
+Write the following functions on trees described using the datatype <tt> tree </tt>
+shown in Problem 4. 
+<ul>
+  <li> <tt> depth : tree -> int </tt> where the depth of a leaf is 0 and
+  the depth of an internal node is 1 greater than the maximum depths of its
+  children.
+  </li>
+  <li> <tt> size : tree -> int </tt> which computes the number of leaf
+  nodes of a tree.</li>
+  <li> <tt> sum : tree -> int </tt> which adds up the values of all the
+  leaves of the tree </li>
+  <li> <tt> isLeaf : tree * int -> bool </tt> which given a tree and an
+  integer returns true if and only if the integer appears in a leaf of the
+  tree. </li>
+  <li> <tt> duplicate : tree -> bool </tt> which given a tree returns true
+  if and only if the tree has two distinct leaves with the same value.</li>
+</ul>
+<P>
+<HR><P>
+
+
+
+</BODY>
+</HTML>
+

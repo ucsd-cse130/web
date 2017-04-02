@@ -1,0 +1,622 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <!--
+      loads the http over https ssl -
+      welcome to my website!
+
+	this theme is based off the Ice & Fire theme created by Lucas Gatsas
+      https://www.twitter.com/LucasGatsas
+      www.lucasgatsas.ch - switzerland.
+  -->
+
+
+<!-- Microsoft Internet Explorer documentMode compatMode setting IE Modus -->
+<script type="text/javascript">
+var IE = null;
+if (window.navigator.appName == "Microsoft Internet Explorer") {
+  if (document.documentMode) {
+
+    IE = document.documentMode;
+    } else {
+
+        IE = 5;
+          if (document.compatMode) {
+      if (document.compatMode == "CSS1Compat")
+      IE = 11;
+      }
+    }
+  }
+</script>
+
+    <meta charset="utf-8">
+    <!-- X-UA -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <link rel="author" title="Ranjit Jhala" href="http://ranjitjhala.github.io" />
+
+    <meta name="google" content="notranslate" />
+    <!-- Viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- index ROBOTS follow -->
+    <meta name="robots" content="index, follow" />
+    <!-- Site Desciption -->
+    <meta name="description" content="UCSD CSE 130">
+    <!-- Site Desciption -->
+    <meta name="keywords" content="haskell, refinement types, liquid types, formal methods, type systems">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="file:///Users/rjhala/teaching/130-web/_site//static/img/ico.png" type="image/x-icon" />
+    <!-- Blog Title -->
+    <title>cse130</title>
+
+    <!--     <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+-->
+    <!-- Property Metas -->
+    <meta property="og:image" content="file:///Users/rjhala/teaching/130-web/_site//static/img/ix.png" />
+    <meta property="og:title" content="UCSD CSE 130" />
+    <meta property="og:site_name" content="UCSD CSE 130" />
+    <!-- Canonical -->
+    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseUrl | prepend: site.url }}">
+    <!-- StyleSheet -->
+    <link rel="stylesheet" href="file:///Users/rjhala/teaching/130-web/_site//static/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="file:///Users/rjhala/teaching/130-web/_site//static/css/spaceg.stylesheets.css"> -->
+    <link rel="stylesheet" href="file:///Users/rjhala/teaching/130-web/_site//static/css/ronacher.css" type="text/css">
+
+    <link rel="stylesheet" href="file:///Users/rjhala/teaching/130-web/_site//static/css/syntax.css">
+    <link rel="stylesheet" href="file:///Users/rjhala/teaching/130-web/_site//static/css/liquid-light.css">
+
+    <!-- Fonts
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+    -->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+	#preloader {position:fixed;top:0;left:0;right:0;bottom:0;background-color:#fff; /* change if the mask should have another color then white */z-index:99; /* makes sure it stays on top */}
+	#status {width:200px;height:200px;position:absolute;left:50%; /* centers the loading animation horizontally one the screen */top:50%; /* centers the loading animation vertically one the screen */background-image:url("/static/img/preloader.gif"); /* path to your loading animation */background-repeat:no-repeat;background-position:center;margin:-100px 0 0 -100px; /* is width and height divided by two */}
+	ul, ol {margin-top: 0;margin-bottom: 10px;}
+	.navbar-inverse {background-color: #FFF;border-color: #FFFFFF;}
+</style>
+<!--link rel="stylesheet" href="file:///Users/rjhala/teaching/130-web/_site//static/css/prettify.css"-->
+<style>
+  /* HEADER IMAGE */
+  header.intro-header {background: #6f5499;background: no-repeat center center;background-attachment: scroll;-webkit-background-size: cover;-moz-background-size: cover;background-size: cover;-o-background-size: cover;}
+
+	/* Preloader */#preloader {position:fixed;top:0;left:0;right:0;bottom:0;background-color:#fff; /* change if the mask should have another color then white */z-index:99; /* makes sure it stays on top */}
+	#status {width:200px;height:200px;position:absolute;left:50%; /* centers the loading animation horizontally one the screen */top:50%; /* centers the loading animation vertically one the screen */background-image:; /* path to your loading animation */background-repeat:no-repeat;background-position:center;margin:-100px 0 0 -100px; /* is width and height divided by two */}
+	li {list-style: none;}
+            body.modal-open
+            {overflow: hidden;padding-right: 0px;
+        }
+	article li {list-style: inherit;}
+	article .figure {text-align: center}
+    </style>
+    <!-- end Loading front stylesheet here -->
+    </head>
+
+    <body>
+	    
+	<!-- 	
+        <div id="preloader">
+	    <div id="status">
+	    </div>
+	</div>  
+	-->
+	<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="file:///Users/rjhala/teaching/130-web/_site/" id="blog-title-left-top">cse130</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="file:///Users/rjhala/teaching/130-web/_site//calendar.html">Calendar</a></li>
+                <li><a href="file:///Users/rjhala/teaching/130-web/_site//contact.html">Contact</a></li>
+                <li><a href="file:///Users/rjhala/teaching/130-web/_site//grades.html">Grades</a></li>
+                <li><a href="file:///Users/rjhala/teaching/130-web/_site//lectures.html">Lectures</a></li>
+                <li><a href="file:///Users/rjhala/teaching/130-web/_site//assignments.html">Assignments</a></li>
+                <li><a href="file:///Users/rjhala/teaching/130-web/_site//links.html">Links</a></li>
+                <li><a href="https://www.piazza.com/ucsd/spring2017/cse130/home" id="roundbutton" target="_blank"><i class="fa fa-twitter"></i>Piazza</a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<!-- Portfolio Modals -->
+    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right:0px; overflow: hidden;">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h1 class="font-style-inline-small-h1">Ranjit Jhala</h1>
+                            <hr class="star-primary">
+                            <img src="file:///Users/rjhala/teaching/130-web/_site//static/img/ico.png" class="img-responsive img-centered" alt title>
+                            <p class="font-style-inline-small">
+                                <a href="https://www.twitter.com/ranjitjhala" target="_blank">follow me</a>. <br>
+                                <a href="https://www.github.com/ucsd-progsys/130-web" target="_blank">    <i class="fa fa-github" id="spaceg-social-modal"></i> </a>
+                                <a href="https://www.twitter.com/ranjitjhala" target="_blank"><i class="fa fa-twitter" id="spaceg-social-modal"></i> </a>
+                                <a href="https://plus.google.com/u/0/106612421534244742464" target="_blank"> <i class="fa fa-google-plus" id="spaceg-social-modal"></i></a>
+                            </p>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Menu Modals Add New Sa.21.Feb.2015 03:22:25 -->
+    <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right:0px; overflow: hidden;">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h1 class="font-style-inline-small-h1">Ranjit Jhala</h1>
+                            <hr class="star-primary">
+                            <p class="font-style-inline-small">
+                              <a href="https://www.twitter.com/ranjitjhala" target="_blank">follow</a>. <br>
+                              <a href="https://www.github.com/ucsd-progsys/130-web" target="_blank">    <i class="fa fa-github" id="spaceg-social-modal"></i> </a>
+                              <li><a href="file:///Users/rjhala/teaching/130-web/_site//calendar.html">Calendar</a></li>
+                              <li><a href="file:///Users/rjhala/teaching/130-web/_site//contact.html">Contact</a></li>
+                              <li><a href="file:///Users/rjhala/teaching/130-web/_site//grades.html">Grades</a></li>
+                              <li><a href="file:///Users/rjhala/teaching/130-web/_site//lectures.html">Lectures</a></li>
+                              <li><a href="file:///Users/rjhala/teaching/130-web/_site//assignments.html">Assignments</a></li>
+                              <li><a href="file:///Users/rjhala/teaching/130-web/_site//links.html">Links</a></li>
+                              <li><a href="https://www.piazza.com/ucsd/spring2017/cse130/home" id="roundbutton" target="_blank"><i class="fa fa-twitter"></i>Piazza</a></li>
+                            </p>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+        <div id="content">
+            <!-- Post Header -->
+    <header class="intro-header" style="background-image: url('file:///Users/rjhala/teaching/130-web/_site//static/img/sea.jpg')" alt title>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Hello, world!</h1>
+                    
+                    <span class="meta">
+		    
+		    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+
+
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+			<h2 id="a-programming-language">A Programming Language</h2>
+<h3 id="two-variables">Two Variables</h3>
+<ul>
+<li><code>x</code>, <code>y</code></li>
+</ul>
+<h3 id="three-operations">Three Operations</h3>
+<ul>
+<li><code>x++</code></li>
+<li><code>x--</code></li>
+<li><code>x = 0 ? L1 : L2</code></li>
+</ul>
+<h3 id="example-program">Example Program</h3>
+<p>(What <em>does</em> it do?)</p>
+<pre><code>L1: x++
+    y--
+    y = 0 ? L2 : L1
+L2: ...</code></pre>
+<p><strong>Fact</strong> The above language is <em>equivalent to</em> every PL!</p>
+<ul>
+<li>But good luck writing QuickSort …</li>
+<li>… or Plants v. Zombies</li>
+<li>… or Spotify!</li>
+</ul>
+<h2 id="so-why-study-programming-languages">So Why Study Programming Languages?</h2>
+<div class="figure">
+<img src="../static/img/fellini.png" alt="Federico Fellini" />
+<p class="caption">Federico Fellini</p>
+</div>
+<blockquote>
+<p>A different language is a different vision of life.</p>
+</blockquote>
+<h2 id="so-why-study-programming-languages-1">So Why Study Programming Languages?</h2>
+<blockquote>
+<p>The principle of <strong>linguistic relativity</strong> holds that the structure of a language affects its speakers world view or cognition.</p>
+</blockquote>
+<p>Or more simply:</p>
+<blockquote>
+<p>Programming Language shapes Programming Thought.</p>
+</blockquote>
+<p>Language affects how:</p>
+<ul>
+<li><strong>Ideas</strong> are expressed</li>
+<li><strong>Computation</strong> is expressed</li>
+</ul>
+<div class="figure">
+<img src="../static/img/arrival-symbol.jpg" alt="No spoilers here" />
+<p class="caption">No spoilers here</p>
+</div>
+<h2 id="course-goals">Course Goals</h2>
+<div class="figure">
+<img src="../static/img/morpheus.png" alt="Morpheus, The Matrix" />
+<p class="caption">Morpheus, The Matrix</p>
+</div>
+<blockquote>
+<p>Free Your Mind.</p>
+</blockquote>
+<h2 id="goal-learn-new-languages-constructs">Goal: Learn New Languages / Constructs</h2>
+<div class="figure">
+<img src="../static/img/music-score.png" alt="Musical Score" />
+<p class="caption">Musical Score</p>
+</div>
+<p>New ways to <strong>describe</strong> and <strong>organize</strong> computation,</p>
+<p>To create programs that are:</p>
+<ul>
+<li><strong>Readable</strong></li>
+<li><strong>Correct</strong></li>
+<li><strong>Extendable</strong></li>
+<li><strong>Modifiable</strong></li>
+<li><strong>Reusable</strong></li>
+</ul>
+<h2 id="new-languages-come-and-go">New languages come (and go …)</h2>
+<p>There was no</p>
+<ul>
+<li>Java 20 years ago,</li>
+<li>C# 15 years ago,</li>
+<li>Rust 10 years ago,</li>
+<li>Go 5 years ago…</li>
+</ul>
+<h2 id="goal-learn-to-learn">Goal: Learn to Learn</h2>
+<p>In 130 you will learn the <strong>anatomy</strong> of a PL</p>
+<ul>
+<li>Fundamental <strong>building blocks</strong></li>
+<li>Different guises in different PLs</li>
+</ul>
+<p>Help to better understand the PLs you already “know”.</p>
+<div class="figure">
+<img src="../static/img/anatomy.png" alt="Anatomy" />
+<p class="caption">Anatomy</p>
+</div>
+<h2 id="goal-how-to-design-new-languages">Goal: How to Design new Languages</h2>
+<p>Buried in <strong>every extensible</strong> system is a PL</p>
+<ul>
+<li>Emacs, Android: LISP</li>
+<li>Word, Powerpoint: Macros, VBScript</li>
+<li>Firefox, Chrome, Safari: JavaScript</li>
+<li>SQL, Renderman, Latex, XML …</li>
+</ul>
+<p>If <strong>you</strong> work on a large system, you <strong>will</strong> design a new PL!</p>
+<h2 id="goal-enable-you-to-choose-right-pl">Goal: Enable You To Choose Right PL</h2>
+<p>But isn’t that decided by</p>
+<ul>
+<li>Libraries</li>
+<li>Standards</li>
+<li>Hiring</li>
+<li>Your Boss?!</li>
+</ul>
+<p>Yes.</p>
+<p><strong>My goal:</strong> Educate tomorrow’s leaders so you’ll make <strong>informed</strong> choices.</p>
+<h2 id="speaking-of-right-and-wrong">Speaking of Right and Wrong</h2>
+<div class="figure">
+<img src="../static/img/wtf-x-plus-one.png" alt="x = x + 1" />
+<p class="caption">x = x + 1</p>
+</div>
+<h2 id="imperative-programming-is-wrong-default">Imperative Programming is Wrong (default)</h2>
+<div class="figure">
+<img src="../static/img/unreal.png" alt="Gears of War" />
+<p class="caption">Gears of War</p>
+</div>
+<p>Tim Sweeney (Epic, Creator of the UNREAL Gaming Engine)</p>
+<blockquote>
+<p>In a concurrent world, imperative is the wrong default.</p>
+</blockquote>
+<h2 id="imperative-programming-is-wrong-default-1">Imperative Programming is Wrong (default)</h2>
+<p>John Carmack, creator of FPS (Doom, Quake, …)</p>
+<div class="figure">
+<img src="../static/img/carmack-tweet.png" alt="Carmack discourages variable mutation" />
+<p class="caption">Carmack discourages variable mutation</p>
+</div>
+<h2 id="functional-programming">Functional Programming</h2>
+<ul>
+<li>No assignment</li>
+<li>No mutation</li>
+<li>No loops</li>
+</ul>
+<h2 id="omg-who-uses-fp">OMG! Who uses FP?!</h2>
+<ul>
+<li>Google (MapReduce, …)</li>
+<li>Microsoft (LinQ, F#, …)</li>
+<li>Facebook (Erlang, Reason,…)</li>
+<li>Twitter (Scala, …)</li>
+<li>Wall St. (Haskell, Ocaml, …)</li>
+</ul>
+<p>and, most importantly ….</p>
+<ul>
+<li><strong>CSE 130</strong></li>
+</ul>
+<h2 id="course-mechanics-web-page">Course Mechanics: Web Page</h2>
+<p>All information lives online:</p>
+<ul>
+<li><a href="https://github.com/ucsd-progsys/130-web">github</a></li>
+<li><a href="http://ucsd-progsys.github.io/130-web">webpage</a></li>
+<li><a href>piazza</a></li>
+</ul>
+<h2 id="course-mechanics-clickers">Course Mechanics: Clickers</h2>
+<p>Make class interactive</p>
+<p>– Help <strong>you</strong> and <strong>me</strong> understand whats tricky</p>
+<p>Clickers Are Not Optional</p>
+<p>– <strong>Cheap</strong> ones are fine – <strong>Respond</strong> to 75% questions – <strong>Worth</strong> 5% of your grade</p>
+<p>Laptops are welcome in lecture (but optional)</p>
+<h2 id="course-mechanics-in-class-exercises">Course Mechanics: In Class Exercises</h2>
+<ol style="list-style-type: decimal">
+<li><p><strong>Solo Vote:</strong> Think for yourself, select answer</p></li>
+<li><strong>Discuss:</strong> Analyze Problem in Groups</li>
+</ol>
+<ul>
+<li>Reach consensus</li>
+<li>Have questions, raise your hand!</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>Group Vote:</strong> Everyone in group votes</li>
+</ol>
+<ul>
+<li>Must have same vote to get points</li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
+<li><strong>Class Discuss:</strong> What was easy or tricky?</li>
+</ol>
+<h2 id="course-mechanics-grading">Course Mechanics: Grading</h2>
+<p><strong>(30%) Assignments</strong></p>
+<ul>
+<li>6-7 assignments</li>
+<li>All programming</li>
+</ul>
+<p><strong>(30%) Midterm</strong></p>
+<ul>
+<li>In-class (TBA)</li>
+<li>2-sided printed “cheat sheet”</li>
+</ul>
+<p><strong>(35%) Final</strong></p>
+<ul>
+<li>2-sided printed cheat sheet</li>
+</ul>
+<p><strong>(05%) Clickers</strong></p>
+<ul>
+<li><em>Attempting to answer</em> &gt; 75% questions</li>
+</ul>
+<p><strong>(05%) Piazza Extra Credit</strong></p>
+<ul>
+<li>To <strong>top 20</strong> best participants</li>
+</ul>
+<h2 id="course-mechanics-grading-1">Course Mechanics: Grading</h2>
+<p><strong>CSE 130 is graded on a curve</strong></p>
+<ul>
+<li>Lots of work</li>
+<li>Don’t worry (too much) about grade</li>
+</ul>
+<h2 id="course-mechanics-no-recommended-text">Course Mechanics: No Recommended Text</h2>
+<ul>
+<li><p>Online lecture notes and links</p></li>
+<li><p><strong>Pay attention to lecture</strong></p></li>
+<li><p><strong>Do Assignments Yourself</strong></p></li>
+</ul>
+<h2 id="weekly-ish-programming-assignments">Weekly (ish) Programming Assignments</h2>
+<ul>
+<li><p>Accessed and submitted via <code>github</code></p></li>
+<li><p>Schedule up on webpage (due Fridays 5 PM)</p></li>
+</ul>
+<h2 id="weekly-ish-programming-assignments-1">Weekly (ish) Programming Assignments</h2>
+<p>Unfamiliar <strong>Languages</strong> and <strong>Environments</strong></p>
+<p><strong>Forget</strong></p>
+<ul>
+<li>Java, C, C++ …</li>
+<li>… and other 20th century languages</li>
+</ul>
+<p><strong>Don’t Complain</strong></p>
+<ul>
+<li>That X-language is hard</li>
+<li>That X-language is @!%<span class="math inline">$#$</span></li>
+</ul>
+<p><strong>Do</strong></p>
+<ul>
+<li>Start early</li>
+<li>Ask lots of questions!</li>
+</ul>
+<h2 id="weekly-ish-programming-assignments-2">Weekly (ish) Programming Assignments</h2>
+<p>No Deadline Extension</p>
+<ul>
+<li>Four <strong>late days</strong>, used as <strong>whole unit</strong></li>
+<li>5 mins late = 1 late day</li>
+<li><em>Plan ahead</em> no other extensions</li>
+</ul>
+<h2 id="a-word-from-our-sponsor">A Word from Our Sponsor</h2>
+<ul>
+<li><p>Programming Assignments done <strong>alone</strong></p></li>
+<li>We use plagiarism detection software</li>
+<li>I am an expert</li>
+<li>Have code from all previous classes</li>
+<li><p>MOSS is fantastic, plagiarize at your own risk</p></li>
+<li>Zero Tolerance</li>
+<li><p>Offenders punished ruthlessly</p></li>
+<li><p>Please see academic integrity statement</p></li>
+</ul>
+<h2 id="plan">Plan</h2>
+<p><strong>FP</strong></p>
+<ul>
+<li>Haskell</li>
+<li>5 weeks</li>
+</ul>
+<p><strong>OO</strong></p>
+<ul>
+<li>Scala</li>
+<li>3 weeks</li>
+</ul>
+<p><strong>Logic</strong></p>
+<ul>
+<li>Prolog</li>
+<li>2 weeks</li>
+</ul>
+<h2 id="hello-haskell">Hello Haskell</h2>
+<p>Here is <strong>QuickSort</strong> in C</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">void</span> sort(<span class="dt">int</span> arr[], <span class="dt">int</span> beg, <span class="dt">int</span> end){
+  <span class="kw">if</span> (end &gt; beg + <span class="dv">1</span>){
+    <span class="dt">int</span> piv = arr[beg];
+    <span class="dt">int</span> l = beg + <span class="dv">1</span>;
+    <span class="dt">int</span> r = end;
+    <span class="kw">while</span> (l != r<span class="dv">-1</span>){
+       <span class="kw">if</span>(arr[l] &lt;= piv)
+          l++;
+       <span class="kw">else</span>
+          swap(&amp;arr[l], &amp;arr[r--]);
+    }
+    <span class="kw">if</span>(arr[l]&lt;=piv &amp;&amp; arr[r]&lt;=piv)
+       l=r<span class="dv">+1</span>;
+    <span class="kw">else</span> <span class="kw">if</span>(arr[l]&lt;=piv &amp;&amp; arr[r]&gt;piv)
+       {l++; r--;}
+    <span class="kw">else</span> <span class="kw">if</span> (arr[l]&gt;piv &amp;&amp; arr[r]&lt;=piv)
+       swap(&amp;arr[l++], &amp;arr[r--]);
+    <span class="kw">else</span>
+       r=l<span class="dv">-1</span>;
+    swap(&amp;arr[r--], &amp;arr[beg]);
+    sort(arr, beg, r);
+    sort(arr, l, end);
+  }
+}</code></pre></div>
+<p>and here it is in Haskell</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">sort []     <span class="fu">=</span> []
+sort (x<span class="fu">:</span>xs) <span class="fu">=</span> sort ls <span class="fu">++</span> [x] <span class="fu">++</span> sort rs
+  <span class="kw">where</span>
+    ls      <span class="fu">=</span> [ l <span class="fu">|</span> l <span class="ot">&lt;-</span> xs, l <span class="fu">&lt;=</span> x ]
+    rs      <span class="fu">=</span> [ r <span class="fu">|</span> r <span class="ot">&lt;-</span> xs, x <span class="fu">&lt;</span>  r ]</code></pre></div>
+<h2 id="why-readability-matters">Why Readability Matters</h2>
+<p>QuickSort in <code>J</code></p>
+<pre class="j"><code>sort =: (($:@(&lt;#[),(=#[),$:@(&gt;#[))({~ ?@#))^: (1:&lt;#)</code></pre>
+<h2 id="plan-for-next-5-weeks">Plan for next 5 weeks</h2>
+<ul>
+<li><p><strong>Tiny core</strong> language (Lambda Calculus)</p></li>
+<li><p><strong>Fast forward</strong> intro to Haskell</p></li>
+<li><p><strong>Rewind</strong> and go over anatomy individually</p></li>
+</ul>
+                <hr>
+            </div>
+        </div>
+    </div>
+</article>
+
+        </div>
+        <div id="footer">
+        </div>
+      <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    <li>
+                        <a href="file:///Users/rjhala/teaching/130-web/_site//feed.xml" data-datatype="json" data-type="GET" data-target="#frame" class="reload" id="clickme">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://twitter.com/ranjitjhala" data-datatype="json" data-type="GET" data-target="#frame" class="reload" id="clickme" target="_blank">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a href="https://plus.google.com/u/0/106612421534244742464" data-datatype="json" data-type="GET" data-target="#frame" class="reload" id="clickme" target="_blank">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a href="https://github.com/ucsd-progsys/130-web" target="_blank">
+                            <span class="fa-stack fa-lg">
+
+                              <i class="fa fa-arrow-circle-o-down"></i>
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+		    
+                </ul>
+                <p class="copyright text-muted">
+                
+                  Generated by <a href="http://jaspervdj.be/hakyll">Hakyll</a>,
+                  template by <a href="http://lucumr.pocoo.org">Armin Ronacher</a>,
+                  suggest improvements <a href="https://github.com/ucsd-progsys/liquidhaskell-blog/">here</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<!-- jQuery -->
+<script src="file:///Users/rjhala/teaching/130-web/_site//static/js/jquery.min.js"></script>
+<script src="file:///Users/rjhala/teaching/130-web/_site//static/js/spaceg.stylesheets.min.js"></script>
+<script src="file:///Users/rjhala/teaching/130-web/_site//static/js/bootstrap.min.js"></script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+<script src="file:///Users/rjhala/teaching/130-web/_site//static/js/anim.js"></script>
+<script src="file:///Users/rjhala/teaching/130-web/_site//static/js/scripts.js"></script>
+
+    </body>
+</html>

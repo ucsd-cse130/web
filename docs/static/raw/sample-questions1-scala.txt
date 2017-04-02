@@ -1,0 +1,490 @@
+		CS 130 Fall 07: Sample Questions for Final
+_________________________________________________________________________
+_________________________________________________________________________
+
+
+Problem 1:
+---------
+
+For each ML function given below, if the function is well typed, then
+write down its type, otherwise explain in less than two lines why Ocaml 
+rejects the function.
+
+(a)
+let rec rev l = 
+  match l with 
+    [] -> []
+  | (h::t) -> (rev t)::h
+
+(b)
+let rec f l = 
+  match l with
+    [] -> []
+  | (h::t) -> (List.hd h)::t
+
+
+(c)
+let rec f (tup,l) = 
+  match l with 
+    [] -> 0
+  | (h::t) -> tup.h + f (tup,t)
+
+(d)
+let rec f (x,y) =
+  if x then (List.hd y) + 20
+  else if not x then 0 else y
+
+(e)
+let rec f l = 
+  match l with
+    [] -> []
+  | f (h::t) -> h @ (flatten t)  
+
+_________________________________________________________________________
+
+Problem 2:
+---------
+
+Which of the functions below are tail recursive ? 
+Also, for each function, write down its type.
+For the ones that are not, write down tail 
+recursive versions that achieve the same task.
+
+(a)
+let rec map f l = 
+  match l with 
+    [] -> []
+  | (h::t) -> (f h) :: (map f t)  
+
+(b)
+let rec fold f b l = 
+  match l with 
+    [] -> b
+  | (h::t) -> fold f (f (h,b)) t  
+
+(c)
+let rec len l = 
+  match l with
+    [] -> 0
+  | (h::t) -> 1 + len t
+
+(d)
+let rec f (n,l) = 
+  match l with 
+    [] -> n
+  | (n,h::t) = if (h>n) then f (h,t) else f(n,t)
+
+
+
+Solution: run Ocaml to get types.
+--------
+
+(a) Not tail recursive.
+    let map f l = 
+        let rec helper (acc,l') =
+	  match l' with 
+	    [] -> acc 
+	  | (acc,h::t) = helper((f h)::acc,t)
+	in
+	  List.rev(helper([],l))
+
+(b) Tail recursive.
+
+(c) Not tail recursive.
+    let len l = 
+        let rec helper (n,l') =
+	  match l' with 
+	    [] -> n
+	  | helper (n,_::t) = helper(s+1,t)
+	in
+	  helper(0,t)
+	
+
+(d) Tail recursive.
+
+    
+_________________________________________________________________________
+
+
+Problem 3:
+---------
+
+The following datatype can be used to represent arbitrarily nested
+lists. 
+
+type 'a nlist = Nil | Cons of 'a elt * 'a nlist
+and 'a elt = E of 'a | NL of 'a nlist
+
+The list [1,2] could be represented as Cons(E 1,Cons(E 2,Nil)),
+the list [[1],2] as Cons(NL(Cons((E 1),Nil)),Cons(E 2,Nil))
+and the list [[[],[1]],2] as Cons(NL(Cons(NL Nil,Cons (E 1,Nil))), Cons(E 2,Nil)).
+
+Using only pattern-matching (i.e. no if-then-else expressions):
+
+(a) Write a function: nlist_toString: ('a -> string) -> 'a nlist -> string
+    such that if nl is bound to Cons(NL(Cons(NL Nil,Cons (E 1,Nil))), Cons(E 2,Nil)), 
+    then (nlist_toString Int.toString nl) evaluates to: "[[[],[1]],2]".
+
+(b) Write a function flatten: 'a nlist -> 'a list that returns 
+    the list of elements appearing in the nested list in order. 
+    Thus when applied to any of the lists shown above, flatten 
+    returns the list [1,2].
+    
+_________________________________________________________________________
+
+
+Problem 4:
+---------
+
+We say that two expressions e1 and e2 are semantically equivalent 
+if in every environment E, evaluating e1 and evaluating e2 produces 
+the same result. For each  of the  following pairs of  expressions, 
+explain why they are semantically equivalent, or if not, then give 
+an environment that distinguishes the two, i.e. in which evaluating 
+the two expressions gives different results.
+
+(a)
+  (* e1 *) let x = 0 in x 
+  
+  (* e2 *) let x = (f 1) * 0 in x
+  
+(b)
+  (* e1 *) (fun a -> fun b -> a + b) p q 
+  
+  (* e2 *) (fun b -> fun a -> b + a) p q
+    
+(c)  
+  (* e1 *)
+   let x = a + 1 in 
+   let y = b + 2 in 
+     2*x + 3*y
+   
+ 
+  (* e2 *)
+   let y = b + 2 in
+   let x = a + 1 in 
+     2*x + 3*y
+   
+
+(d)
+  (* e1 *)
+   let x = a + 1 in
+   let y = x + 2 in 
+     2*x + 3*y
+   
+ 
+  (* e2 *)
+   let y = x + 2 in
+   let x = a + 1 in 
+     2*x + 3*y
+
+Solution:
+--------
+
+(a) Not equivalent: as f may not terminate or throw an exception! 
+    Distinguishing environment: where f is: fun f x = f x
+
+(b) Equivalent -- as the arguments or "formals" for the two functions 
+    have just been renamed.
+
+(c) Equivalent -- as only difference is order but the same expressions 
+    are evaluated in both cases giving same values.
+    
+(d) Not Equivalent -- a distinguishing environment is where 
+    x is bound to 0 and a is bound to 0,a are bound to 0,0. The "free" 
+    occurrence of x gets its value 0 from the environment, and thus y 
+    gets bound differently leading to different evaluations.
+
+_________________________________________________________________________
+
+
+Problem 5: 
+---------
+
+Does the following code work correctly ? If not, find and fix the bug.
+
+(a) For PA #2, Problem #1 (c):
+
+    let rec ffor (i,j,f) = if i=j then () else ((f i); ffor (i+1,j,f))
+
+(b) For PA #2, Problem #1 (b): Recall that isMember (x,l) returns true if the value x 
+    appears in the list l, and listReverse l returns a list with the the
+    elements of l in reversed order.
+    
+    let cleanList l = 
+      let rec helper (seen,rest) = 
+        match rest with 
+          [] -> seen
+        | h::t -> 
+          let seen' = if isMember (h,t) then seen else (h::seen) in
+          let rest' = t in 
+	    helper (seen',rest')
+      in
+        listReverse (helper ([],l))
+
+(c) Implementation of a function pow : 'a list -> 'a list list which takes a
+    list [x1,...,xn] and returns the list of all subsets of {x1,...,xn}. That
+    is: pow [1,2,3] should return [[],[1],[2],[3],[1,2],[1,3],[2,3],[1,2,3]],
+    though the actual "order" of the subsets doesnt matter (i.e. its ok to
+    also return [[1,2,3],[1,2],[1],[2,3],[2],[1,3],[3],[]] (or any other
+    permutation).
+
+    let pow l = 
+      match l with 
+        [] -> []
+      | (h::t) ->
+          let val sub = pow t in
+	  (map (fun l -> h::l) sub)
+	  
+
+_________________________________________________________________________
+
+
+Problem 6:
+---------
+
+Consider the following structure:
+
+module L : LSIG =
+  struct
+    type my int list = Empty | Cons of int * my int list
+    exception BadList
+    let makeOne i = Cons(i,Empty)
+    let makeCons (i,l) = Cons(i,l)
+    let my hd lst = ________________________
+    let my tl lst = ________________________
+  end
+
+(a) Write bodies for my_hd and my_tl such that each takes a value of type 
+    my_int_list, raises BadList if the value is Empty, and evaluates to the 
+    first (for my_hd) or second (for my_tl) element of the pair that Cons carries.
+     
+(b) For each of the following LSIG definitions, determine if a client of 
+    L can make BadList get raised. If so, give an example client for which 
+    BadList is raised. If not, briefly explain why not.
+
+   (i) 
+    module type LSIG =
+       sig
+         datatype my_int_list = Empty | Cons of int * my_int_list
+	 val my_hd : my_int_list -> int
+	 val makeOne : int -> my_int_list
+       end
+
+   (ii) 
+     module type LSIG =
+       sig
+	 type my_int_list
+	 val makeCons : int * my_int_list -> my_int_list
+         val my_hd : my_int_list -> int
+         val makeOne : int -> my_int_list
+       end
+
+   (iii) 
+     module type LSIG =
+       sig
+	 type my_int_list;
+	 val makeCons : int * my_int_list -> my_int_list
+	 val my_tl : my_int_list -> my_int_list
+         val makeOne : int -> my_int_list
+       end
+
+_________________________________________________________________________
+
+
+Problem 7:
+---------
+
+Below we list some Scala functions and two inputs for each function.
+Describe the result of running each function on the two inputs shown. 
+Report what value is computed if the function finishes successfuly, or
+write "error" if an exception is thrown.
+
+
+(a) 
+def rev[A](xs: List[A]) : List[A] = 
+  xs match {
+    case Nil  => List()
+    case h::t => rev(t) ++ List(h)
+  }
+
+Inputs:(i) List(1,2,3)      (ii) List(List(), 1, List(2))
+
+
+(b) 
+def f[A](xs: List[List[A]] : List[A] = 
+  xs match {
+    case Nil  => List()
+    case h::t => List(h(0)) ++ f(t)
+  }
+
+Inputs:(i) [1,2,3]      (ii) [[0],[1,2],[2, 3, 4]]
+
+(d) 
+def f(x: Boolean, y: List[Int]) = 
+  if (x) { y(0) + 10 } else { 0 }
+
+Inputs:(i) (false, List(1,2,3))  (ii) (true, List(1,2,3))
+
+________________________________________________________________________
+
+
+Problem 10: 
+----------
+
+Consider the following Scala code.
+
+class E1 extends Throwable 
+
+class E2 extends E1 
+
+class E3 extends E2
+
+def f(){
+  println("begin f")
+  try{ g() }
+  catch { case _:E1 =>  () } 
+  println("end f")
+
+def g(){
+  println("begin g")
+  try { h() }
+  catch { case _:E3 =>  () } 
+  println("end g")
+
+def h(){
+  println("begin h")
+  throw (new E2)
+  println("end h")
+
+What is the result of:
+
+scala> f()
+
+i.e. of calling the function f ?
+________________________________________________________________________
+
+
+Problem 11:
+----------
+
+Consider the following Scala code:
+
+trait A {
+  def m(y: A): Unit 
+}
+
+trait C extends A {
+  def n(y: C): A
+}
+
+class B extends A {
+  val x : Int
+
+  def m(y: A){
+    return
+  }
+}
+
+class D extends B {
+  val y: Int = 0
+}
+
+class E extends B with C {
+  def n(z: C): A = {
+    return z;
+  }
+}
+
+(a) Name the types, classes and interfaces that have been created.
+
+
+(b) Which of the following is true ?
+	(i) 	A <: B
+	(ii)	A <: C
+	(iii)  	B <: A
+	(iv)    D <: C
+	(v)     D <: B
+	(vi)    E <: C
+	(vii)   E <: B
+	(viii)	E <: A
+
+(c) Which of the following is true ?
+	(i)    A inherits from B
+	(ii)   A inherits from C
+	(iii)  B inherits from A
+	(iv)   D inherits from C
+	(v)    D inherits from B
+	(vi)   E inherits from C
+	(vii)  E inherits from B
+	(viii) E inherits from A
+
+(d) Consider the following methods. Which of them typecheck ?
+	(i)   def fa(A x): Unit = { x.m(x); };
+
+	(ii)  def fb(B x): Unit = { x.n(x); };
+
+	(iii) def fc(C x): Unit = { x.n(x); };
+
+(e) Suppose that there were methods:
+
+	def fa(x: A): Unit = { return }
+
+	def fb(x: B): Unit = { return }
+	
+    def fc(x: C): Unit = { return }
+
+    Which of the following typecheck ? Explain.
+    
+	(i)  val a:A = new A
+	 	 fa(a)
+
+	(ii) val b:B = new B
+		 fa(b)
+
+	(iii) val b:B = new B
+		  fc(b)
+
+	(iv)  val d:D = new D
+	   	  fa(d)
+
+	(v)	val d:D = new D
+		fa(d)
+		fb(d)
+		fc(d)
+
+	(vi) val e:E = new E
+		 fa(e)
+		 fb(e)
+		 fc(e)
+
+Solution:
+--------
+
+(a) Types:    	A,B,C,D,E. 
+    Classes:  	B,D,E
+    Interfaces: A,C
+
+(b) True: (i),(iii),(v),(vi),(vii),(viii)
+
+(c) True: (v),(vii)
+
+(d) (i) and (iii) typecheck.
+
+(e) (i) No. Cannot instantiate an interface!
+    (ii) Yes. B <: A
+    (iii) No. B is not a subtype of C.
+    (iv) Yes. D <: A
+    (v) No. D is not a subtype of C.
+    (vi) Yes. E <: A,B,C.
+    
+_______________________________________________________________________
+________________________________________________________________________
+
+
+
+
+
+
+
+

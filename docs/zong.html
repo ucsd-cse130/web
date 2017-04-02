@@ -1,0 +1,461 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section id="the-smallest-universal-language" class="slide level2">
+<h1>The Smallest Universal Language</h1>
+<figure>
+<img src="https://upload.wikimedia.org/wikipedia/en/a/a6/Alonzo_Church.jpg" alt="Alonzo Church" /><figcaption>Alonzo Church</figcaption>
+</figure>
+<p>Developed in 1930s by Alonzo Church</p>
+<ul>
+<li>Studied in logic and computer science</li>
+</ul>
+<p>Test bed for procedural and functional PLs</p>
+<ul>
+<li>Simple, Powerful, Extensible</li>
+</ul>
+</section>
+<section id="the-next-700-languages" class="slide level2">
+<h1>The Next 700 Languages</h1>
+<figure>
+<img src="https://upload.wikimedia.org/wikipedia/en/f/f9/Peter_Landin.png" alt="Peter Landin" /><figcaption>Peter Landin</figcaption>
+</figure>
+<blockquote>
+<p>Whatever the next 700 languages turn out to be, they will surely be variants of lambda calculus.</p>
+</blockquote>
+<p>Peter Landin, 1966</p>
+</section>
+<section id="syntax-what-programs-look-like" class="slide level2">
+<h1>Syntax: What Programs <em>Look Like</em></h1>
+<p><strong>Three</strong> kinds of expressions</p>
+<ul>
+<li><code>e</code></li>
+</ul>
+<p><strong>Variables</strong></p>
+<ul>
+<li><code>x</code>, <code>y</code>, <code>z</code></li>
+</ul>
+<p><strong>Function Definitions (Abstraction)</strong></p>
+<ul>
+<li><code>\x -&gt; e</code></li>
+</ul>
+<p><strong>Function Call (Application)</strong></p>
+<ul>
+<li><code>e1 e2</code></li>
+</ul>
+<p><strong>Complete Description</strong></p>
+<figure>
+<img src="/static/img/lambda-calculus.png" alt="The Lambda Calculus" /><figcaption>The Lambda Calculus</figcaption>
+</figure>
+</section>
+<section id="syntax-association" class="slide level2">
+<h1>Syntax: Association</h1>
+</section>
+<section id="application-is-left-associative" class="slide level2">
+<h1>Application Is Left Associative</h1>
+<p>We write</p>
+<p><code>e1 e2 e3 e4</code></p>
+<p>instead of</p>
+<p><code>(((e1 e2) e3) e4)</code></p>
+</section>
+<section id="examples" class="slide level2">
+<h1>Examples</h1>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">\x <span class="ot">-&gt;</span> x             <span class="co">-- The Identity function</span>
+
+\y <span class="ot">-&gt;</span> \x <span class="ot">-&gt;</span> x       <span class="co">-- A function that returns the Identity Fun</span>
+
+\f <span class="ot">-&gt;</span> f (\x <span class="ot">-&gt;</span> x)   <span class="co">-- A function that applies arg to the Identity Fun</span></code></pre></div>
+</section>
+<section id="semantics-what-programs-mean" class="slide level2">
+<h1>Semantics : What Programs <em>Mean</em></h1>
+<p>We define the <em>meaning</em> of a program with simple rules.</p>
+<ol type="1">
+<li>Scope</li>
+<li><span class="math inline"><em>α</em></span>-step (aka. <em>renaming formals</em>)</li>
+<li><span class="math inline"><em>β</em></span>-step (aka. <em>function calls</em>)</li>
+</ol>
+</section>
+<section id="semantics-scope" class="slide level2">
+<h1>Semantics: Scope</h1>
+<p>The part of a program where a <strong>variable is visible</strong></p>
+<p>In the expression <code>\x -&gt; e</code></p>
+<ul>
+<li><p><code>x</code> is the newly introduced variable</p></li>
+<li><p><code>e</code> is <strong>the scope</strong> of <code>x</code></p></li>
+<li><p><code>x</code> is <strong>bound</strong> inside <code>e</code></p></li>
+</ul>
+</section>
+<section id="semantics-free-vs-bound-variables" class="slide level2">
+<h1>Semantics: Free vs Bound Variables</h1>
+<p><code>y</code> is <strong>free</strong> inside <code>e</code> if</p>
+<ul>
+<li><code>y</code> appears inside <code>e</code>, and</li>
+<li><code>y</code> is <strong>not bound</strong> inside <code>e</code></li>
+</ul>
+<p>Formally,</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">free(x)       <span class="fu">=</span> {x}
+free(\x <span class="ot">-&gt;</span> e) <span class="fu">=</span> free(e)  <span class="fu">-</span> {x}
+free(e1 e2)   <span class="fu">=</span> free(e1) <span class="fu">+</span> free(e2)</code></pre></div>
+</section>
+<section id="quiz" class="slide level2">
+<h1>QUIZ</h1>
+<p>Let <code>e</code> be the expression <code>\x -&gt; x (\y -&gt; x y z)</code>.</p>
+<p>Which variables are <em>free</em> in <code>e</code> ?</p>
+<p><strong>A.</strong> <code>x</code></p>
+<p><strong>B.</strong> <code>y</code></p>
+<p><strong>C.</strong> <code>z</code></p>
+<p><strong>D.</strong> <code>x</code>, <code>y</code></p>
+<p><strong>E.</strong> <code>x</code>, <code>y</code>, <code>z</code></p>
+</section>
+<section id="semantics-alpha-equivalence" class="slide level2">
+<h1>Semantics: <span class="math inline"><em>α</em></span>-Equivalence</h1>
+<p><span class="math inline"><em>λ</em></span>-terms <code>E1</code> and <code>E2</code> are <span class="math inline"><em>α</em></span>-equivalent if</p>
+<ul>
+<li><code>E2</code> can be obtained be <em>renaming the bound variables</em> of <code>E1</code></li>
+</ul>
+<p>or</p>
+<ul>
+<li><code>E1</code> can be obtained be <em>renaming the bound variables</em> of <code>E2</code></li>
+</ul>
+</section>
+<section id="semantics-alpha-step" class="slide level2">
+<h1>Semantics: <span class="math inline"><em>α</em></span>-step</h1>
+<p><strong>Example:</strong> The following three terms are <span class="math inline"><em>α</em></span>-equivalent</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">\x <span class="ot">-&gt;</span> x   <span class="fu">=</span>a<span class="fu">&gt;</span> \y <span class="ot">-&gt;</span> y   <span class="fu">=</span>a<span class="fu">&gt;</span> \z <span class="ot">-&gt;</span> z</code></pre></div>
+<p>We write <code>E1 =a&gt; E2</code> if <code>E1</code> is <span class="math inline"><em>α</em></span>-equivalent to <code>E2</code>.</p>
+<ul>
+<li>We can say <code>E1</code> takes an <span class="math inline"><em>α</em></span>-step to <code>E2</code>.</li>
+</ul>
+</section>
+<section id="alpha-step-makes-scope-clear" class="slide level2">
+<h1><span class="math inline"><em>α</em></span>-step Makes Scope Clear</h1>
+<p>We often <span class="math inline"><em>α</em></span>-rename to make <strong>parameter names unique</strong></p>
+<p>For example, instead of</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">    \x <span class="ot">-&gt;</span> x (\x <span class="ot">-&gt;</span> x) x     <span class="co">-- Yucky scope</span>
+
+<span class="fu">=</span>a<span class="fu">&gt;</span> \x <span class="ot">-&gt;</span> x (\y <span class="ot">-&gt;</span> y) x     <span class="co">-- Scope of bindings crystal clear</span></code></pre></div>
+</section>
+<section id="semantics-function-calls" class="slide level2">
+<h1>Semantics: Function Calls</h1>
+<p>In the <span class="math inline"><em>λ</em></span>-calculus, a &quot;function call&quot; (application) looks like <code>(x -&gt; E1) E2</code></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><strong>Function</strong></th>
+<th style="text-align: center;"><strong>Argument</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>\x -&gt; E1</code></td>
+<td style="text-align: center;"><code>E2</code></td>
+</tr>
+</tbody>
+</table>
+<p>How do we <strong>evaluate</strong> the <em>function</em> with the given <em>argument</em>?</p>
+<ol type="1">
+<li><strong>Rename</strong> parameters to make them unique</li>
+<li><strong>Substitute</strong> all occurrences of <code>x</code> in <code>E1</code> with <code>E2</code>!</li>
+</ol>
+<p>If so, we say that</p>
+<ul>
+<li><code>(\x -&gt; E1) E2</code> <span class="math inline"><em>β</em></span>-steps to <code>E1[x := E2]</code></li>
+</ul>
+<p>and we can write it as</p>
+<ul>
+<li><code>(\x -&gt; E1) E2   =b&gt;   E1[x := E2]</code></li>
+</ul>
+</section>
+<section id="function-calls-beta-step-example" class="slide level2">
+<h1>Function Calls: <span class="math inline"><em>β</em></span>-step Example</h1>
+<p>Replace occurrences of parameter <code>f</code> with argument</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">(\f <span class="ot">-&gt;</span> f (f x)) g        
+
+   <span class="fu">=</span>b<span class="fu">&gt;</span>     g (g x)</code></pre></div>
+<p>No need to rename, bindings already unique</p>
+</section>
+<section id="normal-forms" class="slide level2">
+<h1>Normal Forms</h1>
+<p>An <strong>redex</strong> is a <span class="math inline"><em>λ</em></span>-term of the form</p>
+<p><code>(\x -&gt; E1) E2</code></p>
+<p>A <span class="math inline"><em>λ</em></span>-term is in <strong>normal form</strong> if it contains no redexes.</p>
+</section>
+<section id="quiz-1" class="slide level2">
+<h1>QUIZ</h1>
+<p>Is the term <code>x</code> in <em>normal form</em> ?</p>
+<p><strong>A.</strong> Yes</p>
+<p><strong>B.</strong> No</p>
+</section>
+<section id="quiz-2" class="slide level2">
+<h1>QUIZ</h1>
+<p>Is the term <code>x y</code> in <em>normal form</em> ?</p>
+<p><strong>A.</strong> Yes</p>
+<p><strong>B.</strong> No</p>
+</section>
+<section id="quiz-3" class="slide level2">
+<h1>QUIZ</h1>
+<p>Is the term <code>(\x -&gt; x) y</code> in <em>normal form</em> ?</p>
+<p><strong>A.</strong> Yes</p>
+<p><strong>B.</strong> No</p>
+</section>
+<section id="quiz-4" class="slide level2">
+<h1>QUIZ</h1>
+<p>Is the term <code>x (\y -&gt; y)</code> in <em>normal form</em> ?</p>
+<p><strong>A.</strong> Yes</p>
+<p><strong>B.</strong> No</p>
+</section>
+<section id="semantics-evaluation" class="slide level2">
+<h1>Semantics: Evaluation</h1>
+<p>A <span class="math inline"><em>λ</em></span>-term <code>E</code> <strong>reduces/evaluates to a normal form</strong> <code>E'</code> if</p>
+<p>there is a sequence of steps</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dt">E</span> <span class="fu">=?&gt;</span> <span class="dt">E_1</span> <span class="fu">=?&gt;</span> <span class="fu">...</span> <span class="fu">=?&gt;</span> <span class="dt">EN</span> <span class="fu">=?&gt;</span> <span class="dt">E&#39;</span></code></pre></div>
+<p>where each <code>=?&gt;</code> is</p>
+<ul>
+<li>An <span class="math inline"><em>α</em></span>-step <code>=a&gt;</code> or</li>
+<li>A <span class="math inline"><em>β</em></span>-step <code>=b&gt;</code>.</li>
+</ul>
+</section>
+<section id="examples-of-evaluation" class="slide level2">
+<h1>Examples of Evaluation</h1>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">(\x <span class="ot">-&gt;</span> x) <span class="dt">E</span>
+  <span class="fu">=</span>b<span class="fu">&gt;</span> <span class="dt">E</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">(\f <span class="ot">-&gt;</span> f (\x <span class="ot">-&gt;</span> x)) (\x <span class="ot">-&gt;</span> x)
+  <span class="fu">=</span>a<span class="fu">&gt;</span> (\f <span class="ot">-&gt;</span> f (\x <span class="ot">-&gt;</span> x)) (\y <span class="ot">-&gt;</span> y)
+  <span class="fu">=</span>b<span class="fu">&gt;</span> (\y <span class="ot">-&gt;</span> y) (\x <span class="ot">-&gt;</span> x)
+  <span class="fu">=</span>b<span class="fu">&gt;</span> (\x <span class="ot">-&gt;</span> x)</code></pre></div>
+</section>
+<section id="non-terminating-evaluation" class="slide level2">
+<h1>Non-Terminating Evaluation</h1>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">(\x <span class="ot">-&gt;</span> x x) (\y <span class="ot">-&gt;</span> y y)
+  <span class="fu">=</span>b<span class="fu">&gt;</span> (\y <span class="ot">-&gt;</span> y y) (\y <span class="ot">-&gt;</span> y y)
+  <span class="fu">=</span>a<span class="fu">&gt;</span> (\x <span class="ot">-&gt;</span> x x) (\y <span class="ot">-&gt;</span> y y)</code></pre></div>
+<p>Oops, we can write programs that loop back to themselves...</p>
+<ul>
+<li>Self replicating code!</li>
+</ul>
+</section>
+<section id="lambda-calculus-review" class="slide level2">
+<h1><span class="math inline"><em>λ</em></span>-Calculus Review</h1>
+<p><strong>Super tiny language</strong></p>
+<ul>
+<li><code>E ::= x | \x -&gt; E | (E E)</code></li>
+</ul>
+<p><strong>Many <a href="http://dl.acm.org/citation.cfm?id=860276">evaluation strategies</a></strong></p>
+<ul>
+<li>Many steps possible, which to take?</li>
+<li>Call-by-name</li>
+<li>Call-by-value</li>
+<li>Call-by need</li>
+</ul>
+<p><strong>Church Rosser Theorem</strong></p>
+<ul>
+<li>Regardless of strategy at most <em>one normal form</em></li>
+<li>i.e. Programs can evaluate to a single result.</li>
+</ul>
+</section>
+<section id="lambda-calculus-and-cse-130" class="slide level2">
+<h1><span class="math inline"><em>λ</em></span>-calculus and CSE 130?</h1>
+<blockquote>
+<p>Whatever the next 700 languages turn out to be, they will surely be variants of lambda calculus.</p>
+</blockquote>
+<p>Huh? What was that Landin fellow going on about?</p>
+</section>
+<section id="programming-with-the-lambda-calculus" class="slide level2">
+<h1>Programming with the <span class="math inline"><em>λ</em></span>-calculus</h1>
+<p><em>Real languages have lots of features</em></p>
+<ul>
+<li>Local Variables</li>
+<li>Booleans, Branches</li>
+<li>Records</li>
+<li>Integers</li>
+<li>Arithmetic</li>
+<li>Functions (ok, we got those)</li>
+<li>Recursion</li>
+</ul>
+<p>Lets see how to <em>encode</em> all of the above with the <span class="math inline"><em>λ</em></span>-calculus.</p>
+<p><strong>Hidden Motive</strong></p>
+<ul>
+<li>Free your mind</li>
+<li>Build intuition about <strong>evaluation-by-substitution</strong></li>
+</ul>
+<p>HEREHEREHERE</p>
+</section>
+<section id="the-end" class="slide level2">
+<h1>THE END</h1>
+<p>Super brief notes, see details</p>
+</section>
+<section id="booleans" class="slide level2">
+<h1>Booleans</h1>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">true  <span class="fu">=</span> \x y<span class="fu">.</span> x
+false <span class="fu">=</span> \x y<span class="fu">.</span> y
+ite   <span class="fu">=</span> \b x y<span class="fu">.</span> b x y</code></pre></div>
+</section>
+<section id="quiz-5" class="slide level2">
+<h1>QUIZ</h1>
+<p>Given</p>
+<pre><code>foo = \b x y. b x y
+bar = \p q. p</code></pre>
+<p>What does the following evaluate to?</p>
+<pre><code>foo bar apple orange</code></pre>
+<p>A. <code>foo bar apple orange</code> B. <code>bar apple</code> C. <code>apple</code> D. <code>orange</code> E. <code>bar</code></p>
+</section>
+<section id="quiz-6" class="slide level2">
+<h1>QUIZ</h1>
+<p>Given</p>
+<pre><code>foo = \b x y. b x y
+bar = \p q. p
+baz = \b x y. b y x</code></pre>
+<p>What does the following evaluate to?</p>
+<pre><code>foo (baz bar) apple orange</code></pre>
+<p>A. <code>foo bar apple orange</code> B. <code>bar apple</code> C. <code>apple</code> D. <code>orange</code> E. <code>bar</code></p>
+</section>
+<section id="boolean-operators" class="slide level2">
+<h1>Boolean Operators</h1>
+<p>We can develop the operators from their <strong>truth tables</strong></p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">not <span class="fu">=</span> \b<span class="fu">.</span> ite b false true
+and <span class="fu">=</span> \b1 b2<span class="fu">.</span> ite b1 b2 false
+or  <span class="fu">=</span> \b1 b2<span class="fu">.</span> ite b1 true b2</code></pre></div>
+<p>Note that <strong>for any</strong> <code>a</code>, <code>b</code> and <code>c</code> we have:</p>
+<pre><code>ite a b c
+  = (\b x y. b x y) a b c
+  = a b c</code></pre>
+<p>hence we can simplify the above to</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">not <span class="fu">=</span> \b<span class="fu">.</span>     b false true
+and <span class="fu">=</span> \b1 b2<span class="fu">.</span> b1 b2 false
+or  <span class="fu">=</span> \b1 b2<span class="fu">.</span> b1 true b2</code></pre></div>
+</section>
+<section id="pairs" class="slide level2">
+<h1>Pairs</h1>
+<p>What can we <em>do</em> with <strong>pairs</strong> ?</p>
+<ol type="1">
+<li>put <strong>two</strong> items into a pair.</li>
+<li>get <strong>first</strong> item.</li>
+<li>get <strong>second</strong> item.</li>
+</ol>
+</section>
+<section id="pairs-api" class="slide level2">
+<h1>Pairs : API</h1>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">(put v1 v2)  <span class="co">-- makes a pair out of v1, v2 s.t.</span>
+
+(getFst p)   <span class="co">-- returns the first element</span>
+
+(getSnd p)   <span class="co">-- returns the second element</span></code></pre></div>
+<p>such that</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">getFst (put v1 v2) <span class="fu">=</span> v1
+getSnd (put v1 v2) <span class="fu">=</span> v2</code></pre></div>
+</section>
+<section id="pairs-implementation" class="slide level2">
+<h1>Pairs : Implementation</h1>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">put v1 v2 <span class="fu">=</span> \b<span class="fu">.</span> ite b v1 v2
+
+getFst p  <span class="fu">=</span> p true
+
+getSnd p  <span class="fu">=</span> p false</code></pre></div>
+</section>
+<section id="quiz-7" class="slide level2">
+<h1>QUIZ</h1>
+<p>Suppose we have</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">one   <span class="fu">=</span> \f x<span class="fu">.</span> f x
+two   <span class="fu">=</span> \f x<span class="fu">.</span> f (f x)
+three <span class="fu">=</span> \f x<span class="fu">.</span> f (f (f x))
+four  <span class="fu">=</span> \f x<span class="fu">.</span> f (f (f (f x)))</code></pre></div>
+<p>What is the value of</p>
+<pre><code>foo (mkPair true) false
+
+foo (mkPair true) false =
+
+mkPair 1 (mkPair 2 (mkPair 3 false))</code></pre>
+<p>A. <code>true</code> B. <code>false</code> C. <code>mkPair true false</code> D. <code>mkPair true (mkPair true false)</code> E. <code>mkPair true (mkPair true (mkPair true false))</code></p>
+</section>
+<section id="naturals" class="slide level2">
+<h1>Naturals</h1>
+<p><code>n f s</code> means run <code>f</code> on <code>s</code> exactly <code>n</code> times</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- | represent n as  \f x. f (f (f  ...   (f x)</span>
+<span class="co">--                         &#39;--- n times ---&#39;</span>
+
+<span class="dv">1</span> <span class="fu">=</span> \f x<span class="fu">.</span> f x
+<span class="dv">2</span> <span class="fu">=</span> \f x<span class="fu">.</span> f (f x)
+<span class="dv">3</span> <span class="fu">=</span> \f x<span class="fu">.</span> f (f (f x))
+<span class="dv">4</span> <span class="fu">=</span> \f x<span class="fu">.</span> f (f (f (f x)))</code></pre></div>
+</section>
+<section id="quiz-church-numerals" class="slide level2">
+<h1>QUIZ: Church Numerals</h1>
+<p>Which of these is a valid encoding of <code>0</code> ?</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- A</span>
+zero <span class="fu">=</span> \f x<span class="fu">.</span> x
+
+<span class="co">-- B</span>
+zero <span class="fu">=</span> \f x<span class="fu">.</span> f
+
+<span class="co">-- C</span>
+zero <span class="fu">=</span> \f x<span class="fu">.</span> f x
+
+<span class="co">-- D</span>
+zero <span class="fu">=</span> \x<span class="fu">.</span> x
+
+<span class="co">-- E</span>
+<span class="co">-- none of the above!</span></code></pre></div>
+<p>sub1 n = getSnd (n ((flag, res) -&gt; if (flag) (true, res + 1) (true, res)) (false, 0))</p>
+<p>function sub1(n){ var res = (false, 0);</p>
+<p>var flag = false; for (var i=0; i&lt;n; i++){ if (flag) res += 1; else flag = true; } return res; }</p>
+</section>
+<section id="operating-on-numbers" class="slide level2">
+<h1>Operating on numbers</h1>
+<p>Lets implement a small API for numbers:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">isZero n <span class="fu">=</span> <span class="fu">...</span> <span class="co">-- return `true` if n is zero and `false` otherwise</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">plus1 n  <span class="fu">=</span> \f x<span class="fu">.</span> <span class="fu">?</span>  <span class="co">-- ? should call `f` on `x` one more time than `n` does</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">plus n m  <span class="fu">=</span> \f x<span class="fu">.</span> <span class="fu">?</span>  <span class="co">-- ? should call `f` on `x` exactly `n + m` times</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">mult n m  <span class="fu">=</span> \f x<span class="fu">.</span> <span class="fu">?</span>  <span class="co">-- ? should call `f` on `x` exactly `n * m` times</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">isZero <span class="fu">=</span> \n<span class="fu">.</span> n (\b<span class="fu">.</span> false) true
+plus1  <span class="fu">=</span> \n<span class="fu">.</span> (\f s<span class="fu">.</span> n f (f s))
+plus   <span class="fu">=</span> \n1 n2<span class="fu">.</span> n1 plus1 n2
+mult   <span class="fu">=</span> \n1 n2<span class="fu">.</span> n2 (plus n1) zero</code></pre></div>
+</section>
+<section id="recursion" class="slide level2">
+<h1>Recursion</h1>
+</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
