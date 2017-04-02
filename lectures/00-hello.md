@@ -179,28 +179,32 @@ All information lives online:
 
 Make class interactive
 
-– Help **you** and **me** understand whats tricky
++ Help **you** and **me** understand whats tricky
 
 Clickers Are Not Optional
 
-– **Cheap** ones are fine
-– **Respond** to 75% questions
-– **Worth** 5% of your grade
++  **Cheap** ones are fine
++  **Respond** to 75% questions
++  **Worth** 5% of your grade
 
 Laptops are welcome in lecture (but optional)
 
 ## Course Mechanics: In Class Exercises
 
-1. **Solo Vote:** Think for yourself, select answer
+1. **Solo Vote**
+  - Think for yourself, select answer
 
-2. **Discuss:** Analyze Problem in Groups
-  + Reach consensus
-  + Have questions, raise your hand!
+2. **Discuss**
+  - Analyze Problem in Groups
+  - Reach consensus
+  - Have questions, raise your hand!
 
-3. **Group Vote:** Everyone in group votes
-  + Must have same vote to get points
+3. **Group Vote**
+  - Everyone in group votes
+  - Must have same vote to get points
 
-4. **Class Discuss:** What was easy or tricky?
+4. **Class Discuss**
+  - What was easy or tricky?
 
 ## Course Mechanics: Grading
 
@@ -233,7 +237,7 @@ Laptops are welcome in lecture (but optional)
 - Lots of work
 - Don't worry (too much) about grade
 
-## Course Mechanics: No Recommended Text
+## Course Mechanics: No Text
 
 - Online lecture notes and links
 
@@ -241,15 +245,20 @@ Laptops are welcome in lecture (but optional)
 
 - **Do Assignments Yourself**
 
-## Weekly (ish) Programming Assignments
+## Programming Assignments
 
-- Accessed and submitted via `github`
+- About 6-7 over the quarter
+
+- Accessed via `github`
 
 - Schedule up on webpage (due Fridays 5 PM)
 
-## Weekly (ish) Programming Assignments
+## Programming Assignments
 
 Unfamiliar **Languages** and **Environments**
+
+![Don't complain](
+http://core0.staticworld.net/images/article/2015/09/frustrated_developer-100614973-gallery.idge.jpg)
 
 **Forget**
 
@@ -266,7 +275,7 @@ Unfamiliar **Languages** and **Environments**
 - Start early
 - Ask lots of questions!
 
-## Weekly (ish) Programming Assignments
+## Programming Assignments
 
 No Deadline Extension
 
@@ -276,17 +285,18 @@ No Deadline Extension
 
 ## A Word from Our Sponsor
 
-- Programming Assignments done **alone**
+Programming Assignments done **alone**
 
-- We use plagiarism detection software
+  - Zero Tolerance
+  - Offenders punished ruthlessly
+  - Please see academic integrity statement
+
+We use **plagiarism detection** software
+
   - I am an expert
   - Have code from all previous classes
   - MOSS is fantastic, plagiarize at your own risk
 
-- Zero Tolerance
-  - Offenders punished ruthlessly
-
-- Please see academic integrity statement
 
 ## Plan
 
@@ -305,9 +315,7 @@ No Deadline Extension
 - Prolog
 - 2 weeks
 
-## Hello Haskell
-
-Here is **QuickSort** in C
+## **QuickSort** in C
 
 ```c
 void sort(int arr[], int beg, int end){
@@ -315,20 +323,16 @@ void sort(int arr[], int beg, int end){
     int piv = arr[beg];
     int l = beg + 1;
     int r = end;
-    while (l != r-1){
-       if(arr[l] <= piv)
-          l++;
-       else
-          swap(&arr[l], &arr[r--]);
-    }
+    while (l != r-1)
+       if(arr[l] <= piv) l++;
+       else swap(&arr[l], &arr[r--]);
     if(arr[l]<=piv && arr[r]<=piv)
        l=r+1;
     else if(arr[l]<=piv && arr[r]>piv)
        {l++; r--;}
     else if (arr[l]>piv && arr[r]<=piv)
        swap(&arr[l++], &arr[r--]);
-    else
-       r=l-1;
+    else r=l-1;
     swap(&arr[r--], &arr[beg]);
     sort(arr, beg, r);
     sort(arr, l, end);
@@ -336,7 +340,7 @@ void sort(int arr[], int beg, int end){
 }
 ```
 
-and here it is in Haskell
+## vs **QuickSort** in Haskell
 
 ```Haskell
 sort []     = []
@@ -345,6 +349,8 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
     ls      = [ l | l <- xs, l <= x ]
     rs      = [ r | r <- xs, x <  r ]
 ```
+
+(not a wholly [fair comparison...](http://stackoverflow.com/questions/7717691/why-is-the-minimalist-example-haskell-quicksort-not-a-true-quicksort))
 
 ## Why Readability Matters
 
