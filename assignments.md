@@ -8,15 +8,12 @@ that can be used in atomic units over the entire
 quarter. By *atomic* I mean, for example, that 35
 mins over the deadline is equal to 1 late day.
 
-## How to
+## Assignments
 
-- [Run Ocaml in Lab/Home](homeworks/info_ocaml.html)
-
-## Programming Assignments
-
-- [HW #1](homeworks/hw1.html), due Wed 4/13 by 23:59pm
+- Stay tuned!
 
 <!--
+- [HW #1](homeworks/hw1.html), due Wed 4/13 by 23:59pm
 - [HW #2](homeworks/hw2.html), due Fri 4/22 by 23:59pm
 - [HW #3](homeworks/hw3.html), due Wed 5/4  by 23:59pm
 - [HW #4](homeworks/hw4.html), due Fri 5/13 by 23:59pm
