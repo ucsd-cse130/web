@@ -23,7 +23,16 @@ date: 2017-03-28
 - `x--`
 - `x = 0 ? L1 : L2`
 
-### Example Program
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+## Example Program
 
 (What _does_ it do?)
 
@@ -34,7 +43,15 @@ L1: x++
 L2: ...
 ```
 
-**Fact** The above language is _equivalent to_ every PL!
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## The above language is "equivalent to" every PL!
 
 - But good luck writing QuickSort ...
 - ... or Plants v. Zombies
