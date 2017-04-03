@@ -93,12 +93,13 @@ Or more simply:
 > shapes
 > Programming Thought.
 
+
+![No spoilers here](/static/img/arrival-symbol.jpg){#fig:arrival .align-center width=25%}
+
 Language affects how:
 
 - **Ideas** are expressed
 - **Computation** is expressed
-
-![No spoilers here](/static/img/arrival-symbol.jpg){#fig:arrival .align-center width=25%}
 
 
 
