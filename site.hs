@@ -23,39 +23,6 @@ main = hakyll $ do
   match "assignments/*" $ crunchWithCtx postCtx
   match "templates/*"   $ compile templateCompiler
 
-
-  {-
-
-    create ["archive.html"] $ do
-        route idRoute
-        compile $ do
-            posts <- recentFirst =<< loadAll "posts/*"
-            let archiveCtx =
-                    listField "posts" postCtx (return posts) `mappend`
-                    constField "title" "Archives"            `mappend`
-                    siteCtx
-
-            makeItem ""
-                >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
-                >>= loadAndApplyTemplate "templates/default.html" archiveCtx
-                >>= relativizeUrls
-
-    match "orig-index.html" $ do
-        route idRoute
-        compile $ do
-            posts <- recentFirst =<< loadAll "posts/*"
-            let indexCtx =
-                    listField "posts" postCtx (return posts) `mappend`
-                    constField "title" "Home"                `mappend`
-                    siteCtx
-
-            getResourceBody
-                >>= applyAsTemplate indexCtx
-                >>= loadAndApplyTemplate "templates/default.html" indexCtx
-                >>= relativizeUrls
-    -}
-
-
 --------------------------------------------------------------------------------
 postCtx :: Context String
 postCtx =
@@ -65,8 +32,8 @@ postCtx =
 
 siteCtx :: Context String
 siteCtx =
-    constField "baseUrl" "file:///Users/rjhala/teaching/130-web/_site/" `mappend`
-    -- constField "baseUrl"            "https://ucsd-cse130.github.io/web"     `mappend`
+    -- constField "baseUrl" "file:///Users/rjhala/teaching/130-web/_site/" `mappend`
+    constField "baseUrl"            "https://ucsd-cse130.github.io/web"     `mappend`
     constField "site_name"          "cse130"                    `mappend`
     constField "site_description"   "UCSD CSE 130"              `mappend`
     -- constField "instagram_username" "ranjitjhala"               `mappend`
