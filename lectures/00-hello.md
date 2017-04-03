@@ -83,6 +83,17 @@ L2: ...
 
 ## So Why Study Programming Languages?
 
+![Spoiler Alert](/static/img/arrival-symbol.jpg){#fig:arrival .align-center width=50%}
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## So Why Study Programming Languages?
+
 > The principle of **linguistic relativity**
 > holds that the structure of a language
 > affects its speakers world view or cognition.
@@ -92,9 +103,6 @@ Or more simply:
 > Programming Language
 > shapes
 > Programming Thought.
-
-
-![No spoilers here](/static/img/arrival-symbol.jpg){#fig:arrival .align-center width=25%}
 
 Language affects how:
 
@@ -130,7 +138,7 @@ Language affects how:
 
 ## Goal: Learn New Languages / Constructs
 
-![Musical Score](/static/img/music-score.png){#fig:music .align-center width=20%}
+![Musical Score](/static/img/music-score.png){#fig:music width=30%}
 
 New ways to **describe** and **organize** computation,
 
@@ -172,14 +180,15 @@ There was no
 
 ## Goal: Learn to Learn
 
+![Anatomy](/static/img/anatomy.png){#fig:anatomy width=20%}
+
 In 130 you will learn the **anatomy** of a PL
 
 - Fundamental **building blocks**
 - Different guises in different PLs
 
-Help to better understand the PLs you already "know".
+Understand the PLs you already "know".
 
-![Anatomy](/static/img/anatomy.png){#fig:anatomy .align-center width=20%}
 
 
 
@@ -247,7 +256,7 @@ Yes.
 
 ## Imperative Programming is Wrong (default)
 
-![Gears of War](/static/img/unreal.png){#fig:sweeney .align-center width=70%}
+![Gears of War](/static/img/unreal.png){#fig:sweeney .align-center width=60%}
 
 Tim Sweeney (Epic, Creator of the UNREAL Gaming Engine)
 
@@ -269,7 +278,7 @@ Tim Sweeney (Epic, Creator of the UNREAL Gaming Engine)
 
 John Carmack, creator of FPS (Doom, Quake, ...)
 
-![Carmack discourages variable mutation](/static/img/carmack-tweet.png){#fig:carmack .align-center width=70%}
+![Carmack discourages variable mutation](/static/img/carmack-tweet.png){#fig:carmack .align-center width=60%}
 
 
 
