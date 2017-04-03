@@ -66,7 +66,7 @@ L2: ...
 
 ## So Why Study Programming Languages?
 
-![Federico Fellini](/static/img/fellini.png){#fig:fellini .align-center width=50%}
+![Federico Fellini](/static/img/fellini.png){#fig:fellini .align-center width=25%}
 
 > A different language
 > is
@@ -98,7 +98,7 @@ Language affects how:
 - **Ideas** are expressed
 - **Computation** is expressed
 
-![No spoilers here](/static/img/arrival-symbol.jpg){#fig:arrival .align-center width=50%}
+![No spoilers here](/static/img/arrival-symbol.jpg){#fig:arrival .align-center width=25%}
 
 
 
@@ -113,7 +113,7 @@ Language affects how:
 
 ## Course Goals
 
-![Morpheus, The Matrix](/static/img/morpheus.png){#fig:morpheus .align-center width=50%}
+![Morpheus, The Matrix](/static/img/morpheus.png){#fig:morpheus .align-center width=25%}
 
 > Free Your Mind.
 
@@ -129,7 +129,7 @@ Language affects how:
 
 ## Goal: Learn New Languages / Constructs
 
-![Musical Score](/static/img/music-score.png){#fig:music .align-center width=50%}
+![Musical Score](/static/img/music-score.png){#fig:music .align-center width=20%}
 
 New ways to **describe** and **organize** computation,
 
@@ -178,7 +178,7 @@ In 130 you will learn the **anatomy** of a PL
 
 Help to better understand the PLs you already "know".
 
-![Anatomy](/static/img/anatomy.png){#fig:anatomy .align-center width=50%}
+![Anatomy](/static/img/anatomy.png){#fig:anatomy .align-center width=20%}
 
 
 
