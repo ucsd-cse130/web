@@ -1,0 +1,62 @@
+
+/*************************************************************************/
+/********************** Transition effect ********************************/
+/*************************************************************************/
+
+/* Feel free to change the transition effect for original
+   animations. See here:
+   https://developer.mozilla.org/en/CSS/CSS_transitions
+   How to use CSS3 Transitions:
+*/
+
+section {
+
+	/* SLIDE TRANSITION
+  -moz-transition: left 400ms ease-in-out 0s;
+	-webkit-transition: left 400ms ease-in-out 0s;
+  -ms-transition: left 400ms ease-in-out 0s;
+	transition: left 4000ms ease-in-out 0s;
+ */
+  /* FADE TRANSITIONS */
+  -webkit-transition: opacity 0.3s ease-in-out;
+  -moz-transition: opacity 0.3s ease-in-out;
+  -o-transition: opacity 0.3s ease-in-out;
+  -ms-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Before */
+section { left: -250%; opacity: 0; }
+
+/* Now */
+section[aria-selected] { left: 0;
+                         opacity: 1;
+                       }
+/* After */
+section[aria-selected] ~ section { left: +150%; }
+
+/* Incremental elements */
+
+/* By default, visible */
+.incremental > * { opacity: 1; }
+
+/* The current item */
+.incremental > *[aria-selected] { color: red; opacity: 1; }
+
+/* The items to-be-selected */
+.incremental > *[aria-selected] ~ * { opacity: 0.2; }
+
+/* Jhala Hacking the Background */
+
+a { color: #205CB3; }
+
+.align-center
+{
+margin-left:auto;
+/* margin-right:auto; */
+}
+
+.align-right {
+	float:center;
+	margin: 0 0 125px 125px;
+}
