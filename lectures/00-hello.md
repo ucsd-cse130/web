@@ -4,6 +4,13 @@ headerImg: sea.jpg
 date: 2017-03-28
 ---
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 ## A Programming Language
 
 ### Two Variables
@@ -33,14 +40,29 @@ L2: ...
 - ... or Plants v. Zombies
 - ... or Spotify!
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 ## So Why Study Programming Languages?
 
-![Federico Fellini](/static/img/fellini.png)
+![Federico Fellini](/static/img/fellini.png){#fig:fellini .align-center width=50%}
 
 > A different language
 > is
 > a different vision
 > of life.
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ## So Why Study Programming Languages?
 
@@ -59,19 +81,38 @@ Language affects how:
 - **Ideas** are expressed
 - **Computation** is expressed
 
-![No spoilers here](/static/img/arrival-symbol.jpg)
+![No spoilers here](/static/img/arrival-symbol.jpg){#fig:arrival .align-center width=50%}
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 
 
 ## Course Goals
 
-![Morpheus, The Matrix](/static/img/morpheus.png)
+![Morpheus, The Matrix](/static/img/morpheus.png){#fig:morpheus .align-center width=50%}
 
 > Free Your Mind.
 
 
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
 ## Goal: Learn New Languages / Constructs
 
-![Musical Score](/static/img/music-score.png)
+![Musical Score](/static/img/music-score.png){#fig:music .align-center width=50%}
 
 New ways to **describe** and **organize** computation,
 
@@ -84,6 +125,15 @@ To create programs that are:
 - **Reusable**
 
 
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
 ## New languages come (and go ...)
 
 There was no
@@ -92,6 +142,15 @@ There was no
 * C#   15 years ago,
 * Rust 10 years ago,
 * Go   5  years ago...
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ## Goal: Learn to Learn
 
@@ -102,7 +161,16 @@ In 130 you will learn the **anatomy** of a PL
 
 Help to better understand the PLs you already "know".
 
-![Anatomy](/static/img/anatomy.png)
+![Anatomy](/static/img/anatomy.png){#fig:anatomy .align-center width=50%}
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ## Goal: How to Design new Languages
 
@@ -114,6 +182,15 @@ Buried in **every extensible** system is a PL
 - SQL, Renderman, Latex, XML ...
 
 If **you** work on a large system, you **will** design a new PL!
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ## Goal: Enable You To Choose Right PL
 
@@ -128,13 +205,31 @@ Yes.
 
 **My goal:** Educate tomorrow's leaders so you'll make **informed** choices.
 
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 ## Speaking of Right and Wrong
 
 ![x = x + 1](/static/img/wtf-x-plus-one.png)
 
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 ## Imperative Programming is Wrong (default)
 
-![Gears of War](/static/img/unreal.png)
+![Gears of War](/static/img/unreal.png){#fig:sweeney .align-center width=70%}
 
 Tim Sweeney (Epic, Creator of the UNREAL Gaming Engine)
 
@@ -143,17 +238,44 @@ Tim Sweeney (Epic, Creator of the UNREAL Gaming Engine)
 
 
 
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 ## Imperative Programming is Wrong (default)
 
 John Carmack, creator of FPS (Doom, Quake, ...)
 
-![Carmack discourages variable mutation](/static/img/carmack-tweet.png)
+![Carmack discourages variable mutation](/static/img/carmack-tweet.png){#fig:carmack .align-center width=70%}
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ## Functional Programming
 
 - No assignment
 - No mutation
 - No loops
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ## OMG! Who uses FP?!
 
@@ -171,9 +293,18 @@ and, most importantly ....
 
 All information lives online:
 
-- [github](https://github.com/ucsd-progsys/130-web)
-- [webpage](http://ucsd-progsys.github.io/130-web)
-- [piazza]()
+- [github](https://github.com/ucsd-cse130/web)
+- [webpage](http://ucsd-cse130.github.io/)
+- [piazza](https://piazza.com/ucsd/spring2017/cse130/home)
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ## Course Mechanics: Clickers
 
@@ -188,6 +319,15 @@ Clickers Are Not Optional
 +  **Worth** 5% of your grade
 
 Laptops are welcome in lecture (but optional)
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ## Course Mechanics: In Class Exercises
 
@@ -205,6 +345,15 @@ Laptops are welcome in lecture (but optional)
 
 4. **Class Discuss**
   - What was easy or tricky?
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ## Course Mechanics: Grading
 
@@ -230,12 +379,30 @@ Laptops are welcome in lecture (but optional)
 
 + To **top 20** best participants
 
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 ## Course Mechanics: Grading
 
 **CSE 130 is graded on a curve**
 
 - Lots of work
 - Don't worry (too much) about grade
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ## Course Mechanics: No Text
 
@@ -245,6 +412,15 @@ Laptops are welcome in lecture (but optional)
 
 - **Do Assignments Yourself**
 
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 ## Programming Assignments
 
 - About 6-7 over the quarter
@@ -253,13 +429,32 @@ Laptops are welcome in lecture (but optional)
 
 - Schedule up on webpage (due Fridays 5 PM)
 
-## Programming Assignments
 
-Unfamiliar **Languages** and **Environments**
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## Programming Assignments
 
 ![Don't complain](
 http://core0.staticworld.net/images/article/2015/09/frustrated_developer-100614973-gallery.idge.jpg)
 
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## Programming Assignments
+
+Unfamiliar **Languages** and **Environments**
 **Forget**
 
 - Java, C, C++ ...
@@ -275,6 +470,15 @@ http://core0.staticworld.net/images/article/2015/09/frustrated_developer-1006149
 - Start early
 - Ask lots of questions!
 
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 ## Programming Assignments
 
 No Deadline Extension
@@ -282,6 +486,15 @@ No Deadline Extension
 - Four **late days**, used as **whole unit**
 - 5 mins late = 1 late day
 - *Plan ahead* no other extensions
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ## A Word from Our Sponsor
 
@@ -296,6 +509,15 @@ We use **plagiarism detection** software
   - I am an expert
   - Have code from all previous classes
   - MOSS is fantastic, plagiarize at your own risk
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 
 ## Plan
@@ -314,6 +536,15 @@ We use **plagiarism detection** software
 
 - Prolog
 - 2 weeks
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ## **QuickSort** in C
 
@@ -340,7 +571,16 @@ void sort(int arr[], int beg, int end){
 }
 ```
 
-## vs **QuickSort** in Haskell
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## **QuickSort** in Haskell
 
 ```Haskell
 sort []     = []
@@ -352,13 +592,40 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
 
 (not a wholly [fair comparison...](http://stackoverflow.com/questions/7717691/why-is-the-minimalist-example-haskell-quicksort-not-a-true-quicksort))
 
-## Why Readability Matters
 
-QuickSort in `J`
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## Readability Matters ...
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## QuickSort in `J`
 
 ```j
 sort =: (($:@(<#[),(=#[),$:@(>#[))({~ ?@#))^: (1:<#)
 ```
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ## Plan for next 5 weeks
 
@@ -367,3 +634,12 @@ sort =: (($:@(<#[),(=#[),$:@(>#[))({~ ?@#))^: (1:<#)
 - **Fast forward** intro to Haskell
 
 - **Rewind** and go over anatomy individually
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
