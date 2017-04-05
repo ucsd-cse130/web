@@ -10,10 +10,21 @@ headerImg: sea.jpg
 <br>
 <br>
 <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ## The Smallest Universal Language
 
-![Alonzo Church](https://upload.wikimedia.org/wikipedia/en/a/a6/Alonzo_Church.jpg)
+![Alonzo Church](https://upload.wikimedia.org/wikipedia/en/a/a6/Alonzo_Church.jpg){#fig:church .align-center width=40%}
 
 Developed in 1930s by Alonzo Church
 
@@ -33,7 +44,7 @@ Test bed for procedural and functional PLs
 
 ## The Next 700 Languages
 
-![Peter Landin](https://upload.wikimedia.org/wikipedia/en/f/f9/Peter_Landin.png)
+![Peter Landin](https://upload.wikimedia.org/wikipedia/en/f/f9/Peter_Landin.png){#fig:landin .align-center width=40%}
 
 > Whatever the next 700 languages
 > turn out to be,
