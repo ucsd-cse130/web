@@ -3,6 +3,14 @@ title: Lambda Calculus
 headerImg: sea.jpg
 ---
 
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 ## The Smallest Universal Language
 
 ![Alonzo Church](https://upload.wikimedia.org/wikipedia/en/a/a6/Alonzo_Church.jpg)
@@ -15,6 +23,14 @@ Test bed for procedural and functional PLs
 
 - Simple, Powerful, Extensible
 
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 ## The Next 700 Languages
 
 ![Peter Landin](https://upload.wikimedia.org/wikipedia/en/f/f9/Peter_Landin.png)
@@ -25,6 +41,14 @@ Test bed for procedural and functional PLs
 > variants of lambda calculus.
 
 Peter Landin, 1966
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ## Syntax: What Programs _Look Like_
 
@@ -48,7 +72,15 @@ Peter Landin, 1966
 
 ![The Lambda Calculus](/static/img/lambda-calculus.png)
 
-## Syntax: Association
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
 
 ## Application Is Left Associative
 
@@ -60,6 +92,14 @@ instead of
 
 `(((e1 e2) e3) e4)`
 
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 ## Examples
 
 ```haskell
@@ -70,6 +110,14 @@ instead of
 \f -> f (\x -> x)   -- A function that applies arg to the Identity Fun
 ```
 
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 ## Semantics : What Programs _Mean_
 
 We define the _meaning_ of a program with simple rules.
@@ -78,6 +126,14 @@ We define the _meaning_ of a program with simple rules.
 2. $\alpha$-step  (aka. _renaming formals_)
 3. $\beta$-step   (aka. _function calls_)
 
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ## Semantics: Scope
 
@@ -90,6 +146,14 @@ In the expression `\x -> e`
 - `e` is **the scope** of `x`
 
 - `x` is **bound** inside `e`
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ## Semantics: Free vs Bound Variables
 
@@ -105,6 +169,14 @@ free(x)       = {x}
 free(\x -> e) = free(e)  - {x}
 free(e1 e2)   = free(e1) + free(e2)
 ```
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ## QUIZ
 
@@ -123,6 +195,14 @@ Which variables are *free* in `e` ?
 **E.**  `x`, `y`, `z`
 
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
 ## Semantics: $\alpha$-Equivalence
 
 $\lambda$-terms `E1` and `E2` are $\alpha$-equivalent if
@@ -132,6 +212,14 @@ $\lambda$-terms `E1` and `E2` are $\alpha$-equivalent if
 or
 
 - `E1` can be obtained be *renaming the bound variables* of `E2`
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ## Semantics: $\alpha$-step
 
@@ -145,6 +233,14 @@ We write `E1 =a> E2` if `E1` is $\alpha$-equivalent to `E2`.
 
 - We can say `E1` takes an $\alpha$-step to `E2`.
 
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 ## $\alpha$-step Makes Scope Clear
 
 We often $\alpha$-rename to make **parameter names unique**
@@ -156,6 +252,14 @@ For example, instead of
 
 =a> \x -> x (\y -> y) x     -- Scope of bindings crystal clear
 ```
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 
 ## Semantics: Function Calls
@@ -182,6 +286,14 @@ and we can write it as
 - `(\x -> E1) E2   =b>   E1[x := E2]`
 
 
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 ## Function Calls: $\beta$-step Example
 
 Replace occurrences of parameter `f` with argument
@@ -194,6 +306,14 @@ Replace occurrences of parameter `f` with argument
 
 No need to rename, bindings already unique
 
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 ## Normal Forms
 
 An **redex** is a $\lambda$-term of the form
@@ -201,6 +321,14 @@ An **redex** is a $\lambda$-term of the form
 `(\x -> E1) E2`
 
 A $\lambda$-term is in **normal form** if it contains no redexes.
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ## QUIZ
 
@@ -211,6 +339,14 @@ Is the term `x` in _normal form_ ?
 **B.** No
 
 
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 ## QUIZ
 
 Is the term `x y` in _normal form_ ?
@@ -218,6 +354,14 @@ Is the term `x y` in _normal form_ ?
 **A.** Yes
 
 **B.** No
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 
 ## QUIZ
@@ -230,6 +374,14 @@ Is the term `(\x -> x) y` in _normal form_ ?
 
 
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
 ## QUIZ
 
 Is the term `x (\y -> y)` in _normal form_ ?
@@ -238,6 +390,14 @@ Is the term `x (\y -> y)` in _normal form_ ?
 
 **B.** No
 
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 
 ## Semantics: Evaluation
@@ -256,6 +416,14 @@ where each `=?>` is
 - A  $\beta$-step `=b>`.
 
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
 ## Examples of Evaluation
 
 ```haskell
@@ -270,6 +438,14 @@ where each `=?>` is
   =b> (\x -> x)
 ```
 
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 ## Non-Terminating Evaluation
 
 ```haskell
@@ -281,6 +457,14 @@ where each `=?>` is
 Oops, we can write programs that loop back to themselves...
 
 - Self replicating code!
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ## $\lambda$-Calculus Review
 
@@ -300,6 +484,14 @@ Oops, we can write programs that loop back to themselves...
 - Regardless of strategy at most *one normal form*
 - i.e. Programs can evaluate to a single result.
 
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 ## $\lambda$-calculus and CSE 130?
 
 
@@ -309,6 +501,14 @@ Oops, we can write programs that loop back to themselves...
 > variants of lambda calculus.
 
 Huh? What was that Landin fellow going on about?
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ## Programming with the $\lambda$-calculus
 
@@ -330,6 +530,14 @@ with the $\lambda$-calculus.
 - Free your mind
 - Build intuition about **evaluation-by-substitution**
 
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 ## QUIZ
 
 ```haskell
@@ -347,6 +555,14 @@ What does `(bar apple orange)` evaluate to?
 **D.**  `orange`
 
 **E.**  `bar`
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ## $\lambda$-calculus: Booleans
 
@@ -370,6 +586,14 @@ Here, `let NAME = e` means `NAME` is an _abbreviation_ for `e`
 - We don't want to keep _re-typing_ the whole expression out.
 
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
 ## QUIZ
 
 Given
@@ -387,6 +611,14 @@ What does `(TRUE apple orange)` evaluate to?
 
 **C.**  None of the above
 
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ## $\lambda$-calculus: Branches
 
@@ -411,6 +643,14 @@ How shall we implement `ITE` as a $\lambda$-expression?
 let ITE   = \b x y -> b x y
 ```
 
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 ## Example: Branches
 
 We want
@@ -431,6 +671,14 @@ eval ite_true:
   =b> e1
 ```
 
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 ## Example: Branches
 
 Now you try it! We want
@@ -448,6 +696,14 @@ eval ite_false:
 
   =*> e2  
 ```
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ## QUIZ
 
@@ -470,6 +726,14 @@ What does `HAHA TRUE` evaluate to?
 **E.** `HAHA FALSE`
 
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
 ## Boolean Operators: NOT
 
 
@@ -487,6 +751,14 @@ let NOT = \b -> ITE b FALSE TRUE
 ```
 
 That is, `HAHA` is actually the [`NOT` operator!][elsa-not]
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 
 ## Boolean Operators: AND
@@ -515,6 +787,14 @@ let AND = \b1 b2 -> b1 b2 FALSE
 (Can you see why?)
 
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
 ## Boolean Operators: OR
 
 Similarly, `OR b1 b2` is defined by the truth table
@@ -541,6 +821,14 @@ let OR = \b1 b2 -> b1 TRUE b2
 (Can you see why?)
 
 
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 ## $\lambda$-calculus: Records
 
 What can we *do* with **records** ?
@@ -548,6 +836,14 @@ What can we *do* with **records** ?
 1. **Pack two** items into a record.
 2. **Get first** item.
 3. **Get second** item.
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ## Records : API
 
@@ -566,6 +862,14 @@ FST (PACK v1 v2) = v1
 
 SND (PACK v1 v2) = v2
 ```
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ## Records: Implementation
 
@@ -587,6 +891,14 @@ let FST  = \p -> p TRUE   -- call w/ TRUE, get first value
 let SND  = \p -> p FALSE  -- call w/ FALSE, get second value
 ```
 
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 ## Exercise: Records with 3 values?
 
 How can we implement a record that contains **three** values?
@@ -601,9 +913,17 @@ let snd3  = \r -> ???
 let thd3  = \r -> ???
 ```
 
-## HEREHEREHEREHEREHERE
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ## $\lambda$-calculus: Numbers
+
+TODO
 
 `n f s` means run `f` on `s` exactly `n` times
 
@@ -616,6 +936,14 @@ let thd3  = \r -> ???
 3 = \f x. f (f (f x))
 4 = \f x. f (f (f (f x)))
 ```
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ## QUIZ: Church Numerals
 
@@ -639,6 +967,14 @@ zero = \x. x
 -- E
 -- none of the above!
 ```
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ## $\lambda$-calculus: Arithmetic
 
@@ -669,6 +1005,14 @@ plus1  = \n. (\f s. n f (f s))
 plus   = \n1 n2. n1 plus1 n2
 mult   = \n1 n2. n2 (plus n1) zero
 ```
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ## $\lambda$-calculus: Recursion
 

@@ -10,7 +10,7 @@ mins over the deadline is equal to 1 late day.
 
 ## Assignments
 
-- Stay tuned!
+- [HW #0](https://github.com/ucsd-cse130/00-lambda/), due Fri 4/14 by 23:59pm
 
 <!--
 - [HW #1](homeworks/hw1.html), due Wed 4/13 by 23:59pm
