@@ -7,7 +7,7 @@ headerImg: books.jpg
 |:----------:|:------------------------------|:-------------------------:|:-------------:|
 | 4/3        | Hello, World!                 | [html][lec0] [md][md0]    |               |            
 | 4/5        | The Lambda Calculus           | [html][lec1] [md][md1]    | [elsa][elsa]  |
-| 4/7        | ""                            |                           | [.lc][lc-4-7] |
+| 4/7        | contd.                        |                           | [.lc][lc-4-7] |
 | 4/12       | A crash course in Haskell     | [html][lec2] [md][md2]    |               |
 |            | Datatypes and Recursion       |                           |               |
 |            | Higher Order Functions        |                           |               |
