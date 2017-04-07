@@ -63,21 +63,30 @@ Peter Landin, 1966
 
 ## Syntax: What Programs _Look Like_
 
+```javascript
+e ::= x, y, z, ...
+    | function(x){ return e }
+    | e1(e2)
+
+```
+
 **Three** kinds of expressions
 
 - `e`
 
 **Variables**
 
-- `x`, `y`, `z`
+- `x`, `y`, `z`    (in JS `x`, `y`, `z`)
 
 **Function Definitions (Abstraction)**
 
-- `\x -> e`
+- `\x -> e`        (in JS `function(x){return e}` or `(x) => e`)
 
 **Function Call (Application)**
 
-- `e1 e2`
+- `e1 e2`          (in JS `e1(e2)`)
+
+
 
 **Complete Description**
 
@@ -103,6 +112,14 @@ instead of
 
 `(((e1 e2) e3) e4)`
 
+We write
+
+`\x1 -> \x2 -> \x3 -> \x4 -> e`
+
+instead of
+
+`\x1 -> (\x2 -> (\x3 -> (\x4 -> e)))`
+
 
 <br>
 <br>
@@ -115,8 +132,13 @@ instead of
 
 ```haskell
 \x -> x             -- The Identity function
+                    -- function (x) { return x ;}
+                    -- (x) => x
 
-\y -> \x -> x       -- A function that returns the Identity Fun
+\y -> (\x -> x)     -- A function that returns the Identity Fun
+                    --   function(y){ return
+                    --      function (x) { return x ;}
+                    --   }
 
 \f -> f (\x -> x)   -- A function that applies arg to the Identity Fun
 ```
@@ -157,6 +179,12 @@ In the expression `\x -> e`
 - `e` is **the scope** of `x`
 
 - `x` is **bound** inside `e`
+
+
+```
+  (\x -> (\y -> x)) x
+```
+
 
 
 <br>
@@ -359,8 +387,8 @@ Is the term `x` in _normal form_ ?
 <br>
 
 ## QUIZ
-
-Is the term `x y` in _normal form_ ?
+ 
+Is the term `(x y)` in _normal form_ ?
 
 **A.** Yes
 

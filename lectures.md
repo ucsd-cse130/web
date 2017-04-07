@@ -27,8 +27,8 @@ headerImg: books.jpg
 [lec1]: lectures/01-lambda.html
 [lec2]: lectures/02-haskell.html
 
-[md0]: http://github.com/ucsd-progsys/130-web/blob/master/lectures/00-hello.md
-[md1]: http://github.com/ucsd-progsys/130-web/blob/master/lectures/01-lambda.md
-[md2]: http://github.com/ucsd-progsys/130-web/blob/master/lectures/02-haskell.md
+[md0]: http://github.com/ucsd-cse130/web/blob/master/lectures/00-hello.md
+[md1]: http://github.com/ucsd-cse130/web/blob/master/lectures/01-lambda.md
+[md2]: http://github.com/ucsd-cse130/web/blob/master/lectures/02-haskell.md
 
 [elsa]: https://github.com/ucsd-progsys/elsa

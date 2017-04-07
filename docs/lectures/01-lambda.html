@@ -258,21 +258,24 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p>Peter Landin, 1966</p>
 <p><br> <br> <br> <br> <br> <br></p>
 <h2 id="syntax-what-programs-look-like">Syntax: What Programs <em>Look Like</em></h2>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript">e <span class="op">::=</span> x<span class="op">,</span> y<span class="op">,</span> z<span class="op">,</span> ...
+    <span class="op">|</span> <span class="kw">function</span>(x)<span class="op">{</span> <span class="cf">return</span> e <span class="op">}</span>
+    <span class="op">|</span> <span class="at">e1</span>(e2)</code></pre></div>
 <p><strong>Three</strong> kinds of expressions</p>
 <ul>
 <li><code>e</code></li>
 </ul>
 <p><strong>Variables</strong></p>
 <ul>
-<li><code>x</code>, <code>y</code>, <code>z</code></li>
+<li><code>x</code>, <code>y</code>, <code>z</code> (in JS <code>x</code>, <code>y</code>, <code>z</code>)</li>
 </ul>
 <p><strong>Function Definitions (Abstraction)</strong></p>
 <ul>
-<li><code>\x -&gt; e</code></li>
+<li><code>\x -&gt; e</code> (in JS <code>function(x){return e}</code> or <code>(x) =&gt; e</code>)</li>
 </ul>
 <p><strong>Function Call (Application)</strong></p>
 <ul>
-<li><code>e1 e2</code></li>
+<li><code>e1 e2</code> (in JS <code>e1(e2)</code>)</li>
 </ul>
 <p><strong>Complete Description</strong></p>
 <div class="figure">
@@ -285,11 +288,20 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p><code>e1 e2 e3 e4</code></p>
 <p>instead of</p>
 <p><code>(((e1 e2) e3) e4)</code></p>
+<p>We write</p>
+<p><code>\x1 -&gt; \x2 -&gt; \x3 -&gt; \x4 -&gt; e</code></p>
+<p>instead of</p>
+<p><code>\x1 -&gt; (\x2 -&gt; (\x3 -&gt; (\x4 -&gt; e)))</code></p>
 <p><br> <br> <br> <br> <br> <br></p>
 <h2 id="examples">Examples</h2>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">\x <span class="ot">-&gt;</span> x             <span class="co">-- The Identity function</span>
+                    <span class="co">-- function (x) { return x ;}</span>
+                    <span class="co">-- (x) =&gt; x</span>
 
-\y <span class="ot">-&gt;</span> \x <span class="ot">-&gt;</span> x       <span class="co">-- A function that returns the Identity Fun</span>
+\y <span class="ot">-&gt;</span> (\x <span class="ot">-&gt;</span> x)     <span class="co">-- A function that returns the Identity Fun</span>
+                    <span class="co">--   function(y){ return</span>
+                    <span class="co">--      function (x) { return x ;}</span>
+                    <span class="co">--   }</span>
 
 \f <span class="ot">-&gt;</span> f (\x <span class="ot">-&gt;</span> x)   <span class="co">-- A function that applies arg to the Identity Fun</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br></p>
@@ -309,6 +321,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <li><p><code>e</code> is <strong>the scope</strong> of <code>x</code></p></li>
 <li><p><code>x</code> is <strong>bound</strong> inside <code>e</code></p></li>
 </ul>
+<pre><code>  (\x -&gt; (\y -&gt; x)) x</code></pre>
 <p><br> <br> <br> <br> <br> <br></p>
 <h2 id="semantics-free-vs-bound-variables">Semantics: Free vs Bound Variables</h2>
 <p><code>y</code> is <strong>free</strong> inside <code>e</code> if</p>
@@ -403,7 +416,7 @@ free(e1 e2)   <span class="fu">=</span> free(e1) <span class="fu">+</span> free(
 <p><strong>B.</strong> No</p>
 <p><br> <br> <br> <br> <br> <br></p>
 <h2 id="quiz-2">QUIZ</h2>
-<p>Is the term <code>x y</code> in <em>normal form</em> ?</p>
+<p>Is the term <code>(x y)</code> in <em>normal form</em> ?</p>
 <p><strong>A.</strong> Yes</p>
 <p><strong>B.</strong> No</p>
 <p><br> <br> <br> <br> <br> <br></p>
