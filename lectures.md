@@ -16,6 +16,11 @@ headerImg: books.jpg
 |            | Imperative Programming        |                           |              |
 |            | Logic Programming             |                           |              |
 
+## Interesting Piazza Questions 
+
+- [html](lectures/piazza.md)
+- [md](http://github.com/ucsd-cse130/web/blob/master/lectures/piazza.md)
+
 ## Discussions
 
 | Date       | Topic                    | Notes         |  Code      |

@@ -387,7 +387,7 @@ Is the term `x` in _normal form_ ?
 <br>
 
 ## QUIZ
- 
+
 Is the term `(x y)` in _normal form_ ?
 
 **A.** Yes
