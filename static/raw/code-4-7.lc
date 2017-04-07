@@ -1,0 +1,64 @@
+eval id :
+(\x -> x) ORANGE
+  =b> ORANGE
+
+eval bizzorra :
+  (\f ->       f (\x1 -> x1))     (\x2 -> x2)
+--  ^ formal   ^^^^^^^^^^^^ body  ^^^^^^^^^^ arg
+ =b> (\x2 ->       x2)     (\x1 -> x1)
+--      ^ formal   ^ body  ^^^^^^^^^^ arg
+ =b> \x1 -> x1
+
+eval loop :
+      (\x ->       x x)      (\y -> y y)
+--      ^ formal   ^^^ body  ^^^^^^^^^^ arg
+  =b> (\y -> y y) (\y -> y y)
+  =a> (\x -> x x) (\y -> y y)
+
+-- e := x | \x -> e | (e1 e2)
+-- REDEX
+--
+--    (\x -> e1) e2
+--
+--    =b> e1[x := e2]
+
+eval example1:
+      (\x -> x) (\f -> f TGIF)
+  =a> (\x -> x) (\f -> f TGIF)
+  =b> (\f -> f TGIF)
+
+
+eval this_example :
+   (\x -> (\x -> x)) TGIF
+  =a> (\x1 -> (\x2 -> x2)) TGIF
+  =b> (\x2 -> x2)
+
+-- function(x){
+--   return function(x) { return x}
+-- }(TGIF)
+
+eval that_example :
+      (\x -> (\y -> x)) y
+  =a> (\x1 -> (\y1 -> x1)) y
+  =b> (\y1 -> y)
+
+-- function(x){
+--     return function(y){ return x}
+-- }( y )
+
+eval whatever1 :
+     (\x y -> (\x y -> x) y x)
+=a>  (\x y -> (\x1 y1 -> x1) y x)
+=b>  (\x y -> (\y1 -> y) x)
+=b>  (\x y -> y)
+
+-- function(x1){
+--     return function(y1){ return x1}
+-- }( y )
+
+-- When we write
+--   \x -> x (\x -> x) x
+-- we actually mean
+--   (\x -> ((x (\x -> x)) x))
+-- that is to say
+--   (\x1 -> ((x1 (\x2 -> x2)) x1))
