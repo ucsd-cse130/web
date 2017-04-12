@@ -1,0 +1,83 @@
+let TRUE  = \x y -> x
+-- TRUE x y = x
+let FALSE = \x y -> y
+-- FALSE x y = y
+let ITE   = \b xT xE -> (b xT xE)
+-- ITE b xT xE = b xT xE
+
+let AND = \b1 b2 -> ITE b1 (ITE b2 TRUE FALSE) FALSE
+
+let OR = \b1 b2 -> b1 TRUE b2
+let NOT = \b -> b FALSE TRUE
+
+let bar = (\x -> \y -> x)
+
+
+
+
+--  (bar x y) = x
+--  bar GORILLA KONG ====> GORILLA
+
+-- (bar("apple"))("orange")
+-- > var bar = function(x){
+-- ...   return function(y){
+-- .....     return x
+-- .....   }
+-- ... }
+-- undefined
+-- > (bar("apple"))("orange")
+
+
+
+-- let name = \x1 x2 x3 -> e
+-- name x1 x2 x3 =====> e
+
+let id  = \x -> x
+--  id x ====> x
+--  id GORILLA ===> GORILLA
+--  id KONG ===> KONG
+
+eval q1 :
+  (bar apple orange)
+  =d> ((\x y -> x) apple orange)
+  =b> ((\y -> apple) orange)
+  =b> apple
+
+eval ite_true :
+  ITE TRUE apple orange
+  =*> TRUE apple orange
+  =*> apple
+
+eval ite_false :
+  ITE FALSE apple orange
+  =*> FALSE apple orange
+  =*> orange
+
+
+-- TRUE ==> FALSE
+-- FALSE ==> TRUE
+-- function(b){ return (b ? false : true) }
+-- \b -> ITE b FALSE TRUE
+
+-- function(b1, b2){ return b1 ? (b2 ? true : false) : false }
+-- function(b1, b2){ return b1 ? b2 : false }
+-- let AND = \b1 b2 -> ITE b1 (ITE b2 TRUE FALSE) FALSE
+
+eval check_ite :
+  (\b1 b2 -> ITE b1 b2 FALSE)
+  =*> (\b1 b2 -> b1 b2 FALSE)
+
+
+
+-- function(b1, b2){ return b1 ? true : b2 }
+-- \b1 b2 -> ITE b1 TRUE b2
+-- let OR = \b1 b2 -> b1 TRUE b2
+
+----
+
+-- let PACK = \d1 d2 -> (\b -> ITE b d1 d2)
+-- let GET1 = \r -> r TRUE
+-- let GET2 = \r -> r FALSE
+
+-- GET1 (PACK APPLE ORANGE) ==> APPLE
+-- GET2 (PACK APPLE ORANGE) ==> ORANGE

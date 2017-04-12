@@ -484,8 +484,8 @@ free(e1 e2)   <span class="fu">=</span> free(e1) <span class="fu">+</span> free(
 <h2 id="programming-with-the-lambda-calculus">Programming with the <span class="math inline"><em>λ</em></span>-calculus</h2>
 <p><em>Real languages have lots of features</em></p>
 <ul>
-<li>Booleans</li>
-<li>Branches</li>
+<li>Booleans <em>done</em></li>
+<li>Branches <em>done</em></li>
 <li>Records</li>
 <li>Numbers</li>
 <li>Arithmetic</li>
@@ -500,7 +500,7 @@ free(e1 e2)   <span class="fu">=</span> free(e1) <span class="fu">+</span> free(
 </ul>
 <p><br> <br> <br> <br> <br> <br></p>
 <h2 id="quiz-5">QUIZ</h2>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> bar <span class="fu">=</span> \x y <span class="ot">-&gt;</span> x</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> bar <span class="fu">=</span> (\x y <span class="ot">-&gt;</span> x)</code></pre></div>
 <p>What does <code>(bar apple orange)</code> evaluate to?</p>
 <p><strong>A.</strong> <code>bar orange</code></p>
 <p><strong>B.</strong> <code>bar apple</code></p>
@@ -570,15 +570,11 @@ free(e1 e2)   <span class="fu">=</span> free(e1) <span class="fu">+</span> free(
   <span class="fu">=*&gt;</span> e2  </code></pre></div>
 <p><br> <br> <br> <br> <br> <br></p>
 <h2 id="quiz-7">QUIZ</h2>
-<pre><code>let TRUE  = \p q   -&gt; p
-let FALSE = \p q   -&gt; q
-let HAHA  = \b x y -&gt; ITE b FALSE TRUE</code></pre>
+<pre><code>let TRUE  = \p q -&gt; p
+let FALSE = \p q -&gt; q
+let HAHA  = \b   -&gt; ITE b FALSE TRUE</code></pre>
 <p>What does <code>HAHA TRUE</code> evaluate to?</p>
-<p><strong>A.</strong> <code>HAHA TRUE</code></p>
-<p><strong>B.</strong> <code>TRUE</code></p>
-<p><strong>C.</strong> <code>FALSE</code></p>
-<p><strong>D.</strong> <code>HAHA</code></p>
-<p><strong>E.</strong> <code>HAHA FALSE</code></p>
+<p><strong>A.</strong> <code>HAHA TRUE</code> <strong>B.</strong> <code>TRUE</code> <strong>C.</strong> <code>FALSE</code> <strong>D.</strong> <code>HAHA</code> <strong>E.</strong> <code>HAHA FALSE</code></p>
 <p><br> <br> <br> <br> <br> <br></p>
 <h2 id="boolean-operators-not">Boolean Operators: NOT</h2>
 <p>We can develop the Boolean operators from <strong>truth tables</strong></p>
@@ -725,48 +721,107 @@ let HAHA  = \b x y -&gt; ITE b FALSE TRUE</code></pre>
 <span class="kw">let</span> thd3  <span class="fu">=</span> \r <span class="ot">-&gt;</span> <span class="fu">???</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br></p>
 <h2 id="lambda-calculus-numbers"><span class="math inline"><em>λ</em></span>-calculus: Numbers</h2>
-<p>TODO</p>
 <p><code>n f s</code> means run <code>f</code> on <code>s</code> exactly <code>n</code> times</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- | represent n as  \f x. f (f (f  ...   (f x)</span>
 <span class="co">--                         '--- n times ---'</span>
 
-<span class="dv">1</span> <span class="fu">=</span> \f x<span class="fu">.</span> f x
-<span class="dv">2</span> <span class="fu">=</span> \f x<span class="fu">.</span> f (f x)
-<span class="dv">3</span> <span class="fu">=</span> \f x<span class="fu">.</span> f (f (f x))
-<span class="dv">4</span> <span class="fu">=</span> \f x<span class="fu">.</span> f (f (f (f x)))</code></pre></div>
+<span class="kw">let</span> <span class="dt">ONE</span>   <span class="fu">=</span> \f x<span class="fu">.</span> f x
+<span class="kw">let</span> <span class="dt">TWO</span>   <span class="fu">=</span> \f x<span class="fu">.</span> f (f x)
+<span class="kw">let</span> <span class="dt">THREE</span> <span class="fu">=</span> \f x<span class="fu">.</span> f (f (f x))
+<span class="kw">let</span> <span class="dt">FOUR</span>  <span class="fu">=</span> \f x<span class="fu">.</span> f (f (f (f x)))</code></pre></div>
 <p><br> <br> <br> <br> <br> <br></p>
 <h2 id="quiz-church-numerals">QUIZ: Church Numerals</h2>
 <p>TODO</p>
-<p>Which of these is a valid encoding of <code>0</code> ?</p>
+<p>Which of these is a valid encoding of <code>ZERO</code> ?</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- A</span>
-zero <span class="fu">=</span> \f x<span class="fu">.</span> x
+<span class="kw">let</span> <span class="dt">ZERO</span> <span class="fu">=</span> \f x<span class="fu">.</span> x
 
 <span class="co">-- B</span>
-zero <span class="fu">=</span> \f x<span class="fu">.</span> f
+<span class="kw">let</span> <span class="dt">ZERO</span> <span class="fu">=</span> \f x<span class="fu">.</span> f
 
 <span class="co">-- C</span>
-zero <span class="fu">=</span> \f x<span class="fu">.</span> f x
+<span class="kw">let</span> <span class="dt">ZERO</span> <span class="fu">=</span> \f x<span class="fu">.</span> f x
 
 <span class="co">-- D</span>
-zero <span class="fu">=</span> \x<span class="fu">.</span> x
+<span class="kw">let</span> <span class="dt">ZERO</span> <span class="fu">=</span> \x<span class="fu">.</span> x
 
 <span class="co">-- E</span>
 <span class="co">-- none of the above!</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br></p>
-<h2 id="lambda-calculus-arithmetic"><span class="math inline"><em>λ</em></span>-calculus: Arithmetic</h2>
-<p>TODO</p>
+<h2 id="lambda-calculus-arithmetic-iszero"><span class="math inline"><em>λ</em></span>-calculus: Arithmetic (<code>IsZero</code>)</h2>
 <p>Lets implement a small API for numbers:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">isZero n <span class="fu">=</span> <span class="fu">...</span> <span class="co">-- return `true` if n is zero and `false` otherwise</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">plus1 n  <span class="fu">=</span> \f x<span class="fu">.</span> <span class="fu">?</span>  <span class="co">-- ? should call `f` on `x` one more time than `n` does</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">plus n m  <span class="fu">=</span> \f x<span class="fu">.</span> <span class="fu">?</span>  <span class="co">-- ? should call `f` on `x` exactly `n + m` times</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">mult n m  <span class="fu">=</span> \f x<span class="fu">.</span> <span class="fu">?</span>  <span class="co">-- ? should call `f` on `x` exactly `n * m` times</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">isZero <span class="fu">=</span> \n<span class="fu">.</span> n (\b<span class="fu">.</span> false) true
-plus1  <span class="fu">=</span> \n<span class="fu">.</span> (\f s<span class="fu">.</span> n f (f s))
-plus   <span class="fu">=</span> \n1 n2<span class="fu">.</span> n1 plus1 n2
-mult   <span class="fu">=</span> \n1 n2<span class="fu">.</span> n2 (plus n1) zero</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- TRUE if n = ZERO and FALSE otherwise</span>
+<span class="kw">let</span> <span class="dt">IsZero</span> <span class="fu">=</span> \n <span class="ot">-&gt;</span> <span class="fu">...</span></code></pre></div>
+<h2 id="lambda-calculus-arithmetic-incr"><span class="math inline"><em>λ</em></span>-calculus: Arithmetic (<code>Incr</code>)</h2>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- Call `f` on `x` one more time than `n` does</span>
+<span class="kw">let</span> <span class="dt">Incr</span>   <span class="fu">=</span> \n <span class="ot">-&gt;</span> (\f x <span class="ot">-&gt;</span> <span class="fu">...</span> )</code></pre></div>
+<p>An example!</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">eval incr_one <span class="fu">:</span>
+  <span class="dt">Incr</span> <span class="dt">ONE</span>
+  <span class="fu">=</span>d<span class="fu">&gt;</span> (\n f x <span class="ot">-&gt;</span> f (n f x)) <span class="dt">ONE</span>
+  <span class="fu">=</span>b<span class="fu">&gt;</span> \f x <span class="ot">-&gt;</span> f (<span class="dt">ONE</span> f x)
+  <span class="fu">=*&gt;</span> \f x <span class="ot">-&gt;</span> f (f x)
+  <span class="fu">=</span>d<span class="fu">&gt;</span> <span class="dt">TWO</span>
+
+eval incr_two <span class="fu">:</span>
+  <span class="dt">Incr</span> <span class="dt">TWO</span>
+  <span class="fu">=</span>d<span class="fu">&gt;</span> (\n f x <span class="ot">-&gt;</span> f (n f x)) <span class="dt">TWO</span>
+  <span class="fu">=</span>b<span class="fu">&gt;</span> \f x <span class="ot">-&gt;</span> f (<span class="dt">TWO</span> f x)
+  <span class="fu">=*&gt;</span> \f x <span class="ot">-&gt;</span> f (f (f x))
+  <span class="fu">=</span>d<span class="fu">&gt;</span> <span class="dt">THREE</span></code></pre></div>
+<h2 id="quiz-8">QUIZ</h2>
+<p>How shall we implement <code>PLUS</code>?</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">--  Call `f` on `x` exactly `n + m` times</span>
+<span class="kw">let</span> <span class="dt">Plus</span> <span class="fu">=</span> \n m <span class="ot">-&gt;</span> <span class="fu">???</span>  
+
+eval plus_zero_zero <span class="fu">:</span>
+  <span class="dt">Plus</span> <span class="dt">ZERO</span> <span class="dt">ZERO</span> <span class="fu">=~&gt;</span> <span class="dt">ZERO</span>
+
+eval plus_two_one <span class="fu">:</span>
+  <span class="dt">Plus</span> <span class="dt">TWO</span> <span class="dt">ONE</span> <span class="fu">=~&gt;</span> <span class="dt">THREE</span>
+
+eval plus_two_two <span class="fu">:</span>
+  <span class="dt">Plus</span> <span class="dt">TWO</span> <span class="dt">TWO</span> <span class="fu">=~&gt;</span> <span class="dt">FOUR</span></code></pre></div>
+<p><strong>A.</strong> <code>let Plus = \n m -&gt; n Incr m</code></p>
+<p><strong>B.</strong> <code>let Plus = \n m -&gt; Incr n m</code></p>
+<p><strong>C.</strong> <code>let Plus = \n m -&gt; n m Incr</code></p>
+<p><strong>D.</strong> <code>let Plus = \n m -&gt; n (m Incr)</code></p>
+<p><strong>E.</strong> <code>let Plus = \n m -&gt; n (Incr m)</code></p>
+<p><span class="math inline"><em>λ</em></span>-calculus: Arithmetic (<code>Plus</code>)</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">--  Call `f` on `x` exactly `n + m` times</span>
+<span class="kw">let</span> <span class="dt">Plus</span> <span class="fu">=</span> \n m <span class="ot">-&gt;</span> <span class="fu">???</span></code></pre></div>
+<p>An example!</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">eval plus_zero_zero <span class="fu">:</span>
+  <span class="dt">Plus</span> <span class="dt">ZERO</span> <span class="dt">ZERO</span>
+  <span class="fu">=~&gt;</span> <span class="dt">ZERO</span>
+
+eval plus_two_two <span class="fu">:</span>
+  <span class="dt">Plus</span> <span class="dt">TWO</span> <span class="dt">TWO</span>
+  <span class="fu">=~&gt;</span> <span class="dt">FOUR</span></code></pre></div>
+<h2 id="quiz-9">QUIZ</h2>
+<p>How shall we implement <code>MULT</code>?</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">--  Call `f` on `x` exactly `n + m` times</span>
+<span class="kw">let</span> <span class="dt">Plus</span> <span class="fu">=</span> \n m <span class="ot">-&gt;</span> <span class="fu">???</span>  
+
+eval mult_zero_two <span class="fu">:</span>
+  <span class="dt">Mult</span> <span class="dt">ZERO</span> <span class="dt">TWO</span> <span class="fu">=~&gt;</span> <span class="dt">ZERO</span>
+
+eval mult_two_one <span class="fu">:</span>
+  <span class="dt">Mult</span> <span class="dt">TWO</span> <span class="dt">ONE</span> <span class="fu">=~&gt;</span> <span class="dt">TWO</span>
+
+eval mult_two_three <span class="fu">:</span>
+  <span class="dt">Mult</span> <span class="dt">TWO</span> <span class="dt">THREE</span> <span class="fu">=~&gt;</span> <span class="dt">SIX</span></code></pre></div>
+<p><strong>A.</strong> <code>let Mult = \n m -&gt; n Plus m</code> <strong>B.</strong> <code>let Mult = \n m -&gt; n (Plus m) ZERO</code> <strong>C.</strong> <code>let Mult = \n m -&gt; n (Plus m ZERO)</code> <strong>D.</strong> <code>let Mult = \n m -&gt; (n Plus m) ZERO</code> <strong>E.</strong> <code>let Mult = \n m -&gt; m (Plus n) ZERO</code></p>
+<h2 id="lambda-calculus-arithmetic-mult"><span class="math inline"><em>λ</em></span>-calculus: Arithmetic (<code>Mult</code>)</h2>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">--  Call `f` on `x` exactly `n * m` times</span>
+<span class="kw">let</span> <span class="dt">Mult</span> <span class="fu">=</span> \n m <span class="ot">-&gt;</span> <span class="fu">???</span>
+
+eval mul_two_three <span class="fu">:</span>
+  mul two three
+  <span class="fu">=*&gt;</span> six</code></pre></div>
 <p><br> <br> <br> <br> <br> <br></p>
 <h2 id="lambda-calculus-recursion"><span class="math inline"><em>λ</em></span>-calculus: Recursion</h2>
-<p>TODO</p>
+<p>The final frontier …</p>
                 <hr>
             </div>
         </div>

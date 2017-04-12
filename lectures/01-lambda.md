@@ -1025,18 +1025,105 @@ let IsZero = \n -> ...
 let Incr   = \n -> (\f x -> ... )
 ```
 
-## $\lambda$-calculus: Arithmetic (`Plus`)
+An example!
+
+```haskell
+eval incr_one :
+  Incr ONE
+  =d> (\n f x -> f (n f x)) ONE
+  =b> \f x -> f (ONE f x)
+  =*> \f x -> f (f x)
+  =d> TWO
+
+eval incr_two :
+  Incr TWO
+  =d> (\n f x -> f (n f x)) TWO
+  =b> \f x -> f (TWO f x)
+  =*> \f x -> f (f (f x))
+  =d> THREE
+```
+
+## QUIZ
+
+How shall we implement `PLUS`?
 
 ```haskell
 --  Call `f` on `x` exactly `n + m` times
-let Plus = \n m  -> (\f x -> ...)  
+let Plus = \n m -> ???  
+
+eval plus_zero_zero :
+  Plus ZERO ZERO =~> ZERO
+
+eval plus_two_one :
+  Plus TWO ONE =~> THREE
+
+eval plus_two_two :
+  Plus TWO TWO =~> FOUR
 ```
+
+**A.**  `let Plus = \n m -> n Incr m`
+
+**B.**  `let Plus = \n m -> Incr n m`
+
+**C.**  `let Plus = \n m -> n m Incr`
+
+**D.**  `let Plus = \n m -> n (m Incr)`
+
+**E.**  `let Plus = \n m -> n (Incr m)`
+
+$\lambda$-calculus: Arithmetic (`Plus`)
+
+
+```haskell
+--  Call `f` on `x` exactly `n + m` times
+let Plus = \n m -> ???
+```
+
+An example!
+
+```haskell
+eval plus_zero_zero :
+  Plus ZERO ZERO
+  =~> ZERO
+
+eval plus_two_two :
+  Plus TWO TWO
+  =~> FOUR
+```
+
+## QUIZ
+
+How shall we implement `MULT`?
+
+```haskell
+--  Call `f` on `x` exactly `n + m` times
+let Plus = \n m -> ???  
+
+eval mult_zero_two :
+  Mult ZERO TWO =~> ZERO
+
+eval mult_two_one :
+  Mult TWO ONE =~> TWO
+
+eval mult_two_three :
+  Mult TWO THREE =~> SIX
+```
+
+**A.**  `let Mult = \n m -> n Plus m`
+**B.**  `let Mult = \n m -> n (Plus m) ZERO`
+**C.**  `let Mult = \n m -> n (Plus m ZERO)`
+**D.**  `let Mult = \n m -> (n Plus m) ZERO`
+**E.**  `let Mult = \n m -> m (Plus n) ZERO`
 
 ## $\lambda$-calculus: Arithmetic (`Mult`)
 
 ```haskell
 --  Call `f` on `x` exactly `n * m` times
-let Mult = \n m  -> (\f x -> ...)  
+let Mult = \n m -> ???
+
+eval mul_two_three :
+  mul two three
+  =*> six
 ```
 
 
@@ -1049,6 +1136,7 @@ let Mult = \n m  -> (\f x -> ...)
 
 ## $\lambda$-calculus: Recursion
 
+The final frontier ...
 
 [elsa-ite]: http://goto.ucsd.edu:8095/index.html#?demo=ite.lc
 
