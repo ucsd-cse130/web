@@ -553,8 +553,8 @@ Huh? What was that Landin fellow going on about?
 
 *Real languages have lots of features*
 
-- Booleans
-- Branches
+- Booleans *done*
+- Branches *done*
 - Records
 - Numbers
 - Arithmetic
@@ -580,7 +580,7 @@ with the $\lambda$-calculus.
 ## QUIZ
 
 ```haskell
-let bar = \x y -> x
+let bar = (\x y -> x)
 ```
 
 What does `(bar apple orange)` evaluate to?
@@ -747,21 +747,17 @@ eval ite_false:
 ## QUIZ
 
 ```
-let TRUE  = \p q   -> p
-let FALSE = \p q   -> q
-let HAHA  = \b x y -> ITE b FALSE TRUE
+let TRUE  = \p q -> p
+let FALSE = \p q -> q
+let HAHA  = \b   -> ITE b FALSE TRUE
 ```
 
 What does `HAHA TRUE` evaluate to?
 
 **A.** `HAHA TRUE`
-
 **B.** `TRUE`
-
 **C.** `FALSE`
-
 **D.** `HAHA`
-
 **E.** `HAHA FALSE`
 
 
@@ -962,18 +958,16 @@ let thd3  = \r -> ???
 
 ## $\lambda$-calculus: Numbers
 
-TODO
-
 `n f s` means run `f` on `s` exactly `n` times
 
 ```haskell
 -- | represent n as  \f x. f (f (f  ...   (f x)
 --                         '--- n times ---'
 
-1 = \f x. f x
-2 = \f x. f (f x)
-3 = \f x. f (f (f x))
-4 = \f x. f (f (f (f x)))
+let ONE   = \f x. f x
+let TWO   = \f x. f (f x)
+let THREE = \f x. f (f (f x))
+let FOUR  = \f x. f (f (f (f x)))
 ```
 
 
@@ -988,20 +982,20 @@ TODO
 
 TODO
 
-Which of these is a valid encoding of `0` ?
+Which of these is a valid encoding of `ZERO` ?
 
 ```haskell
 -- A
-zero = \f x. x
+let ZERO = \f x. x
 
 -- B
-zero = \f x. f
+let ZERO = \f x. f
 
 -- C
-zero = \f x. f x
+let ZERO = \f x. f x
 
 -- D
-zero = \x. x
+let ZERO = \x. x
 
 -- E
 -- none of the above!
@@ -1015,34 +1009,34 @@ zero = \x. x
 <br>
 <br>
 
-## $\lambda$-calculus: Arithmetic
-
-TODO
+## $\lambda$-calculus: Arithmetic (`IsZero`)
 
 Lets implement a small API for numbers:
 
 ```haskell
-isZero n = ... -- return `true` if n is zero and `false` otherwise
+-- TRUE if n = ZERO and FALSE otherwise
+let IsZero = \n -> ...
 ```
 
+## $\lambda$-calculus: Arithmetic (`Incr`)
+
 ```haskell
-plus1 n  = \f x. ?  -- ? should call `f` on `x` one more time than `n` does
+-- Call `f` on `x` one more time than `n` does
+let Incr   = \n -> (\f x -> ... )
 ```
 
+## $\lambda$-calculus: Arithmetic (`Plus`)
+
 ```haskell
-plus n m  = \f x. ?  -- ? should call `f` on `x` exactly `n + m` times
+--  Call `f` on `x` exactly `n + m` times
+let Plus = \n m  -> (\f x -> ...)  
 ```
 
-```haskell
-mult n m  = \f x. ?  -- ? should call `f` on `x` exactly `n * m` times
-```
-
+## $\lambda$-calculus: Arithmetic (`Mult`)
 
 ```haskell
-isZero = \n. n (\b. false) true
-plus1  = \n. (\f s. n f (f s))
-plus   = \n1 n2. n1 plus1 n2
-mult   = \n1 n2. n2 (plus n1) zero
+--  Call `f` on `x` exactly `n * m` times
+let Mult = \n m  -> (\f x -> ...)  
 ```
 
 
@@ -1055,7 +1049,6 @@ mult   = \n1 n2. n2 (plus n1) zero
 
 ## $\lambda$-calculus: Recursion
 
-TODO
 
 [elsa-ite]: http://goto.ucsd.edu:8095/index.html#?demo=ite.lc
 
