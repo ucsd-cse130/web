@@ -39,4 +39,5 @@ headerImg: books.jpg
 [md2]: http://github.com/ucsd-cse130/web/blob/master/lectures/02-haskell.md
 
 [lc-4-7]: http://github.com/ucsd-cse130/web/blob/master/static/raw/code-4-7.lc
+[lc-4-10]: http://github.com/ucsd-cse130/web/blob/master/static/raw/code-4-10.lc
 [elsa]: https://github.com/ucsd-progsys/elsa
