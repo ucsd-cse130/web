@@ -555,7 +555,7 @@ Huh? What was that Landin fellow going on about?
 
 - Booleans *done*
 - Branches *done*
-- Records
+- Records  *done*
 - Numbers
 - Arithmetic
 - Functions (ok, we got those)
@@ -884,18 +884,26 @@ What can we *do* with **records** ?
 
 ```haskell
 (PACK v1 v2)  -- makes a pair out of v1, v2 s.t.
+              -- { fst : v1, snd : v2 }
+              -- (\b -> ITE b v1 v2)
 
-(FST p)       -- returns the first element
+(FST r)       -- returns the first element
+              -- r.fst
+              -- r TRUE
 
-(SND p)       -- returns the second element
+(SND r)       -- returns the second element
+              -- r.snd
+              -- r FALSE
 ```
 
 such that
 
 ```haskell
-FST (PACK v1 v2) = v1
+FST (PACK v1 v2) = v1   
+-- var r = { fst : v1, snd : v2}; assert(r.fst === v1)
 
 SND (PACK v1 v2) = v2
+-- var r = { fst : v1, snd : v2}; assert(r.snd === v2)
 ```
 
 
@@ -921,9 +929,9 @@ let PACK = \v1 v2 -> (\b -> ITE b v1 v2)
 We **access** a record by **calling** it with `TRUE` or `FALSE`
 
 ```haskell
-let FST  = \p -> p TRUE   -- call w/ TRUE, get first value
+let FST  = \r -> r TRUE   -- call w/ TRUE, get first value
 
-let SND  = \p -> p FALSE  -- call w/ FALSE, get second value
+let SND  = \r -> r FALSE  -- call w/ FALSE, get second value
 ```
 
 
@@ -939,13 +947,48 @@ let SND  = \p -> p FALSE  -- call w/ FALSE, get second value
 How can we implement a record that contains **three** values?
 
 ```haskell
-let PACK3 = \v1 v2 v3 -> ???
+-- let NULL = FALSE
+-- {fst : 'orange', snd : FALSE}
+-- {fst : 'banana', {fst : 'orange', snd : FALSE}}
+-- {fst : 'apple' , {fst : 'banana', {fst : 'orange', snd : FALSE}}}
+-- {fst : 'durian'
+        , {fst : 'apple'
+               , {fst : 'banana'
+                      , {fst : 'orange'
+                            , snd : FALSE}}}}
 
-let fst3  = \r -> ???
+-- PACK durian (PACK apple (PACK orange FALSE))
 
-let snd3  = \r -> ???
+-- PACK (
+      (PACK durian apple)
+      (PACK orange banana)
+   )
 
-let thd3  = \r -> ???
+
+snd : 'orange'}
+-- {fst : 'apple' , snd : {fst : 'banana', snd : 'orange'}}
+-- {fst : 'durian', snd : {fst : 'apple' , snd : {fst : 'banana', snd : 'orange'}}}
+
+
+-- {fst : {fst : 'durian', snd : 'apple'},
+   ,snd :{fst : 'banana', snd : 'orange'} }
+
+
+-- {fst : {fst : 'orange', snd : 'apple'}, snd : 'banana' }
+-- r.fst.fst === 'orange'
+-- r.fst.snd === 'apple'
+-- {fst : {fst : {fst : 'orange', snd : 'apple'}, snd : 'banana' }, snd : 'melon'}
+
+let PACK3 = \v1 v2 v3 -> PACK v1 (PACK v2 v3)
+let FST3  = \r -> FST r
+let SND3  = \r -> FST (SND r)
+let THD3  = \r -> SND (SND r)
+
+
+let BOB ZERO  = (PACK ZERO FALSE)
+let BOB ONE   = PACK ONE (PACK ZERO FALSE)
+let BOB TWO   = PACK TWO (PACK ONE (PACK ZERO FALSE))
+let BOB THREE = PACK THREE (PACK TWO (PACK ONE (PACK ZERO FALSE)))
 ```
 
 
@@ -980,22 +1023,20 @@ let FOUR  = \f x. f (f (f (f x)))
 
 ## QUIZ: Church Numerals
 
-TODO
-
 Which of these is a valid encoding of `ZERO` ?
 
 ```haskell
 -- A
-let ZERO = \f x. x
+let ZERO = \f x -> x
 
 -- B
-let ZERO = \f x. f
+let ZERO = \f x -> f
 
 -- C
-let ZERO = \f x. f x
+let ZERO = \f x -> f x
 
 -- D
-let ZERO = \x. x
+let ZERO = \x -> x
 
 -- E
 -- none of the above!

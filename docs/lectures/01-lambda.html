@@ -486,7 +486,7 @@ free(e1 e2)   <span class="fu">=</span> free(e1) <span class="fu">+</span> free(
 <ul>
 <li>Booleans <em>done</em></li>
 <li>Branches <em>done</em></li>
-<li>Records</li>
+<li>Records <em>done</em></li>
 <li>Numbers</li>
 <li>Arithmetic</li>
 <li>Functions (ok, we got those)</li>
@@ -688,14 +688,22 @@ let HAHA  = \b   -&gt; ITE b FALSE TRUE</code></pre>
 <p><br> <br> <br> <br> <br> <br></p>
 <h2 id="records-api">Records : API</h2>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">(<span class="dt">PACK</span> v1 v2)  <span class="co">-- makes a pair out of v1, v2 s.t.</span>
+              <span class="co">-- { fst : v1, snd : v2 }</span>
+              <span class="co">-- (\b -&gt; ITE b v1 v2)</span>
 
-(<span class="dt">FST</span> p)       <span class="co">-- returns the first element</span>
+(<span class="dt">FST</span> r)       <span class="co">-- returns the first element</span>
+              <span class="co">-- r.fst</span>
+              <span class="co">-- r TRUE</span>
 
-(<span class="dt">SND</span> p)       <span class="co">-- returns the second element</span></code></pre></div>
+(<span class="dt">SND</span> r)       <span class="co">-- returns the second element</span>
+              <span class="co">-- r.snd</span>
+              <span class="co">-- r FALSE</span></code></pre></div>
 <p>such that</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dt">FST</span> (<span class="dt">PACK</span> v1 v2) <span class="fu">=</span> v1
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dt">FST</span> (<span class="dt">PACK</span> v1 v2) <span class="fu">=</span> v1   
+<span class="co">-- var r = { fst : v1, snd : v2}; assert(r.fst === v1)</span>
 
-<span class="dt">SND</span> (<span class="dt">PACK</span> v1 v2) <span class="fu">=</span> v2</code></pre></div>
+<span class="dt">SND</span> (<span class="dt">PACK</span> v1 v2) <span class="fu">=</span> v2
+<span class="co">-- var r = { fst : v1, snd : v2}; assert(r.snd === v2)</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br></p>
 <h2 id="records-implementation">Records: Implementation</h2>
 <p>A <strong>create</strong> a record as a <strong>function</strong></p>
@@ -706,19 +714,54 @@ let HAHA  = \b   -&gt; ITE b FALSE TRUE</code></pre>
 <li>Returns <em>second</em> element if <code>b</code> is <code>FALSE</code></li>
 </ul>
 <p>We <strong>access</strong> a record by <strong>calling</strong> it with <code>TRUE</code> or <code>FALSE</code></p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> <span class="dt">FST</span>  <span class="fu">=</span> \p <span class="ot">-&gt;</span> p <span class="dt">TRUE</span>   <span class="co">-- call w/ TRUE, get first value</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> <span class="dt">FST</span>  <span class="fu">=</span> \r <span class="ot">-&gt;</span> r <span class="dt">TRUE</span>   <span class="co">-- call w/ TRUE, get first value</span>
 
-<span class="kw">let</span> <span class="dt">SND</span>  <span class="fu">=</span> \p <span class="ot">-&gt;</span> p <span class="dt">FALSE</span>  <span class="co">-- call w/ FALSE, get second value</span></code></pre></div>
+<span class="kw">let</span> <span class="dt">SND</span>  <span class="fu">=</span> \r <span class="ot">-&gt;</span> r <span class="dt">FALSE</span>  <span class="co">-- call w/ FALSE, get second value</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br></p>
 <h2 id="exercise-records-with-3-values">Exercise: Records with 3 values?</h2>
 <p>How can we implement a record that contains <strong>three</strong> values?</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> <span class="dt">PACK3</span> <span class="fu">=</span> \v1 v2 v3 <span class="ot">-&gt;</span> <span class="fu">???</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- let NULL = FALSE</span>
+<span class="co">-- {fst : 'orange', snd : FALSE}</span>
+<span class="co">-- {fst : 'banana', {fst : 'orange', snd : FALSE}}</span>
+<span class="co">-- {fst : 'apple' , {fst : 'banana', {fst : 'orange', snd : FALSE}}}</span>
+<span class="co">-- {fst : 'durian'</span>
+        , {fst <span class="fu">:</span> <span class="ch">'apple'</span>
+               , {fst <span class="fu">:</span> <span class="ch">'banana'</span>
+                      , {fst <span class="fu">:</span> <span class="ch">'orange'</span>
+                            , snd <span class="fu">:</span> <span class="dt">FALSE</span>}}}}
 
-<span class="kw">let</span> fst3  <span class="fu">=</span> \r <span class="ot">-&gt;</span> <span class="fu">???</span>
+<span class="co">-- PACK durian (PACK apple (PACK orange FALSE))</span>
 
-<span class="kw">let</span> snd3  <span class="fu">=</span> \r <span class="ot">-&gt;</span> <span class="fu">???</span>
+<span class="co">-- PACK (</span>
+      (<span class="dt">PACK</span> durian apple)
+      (<span class="dt">PACK</span> orange banana)
+   )
 
-<span class="kw">let</span> thd3  <span class="fu">=</span> \r <span class="ot">-&gt;</span> <span class="fu">???</span></code></pre></div>
+
+snd <span class="fu">:</span> <span class="ch">'orange'</span>}
+<span class="co">-- {fst : 'apple' , snd : {fst : 'banana', snd : 'orange'}}</span>
+<span class="co">-- {fst : 'durian', snd : {fst : 'apple' , snd : {fst : 'banana', snd : 'orange'}}}</span>
+
+
+<span class="co">-- {fst : {fst : 'durian', snd : 'apple'},</span>
+   ,snd <span class="fu">:</span>{fst <span class="fu">:</span> <span class="ch">'banana'</span>, snd <span class="fu">:</span> <span class="ch">'orange'</span>} }
+
+
+<span class="co">-- {fst : {fst : 'orange', snd : 'apple'}, snd : 'banana' }</span>
+<span class="co">-- r.fst.fst === 'orange'</span>
+<span class="co">-- r.fst.snd === 'apple'</span>
+<span class="co">-- {fst : {fst : {fst : 'orange', snd : 'apple'}, snd : 'banana' }, snd : 'melon'}</span>
+
+<span class="kw">let</span> <span class="dt">PACK3</span> <span class="fu">=</span> \v1 v2 v3 <span class="ot">-&gt;</span> <span class="dt">PACK</span> v1 (<span class="dt">PACK</span> v2 v3)
+<span class="kw">let</span> <span class="dt">FST3</span>  <span class="fu">=</span> \r <span class="ot">-&gt;</span> <span class="dt">FST</span> r
+<span class="kw">let</span> <span class="dt">SND3</span>  <span class="fu">=</span> \r <span class="ot">-&gt;</span> <span class="dt">FST</span> (<span class="dt">SND</span> r)
+<span class="kw">let</span> <span class="dt">THD3</span>  <span class="fu">=</span> \r <span class="ot">-&gt;</span> <span class="dt">SND</span> (<span class="dt">SND</span> r)
+
+
+<span class="kw">let</span> <span class="dt">BOB</span> <span class="dt">ZERO</span>  <span class="fu">=</span> (<span class="dt">PACK</span> <span class="dt">ZERO</span> <span class="dt">FALSE</span>)
+<span class="kw">let</span> <span class="dt">BOB</span> <span class="dt">ONE</span>   <span class="fu">=</span> <span class="dt">PACK</span> <span class="dt">ONE</span> (<span class="dt">PACK</span> <span class="dt">ZERO</span> <span class="dt">FALSE</span>)
+<span class="kw">let</span> <span class="dt">BOB</span> <span class="dt">TWO</span>   <span class="fu">=</span> <span class="dt">PACK</span> <span class="dt">TWO</span> (<span class="dt">PACK</span> <span class="dt">ONE</span> (<span class="dt">PACK</span> <span class="dt">ZERO</span> <span class="dt">FALSE</span>))
+<span class="kw">let</span> <span class="dt">BOB</span> <span class="dt">THREE</span> <span class="fu">=</span> <span class="dt">PACK</span> <span class="dt">THREE</span> (<span class="dt">PACK</span> <span class="dt">TWO</span> (<span class="dt">PACK</span> <span class="dt">ONE</span> (<span class="dt">PACK</span> <span class="dt">ZERO</span> <span class="dt">FALSE</span>)))</code></pre></div>
 <p><br> <br> <br> <br> <br> <br></p>
 <h2 id="lambda-calculus-numbers"><span class="math inline"><em>λ</em></span>-calculus: Numbers</h2>
 <p><code>n f s</code> means run <code>f</code> on <code>s</code> exactly <code>n</code> times</p>
@@ -731,19 +774,18 @@ let HAHA  = \b   -&gt; ITE b FALSE TRUE</code></pre>
 <span class="kw">let</span> <span class="dt">FOUR</span>  <span class="fu">=</span> \f x<span class="fu">.</span> f (f (f (f x)))</code></pre></div>
 <p><br> <br> <br> <br> <br> <br></p>
 <h2 id="quiz-church-numerals">QUIZ: Church Numerals</h2>
-<p>TODO</p>
 <p>Which of these is a valid encoding of <code>ZERO</code> ?</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- A</span>
-<span class="kw">let</span> <span class="dt">ZERO</span> <span class="fu">=</span> \f x<span class="fu">.</span> x
+<span class="kw">let</span> <span class="dt">ZERO</span> <span class="fu">=</span> \f x <span class="ot">-&gt;</span> x
 
 <span class="co">-- B</span>
-<span class="kw">let</span> <span class="dt">ZERO</span> <span class="fu">=</span> \f x<span class="fu">.</span> f
+<span class="kw">let</span> <span class="dt">ZERO</span> <span class="fu">=</span> \f x <span class="ot">-&gt;</span> f
 
 <span class="co">-- C</span>
-<span class="kw">let</span> <span class="dt">ZERO</span> <span class="fu">=</span> \f x<span class="fu">.</span> f x
+<span class="kw">let</span> <span class="dt">ZERO</span> <span class="fu">=</span> \f x <span class="ot">-&gt;</span> f x
 
 <span class="co">-- D</span>
-<span class="kw">let</span> <span class="dt">ZERO</span> <span class="fu">=</span> \x<span class="fu">.</span> x
+<span class="kw">let</span> <span class="dt">ZERO</span> <span class="fu">=</span> \x <span class="ot">-&gt;</span> x
 
 <span class="co">-- E</span>
 <span class="co">-- none of the above!</span></code></pre></div>

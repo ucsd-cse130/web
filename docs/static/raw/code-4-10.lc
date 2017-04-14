@@ -12,6 +12,49 @@ let NOT = \b -> b FALSE TRUE
 
 let bar = (\x -> \y -> x)
 
+let PACK = \v1 v2 b -> ITE b v1 v2
+        -- \v1 -> (\v2 b -> ITE b v1 v2)
+        -- \v1 v2 -> (\b -> ITE b v1 v2)
+        -- \v1 -> (\v2 -> (\b -> ITE b v1 v2))
+-- PACK v1 v2 = \b -> ITE b v1 v2
+
+let FST  = \r -> r TRUE
+-- FST r = r TRUE
+
+let SND  = \r -> r FALSE
+-- SND r = r FALSE
+
+-- let ZERO  = \f x -> x
+-- let ONE   = \f x -> (f x)
+-- let TWO   = \f x -> f (f x)
+-- let THREE = \f x -> f (f (f x))
+-- let FOUR  = \f x -> f (f (f (f x)))
+-- let FIVE  = \f x -> f (f (f (f (f x))))
+-- let FIX   = \f x -> f (f (f (f (f (f x)))))
+
+let ISZERO = \n -> (n (\z -> FALSE) TRUE)
+
+eval isz_zero :
+  ISZERO ZERO =~> TRUE
+eval isz_one :
+  ISZERO ONE =~> FALSE
+eval isz_one :
+  ISZERO TWO =~> FALSE
+eval isz_one :
+  ISZERO THREE =~> FALSE
+eval isz_one :
+  ISZERO FOUR =~> FALSE
+eval isz_one :
+  ISZERO FALSE =~> FALSE
+
+-- ADD
+-- SUB
+-- MUL
+
+
+
+
+
 
 
 
@@ -53,7 +96,6 @@ eval ite_false :
   =*> FALSE apple orange
   =*> orange
 
-
 -- TRUE ==> FALSE
 -- FALSE ==> TRUE
 -- function(b){ return (b ? false : true) }
@@ -67,17 +109,23 @@ eval check_ite :
   (\b1 b2 -> ITE b1 b2 FALSE)
   =*> (\b1 b2 -> b1 b2 FALSE)
 
-
-
 -- function(b1, b2){ return b1 ? true : b2 }
 -- \b1 b2 -> ITE b1 TRUE b2
 -- let OR = \b1 b2 -> b1 TRUE b2
-
+-- 14
 ----
 
--- let PACK = \d1 d2 -> (\b -> ITE b d1 d2)
--- let GET1 = \r -> r TRUE
--- let GET2 = \r -> r FALSE
+eval ex_fst :
+  FST (PACK APPLE ORANGE)
+  =*> (PACK APPLE ORANGE) TRUE
+  =*> (\b -> ITE b APPLE ORANGE) TRUE
+  =*> (\b -> b APPLE ORANGE) TRUE
+  =b> TRUE APPLE ORANGE
+  =*> APPLE
 
--- GET1 (PACK APPLE ORANGE) ==> APPLE
--- GET2 (PACK APPLE ORANGE) ==> ORANGE
+eval ex_snd :
+  SND (PACK APPLE ORANGE)
+  =*> SND (\b -> ITE b APPLE ORANGE)
+  =*> (\b -> ITE b APPLE ORANGE) FALSE
+  =b> ITE FALSE APPLE ORANGE
+  =*> ORANGE
