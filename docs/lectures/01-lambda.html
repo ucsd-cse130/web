@@ -487,8 +487,18 @@ free(e1 e2)   <span class="fu">=</span> free(e1) <span class="fu">+</span> free(
 <li>Booleans <em>done</em></li>
 <li>Branches <em>done</em></li>
 <li>Records <em>done</em></li>
-<li>Numbers</li>
-<li>Arithmetic</li>
+<li>Numbers
+<ul>
+<li>Representation : <code>n</code> as <code>\f x -&gt; f (f (f (f x)))</code></li>
+<li>IsZero</li>
+</ul></li>
+<li>Arithmetic
+<ul>
+<li>Incr</li>
+<li>Add</li>
+<li>Mul</li>
+<li>Sub</li>
+</ul></li>
 <li>Functions (ok, we got those)</li>
 <li>Recursion</li>
 </ul>
@@ -812,7 +822,7 @@ eval incr_two <span class="fu">:</span>
   <span class="fu">=*&gt;</span> \f x <span class="ot">-&gt;</span> f (f (f x))
   <span class="fu">=</span>d<span class="fu">&gt;</span> <span class="dt">THREE</span></code></pre></div>
 <h2 id="quiz-8">QUIZ</h2>
-<p>How shall we implement <code>PLUS</code>?</p>
+<p>How shall we implement <code>Plus</code>?</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">--  Call `f` on `x` exactly `n + m` times</span>
 <span class="kw">let</span> <span class="dt">Plus</span> <span class="fu">=</span> \n m <span class="ot">-&gt;</span> <span class="fu">???</span>  
 
@@ -824,7 +834,7 @@ eval plus_two_one <span class="fu">:</span>
 
 eval plus_two_two <span class="fu">:</span>
   <span class="dt">Plus</span> <span class="dt">TWO</span> <span class="dt">TWO</span> <span class="fu">=~&gt;</span> <span class="dt">FOUR</span></code></pre></div>
-<p><strong>A.</strong> <code>let Plus = \n m -&gt; n Incr m</code></p>
+<p><strong>A.</strong> <code>let Plus = \n m -&gt; (n Incr) m</code></p>
 <p><strong>B.</strong> <code>let Plus = \n m -&gt; Incr n m</code></p>
 <p><strong>C.</strong> <code>let Plus = \n m -&gt; n m Incr</code></p>
 <p><strong>D.</strong> <code>let Plus = \n m -&gt; n (m Incr)</code></p>
@@ -842,8 +852,8 @@ eval plus_two_two <span class="fu">:</span>
   <span class="fu">=~&gt;</span> <span class="dt">FOUR</span></code></pre></div>
 <h2 id="quiz-9">QUIZ</h2>
 <p>How shall we implement <code>MULT</code>?</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">--  Call `f` on `x` exactly `n + m` times</span>
-<span class="kw">let</span> <span class="dt">Plus</span> <span class="fu">=</span> \n m <span class="ot">-&gt;</span> <span class="fu">???</span>  
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">--  Call `f` on `x` exactly `n * m` times</span>
+<span class="kw">let</span> <span class="dt">Mult</span> <span class="fu">=</span> \n m <span class="ot">-&gt;</span> <span class="fu">???</span>  
 
 eval mult_zero_two <span class="fu">:</span>
   <span class="dt">Mult</span> <span class="dt">ZERO</span> <span class="dt">TWO</span> <span class="fu">=~&gt;</span> <span class="dt">ZERO</span>
@@ -853,7 +863,10 @@ eval mult_two_one <span class="fu">:</span>
 
 eval mult_two_three <span class="fu">:</span>
   <span class="dt">Mult</span> <span class="dt">TWO</span> <span class="dt">THREE</span> <span class="fu">=~&gt;</span> <span class="dt">SIX</span></code></pre></div>
-<p><strong>A.</strong> <code>let Mult = \n m -&gt; n Plus m</code> <strong>B.</strong> <code>let Mult = \n m -&gt; n (Plus m) ZERO</code> <strong>C.</strong> <code>let Mult = \n m -&gt; n (Plus m ZERO)</code> <strong>D.</strong> <code>let Mult = \n m -&gt; (n Plus m) ZERO</code> <strong>E.</strong> <code>let Mult = \n m -&gt; m (Plus n) ZERO</code></p>
+<p><strong>A.</strong> <code>let Mult = \n m -&gt; n Plus m</code></p>
+<p><strong>B.</strong> <code>let Mult = \n m -&gt; n (Plus m) ZERO</code></p>
+<p><strong>E.</strong> <code>let Mult = \n m -&gt; m (Plus n) ZERO</code></p>
+<p><strong>C.</strong> <code>let Mult = \n m -&gt; n (Plus m ZERO)</code> <strong>D.</strong> <code>let Mult = \n m -&gt; (n Plus m) ZERO</code></p>
 <h2 id="lambda-calculus-arithmetic-mult"><span class="math inline"><em>λ</em></span>-calculus: Arithmetic (<code>Mult</code>)</h2>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">--  Call `f` on `x` exactly `n * m` times</span>
 <span class="kw">let</span> <span class="dt">Mult</span> <span class="fu">=</span> \n m <span class="ot">-&gt;</span> <span class="fu">???</span>

@@ -557,7 +557,14 @@ Huh? What was that Landin fellow going on about?
 - Branches *done*
 - Records  *done*
 - Numbers
+    - Representation : `n` as `\f x -> f (f (f (f x)))`
+    - IsZero
+
 - Arithmetic
+    - Incr
+    - Add
+    - Mul
+    - Sub
 - Functions (ok, we got those)
 - Recursion
 
@@ -1086,7 +1093,7 @@ eval incr_two :
 
 ## QUIZ
 
-How shall we implement `PLUS`?
+How shall we implement `Plus`?
 
 ```haskell
 --  Call `f` on `x` exactly `n + m` times
@@ -1102,7 +1109,7 @@ eval plus_two_two :
   Plus TWO TWO =~> FOUR
 ```
 
-**A.**  `let Plus = \n m -> n Incr m`
+**A.**  `let Plus = \n m -> (n Incr) m`
 
 **B.**  `let Plus = \n m -> Incr n m`
 
@@ -1111,6 +1118,8 @@ eval plus_two_two :
 **D.**  `let Plus = \n m -> n (m Incr)`
 
 **E.**  `let Plus = \n m -> n (Incr m)`
+
+
 
 $\lambda$-calculus: Arithmetic (`Plus`)
 
@@ -1137,8 +1146,8 @@ eval plus_two_two :
 How shall we implement `MULT`?
 
 ```haskell
---  Call `f` on `x` exactly `n + m` times
-let Plus = \n m -> ???  
+--  Call `f` on `x` exactly `n * m` times
+let Mult = \n m -> ???  
 
 eval mult_zero_two :
   Mult ZERO TWO =~> ZERO
@@ -1151,10 +1160,15 @@ eval mult_two_three :
 ```
 
 **A.**  `let Mult = \n m -> n Plus m`
+
 **B.**  `let Mult = \n m -> n (Plus m) ZERO`
+
+**E.**  `let Mult = \n m -> m (Plus n) ZERO`
+
 **C.**  `let Mult = \n m -> n (Plus m ZERO)`
 **D.**  `let Mult = \n m -> (n Plus m) ZERO`
-**E.**  `let Mult = \n m -> m (Plus n) ZERO`
+
+
 
 ## $\lambda$-calculus: Arithmetic (`Mult`)
 

@@ -24,32 +24,113 @@ let FST  = \r -> r TRUE
 let SND  = \r -> r FALSE
 -- SND r = r FALSE
 
--- let ZERO  = \f x -> x
--- let ONE   = \f x -> (f x)
--- let TWO   = \f x -> f (f x)
--- let THREE = \f x -> f (f (f x))
--- let FOUR  = \f x -> f (f (f (f x)))
--- let FIVE  = \f x -> f (f (f (f (f x))))
--- let FIX   = \f x -> f (f (f (f (f (f x)))))
+-- n f x = "run-f-on-x-exactly-n-times"
 
-let ISZERO = \n -> (n (\z -> FALSE) TRUE)
+let ZERO  = \f x -> x
+-- ZERO f x = x
+let ONE   = \f x -> (f x)
+-- ONE f x = f x
+let TWO   = \f x -> f (f x)
+-- TWO f x = f (f x)
+
+let THREE = \f x -> f (f (f x))
+-- THREE f x = f (f (f x))
+
+let FOUR  = \f x -> f (f (f (f x)))
+let FIVE  = \f x -> f (f (f (f (f x))))
+let FIX   = \f x -> f (f (f (f (f (f x)))))
+
+let ISZERO = \n -> ((n (\z -> FALSE)) TRUE)
+
+let Incr = \n -> (\f x -> f (n f x))
+
+let Plus = \n m -> (n Incr) m
+
+let Mult = \n m -> n (Plus m) ZERO
+
+-- Mult n m = n (Plus m)
+
+-- Mult ZERO FIVE =*> ZERO (Plus FIVE) ZERO =*> ZERO
+-- Mult THREE m =*> THREE (Plus m) ZERO =*> Plus m (Plus m (Plus m ZERO))
+-- Mult FIVE m =*> THREE (Plus m) ZERO =*> Plus m (Plus m(Plus m (Plus m (Plus m ZERO))))
+
+-- Plus n m = THREE Incr m
+
+let WierdPlus = \n m -> n (Incr m)
+-- WierdPlus n m = n (Incr m)
+
+eval wplus_one_zero :
+  WierdPlus ONE ZERO
+  =*> ONE (Incr ZERO)
+  =*> (\f x -> f x) ONE
+  =*> (\x -> ONE x)  -- <<<???? WTF ???
+
+eval plus_three_m :
+  Plus THREE TWO
+  =*> THREE Incr TWO
+  =*> Incr (Incr (Incr TWO))
+  =*> Incr (Incr THREE)
+  =*> Incr FOUR
+  =*> FIVE
+
+eval plus_two_m :
+  Plus TWO ONE
+  =*> TWO Incr ONE
+  =*> Incr (Incr ONE)               --  <<<---- THINK ABOUT THIS FOR EXAM!
+  =~> THREE
+
+
+  -- =*> Incr (Incr THREE)
+  -- =*> Incr FOUR
+  -- =*> FIVE
+
+-- let ADD = \n m -> ...
+
+
+
+
+-- let SUB = \n m -> ...
+-- let MUL = \n m -> ...
+
+eval Incr_zero :
+  Incr ZERO
+  =~> ONE
+
+eval Incr_one :
+  Incr ONE
+  =~> TWO
+
+eval Incr_two :
+  Incr (\f x -> f (f x))
+  =~> (\f x -> f (f (f x)))
+
+
+
+
 
 eval isz_zero :
-  ISZERO ZERO =~> TRUE
-eval isz_one :
-  ISZERO ONE =~> FALSE
-eval isz_one :
-  ISZERO TWO =~> FALSE
-eval isz_one :
-  ISZERO THREE =~> FALSE
-eval isz_one :
-  ISZERO FOUR =~> FALSE
-eval isz_one :
-  ISZERO FALSE =~> FALSE
+  ISZERO ZERO
+  =*> (\n -> ((n (\z -> FALSE)) TRUE)) ZERO
+  =b> ZERO (\z -> FALSE) TRUE
+  =*> TRUE
 
--- ADD
--- SUB
--- MUL
+eval isz_one :
+  ISZERO ONE
+  =*> ONE (\z -> FALSE) TRUE
+  =*> (\z -> FALSE) TRUE
+  =b> FALSE
+
+eval isz_two :
+  ISZERO TWO
+  =*> TWO (\z -> FALSE) TRUE
+  =*> (\z -> FALSE) ((\z -> FALSE) TRUE)
+  =b> FALSE
+
+eval isz_three :
+  ISZERO THREE
+  =*> THREE (\z -> FALSE) TRUE
+  =*> (\z -> FALSE) ((\z -> FALSE) ((\z -> FALSE) TRUE))
+  =b> FALSE
 
 
 
@@ -75,7 +156,7 @@ eval isz_one :
 -- let name = \x1 x2 x3 -> e
 -- name x1 x2 x3 =====> e
 
-let id  = \x -> x
+-- let id  = \x -> x
 --  id x ====> x
 --  id GORILLA ===> GORILLA
 --  id KONG ===> KONG
