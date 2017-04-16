@@ -12,7 +12,7 @@ Here is a sample session.
 ```bash
 $ prep cs130s
 
-$ rlwrap ocaml
+$ ocaml
         OCaml version 4.02.3
 
 # 2 + 3;;
@@ -23,10 +23,17 @@ Hello, world
 - : unit = ()
 ```
 
+If you run `Ocaml` on your _own_ machine, then do 
+
+```bash
+$ rlwrap ocaml
+```
+
 The `rlwrap` is **optional** but rather nice as it lets you
 hit the up/down cursors to go to your old commands (to avoid
-typing them out again.)
-  
+typing them out again.) We have used `alias` so you don't have
+to type it out on `ieng6`.
+
 
 ## Loading Files
 
