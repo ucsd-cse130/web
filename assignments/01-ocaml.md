@@ -22,7 +22,13 @@ The assignment is in the single file
 
 - [hw1.ml](/static/raw/hw1.ml)
 
-that you need to download. The file contains:
+that you need to download, if you wish, by using `wget`:
+
+```bash
+$ wget https://ucsd-cse130.github.io/web/static/raw/hw1.ml
+```
+
+The file contains:
 
 1. **skeleton functions** with missing bodies that you will fill in,
 2. **sample tests**, and,
