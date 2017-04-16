@@ -208,13 +208,13 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 
         <div id="content">
             <!-- Post Header -->
-    <header class="intro-header" style="background-image: url('https://ucsd-cse130.github.io/web/static/img/angles.jpg')" alt title>
+    <header class="intro-header" style="background-image: url('https://ucsd-cse130.github.io/web/static/img/books.jpg')" alt title>
 
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
-                    <h1>HW 1, due 4/24/2017 (65pts)</h1>
+                    <h1>How to run Ocaml in the Lab machines</h1>
                     
                     <span class="meta">
 		    
@@ -232,97 +232,29 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-			<h2 id="due-by-235959-pm-on-monday-april-24th-2017">Due by 23:59:59 pm on Monday, April 24th, 2017</h2>
-<h2 id="running-ocaml">Running Ocaml</h2>
-<p>Use <code>ocaml</code> on <a href="lectures/info_ocaml.html">ieng6</a> to <strong>edit</strong>, <strong>run</strong> and <strong>submit</strong> the code.</p>
-<h2 id="overview">Overview</h2>
-<p>The objective of this assignment is for you to gain some hands-on experience with OCaml. All the problems require relatively little code ranging from 2 to 15 lines. If any function requires more than that, you can be sure that you need to rethink your solution.</p>
-<p>The assignment is in the single file</p>
-<ul>
-<li><a href="../static/raw/hw1.ml">hw1.ml</a></li>
-</ul>
-<p>that you need to download. The file contains:</p>
-<ol style="list-style-type: decimal">
-<li><strong>skeleton functions</strong> with missing bodies that you will fill in,</li>
-<li><strong>sample tests</strong>, and,</li>
-<li><strong>testing code</strong> that you will use to check your assignments before submitting.</li>
-</ol>
-<p>You should only need to modify the first part of the file, which has expressions of the form:</p>
-<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml">failwith <span class="st">&quot;TBD: ...&quot;</span></code></pre></div>
-<p>Your task is to replace those expressions with the appropriate Ocaml implementations.</p>
-<p><strong>Note:</strong> All the solutions can be done using the purely functional fragment of OCaml, using constructs covered in class, and most require the use of <strong>recursion</strong>. Solutions using imperative features such as references, while loops or library functions (other than those explicitly allowed) will receive <strong>no credit.</strong> It is a good idea to start this assignment early; ML programming, while quite simple, when you know how, may seem somewhat foreign at first, particularly when it comes to recursion and list manipulation.</p>
-<h2 id="assignment-testing-and-evaluation">Assignment Testing and Evaluation</h2>
-<p>Your functions/programs <strong>must</strong> compile and run with <code>ocaml</code> on <code>ieng6.ucsd.edu</code>.</p>
-<p>Most of the points, will be awarded automatically, by <strong>evaluating your functions against a given test suite</strong>. <a href="../static/raw/hw1.ml">hw1.ml</a> contains a very small suite of tests which gives you a flavor of of these tests.</p>
-<p>At any point, on the bash shell, enter:</p>
-<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml">$ ocaml hw1.ml</code></pre></div>
-<p>or if you are in the Ocaml REPL enter:</p>
-<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># #use <span class="st">&quot;hw1.ml&quot;</span> ;;</code></pre></div>
-<p>to get a report on how your code stacks up against the simple tests.</p>
-<p>The last line of the shell must look like:</p>
-<pre><code>130&gt;&gt;Compiled
+			<h2 id="entering-the-ocaml-shell">Entering the Ocaml Shell</h2>
+<p>You need to type <code>prep cs130s</code> before you can run <code>Ocaml</code>.</p>
+<p>Here is a sample session.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">prep</span> cs130s
 
-- : int * int = (SCORE, TOTAL)</code></pre>
-<p>where <code>SCORE</code> and <code>TOTAL</code> are a pair of integers, reflecting your score and the max possible score on the sample tests.</p>
-<p><strong>If instead an error message appears, your code will receive a zero.</strong></p>
-<p>If for some problem, you cannot get the code to compile, leave it as is with the <code>failwith ...</code> with your partial solution enclosed below as a comment.</p>
-<p>The other lines will give you a readout for each test. You are encouraged to try to understand the testing code, but you will not be graded on this.</p>
-<h2 id="submission-instructions">Submission Instructions</h2>
-<p>To submit your homework (on <code>ieng6</code>), enter:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">turnin</span> -c cs130s -p 01 hw1.ml</code></pre></div>
-<p><code>turnin</code> will provide you with a confirmation of the submission process; make sure that the size of the file indicated by <code>turnin</code> matches the size of your file. See the ACS Web page on <a href="http://acs.ucsd.edu/info/turnin.php">turnin</a> for more information on the operation of the program.</p>
-<h2 id="problem-1-digital-roots-and-additive-persistence">Problem 1: <a href="http://mathworld.wolfram.com/AdditivePersistence.html">Digital Roots and Additive Persistence</a></h2>
-<h3 id="a-10-points">(a) 10 points</h3>
-<p>Write an OCaml function</p>
-<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">val</span> sumList : <span class="dt">int</span> <span class="dt">list</span> -&gt; <span class="dt">int</span></code></pre></div>
-<p>that such that <code>sumList xs</code> returns the sum of the integer elements of <code>xs</code>. Once you have implemented the function, you should get the following behavior at the OCaml prompt:</p>
-<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># sumList [<span class="dv">1</span>; <span class="dv">2</span>; <span class="dv">3</span>; <span class="dv">4</span>];;
-- : <span class="dt">int</span> = <span class="dv">10</span>
+$ <span class="kw">rlwrap</span> ocaml
+        <span class="kw">OCaml</span> version 4.02.3
 
-# sumList [<span class="dv">1</span>; <span class="dv">-2</span>; <span class="dv">3</span>; <span class="dv">5</span>];;
-- : <span class="dt">int</span> = <span class="dv">7</span>
+<span class="co"># 2 + 3;;</span>
+<span class="kw">-</span> : int = 5
 
-# sumList [<span class="dv">1</span>; <span class="dv">3</span>; <span class="dv">5</span>; <span class="dv">7</span>; <span class="dv">9</span>; <span class="dv">11</span>];;
-- : <span class="dt">int</span> = <span class="dv">36</span></code></pre></div>
-<h2 id="b-10-points">(b) 10 points</h2>
-<p>Write an OCaml function</p>
-<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">val</span> digitsOfInt : <span class="dt">int</span> -&gt; <span class="dt">int</span> <span class="dt">list</span></code></pre></div>
-<p>such that <code>digitsOfInt n</code> returns <code>[]</code> if <code>n</code> is not positive, and returns the list of digits of <code>n</code> in the order in which they appear in <code>n</code>. Once you have implemented the function, you should get the following behavior at the OCaml prompt:</p>
-<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># digitsOfInt <span class="dv">3124</span>;;
-- : <span class="dt">int</span> <span class="dt">list</span> = [<span class="dv">3</span>; <span class="dv">1</span>; <span class="dv">2</span>; <span class="dv">4</span>]
-
-# digitsOfInt <span class="dv">352663</span>;;
-- : <span class="dt">int</span> <span class="dt">list</span> = [<span class="dv">3</span>; <span class="dv">5</span>; <span class="dv">2</span>; <span class="dv">6</span>; <span class="dv">6</span>; <span class="dv">3</span>]</code></pre></div>
-<h3 id="c-1010-points">(c) 10+10 points</h3>
-<p>Consider the process of taking a number, adding its digits, then adding the digits of the number derived from it, etc., until the remaining number has only one digit. The number of additions required to obtain a single digit from a number <code>n</code> is called the <em>additive persistence</em> of <code>n</code>, and the digit obtained is called the <i>digital root</i> of <code>n</code>.</p>
-<p>For example, the sequence obtained from the starting number <code>9876</code> is <code>9876</code>, <code>30</code>, <code>3</code>, so <code>9876</code> has an additive persistence of <code>2</code> and a digital root of <code>3</code>.</p>
-<p>Write two OCaml functions</p>
-<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">val</span> additivePersistence : <span class="dt">int</span> -&gt; <span class="dt">int</span>
-<span class="kw">val</span> digitalRoot         : <span class="dt">int</span> -&gt; <span class="dt">int</span></code></pre></div>
-<p>that take positive integer arguments <code>n</code> and return respectively the additive persistence and the digital root of <code>n</code>. Once you have implemented the functions, you should get the following behavior at the OCaml prompt:</p>
-<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># additivePersistence <span class="dv">9876</span>;;
-- : <span class="dt">int</span> = <span class="dv">2</span>
-
-# digitalRoot <span class="dv">9876</span>;;
-- : <span class="dt">int</span> = <span class="dv">3</span></code></pre></div>
-<h2 id="problem-2-palindromes">Problem 2: Palindromes</h2>
-<h3 id="a-15-points">(a) 15 points</h3>
-<p>Without using any built-in OCaml functions, write an OCaml function:</p>
-<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">val</span> listReverse : 'a <span class="dt">list</span> -&gt; 'a <span class="dt">list</span></code></pre></div>
-<p>such that <code>listReverse xs</code> returns the list of elements of <code>xs</code> in the reversed order (in which the appear in <code>xs</code>.) Once you have implemented the function, you should get the following behavior at the OCaml prompt:</p>
-<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># listReverse [<span class="dv">1</span>; <span class="dv">2</span>; <span class="dv">3</span>; <span class="dv">4</span>];;
-- : <span class="dt">int</span> <span class="dt">list</span> = [<span class="dv">4</span>; <span class="dv">3</span>; <span class="dv">2</span>; <span class="dv">1</span>]
-
-# listReverse [<span class="st">&quot;a&quot;</span>; <span class="st">&quot;b&quot;</span>; <span class="st">&quot;c&quot;</span>; <span class="st">&quot;d&quot;</span>];;
-- : <span class="dt">string</span> <span class="dt">list</span> = [<span class="st">&quot;d&quot;</span>; <span class="st">&quot;c&quot;</span>; <span class="st">&quot;b&quot;</span>; <span class="st">&quot;a&quot;</span>]</code></pre></div>
-<h3 id="b-10-points-1">(b) 10 points</h3>
-<p>A <em>palindrome</em> is a word that reads the same from left-to-right and right-to-left. Write an OCaml function</p>
-<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">val</span> palindrome : <span class="dt">string</span> -&gt; <span class="dt">bool</span></code></pre></div>
-<p>such that <code>palindrome w</code> returns <code>true</code> if the string is a palindrome and <code>false</code> otherwise. You may use the given helper function <code>explode</code>. Once you have implemented the function, you should get the following behavior at the OCaml prompt:</p>
-<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># palindrome <span class="st">&quot;malayalam&quot;</span>;;
-- : <span class="dt">bool</span> = <span class="kw">true</span>
-# palindrome <span class="st">&quot;myxomatosis&quot;</span>;;
-- : <span class="dt">bool</span> = <span class="kw">false</span></code></pre></div>
+<span class="co"># Printf.printf &quot;Hello, %s \n&quot; &quot;world&quot; ;;</span>
+<span class="kw">Hello</span>, world
+<span class="kw">-</span> : unit = ()</code></pre></div>
+<p>The <code>rlwrap</code> is <strong>optional</strong> but rather nice as it lets you hit the up/down cursors to go to your old commands (to avoid typing them out again.)</p>
+<h2 id="loading-files">Loading Files</h2>
+<p>Enter</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="ot">#use &quot;foo.ml&quot;;;</span></code></pre></div>
+<p>to <code>load</code> the file <code>foo.ml</code>. This has the same effect as typing out the file at the prompt, but its usually more convenient to type and edit the file with Vim/Emacs/Atom and load it in like this. (A more convenient option is the OCaml-mode for Emacs.)</p>
+<p>Press <code>Ctrl-D</code> to exit OCaml.</p>
+<h2 id="directly-running-ocaml-from-bash">Directly Running Ocaml from Bash</h2>
+<p>You can directly <em>run</em> the file, i.e. send the file <code>foo.ml</code> into OCaml and get the output piped to <code>stdout</code> by typing:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ocaml</span> foo.ml</code></pre></div>
                 <hr>
             </div>
         </div>

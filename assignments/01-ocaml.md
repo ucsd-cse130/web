@@ -8,7 +8,7 @@ headerImg: angles.jpg
 
 ## Running Ocaml
 
-Use `ocaml-top` on [ieng6](info_ocaml.html) to **edit**, **run** and **submit** the code.
+Use `ocaml` on [ieng6](lectures/info_ocaml.html) to **edit**, **run** and **submit** the code.
 
 ## Overview
 
