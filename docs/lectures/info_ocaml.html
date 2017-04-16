@@ -237,7 +237,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p>Here is a sample session.</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">prep</span> cs130s
 
-$ <span class="kw">rlwrap</span> ocaml
+$ <span class="kw">ocaml</span>
         <span class="kw">OCaml</span> version 4.02.3
 
 <span class="co"># 2 + 3;;</span>
@@ -246,7 +246,9 @@ $ <span class="kw">rlwrap</span> ocaml
 <span class="co"># Printf.printf &quot;Hello, %s \n&quot; &quot;world&quot; ;;</span>
 <span class="kw">Hello</span>, world
 <span class="kw">-</span> : unit = ()</code></pre></div>
-<p>The <code>rlwrap</code> is <strong>optional</strong> but rather nice as it lets you hit the up/down cursors to go to your old commands (to avoid typing them out again.)</p>
+<p>If you run <code>Ocaml</code> on your <em>own</em> machine, then do</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">rlwrap</span> ocaml</code></pre></div>
+<p>The <code>rlwrap</code> is <strong>optional</strong> but rather nice as it lets you hit the up/down cursors to go to your old commands (to avoid typing them out again.) We have used <code>alias</code> so you don’t have to type it out on <code>ieng6</code>.</p>
 <h2 id="loading-files">Loading Files</h2>
 <p>Enter</p>
 <div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="ot">#use &quot;foo.ml&quot;;;</span></code></pre></div>
