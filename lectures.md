@@ -41,12 +41,12 @@ headerImg: books.jpg
 [lec0]: lectures/00-hello.html
 [lec1]: lectures/01-lambda.html
 [lec2]: lectures/02-haskell.html
-[lec3]: lectures/03-ocaml.pdf
-[lec3s]: lectures/03-ocaml-small.pdf
-[lec4]: lectures/04-datatypes.pdf
-[lec4s]: lectures/04-datatypes-small.pdf
-[lec5]: lectures/05-rec-hof.pdf
-[lec5s]: lectures/05-rec-hof-small.pdf
+[lec3]: http://github.com/ucsd-cse130/web/blob/master/static/raw/03-ocaml.pdf
+[lec3s]: http://github.com/ucsd-cse130/web/blob/master/static/raw/03-ocaml-small.pdf
+[lec4]: http://github.com/ucsd-cse130/web/blob/master/static/raw/04-datatypes.pdf
+[lec4s]: http://github.com/ucsd-cse130/web/blob/master/static/raw/04-datatypes-small.pdf
+[lec5]: http://github.com/ucsd-cse130/web/blob/master/static/raw/05-rec-hof.pdf
+[lec5s]: http://github.com/ucsd-cse130/web/blob/master/static/raw/05-rec-hof-small.pdf
 
 
 [md0]: http://github.com/ucsd-cse130/web/blob/master/lectures/00-hello.md
