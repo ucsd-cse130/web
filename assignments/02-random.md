@@ -279,11 +279,11 @@ producing random psychedelic art.
 
 **Color Images**
 
-![](/static/color1.jpg)\ ![](/static/color2.jpg)\ ![](/static/color3.jpg)
+![](/static/img/color1.jpg)\ ![](/static/img/color2.jpg)\ ![](/static/img/color3.jpg)
 
 **Gray Scale Images**
 
-![](/static/art_g_sample.jpg)\ ![](/static/gray2.jpg)\ ![](/static/gray3.jpg)
+![](/static/img/art_g_sample.jpg)\ ![](/static/img/gray2.jpg)\ ![](/static/img/gray3.jpg)
 
 <!--
   <div>
