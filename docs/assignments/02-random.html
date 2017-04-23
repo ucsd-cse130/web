@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <!--
+      loads the http over https ssl -
+      welcome to my website!
+
+	this theme is based off the Ice & Fire theme created by Lucas Gatsas
+      https://www.twitter.com/LucasGatsas
+      www.lucasgatsas.ch - switzerland.
+  -->
+
+
+<!-- Microsoft Internet Explorer documentMode compatMode setting IE Modus -->
+<script type="text/javascript">
+var IE = null;
+if (window.navigator.appName == "Microsoft Internet Explorer") {
+  if (document.documentMode) {
+
+    IE = document.documentMode;
+    } else {
+
+        IE = 5;
+          if (document.compatMode) {
+      if (document.compatMode == "CSS1Compat")
+      IE = 11;
+      }
+    }
+  }
+</script>
+
+    <meta charset="utf-8">
+    <!-- X-UA -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <link rel="author" title="Ranjit Jhala" href="http://ranjitjhala.github.io" />
+
+    <meta name="google" content="notranslate" />
+    <!-- Viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- index ROBOTS follow -->
+    <meta name="robots" content="index, follow" />
+    <!-- Site Desciption -->
+    <meta name="description" content="UCSD CSE 130">
+    <!-- Site Desciption -->
+    <meta name="keywords" content="haskell, refinement types, liquid types, formal methods, type systems">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://ucsd-cse130.github.io/web/static/img/ico.png" type="image/x-icon" />
+    <!-- Blog Title -->
+    <title>cse130</title>
+
+    <!--     <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+-->
+    <!-- Property Metas -->
+    <meta property="og:image" content="https://ucsd-cse130.github.io/web/static/img/ix.png" />
+    <meta property="og:title" content="UCSD CSE 130" />
+    <meta property="og:site_name" content="UCSD CSE 130" />
+    <!-- Canonical -->
+    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseUrl | prepend: site.url }}">
+    <!-- StyleSheet -->
+    <link rel="stylesheet" href="https://ucsd-cse130.github.io/web/static/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://ucsd-cse130.github.io/web/static/css/spaceg.stylesheets.css"> -->
+    <link rel="stylesheet" href="https://ucsd-cse130.github.io/web/static/css/ronacher.css" type="text/css">
+
+    <link rel="stylesheet" href="https://ucsd-cse130.github.io/web/static/css/syntax.css">
+    <link rel="stylesheet" href="https://ucsd-cse130.github.io/web/static/css/liquid-light.css">
+
+    <!-- Fonts
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+    -->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+	#preloader {position:fixed;top:0;left:0;right:0;bottom:0;background-color:#fff; /* change if the mask should have another color then white */z-index:99; /* makes sure it stays on top */}
+	#status {width:200px;height:200px;position:absolute;left:50%; /* centers the loading animation horizontally one the screen */top:50%; /* centers the loading animation vertically one the screen */background-image:url("/static/img/preloader.gif"); /* path to your loading animation */background-repeat:no-repeat;background-position:center;margin:-100px 0 0 -100px; /* is width and height divided by two */}
+	ul, ol {margin-top: 0;margin-bottom: 10px;}
+	.navbar-inverse {background-color: #FFF;border-color: #FFFFFF;}
+</style>
+<!--link rel="stylesheet" href="https://ucsd-cse130.github.io/web/static/css/prettify.css"-->
+<style>
+  /* HEADER IMAGE */
+  header.intro-header {background: #6f5499;background: no-repeat center center;background-attachment: scroll;-webkit-background-size: cover;-moz-background-size: cover;background-size: cover;-o-background-size: cover;}
+
+	/* Preloader */#preloader {position:fixed;top:0;left:0;right:0;bottom:0;background-color:#fff; /* change if the mask should have another color then white */z-index:99; /* makes sure it stays on top */}
+	#status {width:200px;height:200px;position:absolute;left:50%; /* centers the loading animation horizontally one the screen */top:50%; /* centers the loading animation vertically one the screen */background-image:; /* path to your loading animation */background-repeat:no-repeat;background-position:center;margin:-100px 0 0 -100px; /* is width and height divided by two */}
+	li {list-style: none;}
+            body.modal-open
+            {overflow: hidden;padding-right: 0px;
+        }
+	article li {list-style: inherit;}
+	article .figure {text-align: center}
+    </style>
+    <!-- end Loading front stylesheet here -->
+    </head>
+
+    <body>
+	    
+	<!-- 	
+        <div id="preloader">
+	    <div id="status">
+	    </div>
+	</div>  
+	-->
+	<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://ucsd-cse130.github.io/web" id="blog-title-left-top">cse130</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="https://ucsd-cse130.github.io/web/calendar.html">Calendar</a></li>
+                <li><a href="https://ucsd-cse130.github.io/web/contact.html">Contact</a></li>
+                <li><a href="https://ucsd-cse130.github.io/web/grades.html">Grades</a></li>
+                <li><a href="https://ucsd-cse130.github.io/web/lectures.html">Lectures</a></li>
+                <li><a href="https://ucsd-cse130.github.io/web/assignments.html">Assignments</a></li>
+                <li><a href="https://ucsd-cse130.github.io/web/links.html">Links</a></li>
+                <li><a href="https://www.piazza.com/ucsd/spring2017/cse130/home" id="roundbutton" target="_blank"><i class="fa fa-twitter"></i>Piazza</a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<!-- Portfolio Modals -->
+    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right:0px; overflow: hidden;">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h1 class="font-style-inline-small-h1">Ranjit Jhala</h1>
+                            <hr class="star-primary">
+                            <img src="https://ucsd-cse130.github.io/web/static/img/ico.png" class="img-responsive img-centered" alt title>
+                            <p class="font-style-inline-small">
+                                <a href="https://www.twitter.com/ranjitjhala" target="_blank">follow me</a>. <br>
+                                <a href="https://www.github.com/ucsd-progsys/130-web" target="_blank">    <i class="fa fa-github" id="spaceg-social-modal"></i> </a>
+                                <a href="https://www.twitter.com/ranjitjhala" target="_blank"><i class="fa fa-twitter" id="spaceg-social-modal"></i> </a>
+                                <a href="https://plus.google.com/u/0/106612421534244742464" target="_blank"> <i class="fa fa-google-plus" id="spaceg-social-modal"></i></a>
+                            </p>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Menu Modals Add New Sa.21.Feb.2015 03:22:25 -->
+    <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right:0px; overflow: hidden;">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h1 class="font-style-inline-small-h1">Ranjit Jhala</h1>
+                            <hr class="star-primary">
+                            <p class="font-style-inline-small">
+                              <a href="https://www.twitter.com/ranjitjhala" target="_blank">follow</a>. <br>
+                              <a href="https://www.github.com/ucsd-progsys/130-web" target="_blank">    <i class="fa fa-github" id="spaceg-social-modal"></i> </a>
+                              <li><a href="https://ucsd-cse130.github.io/web/calendar.html">Calendar</a></li>
+                              <li><a href="https://ucsd-cse130.github.io/web/contact.html">Contact</a></li>
+                              <li><a href="https://ucsd-cse130.github.io/web/grades.html">Grades</a></li>
+                              <li><a href="https://ucsd-cse130.github.io/web/lectures.html">Lectures</a></li>
+                              <li><a href="https://ucsd-cse130.github.io/web/assignments.html">Assignments</a></li>
+                              <li><a href="https://ucsd-cse130.github.io/web/links.html">Links</a></li>
+                              <li><a href="https://www.piazza.com/ucsd/spring2017/cse130/home" id="roundbutton" target="_blank"><i class="fa fa-twitter"></i>Piazza</a></li>
+                            </p>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+        <div id="content">
+            <!-- Post Header -->
+    <header class="intro-header" style="background-image: url('https://ucsd-cse130.github.io/web/static/img/angles.jpg')" alt title>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>HW 2, due 5/1/2017 (140 pts)</h1>
+                    
+                    <span class="meta">
+		    
+		    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+
+
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+			<h2 id="due-by-1159-pm-on-monday-may-1st-2017.">Due by 11:59 pm on Monday, May 1st, 2017.</h2>
+<p><strong>NOTE:</strong> To get the code provided for problem 2 to work on Windows/Mac please <a href="http://www.imagemagick.org/download/www/binary-releases.html">install ImageMagick</a> Remember that this is only to enable you to play with the assignment at home.</p>
+<h2 id="overview">Overview</h2>
+<p>The objective of this assignment is for you to have fun learning about recursion, recursive datatypes, and make some pretty cool pictures.All the problems require relatively little code ranging from 2 to 10 lines. If any function requires more than that, you can be sure that you need to rethink your solution.</p>
+<p>The assignment is in the single file</p>
+<ul>
+<li><a href="../static/raw/hw2.ml">hw2.ml</a></li>
+</ul>
+<p>that you need to download, if you wish, by using <code>wget</code>:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">wget</span> https://ucsd-cse130.github.io/web/static/raw/hw2.ml</code></pre></div>
+<p>The file contains:</p>
+<ol style="list-style-type: decimal">
+<li><strong>skeleton functions</strong> with missing bodies that you will fill in,</li>
+<li><strong>sample tests</strong>, and,</li>
+<li><strong>testing code</strong> that you will use to check your assignments before submitting.</li>
+</ol>
+<p>As before, your task is to replace each expression of the form</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml">failwith <span class="st">&quot;to be written&quot;</span></code></pre></div>
+<p>with the the appropriate OCaml code for each of those expressions.</p>
+<p><strong>Note:</strong> All the solutions can be done using the purely functional fragment of OCaml, using constructs covered in class, and most require the use of <strong>recursion</strong>. Solutions using imperative features such as references, while loops or library functions will receive <strong>no credit</strong> It is a good idea to start this assignment early; ML programming, while quite simple (when you know how), often seems somewhat foreign at first, particularly when it comes to recursion and list manipulation.</p>
+<h2 id="assignment-testing-and-evaluation">Assignment Testing and Evaluation</h2>
+<p>Your functions/programs <strong>must</strong> compile and run with <code>ocaml</code> on <code>ieng6.ucsd.edu</code>.</p>
+<p>Most of the points, will be awarded automatically, by <strong>evaluating your functions against a given test suite</strong>. <a href="../static/raw/hw1.ml">hw1.ml</a> contains a very small suite of tests which gives you a flavor of of these tests.</p>
+<p>At any point, on the bash shell, enter:</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml">$ ocaml hw2.ml</code></pre></div>
+<p>or if you are in the Ocaml REPL enter:</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># #use <span class="st">&quot;hw2.ml&quot;</span> ;;</code></pre></div>
+<p>to get a report on how your code stacks up against the simple tests.</p>
+<p>The last line of the shell must look like:</p>
+<pre><code>130&gt;&gt;Compiled
+
+- : int * int = (SCORE, TOTAL)</code></pre>
+<p>where <code>SCORE</code> and <code>TOTAL</code> are a pair of integers, reflecting your score and the max possible score on the sample tests.</p>
+<p><strong>If instead an error message appears, your code will receive a zero.</strong></p>
+<p>If for some problem, you cannot get the code to compile, leave it as is with the <code>failwith ...</code> with your partial solution enclosed below as a comment.</p>
+<p>The other lines will give you a readout for each test. You are encouraged to try to understand the testing code, but you will not be graded on this.</p>
+<h2 id="submission-instructions">Submission Instructions</h2>
+<p>To submit your homework (on <code>ieng6</code>), enter:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">tar</span> -zcvf hw2.tgz *.ml *.jpg *.png
+$ <span class="kw">turnin</span> -c cs130s -p 02 hw2.tgz</code></pre></div>
+<p><code>turnin</code> will provide you with a confirmation of the submission process; make sure that the size of the file indicated by <code>turnin</code> matches the size of your file. See the ACS Web page on <a href="http://acs.ucsd.edu/info/turnin.php">turnin</a> for more information on the operation of the program.</p>
+<h2 id="problem-1-tail-recursion">Problem #1: Tail Recursion</h2>
+<p>We say that a function is <em>tail recursive</em> if every recursive call is a <a href="http://en.wikipedia.org/wiki/Tail_call">tail call</a> whose value is immediately returned by the procedure. See <a href="../static/tailrecursion.txt">these</a> <a href="../static/tailrecursion.pdf">two</a> handouts for more details on what a tail-recursive function is in Ocaml.</p>
+<h3 id="a-15-points">(a) 15 points</h3>
+<p>Without using any built-in ML functions, write a <em>tail-recursive</em> Ocaml function</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">val</span> assoc : <span class="dt">int</span> * <span class="dt">string</span> * (<span class="dt">string</span> * <span class="dt">int</span>) <span class="dt">list</span> -&gt; <span class="dt">int</span></code></pre></div>
+<p>or more generally,</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">val</span> assoc : 'a * 'b * ('b * 'a) <span class="dt">list</span> -&gt; 'a</code></pre></div>
+<p>that takes a triple <code>(v, k, [(k1,v1);...;(kn,vn)])</code> and finds the first <code>ki</code> that equals <code>k</code>. If such a <code>ki</code> is found, then the function should return <code>vi</code>, otherwise, the default value <code>v</code> is returned.</p>
+<p>Once you have implemented the function, you should get the following behavior at the ML prompt:</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># assoc (<span class="dv">-1</span>,<span class="st">&quot;william&quot;</span>,[(<span class="st">&quot;ranjit&quot;</span>,<span class="dv">85</span>);(<span class="st">&quot;william&quot;</span>,<span class="dv">23</span>);(<span class="st">&quot;moose&quot;</span>,<span class="dv">44</span>)]);;    
+- : <span class="dt">int</span> = <span class="dv">23</span>
+
+# assoc (<span class="dv">-1</span>,<span class="st">&quot;bob&quot;</span>,[(<span class="st">&quot;ranjit&quot;</span>,<span class="dv">85</span>);(<span class="st">&quot;william&quot;</span>,<span class="dv">23</span>);(<span class="st">&quot;moose&quot;</span>,<span class="dv">44</span>)]);;
+- : <span class="dt">int</span> = <span class="dv">-1</span></code></pre></div>
+<h3 id="b-15-points">(b) 15 points</h3>
+<p>Without using any built-in ML functions, <strong>modify the skeleton</strong> for <code>removeDuplicates</code> to obtain a function of type</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">val</span> removeDuplicates : <span class="dt">int</span> <span class="dt">list</span> -&gt; <span class="dt">int</span> <span class="dt">list</span></code></pre></div>
+<p>or more generally,</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">val</span> removeDuplicates : 'a <span class="dt">list</span> -&gt; 'a <span class="dt">list</span></code></pre></div>
+<p>such that <code>removeDuplicates xs</code> returns the list of elements of <code>xs</code> with the duplicates, i.e. second, third, etc. occurrences, removed, and where the remaining elements appear in the same order as in <code>xs</code>.</p>
+<p>For this function only, you may use the library functions <code>List.rev</code> and <code>List.mem</code>. Once you have implemented the function, you should get the following behavior at the ML prompt:</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># removeDuplicates [<span class="dv">1</span>;<span class="dv">6</span>;<span class="dv">2</span>;<span class="dv">4</span>;<span class="dv">12</span>;<span class="dv">2</span>;<span class="dv">13</span>;<span class="dv">6</span>;<span class="dv">9</span>];;
+- : <span class="dt">int</span> <span class="dt">list</span> = [<span class="dv">1</span>;<span class="dv">6</span>;<span class="dv">2</span>;<span class="dv">4</span>;<span class="dv">12</span>;<span class="dv">13</span>;<span class="dv">9</span>]</code></pre></div>
+<h3 id="c-20-points">(c) 20 points</h3>
+<p>Without using any built-in ML functions, or the <code>while</code> or <code>for</code> construct, write a tail-recursive ML function:</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">val</span> wwhile : (<span class="dt">int</span> -&gt; <span class="dt">int</span> * <span class="dt">bool</span>) * <span class="dt">int</span> -&gt; <span class="dt">int</span></code></pre></div>
+<p>or more generally,</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">val</span> wwhile : ('a -&gt; 'a * <span class="dt">bool</span>) * 'a -&gt; 'a</code></pre></div>
+<p>such that <code>wwhile (f, x)</code> returns <code>x'</code> where there exist values <code>v_0</code>,…,<code>v_n</code> such that</p>
+<ul>
+<li><code>x</code> is equal to <code>v_0</code></li>
+<li><code>x'</code> is equal to <code>v_n</code></li>
+<li>for each <code>i</code> between <code>0</code> and <code>n-2</code>, we have <code>f v_i</code> equals <code>(v_i+1, true)</code></li>
+<li><code>f v_n-1</code> equals <code>(v_n, false)</code>.</li>
+</ul>
+<p>Your function should be tail recursive. Once you have implemented the function, you should get the following behavior at the ML prompt:</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># <span class="kw">let</span> f x = <span class="kw">let</span> xx = x*x*x <span class="kw">in</span> (xx, xx &lt; <span class="dv">100</span>) <span class="kw">in</span> wwhile (f,<span class="dv">2</span>);;
+- : <span class="dt">int</span> = <span class="dv">512</span></code></pre></div>
+<h3 id="d-20-points">(d) 20 points</h3>
+<p>Without using any built-in ML functions, <strong>modify the skeleton</strong> for <code>fixpoint</code> to obtain a function</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">val</span> fixpoint: (<span class="dt">int</span> -&gt; <span class="dt">int</span>) * <span class="dt">int</span> -&gt; <span class="dt">int</span></code></pre></div>
+<p>or more generally,</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">val</span> fixpoint: ('a -&gt; 'a) * 'a -&gt; 'a</code></pre></div>
+<p>such that <code>fixpoint (f, x0)</code> returns the first <code>xi</code> where</p>
+<ul>
+<li><code>xi</code> is equal tyo <code>f x_i-1</code>, and, furthermore,</li>
+<li><code>f xi</code> is equal to <code>xi</code></li>
+</ul>
+<p>Once you have implemented the function, you should get the following behavior at the ML prompt:</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># <span class="kw">let</span> g x = truncate (<span class="fl">1e6</span> *. cos (<span class="fl">1e-6</span> *. float x));;
+<span class="kw">val</span> f : <span class="dt">int</span> -&gt; <span class="dt">int</span> = fn
+
+# fixpoint (g, <span class="dv">0</span>);;
+- : <span class="dt">int</span> = <span class="dv">739085</span>
+
+# <span class="kw">let</span> collatz n = <span class="kw">match</span> n <span class="kw">with</span> <span class="dv">1</span> -&gt; <span class="dv">1</span> | _ <span class="kw">when</span> n <span class="kw">mod</span> <span class="dv">2</span> = <span class="dv">0</span> -&gt; n/<span class="dv">2</span> | _ -&gt; <span class="dv">3</span>*n + <span class="dv">1</span>;;
+<span class="kw">val</span> collatz: <span class="dt">int</span> -&gt; <span class="dt">int</span> = fn
+
+# fixpoint (collatz, <span class="dv">1</span>) ;;
+- : <span class="dt">int</span> = <span class="dv">1</span>
+# fixpoint (collatz, <span class="dv">3</span>) ;;
+- : <span class="dt">int</span> = <span class="dv">1</span>
+# fixpoint (collatz, <span class="dv">48</span>) ;;
+- : <span class="dt">int</span> = <span class="dv">1</span>
+# fixpoint (collatz, <span class="dv">107</span>) ;;
+- : <span class="dt">int</span> = <span class="dv">1</span>
+# fixpoint (collatz, <span class="dv">9001</span>) ;;
+- : <span class="dt">int</span> = <span class="dv">1</span></code></pre></div>
+<h2 id="problem-2-random-art">Problem #2: Random Art</h2>
+<p>At the end of this assignment, you should be able to produce pictures of the kind shown below. To do so, we shall devise a grammar for a certain class of expressions, design an ML datatype whose values correspond to such expressions, write code to evaluate the expressions, and then write a function that randomly generates such expressions and plots them thus producing random psychedelic art.</p>
+<p><strong>Color Images</strong></p>
+<p><img src="../static/color1.jpg" /> <img src="../static/color2.jpg" /> <img src="../static/color3.jpg" /></p>
+<p><strong>Gray Scale Images</strong></p>
+<p><img src="../static/art_g_sample.jpg" /> <img src="../static/gray2.jpg" /> <img src="../static/gray3.jpg" /></p>
+<!--
+  <div>
+  <table cellpadding="2" cellspacing="20" border="10" >
+    <tbody>
+      <tr>
+         <td valign="middle"><img src="../static/color1.jpg" alt="c1">
+         </td>
+         <td valign="middle"><img src="../static/color2.jpg" alt="c2">
+         </td>
+         <td valign="middle"><img src="../static/color3.jpg" alt="c3">
+         </td>
+       </tr>
+       <tr> </tr>
+     <tr>
+       <td valign="middle"><img src="../static/art_g_sample.jpg" alt="g1">
+         </td>
+         <td valign="middle"><img src="../static/gray2.jpg" alt="g2">
+         </td>
+         <td valign="middle"><img src="../static/gray3.jpg" alt="g3">
+         </td>
+     </tr>
+    </tbody>
+  </table>
+  </div>
+-->
+<h3 id="a-15-points-1">(a) 15 points</h3>
+<p>The expressions described by the grammar:</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml">e ::= x
+    | y
+    | sin (pi*e)
+    | cos (pi*e)
+    | ((e + e)/<span class="dv">2</span>)
+    | e * e
+    | (e&lt;e ? e : e)</code></pre></div>
+<p>where pi stands for the constant 3.142, are functions over the variables x,y, which are guaranteed to produce a value in the range [-1,1] when x and y are in that range. We can represent expressions of this grammar in ML using values of the following datatype:</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">type</span> expr = <span class="dt">VarX</span>
+          | <span class="dt">VarY</span>
+          | <span class="dt">Sine</span> <span class="kw">of</span> expr
+          | <span class="dt">Cosine</span> <span class="kw">of</span> expr
+          | <span class="dt">Average</span> <span class="kw">of</span> expr * expr
+          | <span class="dt">Times</span> <span class="kw">of</span> expr * expr
+          | <span class="dt">Thresh</span> <span class="kw">of</span> expr * expr * expr * expr</code></pre></div>
+<p>First, write a function</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">val</span> exprToString : expr -&gt; <span class="dt">string</span></code></pre></div>
+<p>to enable the printing of expressions. Once you have implemented the function, you should get the following behavior at the ML prompt:</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># <span class="kw">let</span> sampleExpr1 = <span class="dt">Thresh</span>(<span class="dt">VarX</span>,<span class="dt">VarY</span>,<span class="dt">VarX</span>,(<span class="dt">Times</span>(<span class="dt">Sine</span>(<span class="dt">VarX</span>),<span class="dt">Cosine</span>(<span class="dt">Average</span>(<span class="dt">VarX</span>,<span class="dt">VarY</span>)))));;
+- : expr =  ...
+
+# exprToString sampleExpr1
+- : <span class="dt">string</span> = <span class="st">&quot;(x&lt;y?x:sin(pi*x)*cos(pi*((x+y)/2)))&quot;</span></code></pre></div>
+<h3 id="b-15-points-1">(b) 15 points</h3>
+<p>Next, write a function</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">val</span> eval : expr * float * float -&gt; float</code></pre></div>
+<p>such that <code>eval (e, vx, vy)</code> returns the result of evaluating the expression <code>e</code> at the point <code>(vx, vy)</code> that is, evaluating the result of <code>e</code> when <code>VarX</code> has the value <code>vx</code> and <code>VarY</code> has the value <code>vy</code>. You should use Ocaml functions like, <code>sin</code>, and <code>cos</code> to build your evaluator. Recall that <code>Sine(VarX)</code> corresponds to the expression <code>sin(pi*x)</code></p>
+<p>Once you have implemented the function, you should get the following behavior at the ML prompt:</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># eval (<span class="dt">Sine</span>(<span class="dt">Average</span>(<span class="dt">VarX</span>,<span class="dt">VarY</span>)),<span class="fl">0.5</span>,<span class="fl">-0.5</span>);;
+- : float = <span class="fl">0.0</span>
+
+# eval (<span class="dt">Sine</span>(<span class="dt">Average</span>(<span class="dt">VarX</span>,<span class="dt">VarY</span>)),<span class="fl">0.3</span>,<span class="fl">0.3</span>);;
+- : float = <span class="fl">0.809016994375</span>
+
+# eval (sampleExpr,<span class="fl">0.5</span>,<span class="fl">0.2</span>);;
+- : float = <span class="fl">0.118612572815</span></code></pre></div>
+<p>Uncomment and execute the line:</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">let</span> _ = emitGrayscale (eval_fn sampleExpr, <span class="dv">150</span>, <span class="st">&quot;sample&quot;</span>) ;;</code></pre></div>
+<p>to generate the grayscale image <code>art_g_sample.jpg</code> in your working directory. To receive full credit, this image must look like the leftmost grayscale image displayed above. Note that this requires your implementation <code>eval</code> to work correctly. A message <code>Uncaught exception ...</code> is an indication that your <code>eval</code> is returning a value outside the valid range <code>[-1.0,1.0]</code>.</p>
+<h3 id="c-20-points-1">(c) 20 points</h3>
+<p>Next, you must fill in an implementation for the function</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">val</span> build: ((<span class="dt">int</span> * <span class="dt">int</span> -&gt; <span class="dt">int</span>) * <span class="dt">int</span>) -&gt; expr</code></pre></div>
+<p>The function <code>build</code> is called with the pair of arguments <code>(rand, depth)</code>.</p>
+<ul>
+<li><p><code>rand</code> is a random number generator of type <code>int * int -&gt; int</code>. Each call <code>rand (i,j)</code> returns a random integer between <code>i</code> and <code>j</code> inclusive. Use this function to randomly select operators when composing subexpressions to build up larger expressions.</p></li>
+<li><p><code>depth</code> is a a maximum nesting dept; a random expression of depth <code>d</code> is built by randomly composing sub-expressions of depth <code>d-1</code> and the only expressions of depth <code>0</code> are <code>VarX</code> and <code>VarY</code>.</p></li>
+</ul>
+<p>With this in place you can generate random art using the functions</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">val</span> doRandomGray : <span class="dt">int</span> * <span class="dt">int</span> * <span class="dt">int</span> -&gt; <span class="dt">unit</span>
+<span class="kw">val</span> doRandomColor : <span class="dt">int</span> * <span class="dt">int</span> * <span class="dt">int</span> -&gt; <span class="dt">unit</span></code></pre></div>
+<p>Each function takes as a parameter a triple <code>(depth, seed1, seed2)</code> where <code>depth</code> is the depth of the expression to be generated and <code>seed1</code>, <code>seed2</code> are two seeds for the random number generator. The functions generate JPEG files called <code>art_g_&lt;depth&gt;_&lt;seed1&gt;_&lt;seed2&gt;.jpg</code> and <code>art_c_&lt;depth&gt;_&lt;seed1&gt;_&lt;seed2&gt;.jpg</code> respectively. The first is a gray scale image, built by mapping out a single randomly generated expression over the plane, and the second is a color image built using three functions for the intensities of red, green and blue.</p>
+<p>Play around with how you generate the expressions, using the tips below.</p>
+<ul>
+<li>Depths of 8-12 produce interesting pictures, but play around!</li>
+<li>Make sure your expressions don’t get <em>cut-off</em> early with <code>VarX</code>, <code>VarY</code> as small expressions give simple pictures.</li>
+<li>Play around to bias the generation towards more interesting operators.</li>
+</ul>
+<p>Save the parameters (i.e. the depth and the seeds) for your best three color images in the bodies of <code>c1</code>, <code>c2</code>, <code>c3</code> respectively, and best three gray images in <code>g1</code>, <code>g2</code> , <code>g3</code>.</p>
+<h3 id="d-20-points-1">(d) 20 points</h3>
+<p>Finally, add <strong>two</strong> new operators to the grammar, i.e. to the datatype, by introducing two new datatype constructors, and adding the corresponding cases to <code>exprToString</code>, <code>eval</code>, and <code>build</code>. The only requirements are that the operators must return values in the range <code>[-1.0,1.0]</code> if their arguments (ie <code>VarX</code> and <code>VarY</code>) are in that range, and that one of the operators take <strong>three</strong> arguments, i.e. one of the datatype constructors is of the form: <code>C of expr * expr * expr</code> You can include images generated with these new operators when choosing your best images for part (c).</p>
+                <hr>
+            </div>
+        </div>
+    </div>
+</article>
+
+        </div>
+        <div id="footer">
+        </div>
+      <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    <li>
+                        <a href="https://ucsd-cse130.github.io/web/feed.xml" data-datatype="json" data-type="GET" data-target="#frame" class="reload" id="clickme">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://twitter.com/ranjitjhala" data-datatype="json" data-type="GET" data-target="#frame" class="reload" id="clickme" target="_blank">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a href="https://plus.google.com/u/0/106612421534244742464" data-datatype="json" data-type="GET" data-target="#frame" class="reload" id="clickme" target="_blank">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a href="https://github.com/ucsd-progsys/130-web" target="_blank">
+                            <span class="fa-stack fa-lg">
+
+                              <i class="fa fa-arrow-circle-o-down"></i>
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+		    
+                </ul>
+                <p class="copyright text-muted">
+                
+                  Generated by <a href="http://jaspervdj.be/hakyll">Hakyll</a>,
+                  template by <a href="http://lucumr.pocoo.org">Armin Ronacher</a>,
+                  suggest improvements <a href="https://github.com/ucsd-progsys/liquidhaskell-blog/">here</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<!-- jQuery -->
+<script src="https://ucsd-cse130.github.io/web/static/js/jquery.min.js"></script>
+<script src="https://ucsd-cse130.github.io/web/static/js/spaceg.stylesheets.min.js"></script>
+<script src="https://ucsd-cse130.github.io/web/static/js/bootstrap.min.js"></script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+<script src="https://ucsd-cse130.github.io/web/static/js/anim.js"></script>
+<script src="https://ucsd-cse130.github.io/web/static/js/scripts.js"></script>
+
+    </body>
+</html>
