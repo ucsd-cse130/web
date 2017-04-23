@@ -276,7 +276,6 @@ code to evaluate the expressions, and then write a function
 that randomly generates such expressions and plots them thus
 producing random psychedelic art.
 
-
 **Color Images**
 
 ![](/static/img/color1.jpg)\ ![](/static/img/color2.jpg)\ ![](/static/img/color3.jpg)
