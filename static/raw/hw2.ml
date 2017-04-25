@@ -69,8 +69,9 @@ let rec wwhile (f,b) = failwith "to be written"
 
 (* uncomment after implementing wwhile
 
-let f x = let xx = x*x*x in (xx, xx < 100) in
-wwhile (f, 2);;
+let _ =
+  let f x = let xx = x*x*x in (xx, xx < 100) in
+  wwhile (f, 2);;
 *)
 
 
@@ -86,7 +87,10 @@ let fixpoint (f,b) = wwhile ((failwith "to be written"),b)
 
 (* uncomment after implementing fixpoint 
  *
-let g x = truncate (1e6 *. cos (1e-6 *. float x)) in fixpoint (g, 0);; 
+
+let _ =
+  let g x = truncate (1e6 *. cos (1e-6 *. float x)) in
+  fixpoint (g, 0);;
 
 let collatz n = match n with 1 -> 1 | _ when n mod 2 = 0 -> n/2 | _ -> 3*n + 1;;
 
