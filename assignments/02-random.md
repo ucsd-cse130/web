@@ -7,7 +7,7 @@ headerImg: angles.jpg
 ## Due by 11:59 pm on Monday, May 1st, 2017.
 
 **NOTE:** To get the code provided for problem 2 to work on Windows/Mac
-please [install ImageMagick](http://www.imagemagick.org/download/www/binary-releases.html)
+please [install ImageMagick](http://www.imagemagick.org/script/download.php)
 Remember that this is only to enable you to play with the assignment at home.
 
 ## Overview
