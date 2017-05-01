@@ -16,7 +16,7 @@ mins over the deadline is equal to 1 late day.
 
 - [HW #2](assignments/02-random.html), due Mon 5/1 by 23:59pm
 
-- [HW #3](homeworks/03-fold.html), due Wed 5/10  by 23:59pm
+- [HW #3](assignments/03-fold.html), due Wed 5/10  by 23:59pm
 
 <!--
 - [HW #4](homeworks/hw4.html), due Fri 5/13 by 23:59pm
