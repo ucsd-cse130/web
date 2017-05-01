@@ -84,7 +84,7 @@ try to understand the testing code, but you will not be graded on this.
 To submit your homework (on `ieng6`), enter:
 
 ```bash
-$ turnin -c cs130s -p 01 hw1.ml
+$ turnin -c cs130s -p 03 hw3.ml
 ```
 
 `turnin` will provide you with a confirmation of the
