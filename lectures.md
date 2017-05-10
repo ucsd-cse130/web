@@ -20,7 +20,7 @@ headerImg: books.jpg
 | 5/1        | Higher Order Functions        | [pdf][lec5] [pdf-small][lec5s] | [.ml][ml5]|
 | 5/3        | contd.                        |                           |               |
 | 5/5        | contd.                        |                           |               |
-|            | Environments and Closures     |                           |               |
+| 5/10       | Environments and Closures     | [pdf][lec6] [pdf-small][lec6s] |               |
 |            | Lexing and Parsing            |                           |               |
 |            | Type Classes                  |                           |               |
 |            | Imperative Programming        |                           |               |
@@ -47,6 +47,9 @@ headerImg: books.jpg
 [lec4s]: http://github.com/ucsd-cse130/web/blob/master/static/raw/04-datatypes-small.pdf
 [lec5]: http://github.com/ucsd-cse130/web/blob/master/static/raw/05-rec-hof.pdf
 [lec5s]: http://github.com/ucsd-cse130/web/blob/master/static/raw/05-rec-hof-small.pdf
+[lec6]: http://github.com/ucsd-cse130/web/blob/master/static/raw/06-closure.pdf 
+[lec6s]: http://github.com/ucsd-cse130/web/blob/master/static/raw/06-closure-small.pdf
+
 
 
 [md0]: http://github.com/ucsd-cse130/web/blob/master/lectures/00-hello.md
