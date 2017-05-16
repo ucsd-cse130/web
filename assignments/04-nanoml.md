@@ -1,8 +1,7 @@
 ---
-title: Homework #4 (230 points)
+title: HW 4, due 5/29/2017 (230 pts)
+headerImg: angles.jpg
 ---
-
-## Due by 5:00 pm on May 29, 2015
 
 ## Hints
 

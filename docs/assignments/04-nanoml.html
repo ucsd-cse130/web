@@ -1,0 +1,873 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <!--
+      loads the http over https ssl -
+      welcome to my website!
+
+	this theme is based off the Ice & Fire theme created by Lucas Gatsas
+      https://www.twitter.com/LucasGatsas
+      www.lucasgatsas.ch - switzerland.
+  -->
+
+
+<!-- Microsoft Internet Explorer documentMode compatMode setting IE Modus -->
+<script type="text/javascript">
+var IE = null;
+if (window.navigator.appName == "Microsoft Internet Explorer") {
+  if (document.documentMode) {
+
+    IE = document.documentMode;
+    } else {
+
+        IE = 5;
+          if (document.compatMode) {
+      if (document.compatMode == "CSS1Compat")
+      IE = 11;
+      }
+    }
+  }
+</script>
+
+    <meta charset="utf-8">
+    <!-- X-UA -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <link rel="author" title="Ranjit Jhala" href="http://ranjitjhala.github.io" />
+
+    <meta name="google" content="notranslate" />
+    <!-- Viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- index ROBOTS follow -->
+    <meta name="robots" content="index, follow" />
+    <!-- Site Desciption -->
+    <meta name="description" content="UCSD CSE 130">
+    <!-- Site Desciption -->
+    <meta name="keywords" content="haskell, refinement types, liquid types, formal methods, type systems">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://ucsd-cse130.github.io/web/static/img/ico.png" type="image/x-icon" />
+    <!-- Blog Title -->
+    <title>cse130</title>
+
+    <!--     <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+-->
+    <!-- Property Metas -->
+    <meta property="og:image" content="https://ucsd-cse130.github.io/web/static/img/ix.png" />
+    <meta property="og:title" content="UCSD CSE 130" />
+    <meta property="og:site_name" content="UCSD CSE 130" />
+    <!-- Canonical -->
+    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseUrl | prepend: site.url }}">
+    <!-- StyleSheet -->
+    <link rel="stylesheet" href="https://ucsd-cse130.github.io/web/static/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://ucsd-cse130.github.io/web/static/css/spaceg.stylesheets.css"> -->
+    <link rel="stylesheet" href="https://ucsd-cse130.github.io/web/static/css/ronacher.css" type="text/css">
+
+    <link rel="stylesheet" href="https://ucsd-cse130.github.io/web/static/css/syntax.css">
+    <link rel="stylesheet" href="https://ucsd-cse130.github.io/web/static/css/liquid-light.css">
+
+    <!-- Fonts
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+    -->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+	#preloader {position:fixed;top:0;left:0;right:0;bottom:0;background-color:#fff; /* change if the mask should have another color then white */z-index:99; /* makes sure it stays on top */}
+	#status {width:200px;height:200px;position:absolute;left:50%; /* centers the loading animation horizontally one the screen */top:50%; /* centers the loading animation vertically one the screen */background-image:url("/static/img/preloader.gif"); /* path to your loading animation */background-repeat:no-repeat;background-position:center;margin:-100px 0 0 -100px; /* is width and height divided by two */}
+	ul, ol {margin-top: 0;margin-bottom: 10px;}
+	.navbar-inverse {background-color: #FFF;border-color: #FFFFFF;}
+</style>
+<!--link rel="stylesheet" href="https://ucsd-cse130.github.io/web/static/css/prettify.css"-->
+<style>
+  /* HEADER IMAGE */
+  header.intro-header {background: #6f5499;background: no-repeat center center;background-attachment: scroll;-webkit-background-size: cover;-moz-background-size: cover;background-size: cover;-o-background-size: cover;}
+
+	/* Preloader */#preloader {position:fixed;top:0;left:0;right:0;bottom:0;background-color:#fff; /* change if the mask should have another color then white */z-index:99; /* makes sure it stays on top */}
+	#status {width:200px;height:200px;position:absolute;left:50%; /* centers the loading animation horizontally one the screen */top:50%; /* centers the loading animation vertically one the screen */background-image:; /* path to your loading animation */background-repeat:no-repeat;background-position:center;margin:-100px 0 0 -100px; /* is width and height divided by two */}
+	li {list-style: none;}
+            body.modal-open
+            {overflow: hidden;padding-right: 0px;
+        }
+	article li {list-style: inherit;}
+	article .figure {text-align: center}
+    </style>
+    <!-- end Loading front stylesheet here -->
+    </head>
+
+    <body>
+	    
+	<!-- 	
+        <div id="preloader">
+	    <div id="status">
+	    </div>
+	</div>  
+	-->
+	<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://ucsd-cse130.github.io/web" id="blog-title-left-top">cse130</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="https://ucsd-cse130.github.io/web/calendar.html">Calendar</a></li>
+                <li><a href="https://ucsd-cse130.github.io/web/contact.html">Contact</a></li>
+                <li><a href="https://ucsd-cse130.github.io/web/grades.html">Grades</a></li>
+                <li><a href="https://ucsd-cse130.github.io/web/lectures.html">Lectures</a></li>
+                <li><a href="https://ucsd-cse130.github.io/web/assignments.html">Assignments</a></li>
+                <li><a href="https://ucsd-cse130.github.io/web/links.html">Links</a></li>
+                <li><a href="https://www.piazza.com/ucsd/spring2017/cse130/home" id="roundbutton" target="_blank"><i class="fa fa-twitter"></i>Piazza</a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<!-- Portfolio Modals -->
+    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right:0px; overflow: hidden;">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h1 class="font-style-inline-small-h1">Ranjit Jhala</h1>
+                            <hr class="star-primary">
+                            <img src="https://ucsd-cse130.github.io/web/static/img/ico.png" class="img-responsive img-centered" alt title>
+                            <p class="font-style-inline-small">
+                                <a href="https://www.twitter.com/ranjitjhala" target="_blank">follow me</a>. <br>
+                                <a href="https://www.github.com/ucsd-progsys/130-web" target="_blank">    <i class="fa fa-github" id="spaceg-social-modal"></i> </a>
+                                <a href="https://www.twitter.com/ranjitjhala" target="_blank"><i class="fa fa-twitter" id="spaceg-social-modal"></i> </a>
+                                <a href="https://plus.google.com/u/0/106612421534244742464" target="_blank"> <i class="fa fa-google-plus" id="spaceg-social-modal"></i></a>
+                            </p>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Menu Modals Add New Sa.21.Feb.2015 03:22:25 -->
+    <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right:0px; overflow: hidden;">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h1 class="font-style-inline-small-h1">Ranjit Jhala</h1>
+                            <hr class="star-primary">
+                            <p class="font-style-inline-small">
+                              <a href="https://www.twitter.com/ranjitjhala" target="_blank">follow</a>. <br>
+                              <a href="https://www.github.com/ucsd-progsys/130-web" target="_blank">    <i class="fa fa-github" id="spaceg-social-modal"></i> </a>
+                              <li><a href="https://ucsd-cse130.github.io/web/calendar.html">Calendar</a></li>
+                              <li><a href="https://ucsd-cse130.github.io/web/contact.html">Contact</a></li>
+                              <li><a href="https://ucsd-cse130.github.io/web/grades.html">Grades</a></li>
+                              <li><a href="https://ucsd-cse130.github.io/web/lectures.html">Lectures</a></li>
+                              <li><a href="https://ucsd-cse130.github.io/web/assignments.html">Assignments</a></li>
+                              <li><a href="https://ucsd-cse130.github.io/web/links.html">Links</a></li>
+                              <li><a href="https://www.piazza.com/ucsd/spring2017/cse130/home" id="roundbutton" target="_blank"><i class="fa fa-twitter"></i>Piazza</a></li>
+                            </p>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+        <div id="content">
+            <!-- Post Header -->
+    <header class="intro-header" style="background-image: url('https://ucsd-cse130.github.io/web/static/img/angles.jpg')" alt title>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>HW 4, due 5/29/2017 (230 pts)</h1>
+                    
+                    <span class="meta">
+		    
+		    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+
+
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+			<h2 id="hints">Hints</h2>
+<p>See the following for hints on different parts of this assignment</p>
+<ol style="list-style-type: decimal">
+<li><a href="../static/raw/hw4/bool_notes/">bool-parser</a></li>
+<li><a href="../static/raw/hw4/arith_notes/">arith-parser-interpreter</a></li>
+<li><a href="../static/raw/hw4/arith_notes/interp.ml">interpreter</a></li>
+</ol>
+<h2 id="overview">Overview</h2>
+<p>The overall objective of this assignment is to fully understand the notion of scoping, binding, environments and closures, by implementing an interpreter for a subset of ML.</p>
+<p>In addition, in this assignment you will be building a lexer and a parser.</p>
+<p>No individual function requires more than 15-25 lines, so if you’re answer is longer, you can be sure that you need to rethink your solution.</p>
+<p>The template for the assignment, as well as several test cases is available as a single zip file <a href="../static/raw/hw4.zip">hw4.zip</a> that you need to <strong>download</strong> and <strong>unzip</strong>.</p>
+<p>The files contain several skeleton ML functions, with missing bodies, i.e. expressions, which currently contain the text <code>failwith &quot;to be written&quot;</code>. Your task is to replace the text in those files with the the appropriate ML code for each of those expressions.</p>
+<p><strong>Note:</strong> All the solutions can be done using the purely functional fragment of OCaml, using constructs covered in class, and most require the use of <strong>recursion</strong>. Solutions using imperative features such as references, will receive <strong>no credit</strong>. Feel free to use any library functions that you want. It is a good idea to start this assignment <em>very early</em> as it is longer than the first three assignments (and will clarify your understanding of ML in time for the midterm!)</p>
+<h2 id="assignment-testing-and-evaluation">Assignment Testing and Evaluation</h2>
+<p>Your functions/programs <strong>must</strong> compile and/or run on a <strong>ACS Linux</strong> machine (e.g. <code>ieng6.ucsd.edu</code>) as this is where your solutions will be checked. While you may develop your code on any system, ensure that your code runs as expected on an ACS machine prior to submission. You should test your code in the directories from which the zip files (see below) will be created, as this will approximate the environment used for grading the assignment.</p>
+<p>Most of the points, will be awarded automatically, by <strong>evaluating your functions against a given test suite</strong>. <code>test.ml</code> contains a very small suite of tests which gives you a flavor of of these tests. At any stage, by typing at the UNIX shell :</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">&gt;</span> <span class="kw">./nanoml.top</span> test.ml <span class="kw">&gt;</span> log</code></pre></div>
+<p>you will get a report on how your code stacks up against the simple tests.</p>
+<p><strong>If the code you submit does not compile with <code>make</code>, there will be no <code>nanoml.top</code>, and you will get 0 for the assignment.</strong></p>
+<p><strong>The last line of the file <code>log</code> must contain the word ``Compiled&quot; otherwise you get a zero for the whole assignment</strong>.</p>
+<p>If for some problem, you cannot get the code to compile, leave it as is with the <code>failwith ...</code> with your partial solution enclosed below as a comment.</p>
+<p>The second last line of the log file will contain your overall score, and the other lines will give you a readout for each test. You are encouraged to try to understand the code in <code>test.ml</code>, and subsequently devise your own tests and add them to <code>test.ml</code>, but you will not be graded on this.</p>
+<h2 id="submission-instructions">Submission Instructions</h2>
+<p>Go into the UNIX shell and type:</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml">&gt; make turnin </code></pre></div>
+<p>This will run <code>turnin</code> which will provide you with a confirmation of the submission process.</p>
+<h2 id="data-structures-and-overview">Data Structures and Overview</h2>
+<p>In this assignment, you will build an interpreter for a subset of ML. The following data types (in <code>nano.ml</code>) are used to represent the different elements of the language.</p>
+<h3 id="binary-operators">Binary Operators</h3>
+<p>NanoML uses the following <strong>binary</strong> operators encoded within the interpreter as Ocaml values of type <code>binop</code>.</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">type</span> binop = 
+  <span class="dt">Plus</span> 
+| <span class="dt">Minus</span> 
+| <span class="dt">Mul</span> 
+| <span class="dt">Div</span> 
+| <span class="dt">Eq</span> 
+| <span class="dt">Ne</span> 
+| <span class="dt">Lt</span> 
+| <span class="dt">Le</span> 
+| <span class="dt">And</span> 
+| <span class="dt">Or</span>          
+| <span class="dt">Cons</span></code></pre></div>
+<h3 id="expressions">Expressions</h3>
+<p>As with ML, all Nano-ML programs correspond to <strong>expressions</strong> each of which will be represented within your interpreter by Ocaml values of type <code>expr</code>.</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">type</span> expr =   
+    <span class="dt">Const</span> <span class="kw">of</span> <span class="dt">int</span>             
+  | <span class="dt">True</span>                      
+  | <span class="dt">False</span>                       
+  | <span class="dt">NilExpr</span>                     
+  | <span class="dt">Var</span> <span class="kw">of</span> <span class="dt">string</span>               
+  | <span class="dt">Bin</span> <span class="kw">of</span> expr * binop * expr    
+  | <span class="dt">If</span>  <span class="kw">of</span> expr * expr * expr     
+  | <span class="dt">Let</span> <span class="kw">of</span> <span class="dt">string</span> * expr * expr     
+  | <span class="dt">App</span> <span class="kw">of</span> expr * expr              
+  | <span class="dt">Fun</span> <span class="kw">of</span> <span class="dt">string</span> * expr             
+  | <span class="dt">Letrec</span> <span class="kw">of</span> <span class="dt">string</span> * expr * expr</code></pre></div>
+<p>The following lists some NanoML expressions, and the Ocaml value (of type <code>expr</code>) used to represent the expression inside your interpreter.</p>
+<ol style="list-style-type: decimal">
+<li>Let-bindings</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">let</span> x = <span class="dv">3</span> <span class="kw">in</span> x + x		</code></pre></div>
+<p>is represented by</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="dt">Let</span> (<span class="st">&quot;x&quot;</span>, <span class="dt">Const</span> <span class="dv">3</span>, <span class="dt">Bin</span> (<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>, <span class="dt">Plus</span>, <span class="dt">Var</span> <span class="st">&quot;x&quot;</span>))</code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Function definitions</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">fun</span> x -&gt; x + <span class="dv">1</span></code></pre></div>
+<p>is represented by</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="dt">Fun</span> (<span class="st">&quot;x&quot;</span>, <span class="dt">Bin</span> (<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>, <span class="dt">Plus</span>, <span class="dt">Const</span> <span class="dv">1</span>))</code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>Function applications (“calls”)</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml">f x									</code></pre></div>
+<p>is represented by</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="dt">App</span> (<span class="dt">Var</span> <span class="st">&quot;f&quot;</span>, <span class="dt">Var</span> <span class="st">&quot;x&quot;</span>)</code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>Recursive functions</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">let</span> <span class="kw">rec</span> f = <span class="kw">fun</span> x -&gt; f x <span class="kw">in</span> f <span class="dv">5</span>	    </code></pre></div>
+<p>is represented by</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="dt">Letrec</span> (<span class="st">&quot;f&quot;</span>, <span class="dt">Fun</span> (<span class="st">&quot;x&quot;</span>, <span class="dt">App</span> (<span class="dt">Var</span> <span class="st">&quot;f&quot;</span>, <span class="dt">Var</span> <span class="st">&quot;x&quot;</span>), <span class="dt">App</span> (<span class="dt">Var</span> <span class="st">&quot;f&quot;</span>, <span class="dt">Const</span> <span class="dv">5</span>)))</code></pre></div>
+<h3 id="values">Values</h3>
+<p>Finally, we will represent NanoML **values* using the following Ocaml datatype</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">type</span> value =  
+  <span class="dt">Int</span> <span class="kw">of</span> <span class="dt">int</span>                 
+| <span class="dt">Bool</span> <span class="kw">of</span> <span class="dt">bool</span>                
+| <span class="dt">Closure</span> <span class="kw">of</span> env * <span class="dt">string</span> <span class="dt">option</span> * <span class="dt">string</span> * expr 
+| <span class="dt">Nil</span>                           
+| <span class="dt">Pair</span> <span class="kw">of</span> value * value          
+
+<span class="kw">and</span> env = (<span class="dt">string</span> * value) <span class="dt">list</span> </code></pre></div>
+<p>Intuitively, the NanoML integer value <code>4</code> and boolean value <code>true</code> are represented by the Ocaml values <code>Int 4</code> and <code>Bool true</code>. The more interesting case is for closures that correspond to function values (<a href="../static/lec7-closure-2x2.pdf">Lecture 7</a></p>
+<ul>
+<li><p><code>Closure (env, Some &quot;f&quot;, &quot;x&quot;, e)</code> represents a function <em>named</em> <code>&quot;f&quot;</code> (for recursive functions) with argument <code>&quot;x&quot;</code> and body-expression <code>e</code> that was defined in an environment <code>env</code>.</p></li>
+<li><p><code>Closure (env, None, &quot;x&quot;, e)</code> represents an <em>anonymous</em> (hence, non-recursive) function with argument <code>&quot;x&quot;</code> and body-expression <code>e</code> that was defined in an environment <code>env</code>.</p></li>
+</ul>
+<p>The environment itself is a value of type <code>env</code> which is a <em>phone-book</em> represented as a list of <code>string * value</code> pairs that maps each bound name to its value.</p>
+<h2 id="problem-1-nanoml-interpreter-nano.ml">Problem 1: NanoML Interpreter (nano.ml)</h2>
+<p><strong>NOTE:</strong> For this problem, you will use <code>ocaml-top</code> to edit and test the file <code>nano.ml</code>.</p>
+<p>In this problem, you will implement an interpreter for NanoML.</p>
+<h3 id="a-25-points">(a) 25 points</h3>
+<p>First consider the (restricted subsets of) types described below:</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">type</span> binop = <span class="dt">Plus</span> | <span class="dt">Minus</span> | <span class="dt">Mul</span> | <span class="dt">Div</span> 
+
+<span class="kw">type</span> expr  = <span class="dt">Const</span> <span class="kw">of</span> <span class="dt">int</span> 		
+           | <span class="dt">Var</span> <span class="kw">of</span> <span class="dt">string</span>                
+           | <span class="dt">Bin</span> <span class="kw">of</span> expr * binop * expr    
+
+<span class="kw">type</span> value = <span class="dt">Int</span> <span class="kw">of</span> <span class="dt">int</span>		
+    
+<span class="kw">type</span> env   = (<span class="dt">string</span> * value) <span class="dt">list</span></code></pre></div>
+<p>Here, <code>binop</code>, and <code>expr</code> are used to represent simple NanoML expressions.</p>
+<ul>
+<li><p>An <em>expression</em> is either an integer constant, a variable, or a binary operator applied to two sub-expressions.</p></li>
+<li><p>A <em>value</em> is an integer, and an <em>environment</em> is a list of pairs of variable names and values.</p></li>
+</ul>
+<p>Use <code>listAssoc</code> to write an Ocaml function</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">val</span> lookup: 'a * ('a * 'b) <span class="dt">list</span> -&gt; 'b </code></pre></div>
+<p>that finds the most recent binding for a variable (i.e. the first from the left) in the list representing the environment. If no such value is found, you should raise an exception:</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml">raise (<span class="dt">MLFailure</span> <span class="st">&quot;not found&quot;</span>)</code></pre></div>
+<p>Next, use <code>lookup</code> to write an Ocaml function</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">val</span> eval : env * expr -&gt; value </code></pre></div>
+<p>that when called with the pair <code>(evn, e)</code> evaluates the NanoML expression <code>e</code> in the environment <code>evn</code> (i.e. uses <code>evn</code> for the values of the <strong>free variables</strong> in <code>e</code>) and raises an exception <code>MLFailure (&quot;variable not bound: x&quot;)</code> if the expression contains a free variable <code>&quot;x&quot;</code> that is not bound in <code>evn</code>.</p>
+<p>Once you have implemented this functionality and recompiled, you should get the following behavior:</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># <span class="kw">let</span> evn = [(<span class="st">&quot;z1&quot;</span>,<span class="dt">Int</span> <span class="dv">0</span>);(<span class="st">&quot;x&quot;</span>,<span class="dt">Int</span> <span class="dv">1</span>);(<span class="st">&quot;y&quot;</span>,<span class="dt">Int</span> <span class="dv">2</span>);(<span class="st">&quot;z&quot;</span>,<span class="dt">Int</span> <span class="dv">3</span>);(<span class="st">&quot;z1&quot;</span>,<span class="dt">Int</span> <span class="dv">4</span>)];;
+<span class="kw">val</span> evn : (<span class="dt">string</span> * Nano<span class="kw">.</span>value) <span class="dt">list</span> =
+  [(<span class="st">&quot;z1&quot;</span>, <span class="dt">Int</span> <span class="dv">0</span>); (<span class="st">&quot;x&quot;</span>, <span class="dt">Int</span> <span class="dv">1</span>); (<span class="st">&quot;y&quot;</span>, <span class="dt">Int</span> <span class="dv">2</span>); (<span class="st">&quot;z&quot;</span>, <span class="dt">Int</span> <span class="dv">3</span>); (<span class="st">&quot;z1&quot;</span>, <span class="dt">Int</span> <span class="dv">4</span>)]
+ 
+# <span class="kw">let</span> e1 = <span class="dt">Bin</span>(<span class="dt">Bin</span>(<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>,<span class="dt">Plus</span>,<span class="dt">Var</span> <span class="st">&quot;y&quot;</span>), <span class="dt">Minus</span>, <span class="dt">Bin</span>(<span class="dt">Var</span> <span class="st">&quot;z&quot;</span>,<span class="dt">Plus</span>,<span class="dt">Var</span> <span class="st">&quot;z1&quot;</span>));;
+<span class="kw">val</span> e1 : Nano<span class="kw">.</span>expr =
+  <span class="dt">Bin</span> (<span class="dt">Bin</span> (<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>, <span class="dt">Plus</span>, <span class="dt">Var</span> <span class="st">&quot;y&quot;</span>), <span class="dt">Minus</span>, <span class="dt">Bin</span> (<span class="dt">Var</span> <span class="st">&quot;z&quot;</span>, <span class="dt">Plus</span>, <span class="dt">Var</span> <span class="st">&quot;z1&quot;</span>))
+  
+# eval (evn, e1);;
+- : Nano<span class="kw">.</span>value = <span class="dt">Int</span> <span class="dv">0</span>
+
+# eval (evn, <span class="dt">Var</span> <span class="st">&quot;p&quot;</span>);;
+<span class="dt">Exception</span>: Nano<span class="kw">.</span><span class="dt">MLFailure</span> <span class="st">&quot;variable not bound: p&quot;</span>.</code></pre></div>
+<h3 id="b-20-points">(b) 20 points</h3>
+<p>Next, add support for the binary operators</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">type</span> binop = <span class="dt">Plus</span> | <span class="dt">Minus</span> | <span class="dt">Mul</span> | <span class="dt">Div</span>
+           | <span class="dt">Eq</span> | <span class="dt">Ne</span> | <span class="dt">Lt</span> | <span class="dt">Le</span> | <span class="dt">And</span> | <span class="dt">Or</span> </code></pre></div>
+<p>This will require using the new value type <code>Bool</code></p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">type</span> value = <span class="dt">Int</span> <span class="kw">of</span> <span class="dt">int</span>		
+           | <span class="dt">Bool</span> <span class="kw">of</span> <span class="dt">bool</span></code></pre></div>
+<p>The operators <code>Eq</code> and <code>Ne</code> should work if both operands are <code>Int</code> values, or if both operands are <code>Bool</code> values.</p>
+<p>The operators <code>Lt</code> and <code>Le</code> are only defined for <code>Int</code> values, and <code>&amp;&amp;</code> and <code>||</code> are only defined for <code>Bool</code> values. For all other (invalid) arguments, a <code>MLFailure</code> exception should be raised with an appropriate error message.</p>
+<p>Next, implement the evaluation of <code>If</code> expressions.</p>
+<p>To evaluate <code>If(p,t,f)</code> your evaluator should first evaluate <code>p</code> and if it evaluates to the true value (as a <code>Bool</code>) then the expression <code>t</code> should be evaluated and its value returned as the value of the entire <code>If</code> expression. Instead, if <code>p</code> evaluates to the false value, then <code>f</code> should be evaluated and that result should be returned. If <code>p</code> does not evaluate to a <code>Bool</code> value, then your evaluator should raise an <code>MLFailure</code> exception carrying an appropriate error message.</p>
+<p>Once you have implemented this functionality, you should get the following behavior:</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># <span class="kw">let</span> evn =[(<span class="st">&quot;z1&quot;</span>,<span class="dt">Int</span> <span class="dv">0</span>);(<span class="st">&quot;x&quot;</span>,<span class="dt">Int</span> <span class="dv">1</span>);(<span class="st">&quot;y&quot;</span>,<span class="dt">Int</span> <span class="dv">2</span>);(<span class="st">&quot;z&quot;</span>,<span class="dt">Int</span> <span class="dv">3</span>);(<span class="st">&quot;z1&quot;</span>,<span class="dt">Int</span> <span class="dv">4</span>)];;
+<span class="kw">val</span> evn : (<span class="dt">string</span> * Nano<span class="kw">.</span>value) <span class="dt">list</span> =
+  [(<span class="st">&quot;z1&quot;</span>, <span class="dt">Int</span> <span class="dv">0</span>); (<span class="st">&quot;x&quot;</span>, <span class="dt">Int</span> <span class="dv">1</span>); (<span class="st">&quot;y&quot;</span>, <span class="dt">Int</span> <span class="dv">2</span>); (<span class="st">&quot;z&quot;</span>, <span class="dt">Int</span> <span class="dv">3</span>); (<span class="st">&quot;z1&quot;</span>, <span class="dt">Int</span> <span class="dv">4</span>)]
+ 
+# <span class="kw">let</span> e1 =<span class="dt">If</span>(<span class="dt">Bin</span>(<span class="dt">Var</span> <span class="st">&quot;z1&quot;</span>,<span class="dt">Lt</span>,<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>),<span class="dt">Bin</span>(<span class="dt">Var</span> <span class="st">&quot;y&quot;</span>,<span class="dt">Ne</span>,<span class="dt">Var</span> <span class="st">&quot;z&quot;</span>),<span class="dt">False</span>);;
+<span class="kw">val</span> e1 : Nano<span class="kw">.</span>expr =
+  <span class="dt">If</span> (<span class="dt">Bin</span> (<span class="dt">Var</span> <span class="st">&quot;z1&quot;</span>, <span class="dt">Lt</span>, <span class="dt">Var</span> <span class="st">&quot;x&quot;</span>), <span class="dt">Bin</span> (<span class="dt">Var</span> <span class="st">&quot;y&quot;</span>, <span class="dt">Ne</span>, <span class="dt">Var</span> <span class="st">&quot;z&quot;</span>), <span class="dt">False</span>)
+  
+# eval (evn,e1);;
+- : Nano<span class="kw">.</span>value = <span class="dt">Bool</span> <span class="kw">true</span>
+ 
+# <span class="kw">let</span> e2 =<span class="dt">If</span>(<span class="dt">Bin</span>(<span class="dt">Var</span> <span class="st">&quot;z1&quot;</span>,<span class="dt">Eq</span>,<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>),<span class="dt">Bin</span>(<span class="dt">Var</span> <span class="st">&quot;y&quot;</span>,<span class="dt">Le</span>,<span class="dt">Var</span> <span class="st">&quot;z&quot;</span>),<span class="dt">Bin</span>(<span class="dt">Var</span> <span class="st">&quot;z&quot;</span>,<span class="dt">Le</span>,<span class="dt">Var</span> <span class="st">&quot;y&quot;</span>));;
+<span class="kw">val</span> e2 : Nano<span class="kw">.</span>expr =
+  <span class="dt">If</span> (<span class="dt">Bin</span> (<span class="dt">Var</span> <span class="st">&quot;z1&quot;</span>, <span class="dt">Eq</span>, <span class="dt">Var</span> <span class="st">&quot;x&quot;</span>), <span class="dt">Bin</span> (<span class="dt">Var</span> <span class="st">&quot;y&quot;</span>, <span class="dt">Le</span>, <span class="dt">Var</span> <span class="st">&quot;z&quot;</span>),
+   <span class="dt">Bin</span> (<span class="dt">Var</span> <span class="st">&quot;z&quot;</span>, <span class="dt">Le</span>, <span class="dt">Var</span> <span class="st">&quot;y&quot;</span>))
+
+# eval (evn,e2);;
+- : Nano<span class="kw">.</span>value = <span class="dt">Bool</span> <span class="kw">false</span></code></pre></div>
+<h3 id="c-25-points">(c) 25 points</h3>
+<p>Now consider the extended the types as shown below which includes the <em>let-in</em> expressions which introduce local bindings exactly as in OCaml.</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">type</span> expr = ...
+  | <span class="dt">Let</span> <span class="kw">of</span> <span class="dt">string</span> * expr * expr   
+  | <span class="dt">Letrec</span> <span class="kw">of</span> <span class="dt">string</span> * expr * expr   </code></pre></div>
+<p>The expression <code>Let (x, &lt;e1&gt; , &lt;e2&gt;)</code> should be evaluated as the ML expression <code>let x = &lt;e1&gt; in &lt;e2&gt;</code>. Similarly, <code>Letrec (x, &lt;e1&gt;, &lt;e2&gt;)</code> should be evaluated as <code>let rec x = &lt;e1&gt; in &lt;e2&gt;</code>. (Since at this point, we do not support functions, <code>Let</code> and <code>Letrec</code> should do the same thing.</p>
+<p>Once you have implemented this functionality and recompiled, you should get the following behavior:</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># <span class="kw">let</span> e1 = <span class="dt">Bin</span>(<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>,<span class="dt">Plus</span>,<span class="dt">Var</span> <span class="st">&quot;y&quot;</span>);;
+<span class="kw">val</span> e1 : Nano<span class="kw">.</span>expr = <span class="dt">Bin</span> (<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>, <span class="dt">Plus</span>, <span class="dt">Var</span> <span class="st">&quot;y&quot;</span>)
+ 
+# <span class="kw">let</span> e2 = <span class="dt">Let</span>(<span class="st">&quot;x&quot;</span>,<span class="dt">Const</span> <span class="dv">1</span>,<span class="dt">Let</span>(<span class="st">&quot;y&quot;</span>,<span class="dt">Const</span> <span class="dv">2</span>,e1));;
+<span class="kw">val</span> e2 : Nano<span class="kw">.</span>expr =
+  <span class="dt">Let</span> (<span class="st">&quot;x&quot;</span>, <span class="dt">Const</span> <span class="dv">1</span>, <span class="dt">Let</span> (<span class="st">&quot;y&quot;</span>, <span class="dt">Const</span> <span class="dv">2</span>, <span class="dt">Bin</span> (<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>, <span class="dt">Plus</span>, <span class="dt">Var</span> <span class="st">&quot;y&quot;</span>)))
+  
+# eval ([],e2);;
+- : Nano<span class="kw">.</span>value = <span class="dt">Int</span> <span class="dv">3</span>
+ 
+# <span class="kw">let</span> e3 = <span class="dt">Let</span>(<span class="st">&quot;x&quot;</span>,<span class="dt">Const</span> <span class="dv">1</span>,<span class="dt">Let</span>(<span class="st">&quot;y&quot;</span>,<span class="dt">Const</span> <span class="dv">2</span>,<span class="dt">Let</span>(<span class="st">&quot;z&quot;</span>,e1,<span class="dt">Let</span>(<span class="st">&quot;x&quot;</span>,<span class="dt">Bin</span>(<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>,<span class="dt">Plus</span>,<span class="dt">Var</span> <span class="st">&quot;z&quot;</span>),e1))));;
+<span class="kw">val</span> e3 : Nano<span class="kw">.</span>expr =
+	  <span class="dt">Let</span> (<span class="st">&quot;x&quot;</span>, <span class="dt">Const</span> <span class="dv">1</span>,
+	   <span class="dt">Let</span> (<span class="st">&quot;y&quot;</span>, <span class="dt">Const</span> <span class="dv">2</span>,
+	    <span class="dt">Let</span> (<span class="st">&quot;z&quot;</span>, <span class="dt">Bin</span> (<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>, <span class="dt">Plus</span>, <span class="dt">Var</span> <span class="st">&quot;y&quot;</span>),
+	     <span class="dt">Let</span> (<span class="st">&quot;x&quot;</span>, <span class="dt">Bin</span> (<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>, <span class="dt">Plus</span>, <span class="dt">Var</span> <span class="st">&quot;z&quot;</span>), <span class="dt">Bin</span> (<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>, <span class="dt">Plus</span>, <span class="dt">Var</span> <span class="st">&quot;y&quot;</span>)))))
+
+# eval ([],e3);;
+- : Nano<span class="kw">.</span>value = <span class="dt">Int</span> <span class="dv">6</span></code></pre></div>
+<h3 id="d-25-points">(d) 25 points</h3>
+<p>Next, extend the evaluator so it includes the expressions corresponding to function definitions and applications.</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">type</span> expr = ...
+		| <span class="dt">App</span> <span class="kw">of</span> expr * expr 
+		| <span class="dt">Fun</span> <span class="kw">of</span> <span class="dt">string</span> * expr</code></pre></div>
+<p>Naturally, to handle functions, you will need to extend the set of values yielded by your evaluator to include closures.</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">type</span> value = ...
+		   | <span class="dt">Closure</span> <span class="kw">of</span> env * <span class="dt">string</span> <span class="dt">option</span> * <span class="dt">string</span> * expr</code></pre></div>
+<p>Recall that <code>App(&lt;e1&gt;, &lt;e2&gt;)</code> corresponds to the ML expression <code>&lt;e1&gt; &lt;e2&gt;</code> (i.e. applying the argument <code>&lt;e2&gt;</code> to the function <code>&lt;e1&gt;</code>), and <code>Fun (&quot;x&quot;, &lt;e&gt;)</code> corresponds to the ML function defined <code>fun x -&gt; &lt;e&gt;</code>.</p>
+<p>For now, assume the functions <em>are not recursive</em>. However, functions do have values represented by the <code>Closure (evn, n, x, e)</code> where <code>evn</code> is the environment at the point where that function was declared, and <code>n</code>, <code>x</code> , and <code>e</code> are name, formal and body expression of the function.</p>
+<ul>
+<li><p>If the function is anonymous or declared in a <code>let</code>-binding the name component of the closure tuple should be <code>None</code>.</p></li>
+<li><p>If the function is declared in a <code>let rec</code> binding statement, then the name of the function should be <code>Some f</code> (where <code>f</code> is the name of the function, i.e. the variable bound in the <code>let rec</code> function).</p></li>
+</ul>
+<p>Extend your implementation of <code>eval</code> by adding the appropriate cases for the new type constructors. Once you have implemented this functionality and recompiled, you should get the following behavior:</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># eval ([],<span class="dt">Fun</span> (<span class="st">&quot;x&quot;</span>,<span class="dt">Bin</span>(<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>,<span class="dt">Plus</span>,<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>)));;
+- : Nano<span class="kw">.</span>value = <span class="dt">Closure</span> ([], <span class="dt">None</span>, <span class="st">&quot;x&quot;</span>, <span class="dt">Bin</span> (<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>, <span class="dt">Plus</span>, <span class="dt">Var</span> <span class="st">&quot;x&quot;</span>))
+ 
+# eval ([],<span class="dt">App</span>(<span class="dt">Fun</span> (<span class="st">&quot;x&quot;</span>,<span class="dt">Bin</span>(<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>,<span class="dt">Plus</span>,<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>)),<span class="dt">Const</span> <span class="dv">3</span>));;
+- : Nano<span class="kw">.</span>value = <span class="dt">Int</span> <span class="dv">6</span>
+  
+# <span class="kw">let</span> e3=<span class="dt">Let</span>(<span class="st">&quot;h&quot;</span>,<span class="dt">Fun</span>(<span class="st">&quot;y&quot;</span>,<span class="dt">Bin</span>(<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>, <span class="dt">Plus</span>, <span class="dt">Var</span> <span class="st">&quot;y&quot;</span>)),<span class="dt">App</span>(<span class="dt">Var</span> <span class="st">&quot;f&quot;</span>,<span class="dt">Var</span> <span class="st">&quot;h&quot;</span>));;
+<span class="kw">val</span> e3 : Nano<span class="kw">.</span>expr =
+  <span class="dt">Let</span> (<span class="st">&quot;h&quot;</span>, <span class="dt">Fun</span> (<span class="st">&quot;y&quot;</span>, <span class="dt">Bin</span> (<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>, <span class="dt">Plus</span>, <span class="dt">Var</span> <span class="st">&quot;y&quot;</span>)), <span class="dt">App</span> (<span class="dt">Var</span> <span class="st">&quot;f&quot;</span>, <span class="dt">Var</span> <span class="st">&quot;h&quot;</span>))
+ 
+# <span class="kw">let</span> e2 = <span class="dt">Let</span>(<span class="st">&quot;x&quot;</span>,<span class="dt">Const</span> <span class="dv">100</span>,e3);;
+<span class="kw">val</span> e2 : Nano<span class="kw">.</span>expr =
+  <span class="dt">Let</span> (<span class="st">&quot;x&quot;</span>, <span class="dt">Const</span> <span class="dv">100</span>,
+   <span class="dt">Let</span> (<span class="st">&quot;h&quot;</span>, <span class="dt">Fun</span> (<span class="st">&quot;y&quot;</span>, <span class="dt">Bin</span> (<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>, <span class="dt">Plus</span>, <span class="dt">Var</span> <span class="st">&quot;y&quot;</span>)), <span class="dt">App</span> (<span class="dt">Var</span> <span class="st">&quot;f&quot;</span>, <span class="dt">Var</span> <span class="st">&quot;h&quot;</span>)))
+ 
+# <span class="kw">let</span> e1 = <span class="dt">Let</span>(<span class="st">&quot;f&quot;</span>,<span class="dt">Fun</span>(<span class="st">&quot;g&quot;</span>,<span class="dt">Let</span>(<span class="st">&quot;x&quot;</span>,<span class="dt">Const</span> <span class="dv">0</span>,<span class="dt">App</span>(<span class="dt">Var</span> <span class="st">&quot;g&quot;</span>,<span class="dt">Const</span> <span class="dv">2</span>))),e2);;
+<span class="kw">val</span> e1 : Nano<span class="kw">.</span>expr =
+  <span class="dt">Let</span> (<span class="st">&quot;f&quot;</span>, <span class="dt">Fun</span> (<span class="st">&quot;g&quot;</span>, <span class="dt">Let</span> (<span class="st">&quot;x&quot;</span>, <span class="dt">Const</span> <span class="dv">0</span>, <span class="dt">App</span> (<span class="dt">Var</span> <span class="st">&quot;g&quot;</span>, <span class="dt">Const</span> <span class="dv">2</span>))),
+   <span class="dt">Let</span> (<span class="st">&quot;x&quot;</span>, <span class="dt">Const</span> <span class="dv">100</span>,
+    <span class="dt">Let</span> (<span class="st">&quot;h&quot;</span>, <span class="dt">Fun</span> (<span class="st">&quot;y&quot;</span>, <span class="dt">Bin</span> (<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>, <span class="dt">Plus</span>, <span class="dt">Var</span> <span class="st">&quot;y&quot;</span>)),
+     <span class="dt">App</span> (<span class="dt">Var</span> <span class="st">&quot;f&quot;</span>, <span class="dt">Var</span> <span class="st">&quot;h&quot;</span>))))
+ 
+# eval ([],e1);;
+- : Nano<span class="kw">.</span>value = <span class="dt">Int</span> <span class="dv">102</span>
+
+# eval ([],<span class="dt">Letrec</span>(<span class="st">&quot;f&quot;</span>,<span class="dt">Fun</span>(<span class="st">&quot;x&quot;</span>,<span class="dt">Const</span> <span class="dv">0</span>),<span class="dt">Var</span> <span class="st">&quot;f&quot;</span>));;
+- : Nano<span class="kw">.</span>value = <span class="dt">Closure</span> ([], <span class="dt">Some</span> <span class="st">&quot;f&quot;</span>, <span class="st">&quot;x&quot;</span>, <span class="dt">Const</span> <span class="dv">0</span>)</code></pre></div>
+<h3 id="e-30-points">(e) 30 points</h3>
+<p>Make the above work for recursively defined functions (declared with <code>let rec</code>). Once you have implemented this functionality and recompiled, you should get the following behavior:</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># eval ([],<span class="dt">Letrec</span>(<span class="st">&quot;fac&quot;</span>,<span class="dt">Fun</span>(<span class="st">&quot;n&quot;</span>,<span class="dt">If</span>(<span class="dt">Bin</span>(<span class="dt">Var</span> <span class="st">&quot;n&quot;</span>,<span class="dt">Eq</span>,<span class="dt">Const</span> <span class="dv">0</span>),<span class="dt">Const</span> <span class="dv">1</span>,<span class="dt">Bin</span>(<span class="dt">Var</span> <span class="st">&quot;n&quot;</span>,<span class="dt">Mul</span>,<span class="dt">App</span>(<span class="dt">Var</span> <span class="st">&quot;fac&quot;</span>,<span class="dt">Bin</span>(<span class="dt">Var</span> <span class="st">&quot;n&quot;</span>,<span class="dt">Minus</span>,<span class="dt">Const</span> <span class="dv">1</span>))))),<span class="dt">App</span>(<span class="dt">Var</span> <span class="st">&quot;fac&quot;</span>,<span class="dt">Const</span> <span class="dv">10</span>)));;
+- : Nano<span class="kw">.</span>value = <span class="dt">Int</span> <span class="dv">3628800</span></code></pre></div>
+<h3 id="f-40-points-extra-credit">(f) 40 points (extra credit)</h3>
+<p>Extend your program to support operations on lists.</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">type</span> binop = ...
+           | <span class="dt">Cons</span>
+	
+<span class="kw">type</span> expr = ...
+          | <span class="dt">NilExpr</span>
+	
+<span class="kw">type</span> value = ...
+           | <span class="dt">Nil</span>
+           | <span class="dt">Pair</span> <span class="kw">of</span> value * value</code></pre></div>
+<p>In addition to the changes to the data types, add support for two functions <code>&quot;hd&quot;</code> and <code>&quot;tl&quot;</code> which do what the corresponding ML functions do. Once you have implemented this functionality and recompiled, you should get the following behavior:</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># eval ([],<span class="dt">Bin</span>(<span class="dt">Const</span> <span class="dv">1</span>,<span class="dt">Cons</span>,<span class="dt">Bin</span>(<span class="dt">Const</span> <span class="dv">2</span>,<span class="dt">Cons</span>,<span class="dt">NilExpr</span>)));;
+- : Nano<span class="kw">.</span>value = <span class="dt">Pair</span> (<span class="dt">Int</span> <span class="dv">1</span>, <span class="dt">Pair</span> (<span class="dt">Int</span> <span class="dv">2</span>, <span class="dt">Nil</span>))
+
+# eval ([],<span class="dt">App</span>(<span class="dt">Var</span> <span class="st">&quot;hd&quot;</span>,<span class="dt">Bin</span>(<span class="dt">Const</span> <span class="dv">1</span>,<span class="dt">Cons</span>,<span class="dt">Bin</span>(<span class="dt">Const</span> <span class="dv">2</span>,<span class="dt">Cons</span>,<span class="dt">NilExpr</span>))));;
+- : Nano<span class="kw">.</span>value = <span class="dt">Int</span> <span class="dv">1</span>
+
+# eval ([],<span class="dt">App</span>(<span class="dt">Var</span> <span class="st">&quot;tl&quot;</span>,<span class="dt">Bin</span>(<span class="dt">Const</span> <span class="dv">1</span>,<span class="dt">Cons</span>,<span class="dt">Bin</span>(<span class="dt">Const</span> <span class="dv">2</span>,<span class="dt">Cons</span>,<span class="dt">NilExpr</span>))));;
+- : Nano<span class="kw">.</span>value = <span class="dt">Pair</span> (<span class="dt">Int</span> <span class="dv">2</span>, <span class="dt">Nil</span>)</code></pre></div>
+<h2 id="problem-2-nanoml-lexer-nanolex.mll-and-parser-nanoparse.mly">Problem 2: NanoML Lexer (nanoLex.mll) and Parser (nanoParse.mly)</h2>
+<p><strong>NOTE:</strong> From now on, you are done with <code>ocaml-top</code>. For this problem <strong>your favorite editor</strong> to modify <code>nanoLex.mll</code> and <code>nanoParse.mly</code>, recompile at the UNIX shell using <code>make</code> and test by running <code>nanoml.top</code>.</p>
+<p>The goal of this problem is to write a <strong>lexer</strong> and <strong>parser</strong> for NanoML using (Ocaml)Lex and (Ocaml)Yacc. Google those terms for more information about them! In each subproblem, we will increase the complexity of the expressions parsed by your implementation.</p>
+<h3 id="a-15-points">(a) 15 points</h3>
+<p>We will begin by making our parser recognize some of the simplest NanoML expressions: constants and variables.</p>
+<p>Begin with <code>nanoParse.mly</code> and define tokens <code>TRUE</code>, <code>FALSE</code>, and <code>Id</code>. Note that a token <code>Num</code> is already defined. An <code>Id</code> token should have a single string argument, which holds the name of the variable (identifier) represented by the token.</p>
+<p>Next, add rules to <code>nanoLex.mll</code>. A <code>Num</code> constant is a sequence of one or more digits. An <code>Id</code> is a letter (capital or lowercase) followed by zero or more letters or digits. The strings <code>&quot;true&quot;</code> and <code>&quot;false&quot;</code> should return the corresponding tokens <code>TRUE</code> and <code>FALSE</code>.</p>
+<p>Finally, add a rule to <code>nanoLex.mll</code> to ignore whitespace which includes space, newline <code>\n</code>, carriage return <code>\r</code>, and tab <code>\t</code>.</p>
+<p>Once you have implemented this functionality, you should get the following behavior. <strong>Note:</strong> <code>$</code> is the unix-shell prompt, <code>#</code> is a <code>nanoml.top</code> prompt.</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml">$ make
+...</code></pre></div>
+<p>You should now hopefully have in your directory a file called <code>nanoml.top</code>, which is an Ocaml shell that is pre-loaded with the modules corresponding to your NanoML implementation.</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml">$ ./nanoml.top
+<span class="dt">NanoML</span> 
+ 
+$ ./nanoml.top 
+        <span class="dt">Objective</span> <span class="dt">Caml</span> version ...
+
+# NanoLex<span class="kw">.</span>token (Lexing<span class="kw">.</span>from_string <span class="st">&quot;true&quot;</span>);;
+- : NanoParse<span class="kw">.</span>token = NanoParse<span class="kw">.</span><span class="dt">TRUE</span> 
+
+# Main<span class="kw">.</span>token_list_of_string <span class="st">&quot;true false 12345 foo bar baz&quot;</span>;;
+- : NanoParse<span class="kw">.</span>token <span class="dt">list</span> = [NanoParse<span class="kw">.</span><span class="dt">TRUE</span>; NanoParse<span class="kw">.</span><span class="dt">FALSE</span>; NanoParse<span class="kw">.</span><span class="dt">Num</span> <span class="dv">12345</span>; NanoParse<span class="kw">.</span><span class="dt">Id</span> <span class="st">&quot;foo&quot;</span>; NanoParse<span class="kw">.</span><span class="dt">Id</span> <span class="st">&quot;bar&quot;</span>; NanoParse<span class="kw">.</span><span class="dt">Id</span> <span class="st">&quot;baz&quot;</span>]</code></pre></div>
+<p>Now return to <code>nanoParse.mly</code>. Add rules to the parser so that <code>true</code>, <code>false</code>, integers, and identifiers are parsed into expressions of type <code>Nano.expr</code> as described above and shown in <code>nano.ml</code>.</p>
+<p>Once you have implemented this functionality, you should get the following behavior (recall <code>$</code> is the unix shell and <code>#</code> the Ocaml prompt.)</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml">$ make
+
+<span class="co">(* hopefully this succeeds without errors. *)</span>
+
+$ ./nanoml.top
+<span class="dt">NanoML</span> 
+ 
+$ ./nanoml.top 
+        <span class="dt">Objective</span> <span class="dt">Caml</span> version ...
+
+# NanoParse<span class="kw">.</span>exp NanoLex<span class="kw">.</span>token (Lexing<span class="kw">.</span>from_string <span class="st">&quot;true&quot;</span>);;
+- : Nano<span class="kw">.</span>expr = Nano<span class="kw">.</span><span class="dt">True</span> 
+
+# NanoParse<span class="kw">.</span>exp NanoLex<span class="kw">.</span>token (Lexing<span class="kw">.</span>from_string <span class="st">&quot;false&quot;</span>);;
+- : Nano<span class="kw">.</span>expr = Nano<span class="kw">.</span><span class="dt">False</span>
+
+# NanoParse<span class="kw">.</span>exp NanoLex<span class="kw">.</span>token (Lexing<span class="kw">.</span>from_string <span class="st">&quot;   </span><span class="ch">\n</span><span class="st">123&quot;</span>);;
+- : Nano<span class="kw">.</span>expr = Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">123</span>
+
+# NanoParse<span class="kw">.</span>exp NanoLex<span class="kw">.</span>token (Lexing<span class="kw">.</span>from_string <span class="st">&quot;</span><span class="ch">\r</span><span class="st">foo&quot;</span>);;
+- : Nano<span class="kw">.</span>expr = Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;foo&quot;</span></code></pre></div>
+<h3 id="b-15-points">(b) 15 points</h3>
+<p>Add the following tokens to the lexer and parser.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">String</th>
+<th align="left">Token</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>let</code></td>
+<td align="left"><code>LET</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>rec</code></td>
+<td align="left"><code>REC</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>=</code></td>
+<td align="left"><code>EQ</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>in</code></td>
+<td align="left"><code>IN</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>fun</code></td>
+<td align="left"><code>FUN</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>-&gt;</code></td>
+<td align="left"><code>ARROW</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>if</code></td>
+<td align="left"><code>IF</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>then</code></td>
+<td align="left"><code>THEN</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>else</code></td>
+<td align="left"><code>ELSE</code></td>
+</tr>
+</tbody>
+</table>
+<p>These should be parsed as in real ML to <code>Nano.Let</code>, <code>Nano.Letrec</code>, <code>Nano.Fun</code>, and <code>Nano.If</code> expressions (of type <code>Nano.expr</code>).<br />
+That is,</p>
+<ul>
+<li>a <strong>let</strong> expression should have the form <code>let &lt;id&gt; = &lt;expr&gt; in &lt;expr&gt;</code>,</li>
+<li>a <strong>letrec</strong> expression should have the form <code>let rec &lt;id&gt; = &lt;expr&gt; in &lt;expr&gt;</code></li>
+<li>a <strong>function</strong> expression should have the form <code>fun &lt;id&gt; -&gt; &lt;expr&gt;</code> and</li>
+<li>an <strong>if</strong> expression should be `if <expr> then <expr> else <expr>“.</li>
+</ul>
+<p>Here <id> denotes any identifier from part (a), and <expr> denotes any expression from part (a), or any let / letrec / fun / if expression.</p>
+<p>Once you have implemented this functionality and recompiled (by typing <code>make</code> at the unix prompt) you should get the following behavior at the <code>./nanoml.top</code> prompt:</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># Main<span class="kw">.</span>token_list_of_string <span class="st">&quot;let rec foo = fun x -&gt; if y then z else w in foo&quot;</span>;;
+- : NanoParse<span class="kw">.</span>token <span class="dt">list</span> =
+	[NanoParse<span class="kw">.</span><span class="dt">LET</span>; NanoParse<span class="kw">.</span><span class="dt">REC</span>; NanoParse<span class="kw">.</span><span class="dt">Id</span> <span class="st">&quot;foo&quot;</span>; NanoParse<span class="kw">.</span><span class="dt">EQ</span>;
+	 NanoParse<span class="kw">.</span><span class="dt">FUN</span>; NanoParse<span class="kw">.</span><span class="dt">Id</span> <span class="st">&quot;x&quot;</span>; NanoParse<span class="kw">.</span><span class="dt">ARROW</span>; NanoParse<span class="kw">.</span><span class="dt">IF</span>;
+	 NanoParse<span class="kw">.</span><span class="dt">Id</span> <span class="st">&quot;y&quot;</span>; NanoParse<span class="kw">.</span><span class="dt">THEN</span>; NanoParse<span class="kw">.</span><span class="dt">Id</span> <span class="st">&quot;z&quot;</span>; NanoParse<span class="kw">.</span><span class="dt">ELSE</span>;
+	 NanoParse<span class="kw">.</span><span class="dt">Id</span> <span class="st">&quot;w&quot;</span>; NanoParse<span class="kw">.</span><span class="dt">IN</span>; NanoParse<span class="kw">.</span><span class="dt">Id</span> <span class="st">&quot;foo&quot;</span>]
+
+# Main<span class="kw">.</span>string_to_expr <span class="st">&quot;let rec foo = fun x -&gt; if y then z else w in foo&quot;</span>;;
+- : Nano<span class="kw">.</span>expr =	Nano<span class="kw">.</span><span class="dt">Letrec</span> (<span class="st">&quot;foo&quot;</span>, Nano<span class="kw">.</span><span class="dt">Fun</span> (<span class="st">&quot;x&quot;</span>, Nano<span class="kw">.</span><span class="dt">If</span> (Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;y&quot;</span>, Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;z&quot;</span>, Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;w&quot;</span>)), Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;foo&quot;</span>)</code></pre></div>
+<h3 id="c-15-points">(c) 15 points</h3>
+<p>Add the following tokens to the lexer and parser.</p>
+<table border="1">
+<pre><code>&lt;tr&gt;&lt;th&gt;String&lt;/th&gt;&lt;th&gt;Token&lt;/th&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;tt&gt;+&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;&lt;tt&gt;PLUS&lt;/tt&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;tt&gt;-&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;&lt;tt&gt;MINUS&lt;/tt&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;tt&gt;*&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;&lt;tt&gt;MUL&lt;/tt&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;tt&gt;/&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;&lt;tt&gt;DIV&lt;/tt&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;tt&gt;&amp;lt;&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;&lt;tt&gt;LT&lt;/tt&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;tt&gt;&amp;lt;=&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;&lt;tt&gt;LE&lt;/tt&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;tt&gt;!=&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;&lt;tt&gt;NE&lt;/tt&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;tt&gt;&amp;amp;&amp;amp;&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;&lt;tt&gt;AND&lt;/tt&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;tt&gt;||&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;&lt;tt&gt;OR&lt;/tt&gt;&lt;/td&gt;&lt;/tr&gt;</code></pre>
+</table>
+<p>Add all of these as binary operators to your parser.<br />
+Each should result in a <code>Nano.Bin</code> expression with the corresponding <code>Nano.binop</code>. The arguments to these binary operators may be <em>any</em> expressions.<br />
+(You don’t need to worry about types. <code>&quot;3+true||7&quot;</code> is allowed as far as the parser is concerned.)</p>
+<p>Once you have implemented this functionality and recompiled, you should get the following behavior at the <code>./nanoml.top</code> prompt:</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># Main<span class="kw">.</span>token_list_of_string <span class="st">&quot;+ - /*|| &lt; &lt;= = &amp;&amp; !=&quot;</span>;;
+- : NanoParse<span class="kw">.</span>token <span class="dt">list</span> =
+[NanoParse<span class="kw">.</span><span class="dt">PLUS</span>; NanoParse<span class="kw">.</span><span class="dt">MINUS</span>; NanoParse<span class="kw">.</span><span class="dt">DIV</span>; 
+ NanoParse<span class="kw">.</span><span class="dt">MUL</span>; NanoParse<span class="kw">.</span><span class="dt">OR</span>; NanoParse<span class="kw">.</span><span class="dt">LT</span>; 
+ NanoParse<span class="kw">.</span><span class="dt">LE</span>; NanoParse<span class="kw">.</span><span class="dt">EQ</span>; NanoParse<span class="kw">.</span><span class="dt">AND</span>; NanoParse<span class="kw">.</span><span class="dt">NE</span>]
+	
+# Main<span class="kw">.</span>string_to_expr <span class="st">&quot;x + y&quot;</span>;;
+- : Nano<span class="kw">.</span>expr = Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;x&quot;</span>, Nano<span class="kw">.</span><span class="dt">Plus</span>, Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;y&quot;</span>)
+
+# Main<span class="kw">.</span>string_to_expr <span class="st">&quot;if x &lt;= 4 then a || b else a &amp;&amp; b&quot;</span>;;
+- : Nano<span class="kw">.</span>expr =
+	Nano<span class="kw">.</span><span class="dt">If</span> (Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;x&quot;</span>, Nano<span class="kw">.</span><span class="dt">Le</span>, Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">4</span>), 
+	 Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;a&quot;</span>, Nano<span class="kw">.</span><span class="dt">Or</span>, Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;b&quot;</span>), 
+	 Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;a&quot;</span>, Nano<span class="kw">.</span><span class="dt">And</span>, Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;b&quot;</span>))
+	
+# Main<span class="kw">.</span>string_to_expr <span class="st">&quot;if 4 &lt;= z then 1-z else 4*z&quot;</span>;;
+- : Nano<span class="kw">.</span>expr =
+	Nano<span class="kw">.</span><span class="dt">If</span> (Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">4</span>, Nano<span class="kw">.</span><span class="dt">Le</span>, Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;z&quot;</span>), 
+	 Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">1</span>, Nano<span class="kw">.</span><span class="dt">Minus</span>, Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;z&quot;</span>),
+	 Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">4</span>, Nano<span class="kw">.</span><span class="dt">Mul</span>, Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;z&quot;</span>))
+	
+# Main<span class="kw">.</span>string_to_expr <span class="st">&quot;let a = 6 / 2 in a!=11&quot;</span>;;
+- : Nano<span class="kw">.</span>expr =
+	Nano<span class="kw">.</span><span class="dt">Let</span> (<span class="st">&quot;a&quot;</span>, Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">6</span>, Nano<span class="kw">.</span><span class="dt">Div</span>, Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">2</span>),
+	Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;a&quot;</span>, Nano<span class="kw">.</span><span class="dt">Ne</span>, Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">11</span>))</code></pre></div>
+<h3 id="d-10-points">(d) 10 points</h3>
+<p>Add the following tokens to the lexer and parser.</p>
+<table border="1">
+<pre><code>&lt;tr&gt;&lt;th&gt;String&lt;/th&gt;&lt;th&gt;Token&lt;/th&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;tt&gt;(&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;&lt;tt&gt;LPAREN&lt;/tt&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;tt&gt;)&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;&lt;tt&gt;RPAREN&lt;/tt&gt;&lt;/td&gt;&lt;/tr&gt;</code></pre>
+</table>
+<p>Add rules to your parser to allow parenthesized expressions.<br />
+In addition, add a rule to your parser for function application.<br />
+Recall that function application is simply <code>&quot;&lt;expr&gt; &lt;expr&gt;&quot;</code> which corresponds to calling the (function corresponding to the) left expression with the (argument corresponding to the) right expression.</p>
+<p>Once you have implemented this functionality and recompiled, you should get the following behavior at the <code>./nanoml.top</code> prompt:</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># Main<span class="kw">.</span>token_list_of_string <span class="st">&quot;() (  )&quot;</span>;;
+- : NanoParse<span class="kw">.</span>token <span class="dt">list</span> =
+	[NanoParse<span class="kw">.</span><span class="dt">LPAREN</span>; NanoParse<span class="kw">.</span><span class="dt">RPAREN</span>; NanoParse<span class="kw">.</span><span class="dt">LPAREN</span>; NanoParse<span class="kw">.</span><span class="dt">RPAREN</span>]
+
+# Main<span class="kw">.</span>string_to_expr <span class="st">&quot;f x&quot;</span>;;
+- : Nano<span class="kw">.</span>expr = Nano<span class="kw">.</span><span class="dt">App</span> (Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;f&quot;</span>, Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;x&quot;</span>)
+	
+# Main<span class="kw">.</span>string_to_expr <span class="st">&quot;(fun x -&gt; x+x) (3*3)&quot;</span>;;
+- : Nano<span class="kw">.</span>expr =
+    Nano<span class="kw">.</span><span class="dt">App</span> (Nano<span class="kw">.</span><span class="dt">Fun</span> (<span class="st">&quot;x&quot;</span>, Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;x&quot;</span>, Nano<span class="kw">.</span><span class="dt">Plus</span>, Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;x&quot;</span>)),
+	Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">3</span>, Nano<span class="kw">.</span><span class="dt">Mul</span>, Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">3</span>))
+	
+# Main<span class="kw">.</span>string_to_expr <span class="st">&quot;(((add3 (x)) y) z)&quot;</span>;;
+- : Nano<span class="kw">.</span>expr =
+	Nano<span class="kw">.</span><span class="dt">App</span> (Nano<span class="kw">.</span><span class="dt">App</span> (Nano<span class="kw">.</span><span class="dt">App</span> (Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;add3&quot;</span>, Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;x&quot;</span>), Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;y&quot;</span>),
+	 Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;z&quot;</span>)
+	
+# Main<span class="kw">.</span>filename_to_expr <span class="st">&quot;tests/t1.ml&quot;</span>;;
+- : Nano<span class="kw">.</span>expr =
+	Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">2</span>, Nano<span class="kw">.</span><span class="dt">Plus</span>, Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">3</span>), Nano<span class="kw">.</span><span class="dt">Mul</span>, 
+	Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">4</span>, Nano<span class="kw">.</span><span class="dt">Plus</span>, Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">5</span>))
+	
+# Main<span class="kw">.</span>filename_to_expr <span class="st">&quot;tests/t2.ml&quot;</span>;;
+- : Nano<span class="kw">.</span>expr =
+	Nano<span class="kw">.</span><span class="dt">Let</span> (<span class="st">&quot;z1&quot;</span>, Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">4</span>,
+	 Nano<span class="kw">.</span><span class="dt">Let</span> (<span class="st">&quot;z&quot;</span>, Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">3</span>,
+	  Nano<span class="kw">.</span><span class="dt">Let</span> (<span class="st">&quot;y&quot;</span>, Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">2</span>,
+	   Nano<span class="kw">.</span><span class="dt">Let</span> (<span class="st">&quot;x&quot;</span>, Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">1</span>,
+	    Nano<span class="kw">.</span><span class="dt">Let</span> (<span class="st">&quot;z1&quot;</span>, Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">0</span>,
+	     Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;x&quot;</span>, Nano<span class="kw">.</span><span class="dt">Plus</span>, Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;y&quot;</span>), Nano<span class="kw">.</span><span class="dt">Minus</span>,
+	      Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;z&quot;</span>, Nano<span class="kw">.</span><span class="dt">Plus</span>, Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;z1&quot;</span>)))))))</code></pre></div>
+<h3 id="d-35-points">(d) 35 points</h3>
+<p>Restructure your parser to give binary operators the following precedence and associativity. This will likely require that you add additional rules to your parser, or see how to <a href="http://plus.kaist.ac.kr/~shoh/ocaml/ocamllex-ocamlyacc/ocamlyacc-tutorial/sec-ocamlyacc-declarations.html">add precedence and associativity to OcamlYacc</a>.</p>
+<table border="1">
+<pre><code>&lt;tr&gt;&lt;th&gt;Operators&lt;/th&gt;&lt;th&gt;Associativity&lt;/th&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan=2&gt;&lt;center&gt;&lt;i&gt;High Precedence&lt;/i&gt;&lt;/center&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;function application&lt;/td&gt;&lt;td&gt;left&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;tt&gt;*&lt;/tt&gt;, &lt;tt&gt;/&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;left&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;tt&gt;+&lt;/tt&gt;, &lt;tt&gt;-&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;left&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;tt&gt;=&lt;/tt&gt;, &lt;tt&gt;!=&lt;/tt&gt;, &lt;tt&gt;&amp;lt;&lt;/tt&gt;, &lt;tt&gt;&amp;lt;=&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;left&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;tt&gt;&amp;amp;&amp;amp;&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;left&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;tt&gt;||&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;left&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;tt&gt;let&lt;/tt&gt;, &lt;tt&gt;fun&lt;/tt&gt;, &lt;tt&gt;if&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;N/A&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan=2&gt;&lt;center&gt;&lt;i&gt;Low Precedence&lt;/i&gt;&lt;/center&gt;&lt;/td&gt;&lt;/tr&gt;</code></pre>
+</table>
+<p><strong>Left associative</strong> means that <code>&quot;1-2-3-4&quot;</code> should be parsed as if it were <code>&quot;((1-2)-3)-4&quot;</code>, and <code>&quot;f x y z&quot;</code> should be parsed as if it were <code>&quot;((f x) y) z&quot;</code>.</p>
+<p>Function application having higher precedence than multiplications, and multiplication higher than addition means that <code>&quot;1+f x*3&quot;</code> should be parsed as if it were <code>&quot;1+((f x)*3)&quot;</code>.</p>
+<p>Once you have implemented this functionality and recompiled, you should get the following behavior at the <code>./nanoml.top</code> prompt:</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># Main<span class="kw">.</span>string_to_expr <span class="st">&quot;1-2-3-4&quot;</span>;;
+- : Nano<span class="kw">.</span>expr =
+	Nano<span class="kw">.</span><span class="dt">Bin</span>
+	 (Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">1</span>, Nano<span class="kw">.</span><span class="dt">Minus</span>, Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">2</span>), 
+	  Nano<span class="kw">.</span><span class="dt">Minus</span>,
+	   Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">3</span>),
+	 Nano<span class="kw">.</span><span class="dt">Minus</span>, Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">4</span>)
+	
+# Main<span class="kw">.</span>string_to_expr <span class="st">&quot;1+a&amp;&amp;b||c+d*e-f/g x&quot;</span>;;
+- : Nano<span class="kw">.</span>expr =
+	Nano<span class="kw">.</span><span class="dt">Bin</span>
+	 (Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">1</span>, Nano<span class="kw">.</span><span class="dt">Plus</span>, Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;a&quot;</span>), Nano<span class="kw">.</span><span class="dt">And</span>,
+	   Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;b&quot;</span>),
+	 Nano<span class="kw">.</span><span class="dt">Or</span>,
+	 Nano<span class="kw">.</span><span class="dt">Bin</span>
+	  (Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;c&quot;</span>, Nano<span class="kw">.</span><span class="dt">Plus</span>,
+	    Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;d&quot;</span>, Nano<span class="kw">.</span><span class="dt">Mul</span>, Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;e&quot;</span>)),
+	  Nano<span class="kw">.</span><span class="dt">Minus</span>,
+	  Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;f&quot;</span>, Nano<span class="kw">.</span><span class="dt">Div</span>, Nano<span class="kw">.</span><span class="dt">App</span> (Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;g&quot;</span>, Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;x&quot;</span>))))
+	
+# Main<span class="kw">.</span>filename_to_expr <span class="st">&quot;tests/t13.ml&quot;</span>;;
+- : Nano<span class="kw">.</span>expr =
+	Nano<span class="kw">.</span><span class="dt">Let</span> (<span class="st">&quot;f&quot;</span>,
+	 Nano<span class="kw">.</span><span class="dt">Fun</span> (<span class="st">&quot;x&quot;</span>,
+	  Nano<span class="kw">.</span><span class="dt">Fun</span> (<span class="st">&quot;y&quot;</span>,
+	   Nano<span class="kw">.</span><span class="dt">Fun</span> (<span class="st">&quot;a&quot;</span>,
+	    Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">App</span> (Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;a&quot;</span>, Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;x&quot;</span>), Nano<span class="kw">.</span><span class="dt">Mul</span>, Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;y&quot;</span>)))),
+	 Nano<span class="kw">.</span><span class="dt">Let</span> (<span class="st">&quot;g&quot;</span>,
+	  Nano<span class="kw">.</span><span class="dt">Fun</span> (<span class="st">&quot;x&quot;</span>,
+	   Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;x&quot;</span>, Nano<span class="kw">.</span><span class="dt">Plus</span>,
+	    Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">1</span>, Nano<span class="kw">.</span><span class="dt">Mul</span>, Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">3</span>))),
+	  Nano<span class="kw">.</span><span class="dt">App</span> (Nano<span class="kw">.</span><span class="dt">App</span> (Nano<span class="kw">.</span><span class="dt">App</span> (Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;f&quot;</span>, Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">7</span>), Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">8</span>),
+	   Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;g&quot;</span>)))</code></pre></div>
+<h3 id="e-15-points">(e) 15 points</h3>
+<p>
+<p>Add the following tokens to the lexer and parser.</p>
+<table border="1">
+<pre><code>&lt;tr&gt;&lt;th&gt;String&lt;/th&gt;&lt;th&gt;Token&lt;/th&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;tt&gt;[&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;&lt;tt&gt;LBRAC&lt;/tt&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;tt&gt;]&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;&lt;tt&gt;RBRAC&lt;/tt&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;tt&gt;;&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;&lt;tt&gt;SEMI&lt;/tt&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;tt&gt;::&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;&lt;tt&gt;COLONCOLON&lt;/tt&gt;&lt;/td&gt;&lt;/tr&gt;	</code></pre>
+</table>
+<p>Add rules to your lexer and parser to support parsing lists. <code>&quot;[a;b;c;d;e;f;g]&quot;</code> should be parsed as if it were <code>&quot;a::b::c::d::e::f::g::[]&quot;</code>. The <code>::</code> operator should have higher priority than the comparison functions (<code>=</code>, <code>&lt;=</code> etc.), and lower priority than <code>+</code> and <code>-</code>. In addition, <code>::</code> should be right associative. <code>&quot;[]&quot;</code> should be parsed as <code>NilExpr</code>, and <code>::</code> should be treated as any other binary operator.</p>
+<p>Once you have implemented this functionality and recompiled, you should get the following behavior at the <code>./nanoml.top</code> prompt:</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># Main<span class="kw">.</span>string_to_expr <span class="st">&quot;1::3::5::[]&quot;</span>;;
+- : Nano<span class="kw">.</span>expr =
+	Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">1</span>, Nano<span class="kw">.</span><span class="dt">Cons</span>,
+	 Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">3</span>, Nano<span class="kw">.</span><span class="dt">Cons</span>,
+	  Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">5</span>, Nano<span class="kw">.</span><span class="dt">Cons</span>, Nano<span class="kw">.</span><span class="dt">NilExpr</span>)))
+	
+# Main<span class="kw">.</span>string_to_expr <span class="st">&quot;[1;3;5]&quot;</span>;;
+- : Nano<span class="kw">.</span>expr =
+	Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">1</span>, Nano<span class="kw">.</span><span class="dt">Cons</span>,
+	 Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">3</span>, Nano<span class="kw">.</span><span class="dt">Cons</span>,
+	  Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">5</span>, Nano<span class="kw">.</span><span class="dt">Cons</span>, Nano<span class="kw">.</span><span class="dt">NilExpr</span>)))
+	
+# Main<span class="kw">.</span>string_to_expr <span class="st">&quot;1::3::5::[] = [1;3;5]&quot;</span>;;
+- : Nano<span class="kw">.</span>expr =
+	Nano<span class="kw">.</span><span class="dt">Bin</span>
+	 (Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">1</span>, Nano<span class="kw">.</span><span class="dt">Cons</span>,
+	   Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">3</span>, Nano<span class="kw">.</span><span class="dt">Cons</span>,
+	    Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">5</span>, Nano<span class="kw">.</span><span class="dt">Cons</span>, Nano<span class="kw">.</span><span class="dt">NilExpr</span>))),
+	 Nano<span class="kw">.</span><span class="dt">Eq</span>,
+	 Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">1</span>, Nano<span class="kw">.</span><span class="dt">Cons</span>,
+	  Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">3</span>, Nano<span class="kw">.</span><span class="dt">Cons</span>,
+	   Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">5</span>, Nano<span class="kw">.</span><span class="dt">Cons</span>, Nano<span class="kw">.</span><span class="dt">NilExpr</span>))))</code></pre></div>
+<h2 id="problem-3-nanoml-executable">Problem 3: NanoML Executable</h2>
+<p>Once you have completed the first two parts, you should end up with an executable <code>nanoml.byte</code>. You should be able to test it as follows from the unix shell prompt:</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml">$ ./nanoml.byte tests/t1.ml
+...
+out: <span class="dv">45</span>
+	
+$./nanoml.byte tests/t2.ml
+...
+out: <span class="dv">0</span>
+	
+$ ./nanoml.byte tests/t3.ml
+...
+out: <span class="dv">2</span></code></pre></div>
+<p>and so forth, for all the files in tests. To get the expected (i.e. “correct”) value for the other tests, run them with Ocaml:</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># #use <span class="st">&quot;tests/t1.ml&quot;</span>;;
+- : <span class="dt">int</span> = <span class="dv">45</span></code></pre></div>
+<p>and so forth. “tests/t14.ml” requires that you have completed both extra credit parts.</p>
+<p><strong>We strongly encourage you to make sure that your <code>nanoml.byte</code> produces exactly the same answer as the “real” Ocaml for each of the files in <code>tests/</code></strong></p>
+                <hr>
+            </div>
+        </div>
+    </div>
+</article>
+
+        </div>
+        <div id="footer">
+        </div>
+      <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    <li>
+                        <a href="https://ucsd-cse130.github.io/web/feed.xml" data-datatype="json" data-type="GET" data-target="#frame" class="reload" id="clickme">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://twitter.com/ranjitjhala" data-datatype="json" data-type="GET" data-target="#frame" class="reload" id="clickme" target="_blank">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a href="https://plus.google.com/u/0/106612421534244742464" data-datatype="json" data-type="GET" data-target="#frame" class="reload" id="clickme" target="_blank">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a href="https://github.com/ucsd-progsys/130-web" target="_blank">
+                            <span class="fa-stack fa-lg">
+
+                              <i class="fa fa-arrow-circle-o-down"></i>
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+		    
+                </ul>
+                <p class="copyright text-muted">
+                
+                  Generated by <a href="http://jaspervdj.be/hakyll">Hakyll</a>,
+                  template by <a href="http://lucumr.pocoo.org">Armin Ronacher</a>,
+                  suggest improvements <a href="https://github.com/ucsd-progsys/liquidhaskell-blog/">here</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<!-- jQuery -->
+<script src="https://ucsd-cse130.github.io/web/static/js/jquery.min.js"></script>
+<script src="https://ucsd-cse130.github.io/web/static/js/spaceg.stylesheets.min.js"></script>
+<script src="https://ucsd-cse130.github.io/web/static/js/bootstrap.min.js"></script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+<script src="https://ucsd-cse130.github.io/web/static/js/anim.js"></script>
+<script src="https://ucsd-cse130.github.io/web/static/js/scripts.js"></script>
+
+    </body>
+</html>
