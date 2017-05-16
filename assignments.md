@@ -18,7 +18,7 @@ mins over the deadline is equal to 1 late day.
 
 - [HW #3](assignments/03-fold.html), due Wed 5/10  by 23:59pm
 
-- [HW #4](homeworks/04-nanoml.html), due Mon 5/29 by 23:59pm
+- [HW #4](assignments/04-nanoml.html), due Mon 5/29 by 23:59pm
 
 <!--
 - [HW #5](homeworks/hw5.html), due Fri 5/20 by 23:59pm
