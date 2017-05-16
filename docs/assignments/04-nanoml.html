@@ -257,22 +257,22 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p>The second last line of the log file will contain your overall score, and the other lines will give you a readout for each test. You are encouraged to try to understand the code in <code>test.ml</code>, and subsequently devise your own tests and add them to <code>test.ml</code>, but you will not be graded on this.</p>
 <h2 id="submission-instructions">Submission Instructions</h2>
 <p>Go into the UNIX shell and type:</p>
-<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml">&gt; make turnin </code></pre></div>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml">&gt; make turnin</code></pre></div>
 <p>This will run <code>turnin</code> which will provide you with a confirmation of the submission process.</p>
 <h2 id="data-structures-and-overview">Data Structures and Overview</h2>
 <p>In this assignment, you will build an interpreter for a subset of ML. The following data types (in <code>nano.ml</code>) are used to represent the different elements of the language.</p>
 <h3 id="binary-operators">Binary Operators</h3>
 <p>NanoML uses the following <strong>binary</strong> operators encoded within the interpreter as Ocaml values of type <code>binop</code>.</p>
-<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">type</span> binop = 
-  <span class="dt">Plus</span> 
-| <span class="dt">Minus</span> 
-| <span class="dt">Mul</span> 
-| <span class="dt">Div</span> 
-| <span class="dt">Eq</span> 
-| <span class="dt">Ne</span> 
-| <span class="dt">Lt</span> 
-| <span class="dt">Le</span> 
-| <span class="dt">And</span> 
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">type</span> binop =
+  <span class="dt">Plus</span>
+| <span class="dt">Minus</span>
+| <span class="dt">Mul</span>
+| <span class="dt">Div</span>
+| <span class="dt">Eq</span>
+| <span class="dt">Ne</span>
+| <span class="dt">Lt</span>
+| <span class="dt">Le</span>
+| <span class="dt">And</span>
 | <span class="dt">Or</span>          
 | <span class="dt">Cons</span></code></pre></div>
 <h3 id="expressions">Expressions</h3>
@@ -319,11 +319,11 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">type</span> value =  
   <span class="dt">Int</span> <span class="kw">of</span> <span class="dt">int</span>                 
 | <span class="dt">Bool</span> <span class="kw">of</span> <span class="dt">bool</span>                
-| <span class="dt">Closure</span> <span class="kw">of</span> env * <span class="dt">string</span> <span class="dt">option</span> * <span class="dt">string</span> * expr 
+| <span class="dt">Closure</span> <span class="kw">of</span> env * <span class="dt">string</span> <span class="dt">option</span> * <span class="dt">string</span> * expr
 | <span class="dt">Nil</span>                           
 | <span class="dt">Pair</span> <span class="kw">of</span> value * value          
 
-<span class="kw">and</span> env = (<span class="dt">string</span> * value) <span class="dt">list</span> </code></pre></div>
+<span class="kw">and</span> env = (<span class="dt">string</span> * value) <span class="dt">list</span></code></pre></div>
 <p>Intuitively, the NanoML integer value <code>4</code> and boolean value <code>true</code> are represented by the Ocaml values <code>Int 4</code> and <code>Bool true</code>. The more interesting case is for closures that correspond to function values (<a href="../static/lec7-closure-2x2.pdf">Lecture 7</a></p>
 <ul>
 <li><p><code>Closure (env, Some &quot;f&quot;, &quot;x&quot;, e)</code> represents a function <em>named</em> <code>&quot;f&quot;</code> (for recursive functions) with argument <code>&quot;x&quot;</code> and body-expression <code>e</code> that was defined in an environment <code>env</code>.</p></li>
@@ -335,14 +335,14 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p>In this problem, you will implement an interpreter for NanoML.</p>
 <h3 id="a-25-points">(a) 25 points</h3>
 <p>First consider the (restricted subsets of) types described below:</p>
-<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">type</span> binop = <span class="dt">Plus</span> | <span class="dt">Minus</span> | <span class="dt">Mul</span> | <span class="dt">Div</span> 
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">type</span> binop = <span class="dt">Plus</span> | <span class="dt">Minus</span> | <span class="dt">Mul</span> | <span class="dt">Div</span>
 
 <span class="kw">type</span> expr  = <span class="dt">Const</span> <span class="kw">of</span> <span class="dt">int</span> 		
            | <span class="dt">Var</span> <span class="kw">of</span> <span class="dt">string</span>                
            | <span class="dt">Bin</span> <span class="kw">of</span> expr * binop * expr    
 
 <span class="kw">type</span> value = <span class="dt">Int</span> <span class="kw">of</span> <span class="dt">int</span>		
-    
+
 <span class="kw">type</span> env   = (<span class="dt">string</span> * value) <span class="dt">list</span></code></pre></div>
 <p>Here, <code>binop</code>, and <code>expr</code> are used to represent simple NanoML expressions.</p>
 <ul>
@@ -350,21 +350,21 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <li><p>A <em>value</em> is an integer, and an <em>environment</em> is a list of pairs of variable names and values.</p></li>
 </ul>
 <p>Use <code>listAssoc</code> to write an Ocaml function</p>
-<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">val</span> lookup: 'a * ('a * 'b) <span class="dt">list</span> -&gt; 'b </code></pre></div>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">val</span> lookup: 'a * ('a * 'b) <span class="dt">list</span> -&gt; 'b</code></pre></div>
 <p>that finds the most recent binding for a variable (i.e. the first from the left) in the list representing the environment. If no such value is found, you should raise an exception:</p>
 <div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml">raise (<span class="dt">MLFailure</span> <span class="st">&quot;not found&quot;</span>)</code></pre></div>
 <p>Next, use <code>lookup</code> to write an Ocaml function</p>
-<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">val</span> eval : env * expr -&gt; value </code></pre></div>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">val</span> eval : env * expr -&gt; value</code></pre></div>
 <p>that when called with the pair <code>(evn, e)</code> evaluates the NanoML expression <code>e</code> in the environment <code>evn</code> (i.e. uses <code>evn</code> for the values of the <strong>free variables</strong> in <code>e</code>) and raises an exception <code>MLFailure (&quot;variable not bound: x&quot;)</code> if the expression contains a free variable <code>&quot;x&quot;</code> that is not bound in <code>evn</code>.</p>
 <p>Once you have implemented this functionality and recompiled, you should get the following behavior:</p>
 <div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># <span class="kw">let</span> evn = [(<span class="st">&quot;z1&quot;</span>,<span class="dt">Int</span> <span class="dv">0</span>);(<span class="st">&quot;x&quot;</span>,<span class="dt">Int</span> <span class="dv">1</span>);(<span class="st">&quot;y&quot;</span>,<span class="dt">Int</span> <span class="dv">2</span>);(<span class="st">&quot;z&quot;</span>,<span class="dt">Int</span> <span class="dv">3</span>);(<span class="st">&quot;z1&quot;</span>,<span class="dt">Int</span> <span class="dv">4</span>)];;
 <span class="kw">val</span> evn : (<span class="dt">string</span> * Nano<span class="kw">.</span>value) <span class="dt">list</span> =
   [(<span class="st">&quot;z1&quot;</span>, <span class="dt">Int</span> <span class="dv">0</span>); (<span class="st">&quot;x&quot;</span>, <span class="dt">Int</span> <span class="dv">1</span>); (<span class="st">&quot;y&quot;</span>, <span class="dt">Int</span> <span class="dv">2</span>); (<span class="st">&quot;z&quot;</span>, <span class="dt">Int</span> <span class="dv">3</span>); (<span class="st">&quot;z1&quot;</span>, <span class="dt">Int</span> <span class="dv">4</span>)]
- 
+
 # <span class="kw">let</span> e1 = <span class="dt">Bin</span>(<span class="dt">Bin</span>(<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>,<span class="dt">Plus</span>,<span class="dt">Var</span> <span class="st">&quot;y&quot;</span>), <span class="dt">Minus</span>, <span class="dt">Bin</span>(<span class="dt">Var</span> <span class="st">&quot;z&quot;</span>,<span class="dt">Plus</span>,<span class="dt">Var</span> <span class="st">&quot;z1&quot;</span>));;
 <span class="kw">val</span> e1 : Nano<span class="kw">.</span>expr =
   <span class="dt">Bin</span> (<span class="dt">Bin</span> (<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>, <span class="dt">Plus</span>, <span class="dt">Var</span> <span class="st">&quot;y&quot;</span>), <span class="dt">Minus</span>, <span class="dt">Bin</span> (<span class="dt">Var</span> <span class="st">&quot;z&quot;</span>, <span class="dt">Plus</span>, <span class="dt">Var</span> <span class="st">&quot;z1&quot;</span>))
-  
+
 # eval (evn, e1);;
 - : Nano<span class="kw">.</span>value = <span class="dt">Int</span> <span class="dv">0</span>
 
@@ -373,7 +373,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <h3 id="b-20-points">(b) 20 points</h3>
 <p>Next, add support for the binary operators</p>
 <div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">type</span> binop = <span class="dt">Plus</span> | <span class="dt">Minus</span> | <span class="dt">Mul</span> | <span class="dt">Div</span>
-           | <span class="dt">Eq</span> | <span class="dt">Ne</span> | <span class="dt">Lt</span> | <span class="dt">Le</span> | <span class="dt">And</span> | <span class="dt">Or</span> </code></pre></div>
+           | <span class="dt">Eq</span> | <span class="dt">Ne</span> | <span class="dt">Lt</span> | <span class="dt">Le</span> | <span class="dt">And</span> | <span class="dt">Or</span></code></pre></div>
 <p>This will require using the new value type <code>Bool</code></p>
 <div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">type</span> value = <span class="dt">Int</span> <span class="kw">of</span> <span class="dt">int</span>		
            | <span class="dt">Bool</span> <span class="kw">of</span> <span class="dt">bool</span></code></pre></div>
@@ -385,14 +385,14 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># <span class="kw">let</span> evn =[(<span class="st">&quot;z1&quot;</span>,<span class="dt">Int</span> <span class="dv">0</span>);(<span class="st">&quot;x&quot;</span>,<span class="dt">Int</span> <span class="dv">1</span>);(<span class="st">&quot;y&quot;</span>,<span class="dt">Int</span> <span class="dv">2</span>);(<span class="st">&quot;z&quot;</span>,<span class="dt">Int</span> <span class="dv">3</span>);(<span class="st">&quot;z1&quot;</span>,<span class="dt">Int</span> <span class="dv">4</span>)];;
 <span class="kw">val</span> evn : (<span class="dt">string</span> * Nano<span class="kw">.</span>value) <span class="dt">list</span> =
   [(<span class="st">&quot;z1&quot;</span>, <span class="dt">Int</span> <span class="dv">0</span>); (<span class="st">&quot;x&quot;</span>, <span class="dt">Int</span> <span class="dv">1</span>); (<span class="st">&quot;y&quot;</span>, <span class="dt">Int</span> <span class="dv">2</span>); (<span class="st">&quot;z&quot;</span>, <span class="dt">Int</span> <span class="dv">3</span>); (<span class="st">&quot;z1&quot;</span>, <span class="dt">Int</span> <span class="dv">4</span>)]
- 
+
 # <span class="kw">let</span> e1 =<span class="dt">If</span>(<span class="dt">Bin</span>(<span class="dt">Var</span> <span class="st">&quot;z1&quot;</span>,<span class="dt">Lt</span>,<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>),<span class="dt">Bin</span>(<span class="dt">Var</span> <span class="st">&quot;y&quot;</span>,<span class="dt">Ne</span>,<span class="dt">Var</span> <span class="st">&quot;z&quot;</span>),<span class="dt">False</span>);;
 <span class="kw">val</span> e1 : Nano<span class="kw">.</span>expr =
   <span class="dt">If</span> (<span class="dt">Bin</span> (<span class="dt">Var</span> <span class="st">&quot;z1&quot;</span>, <span class="dt">Lt</span>, <span class="dt">Var</span> <span class="st">&quot;x&quot;</span>), <span class="dt">Bin</span> (<span class="dt">Var</span> <span class="st">&quot;y&quot;</span>, <span class="dt">Ne</span>, <span class="dt">Var</span> <span class="st">&quot;z&quot;</span>), <span class="dt">False</span>)
-  
+
 # eval (evn,e1);;
 - : Nano<span class="kw">.</span>value = <span class="dt">Bool</span> <span class="kw">true</span>
- 
+
 # <span class="kw">let</span> e2 =<span class="dt">If</span>(<span class="dt">Bin</span>(<span class="dt">Var</span> <span class="st">&quot;z1&quot;</span>,<span class="dt">Eq</span>,<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>),<span class="dt">Bin</span>(<span class="dt">Var</span> <span class="st">&quot;y&quot;</span>,<span class="dt">Le</span>,<span class="dt">Var</span> <span class="st">&quot;z&quot;</span>),<span class="dt">Bin</span>(<span class="dt">Var</span> <span class="st">&quot;z&quot;</span>,<span class="dt">Le</span>,<span class="dt">Var</span> <span class="st">&quot;y&quot;</span>));;
 <span class="kw">val</span> e2 : Nano<span class="kw">.</span>expr =
   <span class="dt">If</span> (<span class="dt">Bin</span> (<span class="dt">Var</span> <span class="st">&quot;z1&quot;</span>, <span class="dt">Eq</span>, <span class="dt">Var</span> <span class="st">&quot;x&quot;</span>), <span class="dt">Bin</span> (<span class="dt">Var</span> <span class="st">&quot;y&quot;</span>, <span class="dt">Le</span>, <span class="dt">Var</span> <span class="st">&quot;z&quot;</span>),
@@ -409,14 +409,14 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p>Once you have implemented this functionality and recompiled, you should get the following behavior:</p>
 <div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># <span class="kw">let</span> e1 = <span class="dt">Bin</span>(<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>,<span class="dt">Plus</span>,<span class="dt">Var</span> <span class="st">&quot;y&quot;</span>);;
 <span class="kw">val</span> e1 : Nano<span class="kw">.</span>expr = <span class="dt">Bin</span> (<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>, <span class="dt">Plus</span>, <span class="dt">Var</span> <span class="st">&quot;y&quot;</span>)
- 
+
 # <span class="kw">let</span> e2 = <span class="dt">Let</span>(<span class="st">&quot;x&quot;</span>,<span class="dt">Const</span> <span class="dv">1</span>,<span class="dt">Let</span>(<span class="st">&quot;y&quot;</span>,<span class="dt">Const</span> <span class="dv">2</span>,e1));;
 <span class="kw">val</span> e2 : Nano<span class="kw">.</span>expr =
   <span class="dt">Let</span> (<span class="st">&quot;x&quot;</span>, <span class="dt">Const</span> <span class="dv">1</span>, <span class="dt">Let</span> (<span class="st">&quot;y&quot;</span>, <span class="dt">Const</span> <span class="dv">2</span>, <span class="dt">Bin</span> (<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>, <span class="dt">Plus</span>, <span class="dt">Var</span> <span class="st">&quot;y&quot;</span>)))
-  
+
 # eval ([],e2);;
 - : Nano<span class="kw">.</span>value = <span class="dt">Int</span> <span class="dv">3</span>
- 
+
 # <span class="kw">let</span> e3 = <span class="dt">Let</span>(<span class="st">&quot;x&quot;</span>,<span class="dt">Const</span> <span class="dv">1</span>,<span class="dt">Let</span>(<span class="st">&quot;y&quot;</span>,<span class="dt">Const</span> <span class="dv">2</span>,<span class="dt">Let</span>(<span class="st">&quot;z&quot;</span>,e1,<span class="dt">Let</span>(<span class="st">&quot;x&quot;</span>,<span class="dt">Bin</span>(<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>,<span class="dt">Plus</span>,<span class="dt">Var</span> <span class="st">&quot;z&quot;</span>),e1))));;
 <span class="kw">val</span> e3 : Nano<span class="kw">.</span>expr =
 	  <span class="dt">Let</span> (<span class="st">&quot;x&quot;</span>, <span class="dt">Const</span> <span class="dv">1</span>,
@@ -429,7 +429,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <h3 id="d-25-points">(d) 25 points</h3>
 <p>Next, extend the evaluator so it includes the expressions corresponding to function definitions and applications.</p>
 <div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">type</span> expr = ...
-		| <span class="dt">App</span> <span class="kw">of</span> expr * expr 
+		| <span class="dt">App</span> <span class="kw">of</span> expr * expr
 		| <span class="dt">Fun</span> <span class="kw">of</span> <span class="dt">string</span> * expr</code></pre></div>
 <p>Naturally, to handle functions, you will need to extend the set of values yielded by your evaluator to include closures.</p>
 <div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">type</span> value = ...
@@ -443,26 +443,26 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p>Extend your implementation of <code>eval</code> by adding the appropriate cases for the new type constructors. Once you have implemented this functionality and recompiled, you should get the following behavior:</p>
 <div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># eval ([],<span class="dt">Fun</span> (<span class="st">&quot;x&quot;</span>,<span class="dt">Bin</span>(<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>,<span class="dt">Plus</span>,<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>)));;
 - : Nano<span class="kw">.</span>value = <span class="dt">Closure</span> ([], <span class="dt">None</span>, <span class="st">&quot;x&quot;</span>, <span class="dt">Bin</span> (<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>, <span class="dt">Plus</span>, <span class="dt">Var</span> <span class="st">&quot;x&quot;</span>))
- 
+
 # eval ([],<span class="dt">App</span>(<span class="dt">Fun</span> (<span class="st">&quot;x&quot;</span>,<span class="dt">Bin</span>(<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>,<span class="dt">Plus</span>,<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>)),<span class="dt">Const</span> <span class="dv">3</span>));;
 - : Nano<span class="kw">.</span>value = <span class="dt">Int</span> <span class="dv">6</span>
-  
+
 # <span class="kw">let</span> e3=<span class="dt">Let</span>(<span class="st">&quot;h&quot;</span>,<span class="dt">Fun</span>(<span class="st">&quot;y&quot;</span>,<span class="dt">Bin</span>(<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>, <span class="dt">Plus</span>, <span class="dt">Var</span> <span class="st">&quot;y&quot;</span>)),<span class="dt">App</span>(<span class="dt">Var</span> <span class="st">&quot;f&quot;</span>,<span class="dt">Var</span> <span class="st">&quot;h&quot;</span>));;
 <span class="kw">val</span> e3 : Nano<span class="kw">.</span>expr =
   <span class="dt">Let</span> (<span class="st">&quot;h&quot;</span>, <span class="dt">Fun</span> (<span class="st">&quot;y&quot;</span>, <span class="dt">Bin</span> (<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>, <span class="dt">Plus</span>, <span class="dt">Var</span> <span class="st">&quot;y&quot;</span>)), <span class="dt">App</span> (<span class="dt">Var</span> <span class="st">&quot;f&quot;</span>, <span class="dt">Var</span> <span class="st">&quot;h&quot;</span>))
- 
+
 # <span class="kw">let</span> e2 = <span class="dt">Let</span>(<span class="st">&quot;x&quot;</span>,<span class="dt">Const</span> <span class="dv">100</span>,e3);;
 <span class="kw">val</span> e2 : Nano<span class="kw">.</span>expr =
   <span class="dt">Let</span> (<span class="st">&quot;x&quot;</span>, <span class="dt">Const</span> <span class="dv">100</span>,
    <span class="dt">Let</span> (<span class="st">&quot;h&quot;</span>, <span class="dt">Fun</span> (<span class="st">&quot;y&quot;</span>, <span class="dt">Bin</span> (<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>, <span class="dt">Plus</span>, <span class="dt">Var</span> <span class="st">&quot;y&quot;</span>)), <span class="dt">App</span> (<span class="dt">Var</span> <span class="st">&quot;f&quot;</span>, <span class="dt">Var</span> <span class="st">&quot;h&quot;</span>)))
- 
+
 # <span class="kw">let</span> e1 = <span class="dt">Let</span>(<span class="st">&quot;f&quot;</span>,<span class="dt">Fun</span>(<span class="st">&quot;g&quot;</span>,<span class="dt">Let</span>(<span class="st">&quot;x&quot;</span>,<span class="dt">Const</span> <span class="dv">0</span>,<span class="dt">App</span>(<span class="dt">Var</span> <span class="st">&quot;g&quot;</span>,<span class="dt">Const</span> <span class="dv">2</span>))),e2);;
 <span class="kw">val</span> e1 : Nano<span class="kw">.</span>expr =
   <span class="dt">Let</span> (<span class="st">&quot;f&quot;</span>, <span class="dt">Fun</span> (<span class="st">&quot;g&quot;</span>, <span class="dt">Let</span> (<span class="st">&quot;x&quot;</span>, <span class="dt">Const</span> <span class="dv">0</span>, <span class="dt">App</span> (<span class="dt">Var</span> <span class="st">&quot;g&quot;</span>, <span class="dt">Const</span> <span class="dv">2</span>))),
    <span class="dt">Let</span> (<span class="st">&quot;x&quot;</span>, <span class="dt">Const</span> <span class="dv">100</span>,
     <span class="dt">Let</span> (<span class="st">&quot;h&quot;</span>, <span class="dt">Fun</span> (<span class="st">&quot;y&quot;</span>, <span class="dt">Bin</span> (<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>, <span class="dt">Plus</span>, <span class="dt">Var</span> <span class="st">&quot;y&quot;</span>)),
      <span class="dt">App</span> (<span class="dt">Var</span> <span class="st">&quot;f&quot;</span>, <span class="dt">Var</span> <span class="st">&quot;h&quot;</span>))))
- 
+
 # eval ([],e1);;
 - : Nano<span class="kw">.</span>value = <span class="dt">Int</span> <span class="dv">102</span>
 
@@ -476,10 +476,10 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p>Extend your program to support operations on lists.</p>
 <div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">type</span> binop = ...
            | <span class="dt">Cons</span>
-	
+
 <span class="kw">type</span> expr = ...
           | <span class="dt">NilExpr</span>
-	
+
 <span class="kw">type</span> value = ...
            | <span class="dt">Nil</span>
            | <span class="dt">Pair</span> <span class="kw">of</span> value * value</code></pre></div>
@@ -505,13 +505,13 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 ...</code></pre></div>
 <p>You should now hopefully have in your directory a file called <code>nanoml.top</code>, which is an Ocaml shell that is pre-loaded with the modules corresponding to your NanoML implementation.</p>
 <div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml">$ ./nanoml.top
-<span class="dt">NanoML</span> 
- 
-$ ./nanoml.top 
+<span class="dt">NanoML</span>
+
+$ ./nanoml.top
         <span class="dt">Objective</span> <span class="dt">Caml</span> version ...
 
 # NanoLex<span class="kw">.</span>token (Lexing<span class="kw">.</span>from_string <span class="st">&quot;true&quot;</span>);;
-- : NanoParse<span class="kw">.</span>token = NanoParse<span class="kw">.</span><span class="dt">TRUE</span> 
+- : NanoParse<span class="kw">.</span>token = NanoParse<span class="kw">.</span><span class="dt">TRUE</span>
 
 # Main<span class="kw">.</span>token_list_of_string <span class="st">&quot;true false 12345 foo bar baz&quot;</span>;;
 - : NanoParse<span class="kw">.</span>token <span class="dt">list</span> = [NanoParse<span class="kw">.</span><span class="dt">TRUE</span>; NanoParse<span class="kw">.</span><span class="dt">FALSE</span>; NanoParse<span class="kw">.</span><span class="dt">Num</span> <span class="dv">12345</span>; NanoParse<span class="kw">.</span><span class="dt">Id</span> <span class="st">&quot;foo&quot;</span>; NanoParse<span class="kw">.</span><span class="dt">Id</span> <span class="st">&quot;bar&quot;</span>; NanoParse<span class="kw">.</span><span class="dt">Id</span> <span class="st">&quot;baz&quot;</span>]</code></pre></div>
@@ -522,13 +522,13 @@ $ ./nanoml.top
 <span class="co">(* hopefully this succeeds without errors. *)</span>
 
 $ ./nanoml.top
-<span class="dt">NanoML</span> 
- 
-$ ./nanoml.top 
+<span class="dt">NanoML</span>
+
+$ ./nanoml.top
         <span class="dt">Objective</span> <span class="dt">Caml</span> version ...
 
 # NanoParse<span class="kw">.</span>exp NanoLex<span class="kw">.</span>token (Lexing<span class="kw">.</span>from_string <span class="st">&quot;true&quot;</span>);;
-- : Nano<span class="kw">.</span>expr = Nano<span class="kw">.</span><span class="dt">True</span> 
+- : Nano<span class="kw">.</span>expr = Nano<span class="kw">.</span><span class="dt">True</span>
 
 # NanoParse<span class="kw">.</span>exp NanoLex<span class="kw">.</span>token (Lexing<span class="kw">.</span>from_string <span class="st">&quot;false&quot;</span>);;
 - : Nano<span class="kw">.</span>expr = Nano<span class="kw">.</span><span class="dt">False</span>
@@ -607,17 +607,51 @@ That is,</p>
 - : Nano<span class="kw">.</span>expr =	Nano<span class="kw">.</span><span class="dt">Letrec</span> (<span class="st">&quot;foo&quot;</span>, Nano<span class="kw">.</span><span class="dt">Fun</span> (<span class="st">&quot;x&quot;</span>, Nano<span class="kw">.</span><span class="dt">If</span> (Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;y&quot;</span>, Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;z&quot;</span>, Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;w&quot;</span>)), Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;foo&quot;</span>)</code></pre></div>
 <h3 id="c-15-points">(c) 15 points</h3>
 <p>Add the following tokens to the lexer and parser.</p>
-<table border="1">
-<pre><code>&lt;tr&gt;&lt;th&gt;String&lt;/th&gt;&lt;th&gt;Token&lt;/th&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;tt&gt;+&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;&lt;tt&gt;PLUS&lt;/tt&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;tt&gt;-&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;&lt;tt&gt;MINUS&lt;/tt&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;tt&gt;*&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;&lt;tt&gt;MUL&lt;/tt&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;tt&gt;/&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;&lt;tt&gt;DIV&lt;/tt&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;tt&gt;&amp;lt;&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;&lt;tt&gt;LT&lt;/tt&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;tt&gt;&amp;lt;=&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;&lt;tt&gt;LE&lt;/tt&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;tt&gt;!=&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;&lt;tt&gt;NE&lt;/tt&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;tt&gt;&amp;amp;&amp;amp;&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;&lt;tt&gt;AND&lt;/tt&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;tt&gt;||&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;&lt;tt&gt;OR&lt;/tt&gt;&lt;/td&gt;&lt;/tr&gt;</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left"><strong>String</strong></th>
+<th align="left"><strong>Token</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>+</code></td>
+<td align="left"><code>PLUS</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>-</code></td>
+<td align="left"><code>MINUS</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>*</code></td>
+<td align="left"><code>MUL</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>/</code></td>
+<td align="left"><code>DIV</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>&lt;</code></td>
+<td align="left"><code>LT</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>&lt;=</code></td>
+<td align="left"><code>LE</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>!=</code></td>
+<td align="left"><code>NE</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>&amp;&amp;</code></td>
+<td align="left"><code>AND</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>||</code></td>
+<td align="left"><code>OR</code></td>
+</tr>
+</tbody>
 </table>
 <p>Add all of these as binary operators to your parser.<br />
 Each should result in a <code>Nano.Bin</code> expression with the corresponding <code>Nano.binop</code>. The arguments to these binary operators may be <em>any</em> expressions.<br />
@@ -625,35 +659,48 @@ Each should result in a <code>Nano.Bin</code> expression with the corresponding 
 <p>Once you have implemented this functionality and recompiled, you should get the following behavior at the <code>./nanoml.top</code> prompt:</p>
 <div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># Main<span class="kw">.</span>token_list_of_string <span class="st">&quot;+ - /*|| &lt; &lt;= = &amp;&amp; !=&quot;</span>;;
 - : NanoParse<span class="kw">.</span>token <span class="dt">list</span> =
-[NanoParse<span class="kw">.</span><span class="dt">PLUS</span>; NanoParse<span class="kw">.</span><span class="dt">MINUS</span>; NanoParse<span class="kw">.</span><span class="dt">DIV</span>; 
- NanoParse<span class="kw">.</span><span class="dt">MUL</span>; NanoParse<span class="kw">.</span><span class="dt">OR</span>; NanoParse<span class="kw">.</span><span class="dt">LT</span>; 
+[NanoParse<span class="kw">.</span><span class="dt">PLUS</span>; NanoParse<span class="kw">.</span><span class="dt">MINUS</span>; NanoParse<span class="kw">.</span><span class="dt">DIV</span>;
+ NanoParse<span class="kw">.</span><span class="dt">MUL</span>; NanoParse<span class="kw">.</span><span class="dt">OR</span>; NanoParse<span class="kw">.</span><span class="dt">LT</span>;
  NanoParse<span class="kw">.</span><span class="dt">LE</span>; NanoParse<span class="kw">.</span><span class="dt">EQ</span>; NanoParse<span class="kw">.</span><span class="dt">AND</span>; NanoParse<span class="kw">.</span><span class="dt">NE</span>]
-	
+
 # Main<span class="kw">.</span>string_to_expr <span class="st">&quot;x + y&quot;</span>;;
 - : Nano<span class="kw">.</span>expr = Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;x&quot;</span>, Nano<span class="kw">.</span><span class="dt">Plus</span>, Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;y&quot;</span>)
 
 # Main<span class="kw">.</span>string_to_expr <span class="st">&quot;if x &lt;= 4 then a || b else a &amp;&amp; b&quot;</span>;;
 - : Nano<span class="kw">.</span>expr =
-	Nano<span class="kw">.</span><span class="dt">If</span> (Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;x&quot;</span>, Nano<span class="kw">.</span><span class="dt">Le</span>, Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">4</span>), 
-	 Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;a&quot;</span>, Nano<span class="kw">.</span><span class="dt">Or</span>, Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;b&quot;</span>), 
+	Nano<span class="kw">.</span><span class="dt">If</span> (Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;x&quot;</span>, Nano<span class="kw">.</span><span class="dt">Le</span>, Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">4</span>),
+	 Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;a&quot;</span>, Nano<span class="kw">.</span><span class="dt">Or</span>, Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;b&quot;</span>),
 	 Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;a&quot;</span>, Nano<span class="kw">.</span><span class="dt">And</span>, Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;b&quot;</span>))
-	
+
 # Main<span class="kw">.</span>string_to_expr <span class="st">&quot;if 4 &lt;= z then 1-z else 4*z&quot;</span>;;
 - : Nano<span class="kw">.</span>expr =
-	Nano<span class="kw">.</span><span class="dt">If</span> (Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">4</span>, Nano<span class="kw">.</span><span class="dt">Le</span>, Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;z&quot;</span>), 
+	Nano<span class="kw">.</span><span class="dt">If</span> (Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">4</span>, Nano<span class="kw">.</span><span class="dt">Le</span>, Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;z&quot;</span>),
 	 Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">1</span>, Nano<span class="kw">.</span><span class="dt">Minus</span>, Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;z&quot;</span>),
 	 Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">4</span>, Nano<span class="kw">.</span><span class="dt">Mul</span>, Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;z&quot;</span>))
-	
+
 # Main<span class="kw">.</span>string_to_expr <span class="st">&quot;let a = 6 / 2 in a!=11&quot;</span>;;
 - : Nano<span class="kw">.</span>expr =
 	Nano<span class="kw">.</span><span class="dt">Let</span> (<span class="st">&quot;a&quot;</span>, Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">6</span>, Nano<span class="kw">.</span><span class="dt">Div</span>, Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">2</span>),
 	Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;a&quot;</span>, Nano<span class="kw">.</span><span class="dt">Ne</span>, Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">11</span>))</code></pre></div>
 <h3 id="d-10-points">(d) 10 points</h3>
 <p>Add the following tokens to the lexer and parser.</p>
-<table border="1">
-<pre><code>&lt;tr&gt;&lt;th&gt;String&lt;/th&gt;&lt;th&gt;Token&lt;/th&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;tt&gt;(&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;&lt;tt&gt;LPAREN&lt;/tt&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;tt&gt;)&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;&lt;tt&gt;RPAREN&lt;/tt&gt;&lt;/td&gt;&lt;/tr&gt;</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left"><strong>String</strong></th>
+<th align="left"><strong>Token</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>(</code></td>
+<td align="left"><code>LPAREN</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>)</code></td>
+<td align="left"><code>RPAREN</code></td>
+</tr>
+</tbody>
 </table>
 <p>Add rules to your parser to allow parenthesized expressions.<br />
 In addition, add a rule to your parser for function application.<br />
@@ -665,22 +712,22 @@ Recall that function application is simply <code>&quot;&lt;expr&gt; &lt;expr&gt;
 
 # Main<span class="kw">.</span>string_to_expr <span class="st">&quot;f x&quot;</span>;;
 - : Nano<span class="kw">.</span>expr = Nano<span class="kw">.</span><span class="dt">App</span> (Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;f&quot;</span>, Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;x&quot;</span>)
-	
+
 # Main<span class="kw">.</span>string_to_expr <span class="st">&quot;(fun x -&gt; x+x) (3*3)&quot;</span>;;
 - : Nano<span class="kw">.</span>expr =
     Nano<span class="kw">.</span><span class="dt">App</span> (Nano<span class="kw">.</span><span class="dt">Fun</span> (<span class="st">&quot;x&quot;</span>, Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;x&quot;</span>, Nano<span class="kw">.</span><span class="dt">Plus</span>, Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;x&quot;</span>)),
 	Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">3</span>, Nano<span class="kw">.</span><span class="dt">Mul</span>, Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">3</span>))
-	
+
 # Main<span class="kw">.</span>string_to_expr <span class="st">&quot;(((add3 (x)) y) z)&quot;</span>;;
 - : Nano<span class="kw">.</span>expr =
 	Nano<span class="kw">.</span><span class="dt">App</span> (Nano<span class="kw">.</span><span class="dt">App</span> (Nano<span class="kw">.</span><span class="dt">App</span> (Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;add3&quot;</span>, Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;x&quot;</span>), Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;y&quot;</span>),
 	 Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;z&quot;</span>)
-	
+
 # Main<span class="kw">.</span>filename_to_expr <span class="st">&quot;tests/t1.ml&quot;</span>;;
 - : Nano<span class="kw">.</span>expr =
-	Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">2</span>, Nano<span class="kw">.</span><span class="dt">Plus</span>, Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">3</span>), Nano<span class="kw">.</span><span class="dt">Mul</span>, 
+	Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">2</span>, Nano<span class="kw">.</span><span class="dt">Plus</span>, Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">3</span>), Nano<span class="kw">.</span><span class="dt">Mul</span>,
 	Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">4</span>, Nano<span class="kw">.</span><span class="dt">Plus</span>, Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">5</span>))
-	
+
 # Main<span class="kw">.</span>filename_to_expr <span class="st">&quot;tests/t2.ml&quot;</span>;;
 - : Nano<span class="kw">.</span>expr =
 	Nano<span class="kw">.</span><span class="dt">Let</span> (<span class="st">&quot;z1&quot;</span>, Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">4</span>,
@@ -692,29 +739,25 @@ Recall that function application is simply <code>&quot;&lt;expr&gt; &lt;expr&gt;
 	      Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;z&quot;</span>, Nano<span class="kw">.</span><span class="dt">Plus</span>, Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;z1&quot;</span>)))))))</code></pre></div>
 <h3 id="d-35-points">(d) 35 points</h3>
 <p>Restructure your parser to give binary operators the following precedence and associativity. This will likely require that you add additional rules to your parser, or see how to <a href="http://plus.kaist.ac.kr/~shoh/ocaml/ocamllex-ocamlyacc/ocamlyacc-tutorial/sec-ocamlyacc-declarations.html">add precedence and associativity to OcamlYacc</a>.</p>
-<table border="1">
-<pre><code>&lt;tr&gt;&lt;th&gt;Operators&lt;/th&gt;&lt;th&gt;Associativity&lt;/th&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td colspan=2&gt;&lt;center&gt;&lt;i&gt;High Precedence&lt;/i&gt;&lt;/center&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;function application&lt;/td&gt;&lt;td&gt;left&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;tt&gt;*&lt;/tt&gt;, &lt;tt&gt;/&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;left&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;tt&gt;+&lt;/tt&gt;, &lt;tt&gt;-&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;left&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;tt&gt;=&lt;/tt&gt;, &lt;tt&gt;!=&lt;/tt&gt;, &lt;tt&gt;&amp;lt;&lt;/tt&gt;, &lt;tt&gt;&amp;lt;=&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;left&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;tt&gt;&amp;amp;&amp;amp;&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;left&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;tt&gt;||&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;left&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;tt&gt;let&lt;/tt&gt;, &lt;tt&gt;fun&lt;/tt&gt;, &lt;tt&gt;if&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;N/A&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td colspan=2&gt;&lt;center&gt;&lt;i&gt;Low Precedence&lt;/i&gt;&lt;/center&gt;&lt;/td&gt;&lt;/tr&gt;</code></pre>
-</table>
-<p><strong>Left associative</strong> means that <code>&quot;1-2-3-4&quot;</code> should be parsed as if it were <code>&quot;((1-2)-3)-4&quot;</code>, and <code>&quot;f x y z&quot;</code> should be parsed as if it were <code>&quot;((f x) y) z&quot;</code>.</p>
-<p>Function application having higher precedence than multiplications, and multiplication higher than addition means that <code>&quot;1+f x*3&quot;</code> should be parsed as if it were <code>&quot;1+((f x)*3)&quot;</code>.</p>
+<ul>
+<li>(Highest) Fun Application</li>
+<li><code>*</code>, <code>/</code></li>
+<li><code>+</code>, <code>-</code></li>
+<li><code>=</code>, <code>!=</code>, <code>&lt;</code>, <code>&lt;=</code></li>
+<li><code>&amp;&amp;</code></li>
+<li>(Lowest) <code>||</code></li>
+</ul>
+<p><strong>Precedence</strong> Function application having higher precedence than multiplications, and multiplication higher than addition means that <code>&quot;1+f x*3&quot;</code> should be parsed as if it were <code>&quot;1+((f x)*3)&quot;</code>.</p>
+<p><strong>Associativity</strong> All binary operators are *left associative** meaning that <code>&quot;1-2-3-4&quot;</code> should be parsed as if it were <code>&quot;((1-2)-3)-4&quot;</code>, and <code>&quot;f x y z&quot;</code> should be parsed as if it were <code>&quot;((f x) y) z&quot;</code>.</p>
 <p>Once you have implemented this functionality and recompiled, you should get the following behavior at the <code>./nanoml.top</code> prompt:</p>
 <div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># Main<span class="kw">.</span>string_to_expr <span class="st">&quot;1-2-3-4&quot;</span>;;
 - : Nano<span class="kw">.</span>expr =
 	Nano<span class="kw">.</span><span class="dt">Bin</span>
-	 (Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">1</span>, Nano<span class="kw">.</span><span class="dt">Minus</span>, Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">2</span>), 
+	 (Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">1</span>, Nano<span class="kw">.</span><span class="dt">Minus</span>, Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">2</span>),
 	  Nano<span class="kw">.</span><span class="dt">Minus</span>,
 	   Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">3</span>),
 	 Nano<span class="kw">.</span><span class="dt">Minus</span>, Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">4</span>)
-	
+
 # Main<span class="kw">.</span>string_to_expr <span class="st">&quot;1+a&amp;&amp;b||c+d*e-f/g x&quot;</span>;;
 - : Nano<span class="kw">.</span>expr =
 	Nano<span class="kw">.</span><span class="dt">Bin</span>
@@ -726,7 +769,7 @@ Recall that function application is simply <code>&quot;&lt;expr&gt; &lt;expr&gt;
 	    Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;d&quot;</span>, Nano<span class="kw">.</span><span class="dt">Mul</span>, Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;e&quot;</span>)),
 	  Nano<span class="kw">.</span><span class="dt">Minus</span>,
 	  Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;f&quot;</span>, Nano<span class="kw">.</span><span class="dt">Div</span>, Nano<span class="kw">.</span><span class="dt">App</span> (Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;g&quot;</span>, Nano<span class="kw">.</span><span class="dt">Var</span> <span class="st">&quot;x&quot;</span>))))
-	
+
 # Main<span class="kw">.</span>filename_to_expr <span class="st">&quot;tests/t13.ml&quot;</span>;;
 - : Nano<span class="kw">.</span>expr =
 	Nano<span class="kw">.</span><span class="dt">Let</span> (<span class="st">&quot;f&quot;</span>,
@@ -748,7 +791,7 @@ Recall that function application is simply <code>&quot;&lt;expr&gt; &lt;expr&gt;
 &lt;tr&gt;&lt;td&gt;&lt;tt&gt;[&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;&lt;tt&gt;LBRAC&lt;/tt&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;&lt;tt&gt;]&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;&lt;tt&gt;RBRAC&lt;/tt&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;&lt;tt&gt;;&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;&lt;tt&gt;SEMI&lt;/tt&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;tt&gt;::&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;&lt;tt&gt;COLONCOLON&lt;/tt&gt;&lt;/td&gt;&lt;/tr&gt;	</code></pre>
+&lt;tr&gt;&lt;td&gt;&lt;tt&gt;::&lt;/tt&gt;&lt;/td&gt;&lt;td&gt;&lt;tt&gt;COLONCOLON&lt;/tt&gt;&lt;/td&gt;&lt;/tr&gt;</code></pre>
 </table>
 <p>Add rules to your lexer and parser to support parsing lists. <code>&quot;[a;b;c;d;e;f;g]&quot;</code> should be parsed as if it were <code>&quot;a::b::c::d::e::f::g::[]&quot;</code>. The <code>::</code> operator should have higher priority than the comparison functions (<code>=</code>, <code>&lt;=</code> etc.), and lower priority than <code>+</code> and <code>-</code>. In addition, <code>::</code> should be right associative. <code>&quot;[]&quot;</code> should be parsed as <code>NilExpr</code>, and <code>::</code> should be treated as any other binary operator.</p>
 <p>Once you have implemented this functionality and recompiled, you should get the following behavior at the <code>./nanoml.top</code> prompt:</p>
@@ -757,13 +800,13 @@ Recall that function application is simply <code>&quot;&lt;expr&gt; &lt;expr&gt;
 	Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">1</span>, Nano<span class="kw">.</span><span class="dt">Cons</span>,
 	 Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">3</span>, Nano<span class="kw">.</span><span class="dt">Cons</span>,
 	  Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">5</span>, Nano<span class="kw">.</span><span class="dt">Cons</span>, Nano<span class="kw">.</span><span class="dt">NilExpr</span>)))
-	
+
 # Main<span class="kw">.</span>string_to_expr <span class="st">&quot;[1;3;5]&quot;</span>;;
 - : Nano<span class="kw">.</span>expr =
 	Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">1</span>, Nano<span class="kw">.</span><span class="dt">Cons</span>,
 	 Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">3</span>, Nano<span class="kw">.</span><span class="dt">Cons</span>,
 	  Nano<span class="kw">.</span><span class="dt">Bin</span> (Nano<span class="kw">.</span><span class="dt">Const</span> <span class="dv">5</span>, Nano<span class="kw">.</span><span class="dt">Cons</span>, Nano<span class="kw">.</span><span class="dt">NilExpr</span>)))
-	
+
 # Main<span class="kw">.</span>string_to_expr <span class="st">&quot;1::3::5::[] = [1;3;5]&quot;</span>;;
 - : Nano<span class="kw">.</span>expr =
 	Nano<span class="kw">.</span><span class="dt">Bin</span>
@@ -779,11 +822,11 @@ Recall that function application is simply <code>&quot;&lt;expr&gt; &lt;expr&gt;
 <div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml">$ ./nanoml.byte tests/t1.ml
 ...
 out: <span class="dv">45</span>
-	
+
 $./nanoml.byte tests/t2.ml
 ...
 out: <span class="dv">0</span>
-	
+
 $ ./nanoml.byte tests/t3.ml
 ...
 out: <span class="dv">2</span></code></pre></div>
