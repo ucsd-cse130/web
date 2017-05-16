@@ -7,9 +7,9 @@ headerImg: angles.jpg
 
 See the following for hints on different parts of this assignment
 
-1. [bool-parser](/static/raw/hw4/bool_notes/)
-2. [arith-parser-interpreter](/static/raw/hw4/arith_notes/)
-3. [interpreter](/static/raw/hw4/arith_notes/interp.ml) 
+1. [bool-parser](https://github.com/ucsd-cse130/web/tree/master/static/raw/hw4/bool_notes)
+2. [arith-parser-interpreter](https://github.com/ucsd-cse130/web/tree/master/static/raw/hw4/arith_notes)
+3. [arith-parser-interpreter](https://github.com/ucsd-cse130/web/tree/master/static/raw/hw4/arith_notes/interp.ml)
 
 ## Overview
 
