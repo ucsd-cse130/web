@@ -20,7 +20,10 @@ headerImg: books.jpg
 | 5/1        | Higher Order Functions        | [pdf][lec5] [pdf-small][lec5s] | [.ml][ml5]|
 | 5/3        | contd.                        |                           |               |
 | 5/5        | contd.                        |                           |               |
-| 5/10       | Environments and Closures     | [pdf][lec6] [pdf-small][lec6s] |               |
+| 5/10       | Environments and Closures     | [pdf][lec6] [pdf-small][lec6s] |          |
+| 5/15       | contd.                        |                           | [.ml][ml-5-15]|
+| 5/17       | contd.                        |                           | [.ml][ml-5-17]|
+| 5/19       | contd.                        |                           | [.ml][ml-5-19]|
 |            | Lexing and Parsing            |                           |               |
 |            | Type Classes                  |                           |               |
 |            | Imperative Programming        |                           |               |
@@ -62,3 +65,8 @@ headerImg: books.jpg
 [ml3]: http://github.com/ucsd-cse130/web/blob/master/static/raw/03-ocaml.ml
 [ml4]: http://github.com/ucsd-cse130/web/blob/master/static/raw/04-datatypes.ml
 [ml5]: http://github.com/ucsd-cse130/web/blob/master/static/raw/05-rec-hof.ml
+
+[ml-5-15]: http://github.com/ucsd-cse130/web/blob/master/static/raw/code-5-15.ml 
+[ml-5-17]: http://github.com/ucsd-cse130/web/blob/master/static/raw/code-5-17.ml 
+[ml-5-19]: http://github.com/ucsd-cse130/web/blob/master/static/raw/code-5-19.ml 
+
