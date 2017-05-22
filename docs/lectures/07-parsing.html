@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <!--
+      loads the http over https ssl -
+      welcome to my website!
+
+	this theme is based off the Ice & Fire theme created by Lucas Gatsas
+      https://www.twitter.com/LucasGatsas
+      www.lucasgatsas.ch - switzerland.
+  -->
+
+
+<!-- Microsoft Internet Explorer documentMode compatMode setting IE Modus -->
+<script type="text/javascript">
+var IE = null;
+if (window.navigator.appName == "Microsoft Internet Explorer") {
+  if (document.documentMode) {
+
+    IE = document.documentMode;
+    } else {
+
+        IE = 5;
+          if (document.compatMode) {
+      if (document.compatMode == "CSS1Compat")
+      IE = 11;
+      }
+    }
+  }
+</script>
+
+    <meta charset="utf-8">
+    <!-- X-UA -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <link rel="author" title="Ranjit Jhala" href="http://ranjitjhala.github.io" />
+
+    <meta name="google" content="notranslate" />
+    <!-- Viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- index ROBOTS follow -->
+    <meta name="robots" content="index, follow" />
+    <!-- Site Desciption -->
+    <meta name="description" content="UCSD CSE 130">
+    <!-- Site Desciption -->
+    <meta name="keywords" content="haskell, refinement types, liquid types, formal methods, type systems">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://ucsd-cse130.github.io/web/static/img/ico.png" type="image/x-icon" />
+    <!-- Blog Title -->
+    <title>cse130</title>
+
+    <!--     <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+-->
+    <!-- Property Metas -->
+    <meta property="og:image" content="https://ucsd-cse130.github.io/web/static/img/ix.png" />
+    <meta property="og:title" content="UCSD CSE 130" />
+    <meta property="og:site_name" content="UCSD CSE 130" />
+    <!-- Canonical -->
+    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseUrl | prepend: site.url }}">
+    <!-- StyleSheet -->
+    <link rel="stylesheet" href="https://ucsd-cse130.github.io/web/static/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://ucsd-cse130.github.io/web/static/css/spaceg.stylesheets.css"> -->
+    <link rel="stylesheet" href="https://ucsd-cse130.github.io/web/static/css/ronacher.css" type="text/css">
+
+    <link rel="stylesheet" href="https://ucsd-cse130.github.io/web/static/css/syntax.css">
+    <link rel="stylesheet" href="https://ucsd-cse130.github.io/web/static/css/liquid-light.css">
+
+    <!-- Fonts
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+    -->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+	#preloader {position:fixed;top:0;left:0;right:0;bottom:0;background-color:#fff; /* change if the mask should have another color then white */z-index:99; /* makes sure it stays on top */}
+	#status {width:200px;height:200px;position:absolute;left:50%; /* centers the loading animation horizontally one the screen */top:50%; /* centers the loading animation vertically one the screen */background-image:url("/static/img/preloader.gif"); /* path to your loading animation */background-repeat:no-repeat;background-position:center;margin:-100px 0 0 -100px; /* is width and height divided by two */}
+	ul, ol {margin-top: 0;margin-bottom: 10px;}
+	.navbar-inverse {background-color: #FFF;border-color: #FFFFFF;}
+</style>
+<!--link rel="stylesheet" href="https://ucsd-cse130.github.io/web/static/css/prettify.css"-->
+<style>
+  /* HEADER IMAGE */
+  header.intro-header {background: #6f5499;background: no-repeat center center;background-attachment: scroll;-webkit-background-size: cover;-moz-background-size: cover;background-size: cover;-o-background-size: cover;}
+
+	/* Preloader */#preloader {position:fixed;top:0;left:0;right:0;bottom:0;background-color:#fff; /* change if the mask should have another color then white */z-index:99; /* makes sure it stays on top */}
+	#status {width:200px;height:200px;position:absolute;left:50%; /* centers the loading animation horizontally one the screen */top:50%; /* centers the loading animation vertically one the screen */background-image:; /* path to your loading animation */background-repeat:no-repeat;background-position:center;margin:-100px 0 0 -100px; /* is width and height divided by two */}
+	li {list-style: none;}
+            body.modal-open
+            {overflow: hidden;padding-right: 0px;
+        }
+	article li {list-style: inherit;}
+	article .figure {text-align: center}
+    </style>
+    <!-- end Loading front stylesheet here -->
+    </head>
+
+    <body>
+	    
+	<!-- 	
+        <div id="preloader">
+	    <div id="status">
+	    </div>
+	</div>  
+	-->
+	<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://ucsd-cse130.github.io/web" id="blog-title-left-top">cse130</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="https://ucsd-cse130.github.io/web/calendar.html">Calendar</a></li>
+                <li><a href="https://ucsd-cse130.github.io/web/contact.html">Contact</a></li>
+                <li><a href="https://ucsd-cse130.github.io/web/grades.html">Grades</a></li>
+                <li><a href="https://ucsd-cse130.github.io/web/lectures.html">Lectures</a></li>
+                <li><a href="https://ucsd-cse130.github.io/web/assignments.html">Assignments</a></li>
+                <li><a href="https://ucsd-cse130.github.io/web/links.html">Links</a></li>
+                <li><a href="https://www.piazza.com/ucsd/spring2017/cse130/home" id="roundbutton" target="_blank"><i class="fa fa-twitter"></i>Piazza</a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<!-- Portfolio Modals -->
+    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right:0px; overflow: hidden;">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h1 class="font-style-inline-small-h1">Ranjit Jhala</h1>
+                            <hr class="star-primary">
+                            <img src="https://ucsd-cse130.github.io/web/static/img/ico.png" class="img-responsive img-centered" alt title>
+                            <p class="font-style-inline-small">
+                                <a href="https://www.twitter.com/ranjitjhala" target="_blank">follow me</a>. <br>
+                                <a href="https://www.github.com/ucsd-progsys/130-web" target="_blank">    <i class="fa fa-github" id="spaceg-social-modal"></i> </a>
+                                <a href="https://www.twitter.com/ranjitjhala" target="_blank"><i class="fa fa-twitter" id="spaceg-social-modal"></i> </a>
+                                <a href="https://plus.google.com/u/0/106612421534244742464" target="_blank"> <i class="fa fa-google-plus" id="spaceg-social-modal"></i></a>
+                            </p>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Menu Modals Add New Sa.21.Feb.2015 03:22:25 -->
+    <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right:0px; overflow: hidden;">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h1 class="font-style-inline-small-h1">Ranjit Jhala</h1>
+                            <hr class="star-primary">
+                            <p class="font-style-inline-small">
+                              <a href="https://www.twitter.com/ranjitjhala" target="_blank">follow</a>. <br>
+                              <a href="https://www.github.com/ucsd-progsys/130-web" target="_blank">    <i class="fa fa-github" id="spaceg-social-modal"></i> </a>
+                              <li><a href="https://ucsd-cse130.github.io/web/calendar.html">Calendar</a></li>
+                              <li><a href="https://ucsd-cse130.github.io/web/contact.html">Contact</a></li>
+                              <li><a href="https://ucsd-cse130.github.io/web/grades.html">Grades</a></li>
+                              <li><a href="https://ucsd-cse130.github.io/web/lectures.html">Lectures</a></li>
+                              <li><a href="https://ucsd-cse130.github.io/web/assignments.html">Assignments</a></li>
+                              <li><a href="https://ucsd-cse130.github.io/web/links.html">Links</a></li>
+                              <li><a href="https://www.piazza.com/ucsd/spring2017/cse130/home" id="roundbutton" target="_blank"><i class="fa fa-twitter"></i>Piazza</a></li>
+                            </p>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+        <div id="content">
+            <!-- Post Header -->
+    <header class="intro-header" style="background-image: url('https://ucsd-cse130.github.io/web/static/img/books.jpg')" alt title>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>A Quick Tutorial On Parsing</h1>
+                    
+                    <span class="meta">
+		    
+		    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+
+
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+			<p>In this note we consider an invaluable programming tool, the <em>parser generator</em>. The problem that we want to solve is: how do we <strong>parse strings</strong>, that is, convert (unstructured) strings, the lowest-level representation of a program text, into (highly structured) representations like expressions, statements, functions <em>etc</em> which can then be compiled or interpreted.</p>
+<p>Of course, the problem is much more general and arises in pretty much every large scale system, how do you convert raw data strings, into structured objects that can be manipulated by the rest of the system.</p>
+<p>Of course, one can imagine various convoluted algorithms for extracting structure from strings. Indeed, you may well think that the conversion routine depends heavily on the <em>target</em> of the conversion! However, it turns out that we can design a small <em>domain-specific language</em> that describes a large number of the kinds of target structures, and we will use a <em>parser generator</em> that will automatically convert the structure description into a parsing function!</p>
+<h1 id="an-arithmetic-interpreter">An Arithmetic Interpreter</h1>
+<p>As a running example, let us build a small interpreter for a language of arithmetic expressions, described by the type</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">type</span> aexpr =
+  | <span class="dt">Const</span>  <span class="kw">of</span> <span class="dt">int</span>
+  | <span class="dt">Var</span>    <span class="kw">of</span> <span class="dt">string</span>
+  | <span class="dt">Plus</span>   <span class="kw">of</span> aexpr * aexpr
+  | <span class="dt">Minus</span>  <span class="kw">of</span> aexpr * aexpr
+  | <span class="dt">Times</span>  <span class="kw">of</span> aexpr * aexpr
+  | <span class="dt">Divide</span> <span class="kw">of</span> aexpr * aexpr</code></pre></div>
+<p>shown in file (arithInterpreter.ml)<a href="http://goto.ucsd.edu/~rjhala/130/hw4/arith_notes/arithInterpreter.ml">0</a>. This expression language is quite similar to what you saw for the random-art assignment, and we can write a simple recursive evaluator for it</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">let</span> foo x = <span class="kw">match</span> x <span class="kw">with</span>
+  | C1 <span class="kw">.</span>.. -&gt; e1
+  | C2 <span class="kw">.</span>.. -&gt; e2
+
+<span class="kw">let</span> foo = <span class="kw">function</span>
+  | C1 <span class="kw">.</span>.. -&gt; e1
+  | C2 <span class="kw">.</span>.. -&gt; e2
+
+<span class="kw">let</span> <span class="kw">rec</span> eval env e = <span class="kw">match</span> e <span class="kw">with</span>
+  | <span class="dt">Const</span> i         -&gt; i
+  | <span class="dt">Var</span> s           -&gt; List<span class="kw">.</span>assoc s env
+  | <span class="dt">Plus</span> (e1, e2)   -&gt; eval env e1 + eval env e2
+  | <span class="dt">Minus</span> (e1, e2)  -&gt; eval env e1 - eval env e2
+  | <span class="dt">Times</span> (e1, e2)  -&gt; eval env e1 * eval env e2
+  | <span class="dt">Divide</span> (e1, e2) -&gt; eval env e1 / eval env e2</code></pre></div>
+<p>Here the <code>env</code> is a <code>(string * int) list</code> corresponding to a list of variables and their corresponding values. Thus, if you run the above, you would see something like</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># eval [] (<span class="dt">Plus</span> (<span class="dt">Const</span> <span class="dv">2</span>, <span class="dt">Const</span> <span class="dv">6</span>)) ;;
+- : <span class="dt">int</span> = <span class="dv">4</span>
+
+# eval [(<span class="st">&quot;x&quot;</span>,<span class="dv">16</span>); (<span class="st">&quot;y&quot;</span>, <span class="dv">10</span>)] (<span class="dt">Minus</span> (<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>, <span class="dt">Var</span> <span class="st">&quot;y&quot;</span>)) ;;
+- : <span class="dt">int</span> = <span class="dv">6</span>
+
+# eval [(<span class="st">&quot;x&quot;</span>,<span class="dv">16</span>); (<span class="st">&quot;y&quot;</span>, <span class="dv">10</span>)] (<span class="dt">Minus</span> (<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>, <span class="dt">Var</span> <span class="st">&quot;z&quot;</span>)) ;;
+<span class="dt">Exception</span>: NotFound<span class="kw">.</span></code></pre></div>
+<p>Now it is rather tedious to write ML expressions like <code>Plus (Const 2, Const 6)</code>, and <code>Minus (Var &quot;x&quot;, Var &quot;z&quot;)</code>. We would like to obtain a simple parsing function</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">val</span> parseAexpr : <span class="dt">string</span> -&gt; aexpr</code></pre></div>
+<p>that converts a string to the corresponding <code>aexpr</code> if possible. For example, it would be sweet if we could get</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># parseAexpr <span class="st">&quot;2 + 6&quot;</span> ;;
+- : aexpr = <span class="dt">Plus</span> (<span class="dt">Const</span> <span class="dv">2</span>, <span class="dt">Const</span> <span class="dv">6</span>)
+
+# parseAexpr <span class="st">&quot;(x - y) / 2&quot;</span> ;;
+- : aexpr = <span class="dt">Divide</span> (<span class="dt">Minus</span> (<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>, <span class="dt">Var</span> <span class="st">&quot;y&quot;</span>), <span class="dt">Const</span> <span class="dv">2</span>)</code></pre></div>
+<p>and so on. Lets see how to get there.</p>
+<h1 id="strategy">Strategy</h1>
+<p>We will use a two-step strategy to convert raw strings into structured data.</p>
+<h2 id="step-1-lexing-from-string-to-tokens">Step 1 (Lexing) : From String to Tokens</h2>
+<p>Strings are really just a list of very low-level characters. In the first step, we will aggregate the characters into more meaningful <em>tokens</em> that contain more high-level information. For example, we will can aggregate a sequence of numeric characters into an integer, and a sequence of alphanumerics (starting with a lower-case alphabet) into say a variable name.</p>
+<p>Thus, as a result of the lexing phase, we can convert a list of individual characters</p>
+<div class="figure">
+<img src="../static/img/info_parser.001a.jpg" alt="Characters" id="fig:chars" style="width:70.0%" />
+<p class="caption">Characters</p>
+</div>
+<p>into a list of <em>tokens</em></p>
+<div class="figure">
+<img src="../static/img/info_parser.001b.jpg" alt="Tokens" id="fig:tokens" style="width:70.0%" />
+<p class="caption">Tokens</p>
+</div>
+<h3 id="step-2-parsing-from-tokens-to-tree">Step 2 (Parsing) : From Tokens to Tree</h3>
+<p>Next, we will use a special description of the structures we are trying to generate called a <em>grammar</em> to convert the list of tokens into a tree-like representation of our final structure:</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml">- : aexpr = <span class="dt">Plus</span> (<span class="dt">Const</span> <span class="dv">229</span>, <span class="dt">Times</span> (<span class="dt">Const</span> <span class="dv">98</span>, <span class="dt">Var</span> <span class="st">&quot;x2&quot;</span>))</code></pre></div>
+<p>The actual algorithms for converting from lists of tokens to trees are very subtle and sophisticated. We will omit a detailed description and instead just look at how the structures can themselves be represented by grammars.</p>
+<p>Next, we get into the details of our the above strategy, by describing exactly what the lexer and parser (generators) do in terms of their input and output.</p>
+<h1 id="lexers">Lexers</h1>
+<p>We will use the tool called <code>ocamllex</code> to automatically obtain a lexer from a high-level description of what the tokens are and what what sequences of characters should get mapped to tokens.</p>
+<h2 id="tokens">Tokens</h2>
+<p>The file (arithParser0.mly)<a href="http://goto.ucsd.edu/~rjhala/130/hw4/arith_notes/arithParser0.mly">1</a> describes the set of tokens needed to represent our simple language</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml">%token &lt;<span class="dt">int</span>&gt; <span class="dt">CONST</span>
+%token &lt;<span class="dt">string</span>&gt; <span class="dt">VAR</span>
+%token <span class="dt">PLUS</span> <span class="dt">MINUS</span> <span class="dt">TIMES</span> <span class="dt">DIVIDE</span>
+%token <span class="dt">LPAREN</span> <span class="dt">RPAREN</span>
+%token <span class="dt">EOF</span></code></pre></div>
+<p>Note that the first two tokens, <code>CONST</code> and <code>VAR</code> also carry values with them, respectively <code>int</code> and <code>string</code>.</p>
+<h2 id="regular-expressions">Regular Expressions</h2>
+<p>Next, we must describe the sequences of characters that get aggregated into a particular token. This is done using (regular expressions)<a href="http://en.wikipedia.org/wiki/Regular_expression">7</a> defined in the file (arithLexer.mll)<a href="http://goto.ucsd.edu/~rjhala/130/hw4/arith_notes/arithLexer.mll">2</a>.</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml">{ <span class="ot">open</span> ArithParser }
+
+rule token = parse
+  | eof                      { <span class="dt">EOF</span> }
+  | [<span class="ch">' '</span> <span class="ch">'\t'</span> <span class="ch">'\r'</span> <span class="ch">'\n'</span>]     { token lexbuf }
+  | [<span class="ch">'0'</span>-<span class="ch">'9'</span>]+ <span class="kw">as</span> l          { <span class="dt">CONST</span> (int_of_string l) }
+  | [<span class="ch">'a'</span>-<span class="ch">'z'</span>][<span class="ch">'A'</span>-<span class="ch">'z'</span>]* <span class="kw">as</span> l { <span class="dt">VAR</span> l }
+  | <span class="ch">'+'</span>                      { <span class="dt">PLUS</span> }
+  | <span class="ch">'-'</span>                      { <span class="dt">MINUS</span> }
+  | <span class="ch">'*'</span>                      { <span class="dt">TIMES</span> }
+  | <span class="ch">'/'</span>                      { <span class="dt">DIVIDE</span> }
+  | <span class="ch">'('</span>                      { <span class="dt">LPAREN</span> }
+  | <span class="ch">')'</span>                      { <span class="dt">RPAREN</span> }</code></pre></div>
+<p>the first line at top simply imports the token definitions from <code>arithParser.mly</code>. Next, there is a sequence of rules of the form <code>| &lt;regexp&gt;	{ml-expr}</code>.</p>
+<p>Intuitively, each regular expression describes a sequence of characters, and when that sequence is matched in the input string, the corresponding ML expression is evaluated to obtain the token that is to be returned on the match. Let’s see some examples,</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml">  | eof                      { <span class="dt">EOF</span> }
+  | <span class="ch">'+'</span>                      { <span class="dt">PLUS</span> }
+  | <span class="ch">'-'</span>                      { <span class="dt">MINUS</span> }
+  | <span class="ch">'*'</span>                      { <span class="dt">TIMES</span> }
+  | <span class="ch">'/'</span>                      { <span class="dt">DIVIDE</span> }
+  | <span class="ch">'('</span>                      { <span class="dt">LPAREN</span> }
+  | <span class="ch">')'</span>                      { <span class="dt">RPAREN</span> }</code></pre></div>
+<ul>
+<li>when the <code>eof</code> is reached (i.e. we hit the end of the string), a token called <code>EOF</code> is generated, similarly, when a character <code>+</code>, <code>-</code>, <code>/</code> etc. are encountered, the lexer generates the tokens <code>PLUS</code>, <code>MINUS</code>, <code>DIVIDE</code> etc. respectively,</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml">  | [<span class="ch">' '</span> <span class="ch">'\t'</span> <span class="ch">'\r'</span> <span class="ch">'\n'</span>]     { token lexbuf }</code></pre></div>
+<ul>
+<li><code>[c1 c2 ... cn]</code> where each <code>ci</code> is a character denotes a regular expression that matches <strong>any of</strong> the characters in the sequence. Thus, the regexp <code>[' ' '\n' '\t']</code> indicates that if either a blank or tab or newline is hit, the lexer should simply ignore it and recursively generate the token corresponding to the rest of the buffer,</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml">  | [<span class="ch">'0'</span>-<span class="ch">'9'</span>]+ <span class="kw">as</span> l          { <span class="dt">CONST</span> (int_of_string l) }</code></pre></div>
+<ul>
+<li><code>['0' - '9']</code> denotes a regexp that matches any digit-character. When you take a regexp and put a <code>+</code> in front of it, i.e. <code>e+</code> corresponds to <strong>one-or-more</strong> repetitions of <code>e</code>. Thus, the regexp <code>['0'-'9']+</code> matches a non-empty sequence of digit characters! Here, the variable <code>l</code> holds the exact substring that was matched, and we simply write <code>CONST (int_of_string l)</code> to return the <code>CONST</code> token carrying the <code>int</code> value corresponding to the matched substring.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml">  | [<span class="ch">'a'</span>-<span class="ch">'z'</span>][<span class="ch">'A'</span>-<span class="ch">'z'</span> <span class="ch">'0'</span>-<span class="ch">'9'</span>]*  <span class="kw">as</span> l { <span class="dt">VAR</span> l }</code></pre></div>
+<ul>
+<li><p><code>e1 e2</code> denotes a regexp that matches any string <code>s</code> that can be split into two parts <code>s1</code> and <code>s2</code> (s.t. <code>s == s1 ^ s2</code>) where <code>s1</code> matches <code>e1</code> and <code>s2</code> matches <code>e2</code>. That is, <code>e1 e2</code> is a <strong>sequencing</strong> regexp that first matches <code>e1</code> and then matches <code>e2</code>.</p></li>
+<li><p><code>e*</code> corresponds to <strong>zero-or-more repetitions</strong> of <code>e</code>. Thus, <code>['a'-'z']['A'-'z' '0'-'9']*</code> is a regexp that matches all strings that begin with a lower-case alphabet, and then have a (possibly empty) sequence of alpha-numeric characters. As before, the entire matching string is bound to the variable <code>l</code> and in this case the <code>VAR l</code> token is returned indicating that an identifier appeared in the input stream.</p></li>
+</ul>
+<h2 id="running-the-lexer">Running the Lexer</h2>
+<p>We can run the lexer directly to look at the sequences of tokens found. The function <code>Lexing.from_string</code> simply converts an input string into a buffer on which the actual lexer operates.</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># ArithLexer<span class="kw">.</span>token (Lexing<span class="kw">.</span>from_string <span class="st">&quot;+&quot;</span>);;
+- : ArithParser<span class="kw">.</span>token = ArithParser<span class="kw">.</span><span class="dt">PLUS</span>
+
+# ArithLexer<span class="kw">.</span>token (Lexing<span class="kw">.</span>from_string <span class="st">&quot;294&quot;</span>);;
+- : ArithParser<span class="kw">.</span>token = ArithParser<span class="kw">.</span><span class="dt">CONST</span> <span class="dv">294</span></code></pre></div>
+<p>Next, we can write a function that recursively keeps grinding away to get all the possible tokens from a string (until it hits <code>eof</code>). When we call that function it behaves thus:</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># token_list_of_string <span class="st">&quot;23 + + 92 zz /&quot;</span> ;;
+- : ArithParser<span class="kw">.</span>token <span class="dt">list</span> =
+  [ArithParser<span class="kw">.</span><span class="dt">CONST</span> <span class="dv">23</span>; ArithParser<span class="kw">.</span><span class="dt">PLUS</span>; ArithParser<span class="kw">.</span><span class="dt">PLUS</span>;
+   ArithParser<span class="kw">.</span><span class="dt">CONST</span> <span class="dv">92</span>; ArithParser<span class="kw">.</span><span class="dt">VAR</span> <span class="st">&quot;zz&quot;</span>; ArithParser<span class="kw">.</span><span class="dt">DIVIDE</span>]
+
+# token_list_of_string <span class="st">&quot;23++92zz/&quot;</span> ;;
+- : ArithParser<span class="kw">.</span>token <span class="dt">list</span> =
+  [ArithParser<span class="kw">.</span><span class="dt">CONST</span> <span class="dv">23</span>; ArithParser<span class="kw">.</span><span class="dt">PLUS</span>; ArithParser<span class="kw">.</span><span class="dt">PLUS</span>;
+   ArithParser<span class="kw">.</span><span class="dt">CONST</span> <span class="dv">92</span>; ArithParser<span class="kw">.</span><span class="dt">VAR</span> <span class="st">&quot;zz&quot;</span>; ArithParser<span class="kw">.</span><span class="dt">DIVIDE</span>]</code></pre></div>
+<p>Note that the above two calls produce exactly the same result, because the lexer finds <em>maximal</em> matches.</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># token_list_of_string <span class="st">&quot;92z&quot;</span> ;;
+- : ArithParser<span class="kw">.</span>token <span class="dt">list</span> = [ArithParser<span class="kw">.</span><span class="dt">CONST</span> <span class="dv">92</span>; ArithParser<span class="kw">.</span><span class="dt">VAR</span> <span class="st">&quot;z&quot;</span>]</code></pre></div>
+<p>Here, when it hits the <code>z</code> it knows that the number pattern has ended and a new variable pattern has begun. Of course, if you give it something that doesn’t match anything, you get an exception</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># parse_string <span class="st">&quot;%&quot;</span> ;;
+<span class="dt">Exception</span>: <span class="dt">Failure</span> <span class="st">&quot;lexing: empty token&quot;</span>.</code></pre></div>
+<h1 id="parsers">Parsers</h1>
+<p>Next, will use the tool called <code>ocamlyacc</code> to automatically obtain a parser from a high-level description of the target structure called a <strong>grammar</strong>. (Note: grammars are very deep area of study, we’re going to take a very superficial look here, guided by the pragmatics of how to convert strings to <code>aexpr</code> values.)</p>
+<h2 id="grammars">Grammars</h2>
+<p>A grammar is a recursive definition of a set of trees, comprising</p>
+<ul>
+<li><p>Non-terminals and Terminals, which describe the internal and leaf nodes of the tree, respectively. Here, the leaf nodes will be tokens.</p></li>
+<li><p>Rules of the form</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml">nonterm :
+  | term-<span class="kw">or</span>-nonterm<span class="dv">-1</span> ... term-<span class="kw">or</span>-non-term-n { <span class="dt">Ocaml</span>-<span class="dt">Expr</span> }</code></pre></div>
+<p>that describe the possible configuration of children of each internal node, together with an Ocaml expression that generates a <em>value</em> that is used to decorate the node. This value is computed from the values decorating the respective children.</p>
+<p>We can define the following simple grammar for arith expressions:</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml">aexpr:
+  | aexpr <span class="dt">PLUS</span>   aexpr        { <span class="dt">Plus</span> ($<span class="dv">1</span>, $<span class="dv">3</span>)   }
+  | aexpr <span class="dt">MINUS</span>  aexpr        { <span class="dt">Minus</span> ($<span class="dv">1</span>, $<span class="dv">3</span>)  }
+  | aexpr <span class="dt">TIMES</span>  aexpr        { <span class="dt">Times</span> ($<span class="dv">1</span>, $<span class="dv">3</span>)  }
+  | aexpr <span class="dt">DIVIDE</span> aexpr        { <span class="dt">Divide</span> ($<span class="dv">1</span>, $<span class="dv">3</span>) }
+  | <span class="dt">CONST</span>                     { <span class="dt">Const</span> $<span class="dv">1</span>        }
+  | <span class="dt">VAR</span>                       { <span class="dt">Var</span> $<span class="dv">1</span>          }
+  | <span class="dt">LPAREN</span> aexpr <span class="dt">RPAREN</span>       { $<span class="dv">2</span>              }</code></pre></div>
+<p>Note that the above grammar (almost) directly mimics the recursive type definition of the expressions. In the above grammar, the <em>only</em> non-terminal is <code>aexpr</code> (we could call it whatever we like, we just picked the same name for convenience.) The terminals are the tokens we defined earlier, and each rule corresponds to how you would take the sub-trees (i.e. sub-expressions) and stitch them together to get bigger trees.</p>
+<p>The line <code>%type &lt;ArithInterpreter.aexpr&gt; aexpr</code> at the top stipulates that each <code>aexpr</code> node will be decorated with a value of type <code>ArithInterpreter.aexpr</code> – that is, by a structured arithmetic expression.</p>
+<p>Next, let us consider each of the rules in turn.</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml">  | <span class="dt">CONST</span>                     { <span class="dt">Const</span> $<span class="dv">1</span>        }
+  | <span class="dt">VAR</span>                       { <span class="dt">Var</span> $<span class="dv">1</span>          }</code></pre></div>
+<ul>
+<li>The base-case rules for <code>CONST</code> and <code>VAR</code> state that those (individual) tokens can be viewed as corresponding to <code>aexpr</code> nodes. Consider the target expression in the curly braces.<br />
+Here <code>$1</code> denotes the value decorating the 1st (and only!) element of the corresponding non/terminal- sequence. That is, for the former (respectively latter) case <code>$1</code> the <code>int</code> (respectively <code>string</code> value) associated with the token, which we use to obtain the base arithmetic expressions via the appropriate constructors.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml">  | aexpr <span class="dt">PLUS</span>   aexpr        { <span class="dt">Plus</span> ($<span class="dv">1</span>, $<span class="dv">3</span>)   }
+  | aexpr <span class="dt">MINUS</span>  aexpr        { <span class="dt">Minus</span> ($<span class="dv">1</span>, $<span class="dv">3</span>)  }
+  | aexpr <span class="dt">TIMES</span>  aexpr        { <span class="dt">Times</span> ($<span class="dv">1</span>, $<span class="dv">3</span>)  }
+  | aexpr <span class="dt">DIVIDE</span> aexpr        { <span class="dt">Divide</span> ($<span class="dv">1</span>, $<span class="dv">3</span>) }</code></pre></div>
+<ul>
+<li>The inductive case rules, e.g. for the <code>PLUS</code> case says that if there is a token-sequence that is parsed into an <code>aexpr</code> node, followed by a <code>PLUS</code> token, followed by a sequence that is parsed into an <code>aexpr</code> node, then the <strong>entire</strong> sequence can be parsed into an <code>aexpr</code> node. Here <code>$1</code> and <code>$3</code> refer to the first and third elements of the sequence, that is, the <em>left</em> and <em>right</em> subexpressions. The decorated value is simply the super-expression obtained by applying the <code>Plus</code> constructor to the left and right subexpressions. The same applies to</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml">  | <span class="dt">LPAREN</span> aexpr <span class="dt">RPAREN</span>       { $<span class="dv">2</span>              }</code></pre></div>
+<ul>
+<li>The last rule allows us to parse parenthesized expressions; if there is a left-paren token followed by an expresssion followed by a matching right-paren token, then the whole sequence is an <code>aexpr</code> node. Notice how the decorated expression is simply <code>$2</code> which decorates the second element of the sequence, i.e. the (sub) expression being wrapped in parentheses.</li>
+</ul>
+<h2 id="running-the-parser">Running the Parser</h2>
+<p>Great, lets take our parser out for a spin! First, lets build the different elements</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml">$ cp arithParser0.mly arithParser.mly
+
+$ make clean
+rm -f *.cm[io] arithLexer.ml arithParser.ml arithParser.mli
+
+$ make
+ocamllex arithLexer.mll
+<span class="dv">11</span> states, <span class="dv">332</span> transitions, table size <span class="dv">1394</span> bytes
+ocamlyacc arithParser.mly
+<span class="dv">16</span> shift/reduce conflicts.
+ocamlc -c arithInterpreter.ml
+ocamlc -c arithParser.mli
+ocamlc -c arithLexer.ml
+ocamlc -c arithParser.ml
+ocamlc -c arith.ml
+ocamlmktop arithLexer.cmo arithParser.cmo arithInterpreter.cmo arith.cmo -o arith.top</code></pre></div>
+<p>Now, we have a specialize top-level with the relevant libraries baked in. So we can do:</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml">$ rlwrap ./arith.top
+        <span class="dt">Objective</span> <span class="dt">Caml</span> version <span class="fl">3.11</span>.<span class="dv">2</span>
+
+# <span class="ot">open</span> Arith;;
+
+# eval_string [] <span class="st">&quot;1 + 3 + 6&quot;</span> ;;
+- : <span class="dt">int</span> = <span class="dv">10</span>
+
+# eval_string [(<span class="st">&quot;x&quot;</span>, <span class="dv">100</span>); (<span class="st">&quot;y&quot;</span>, <span class="dv">20</span>)] <span class="st">&quot;x - y&quot;</span> ;;
+- : <span class="dt">int</span> = <span class="dv">80</span></code></pre></div>
+<p>And lo! we have a simple calculator that also supports variables.</p>
+<h2 id="precedence-and-associativity">Precedence and Associativity</h2>
+<p>Ok, looks like our calculator works fine, but lets try this</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># eval_string [] <span class="st">&quot;2 * 5 + 5&quot;</span> ;;
+- : <span class="dt">int</span> = <span class="dv">20</span></code></pre></div>
+<p>Huh?! you would think that the above should yield <code>15</code> as <code>*</code> has higher precedence than <code>+</code> , and so the above expression is really <code>(2 * 5) + 5</code>. Indeed, if we took the trouble to put the parentheses in, the right thing happens</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># eval_string [] <span class="st">&quot;(2 * 5) + 5&quot;</span> ;;
+- : <span class="dt">int</span> = <span class="dv">15</span></code></pre></div>
+<p>Indeed, the same issue arises with a single operator</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># eval_string [] <span class="st">&quot;2 - 1 - 1&quot;</span> ;;
+- : <span class="dt">int</span> = <span class="dv">2</span></code></pre></div>
+<p>What happens here is that the grammar we gave is <strong>ambiguous</strong> as there are multiple ways of parsing the string <code>2 * 5 + 5</code>, namely</p>
+<ul>
+<li><code>Plus (Times (Const 2, Const 5), Const 5)</code>, or</li>
+<li><code>Times (Const 2, Plus (Const 5, Const 5))</code></li>
+</ul>
+<p>We want the former, but ocamlyacc gives us the latter! Similarly, there are multiple ways of parsing <code>2 - 1 - 1</code>, namely</p>
+<ul>
+<li><code>Minus (Minus (Const 2, Const 1), Const 1)</code>, or</li>
+<li><code>Minus (Const 2, Minus (Const 1, Const 1))</code></li>
+</ul>
+<p>Again, since <code>-</code> is left-associative, we want the former, but we get the latter! (Incidentally, this is why we got those wierd grumbles about <code>shift/reduce conflicts</code> when we ran <code>ocamlyacc</code> above, but lets not go too deep into that…)</p>
+<p>There are various ways of adding precedence, one is to hack the grammar by adding various extra non-terminals, as done here (arithParser2.mly)[5]. Note how there are no conflicts if you use that grammar instead.</p>
+<p>However, since this is such a common problem, there is a much simpler solution, which is to add precedence and associativity annotations to the .mly file. In particular, let us use the modified grammar (arithParser1.mly)<a href="http://goto.ucsd.edu/~rjhala/130/hw4/arith_notes/arithParser1.mly">3</a>.</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml">$ cp arithParser1.mly arithParser.mly
+$ make
+ocamllex arithLexer.mll
+<span class="dv">11</span> states, <span class="dv">332</span> transitions, table size <span class="dv">1394</span> bytes
+ocamlyacc arithParser.mly
+ocamlc -c arithInterpreter.ml
+ocamlc -c arithParser.mli
+ocamlc -c arithLexer.ml
+ocamlc -c arithParser.ml
+ocamlc -c arith.ml
+ocamlmktop arithLexer.cmo arithParser.cmo arithInterpreter.cmo arith.cmo -o arith.top</code></pre></div>
+<p>check it out, no conflicts this time! The only difference between this grammar and the previous one are the lines</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml">%left <span class="dt">PLUS</span> <span class="dt">MINUS</span>
+%left <span class="dt">TIMES</span> <span class="dt">DIVIDE</span></code></pre></div>
+<p>This means that all the operators are <strong>left-associative</strong><br />
+so <code>e1 - e2 - e3</code> is parsed as if it were <code>(e1 - e2) - e3</code>. As a result we get</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># eval_string []  <span class="st">&quot;2 - 1 - 1&quot;</span> ;;
+- : <span class="dt">int</span> = <span class="dv">0</span></code></pre></div>
+<p>Furthermore, we get that addition and subtraction have lower precedence than multiplication and division (the order of the annotations matters!)</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"># eval_string []  <span class="st">&quot;2 * 5 + 5&quot;</span> ;;
+- : <span class="dt">int</span> = <span class="dv">15</span>
+# eval_string []  <span class="st">&quot;2 + 5 * 5&quot;</span> ;;
+- : <span class="dt">int</span> = <span class="dv">27</span></code></pre></div>
+<p>Hence, the multiplication operator has higher precedence than the addition, as we have grown to expect, and all is well in the world.</p>
+<p>This concludes our brief tutorial, which should suffice for your NanoML programming assignment. However, if you are curious, I encourage you to look at (this)<a href="http://plus.kaist.ac.kr/~shoh/ocaml/ocamllex-ocamlyacc/ocamlyacc-tutorial/">6</a> for more details.</p>
+                <hr>
+            </div>
+        </div>
+    </div>
+</article>
+
+        </div>
+        <div id="footer">
+        </div>
+      <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    <li>
+                        <a href="https://ucsd-cse130.github.io/web/feed.xml" data-datatype="json" data-type="GET" data-target="#frame" class="reload" id="clickme">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://twitter.com/ranjitjhala" data-datatype="json" data-type="GET" data-target="#frame" class="reload" id="clickme" target="_blank">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a href="https://plus.google.com/u/0/106612421534244742464" data-datatype="json" data-type="GET" data-target="#frame" class="reload" id="clickme" target="_blank">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a href="https://github.com/ucsd-progsys/130-web" target="_blank">
+                            <span class="fa-stack fa-lg">
+
+                              <i class="fa fa-arrow-circle-o-down"></i>
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+		    
+                </ul>
+                <p class="copyright text-muted">
+                
+                  Generated by <a href="http://jaspervdj.be/hakyll">Hakyll</a>,
+                  template by <a href="http://lucumr.pocoo.org">Armin Ronacher</a>,
+                  suggest improvements <a href="https://github.com/ucsd-progsys/liquidhaskell-blog/">here</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<!-- jQuery -->
+<script src="https://ucsd-cse130.github.io/web/static/js/jquery.min.js"></script>
+<script src="https://ucsd-cse130.github.io/web/static/js/spaceg.stylesheets.min.js"></script>
+<script src="https://ucsd-cse130.github.io/web/static/js/bootstrap.min.js"></script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+<script src="https://ucsd-cse130.github.io/web/static/js/anim.js"></script>
+<script src="https://ucsd-cse130.github.io/web/static/js/scripts.js"></script>
+
+    </body>
+</html>

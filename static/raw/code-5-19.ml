@@ -1,5 +1,27 @@
+ 
+(* 
+                            []
+let foo  = fun f -> f 0 
+                            [ foo :=> <fun1> ]
+let incr = fun x -> x + 1
+                            [ incr :=> <fun2> , foo := <fun1> ]
+let ans  = foo incr  
+                            <"f", "f 0", []> = eval env foo 
+                            val    = eval env incr
+                            newEnv = [("f", <fun2>)]
+                            eval newEnv (f 0) 
 
+    fun1 = { param  = "f" 
+           , code   = "(f 0)"
+           , env    = []
+           }
 
+    fun2 = { param  = "x" 
+           , code   = "(x + 1)"
+           , env    = [ foo :=> <fun1> ]
+           }
+
+*)
 
 let a = 20
 

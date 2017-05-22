@@ -24,9 +24,7 @@ headerImg: books.jpg
 | 5/15       | contd.                        |                           | [.ml][ml-5-15]|
 | 5/17       | contd.                        |                           | [.ml][ml-5-17]|
 | 5/19       | contd.                        |                           | [.ml][ml-5-19]|
-|            | Lexing and Parsing            |                           |               |
-|            | Type Classes                  |                           |               |
-|            | Imperative Programming        |                           |               |
+| 5/22       | Lexing and Parsing            | [html][lec7]              | [.ml][ml-5-22]|
 |            | Logic Programming             |                           |               |
 
 ## Interesting Piazza Questions
@@ -50,9 +48,10 @@ headerImg: books.jpg
 [lec4s]: http://github.com/ucsd-cse130/web/blob/master/static/raw/04-datatypes-small.pdf
 [lec5]: http://github.com/ucsd-cse130/web/blob/master/static/raw/05-rec-hof.pdf
 [lec5s]: http://github.com/ucsd-cse130/web/blob/master/static/raw/05-rec-hof-small.pdf
-[lec6]: http://github.com/ucsd-cse130/web/blob/master/static/raw/06-closure.pdf 
+[lec6]: http://github.com/ucsd-cse130/web/blob/master/static/raw/06-closure.pdf
 [lec6s]: http://github.com/ucsd-cse130/web/blob/master/static/raw/06-closure-small.pdf
 
+[lec7]: lectures/07-parsing.html
 
 
 [md0]: http://github.com/ucsd-cse130/web/blob/master/lectures/00-hello.md
@@ -66,7 +65,7 @@ headerImg: books.jpg
 [ml4]: http://github.com/ucsd-cse130/web/blob/master/static/raw/04-datatypes.ml
 [ml5]: http://github.com/ucsd-cse130/web/blob/master/static/raw/05-rec-hof.ml
 
-[ml-5-15]: http://github.com/ucsd-cse130/web/blob/master/static/raw/code-5-15.ml 
-[ml-5-17]: http://github.com/ucsd-cse130/web/blob/master/static/raw/code-5-17.ml 
-[ml-5-19]: http://github.com/ucsd-cse130/web/blob/master/static/raw/code-5-19.ml 
-
+[ml-5-15]: http://github.com/ucsd-cse130/web/blob/master/static/raw/code-5-15.ml
+[ml-5-17]: http://github.com/ucsd-cse130/web/blob/master/static/raw/code-5-17.ml
+[ml-5-19]: http://github.com/ucsd-cse130/web/blob/master/static/raw/code-5-19.ml
+[ml-5-22]: http://github.com/ucsd-cse130/web/blob/master/static/raw/hw4/arith_notes/ 
