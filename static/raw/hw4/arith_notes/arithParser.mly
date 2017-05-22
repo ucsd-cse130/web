@@ -7,8 +7,7 @@ open ArithInterpreter
 %token PLUS MINUS TIMES DIVIDE
 %token LPAREN RPAREN
 %token EOF
-%left PLUS MINUS
-%left TIMES DIVIDE
+
 %start aexpr
 %type <ArithInterpreter.aexpr> aexpr
 %%
@@ -18,6 +17,6 @@ aexpr:
   | aexpr MINUS  aexpr        { Minus ($1, $3)  }
   | aexpr TIMES  aexpr        { Times ($1, $3)  }
   | aexpr DIVIDE aexpr        { Divide ($1, $3) }
-  | CONST                     { Const $1        }
+  | CONST                     { Const $1              }
   | VAR                       { Var $1          }
   | LPAREN aexpr RPAREN       { $2              }
