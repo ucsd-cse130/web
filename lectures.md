@@ -25,6 +25,8 @@ headerImg: books.jpg
 | 5/17       | contd.                        |                           | [.ml][ml-5-17]|
 | 5/19       | contd.                        |                           | [.ml][ml-5-19]|
 | 5/22       | Lexing and Parsing            | [html][lec7]              | [.ml][ml-5-22]|
+| 5/24       | contd.                        |                           |               |
+| 5/26       | Polymorphism                  | [pdf][lec8] [pdf-small][lec8s] | [.ml][ml-2-25]|
 |            | Logic Programming             |                           |               |
 
 ## Interesting Piazza Questions
@@ -50,9 +52,9 @@ headerImg: books.jpg
 [lec5s]: http://github.com/ucsd-cse130/web/blob/master/static/raw/05-rec-hof-small.pdf
 [lec6]: http://github.com/ucsd-cse130/web/blob/master/static/raw/06-closure.pdf
 [lec6s]: http://github.com/ucsd-cse130/web/blob/master/static/raw/06-closure-small.pdf
-
 [lec7]: lectures/07-parsing.html
-
+[lec8]: http://github.com/ucsd-cse130/web/blob/master/static/raw/08-polymorphism.pdf
+[lec8s]: http://github.com/ucsd-cse130/web/blob/master/static/raw/08-polymorphism-small.pdf
 
 [md0]: http://github.com/ucsd-cse130/web/blob/master/lectures/00-hello.md
 [md1]: http://github.com/ucsd-cse130/web/blob/master/lectures/01-lambda.md

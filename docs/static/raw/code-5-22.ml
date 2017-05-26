@@ -1,14 +1,4 @@
 
-let x1 = 1
-let x2 = 1
-let x3 = 1
-let x4 = 1
-let x5 = 1
-let x  = 10 
-
-let foo = fun y -> x + y
-
-
 (* [] *)
 
 let f = fun g ->
