@@ -7,8 +7,8 @@ rule token = parse
   | [' ' '\t' '\r' '\n']                { token lexbuf }
   | ['0'-'9']+ as n                     { CONST (int_of_string n) }
   | ['a'-'z']['A'-'z' '0'-'9']* as x    { VAR x }
-  | '+'                                 { PLUSSS }
-  | '-'                                 { MINUSSS }
+  | '+'                                 { PLUS }
+  | '-'                                 { MINUS }
   | '*'                                 { TIMES }
   | '/'                                 { DIVIDE }
   | '('                                 { LPAREN }
