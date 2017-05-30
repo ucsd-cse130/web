@@ -27,7 +27,7 @@ headerImg: books.jpg
 | 5/22       | Lexing and Parsing            | [html][lec7]              | [.ml][ml-5-22]|
 | 5/24       | contd.                        |                           |               |
 | 5/26       | Polymorphism                  | [pdf][lec8] [pdf-small][lec8s] | [.ml][ml-2-25]|
-|            | Logic Programming             |                           |               |
+| 6/2        | Logic Programming             | [html][lec9] [md][md9]  [txt][txt9]  | [.pl][pl-5-2] |
 
 ## Interesting Piazza Questions
 
@@ -60,6 +60,10 @@ headerImg: books.jpg
 [md1]: http://github.com/ucsd-cse130/web/blob/master/lectures/01-lambda.md
 [md2]: http://github.com/ucsd-cse130/web/blob/master/lectures/02-haskell.md
 
+[lec9]: lectures/09-prolog.html
+[md9]: http://github.com/ucsd-cse130/web/blob/master/lectures/09-prolog.md
+[txt]: static/raw/prolog.txt
+
 [lc-4-7]: http://github.com/ucsd-cse130/web/blob/master/static/raw/code-4-7.lc
 [lc-4-10]: http://github.com/ucsd-cse130/web/blob/master/static/raw/code-4-10.lc
 [elsa]: https://github.com/ucsd-progsys/elsa
@@ -70,4 +74,5 @@ headerImg: books.jpg
 [ml-5-15]: http://github.com/ucsd-cse130/web/blob/master/static/raw/code-5-15.ml
 [ml-5-17]: http://github.com/ucsd-cse130/web/blob/master/static/raw/code-5-17.ml
 [ml-5-19]: http://github.com/ucsd-cse130/web/blob/master/static/raw/code-5-19.ml
-[ml-5-22]: http://github.com/ucsd-cse130/web/blob/master/static/raw/hw4/arith_notes/ 
+[ml-5-22]: http://github.com/ucsd-cse130/web/blob/master/static/raw/hw4/arith_notes/
+[pl-6-2]: http://github.com/ucsd-cse130/web/blob/master/static/raw/prolog.pl

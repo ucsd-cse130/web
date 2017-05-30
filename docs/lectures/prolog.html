@@ -1,0 +1,1080 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <!--
+      loads the http over https ssl -
+      welcome to my website!
+
+	this theme is based off the Ice & Fire theme created by Lucas Gatsas
+      https://www.twitter.com/LucasGatsas
+      www.lucasgatsas.ch - switzerland.
+  -->
+
+
+<!-- Microsoft Internet Explorer documentMode compatMode setting IE Modus -->
+<script type="text/javascript">
+var IE = null;
+if (window.navigator.appName == "Microsoft Internet Explorer") {
+  if (document.documentMode) {
+
+    IE = document.documentMode;
+    } else {
+
+        IE = 5;
+          if (document.compatMode) {
+      if (document.compatMode == "CSS1Compat")
+      IE = 11;
+      }
+    }
+  }
+</script>
+
+    <meta charset="utf-8">
+    <!-- X-UA -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <link rel="author" title="Ranjit Jhala" href="http://ranjitjhala.github.io" />
+
+    <meta name="google" content="notranslate" />
+    <!-- Viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- index ROBOTS follow -->
+    <meta name="robots" content="index, follow" />
+    <!-- Site Desciption -->
+    <meta name="description" content="UCSD CSE 130">
+    <!-- Site Desciption -->
+    <meta name="keywords" content="haskell, refinement types, liquid types, formal methods, type systems">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://ucsd-cse130.github.io/web/static/img/ico.png" type="image/x-icon" />
+    <!-- Blog Title -->
+    <title>cse130</title>
+
+    <!--     <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+-->
+    <!-- Property Metas -->
+    <meta property="og:image" content="https://ucsd-cse130.github.io/web/static/img/ix.png" />
+    <meta property="og:title" content="UCSD CSE 130" />
+    <meta property="og:site_name" content="UCSD CSE 130" />
+    <!-- Canonical -->
+    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseUrl | prepend: site.url }}">
+    <!-- StyleSheet -->
+    <link rel="stylesheet" href="https://ucsd-cse130.github.io/web/static/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://ucsd-cse130.github.io/web/static/css/spaceg.stylesheets.css"> -->
+    <link rel="stylesheet" href="https://ucsd-cse130.github.io/web/static/css/ronacher.css" type="text/css">
+
+    <link rel="stylesheet" href="https://ucsd-cse130.github.io/web/static/css/syntax.css">
+    <link rel="stylesheet" href="https://ucsd-cse130.github.io/web/static/css/liquid-light.css">
+
+    <!-- Fonts
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+    -->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+	#preloader {position:fixed;top:0;left:0;right:0;bottom:0;background-color:#fff; /* change if the mask should have another color then white */z-index:99; /* makes sure it stays on top */}
+	#status {width:200px;height:200px;position:absolute;left:50%; /* centers the loading animation horizontally one the screen */top:50%; /* centers the loading animation vertically one the screen */background-image:url("/static/img/preloader.gif"); /* path to your loading animation */background-repeat:no-repeat;background-position:center;margin:-100px 0 0 -100px; /* is width and height divided by two */}
+	ul, ol {margin-top: 0;margin-bottom: 10px;}
+	.navbar-inverse {background-color: #FFF;border-color: #FFFFFF;}
+</style>
+<!--link rel="stylesheet" href="https://ucsd-cse130.github.io/web/static/css/prettify.css"-->
+<style>
+  /* HEADER IMAGE */
+  header.intro-header {background: #6f5499;background: no-repeat center center;background-attachment: scroll;-webkit-background-size: cover;-moz-background-size: cover;background-size: cover;-o-background-size: cover;}
+
+	/* Preloader */#preloader {position:fixed;top:0;left:0;right:0;bottom:0;background-color:#fff; /* change if the mask should have another color then white */z-index:99; /* makes sure it stays on top */}
+	#status {width:200px;height:200px;position:absolute;left:50%; /* centers the loading animation horizontally one the screen */top:50%; /* centers the loading animation vertically one the screen */background-image:; /* path to your loading animation */background-repeat:no-repeat;background-position:center;margin:-100px 0 0 -100px; /* is width and height divided by two */}
+	li {list-style: none;}
+            body.modal-open
+            {overflow: hidden;padding-right: 0px;
+        }
+	article li {list-style: inherit;}
+	article .figure {text-align: center}
+    </style>
+    <!-- end Loading front stylesheet here -->
+    </head>
+
+    <body>
+	    
+	<!-- 	
+        <div id="preloader">
+	    <div id="status">
+	    </div>
+	</div>  
+	-->
+	<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://ucsd-cse130.github.io/web" id="blog-title-left-top">cse130</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="https://ucsd-cse130.github.io/web/calendar.html">Calendar</a></li>
+                <li><a href="https://ucsd-cse130.github.io/web/contact.html">Contact</a></li>
+                <li><a href="https://ucsd-cse130.github.io/web/grades.html">Grades</a></li>
+                <li><a href="https://ucsd-cse130.github.io/web/lectures.html">Lectures</a></li>
+                <li><a href="https://ucsd-cse130.github.io/web/assignments.html">Assignments</a></li>
+                <li><a href="https://ucsd-cse130.github.io/web/links.html">Links</a></li>
+                <li><a href="https://www.piazza.com/ucsd/spring2017/cse130/home" id="roundbutton" target="_blank"><i class="fa fa-twitter"></i>Piazza</a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<!-- Portfolio Modals -->
+    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right:0px; overflow: hidden;">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h1 class="font-style-inline-small-h1">Ranjit Jhala</h1>
+                            <hr class="star-primary">
+                            <img src="https://ucsd-cse130.github.io/web/static/img/ico.png" class="img-responsive img-centered" alt title>
+                            <p class="font-style-inline-small">
+                                <a href="https://www.twitter.com/ranjitjhala" target="_blank">follow me</a>. <br>
+                                <a href="https://www.github.com/ucsd-progsys/130-web" target="_blank">    <i class="fa fa-github" id="spaceg-social-modal"></i> </a>
+                                <a href="https://www.twitter.com/ranjitjhala" target="_blank"><i class="fa fa-twitter" id="spaceg-social-modal"></i> </a>
+                                <a href="https://plus.google.com/u/0/106612421534244742464" target="_blank"> <i class="fa fa-google-plus" id="spaceg-social-modal"></i></a>
+                            </p>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Menu Modals Add New Sa.21.Feb.2015 03:22:25 -->
+    <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right:0px; overflow: hidden;">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h1 class="font-style-inline-small-h1">Ranjit Jhala</h1>
+                            <hr class="star-primary">
+                            <p class="font-style-inline-small">
+                              <a href="https://www.twitter.com/ranjitjhala" target="_blank">follow</a>. <br>
+                              <a href="https://www.github.com/ucsd-progsys/130-web" target="_blank">    <i class="fa fa-github" id="spaceg-social-modal"></i> </a>
+                              <li><a href="https://ucsd-cse130.github.io/web/calendar.html">Calendar</a></li>
+                              <li><a href="https://ucsd-cse130.github.io/web/contact.html">Contact</a></li>
+                              <li><a href="https://ucsd-cse130.github.io/web/grades.html">Grades</a></li>
+                              <li><a href="https://ucsd-cse130.github.io/web/lectures.html">Lectures</a></li>
+                              <li><a href="https://ucsd-cse130.github.io/web/assignments.html">Assignments</a></li>
+                              <li><a href="https://ucsd-cse130.github.io/web/links.html">Links</a></li>
+                              <li><a href="https://www.piazza.com/ucsd/spring2017/cse130/home" id="roundbutton" target="_blank"><i class="fa fa-twitter"></i>Piazza</a></li>
+                            </p>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+        <div id="content">
+            <!-- Post Header -->
+    <header class="intro-header" style="background-image: url('https://ucsd-cse130.github.io/web/static/img/sea.jpg')" alt title>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Logic Programming</h1>
+                    
+                    <span class="meta">
+		    
+		    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+
+
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+			<h1 id="logic-programming">Logic Programming</h1>
+<p>(adapted from lecture notes by Henri Casanova and Todd Millstein)</p>
+<h2 id="introduction">Introduction</h2>
+<p>We now turn to a brand new paradigm, called “Logic Programming Languages” – our vehicle for studying this paradigm is Prolog, whose roots are in logic and on automated theorem proving. Prolog was developed in the 1970s for AI applications. Some such applications have a knowledge base (or database) of facts, from which you’d like to ask queries and deduce other facts. For example, given facts in the knowledge base like “Carnitas is Mexican” and “Mexican food is delicious”, then we can deduce “Carnitas is delicious”.</p>
+<p>Prolog probably looks nothing like any language you’ve seen before. Fundamental difference between Prolog and most other languages:</p>
+<pre><code>  You don't run a Prolog Program</code></pre>
+<p>Instead, you ask questions and the system attempts to answer them using the rules and facts that it has been given.</p>
+<pre><code>  Logic programs are &quot;declarative&quot;: the specification of the
+  desired results are written, rather than how to obtain them.</code></pre>
+<p>This approach is very good at expressing problems that involve searching a large space of possibilities. For example, given a list of cities and distances between them, find me the shortest route that passes through each one once (the travelling salesman problem).</p>
+<p>The philosophy of this approach is that it is often hard to specify a search algorithm – and in such cases, it is easier to specify the characteristics of the solution. To do so, you specify <em>facts</em> and <em>rules</em> for deducing new facts from old facts, and then a <em>query</em>. So you just state what is true and then ask what (else) is true. The language implementation figures out how to actually compute appropriate solutions. Use the travelling salesman problem as an illustration: I say the constraints, not how to search the space of possible solutions. Of course, as we will see, this is a simplification, and often for reasons of efficiency, one has to impose constraints on the search.</p>
+<p>The original and principal applications for Prolog are in various AI settings such as (expert databases). Examples include using prolog-based databases to determine when credit card fraud has occurred (prolog is used to specify rules that indicate when a fraud occurs), and there are projects afoot to use ideas from prolog to determine suspicious people from phone/communication patterns. Note that currently AI researchers devise statistical techniques to complement (if not replace) logical approaches for such tasks. Another big application is as a database query language.<br />
+E.g., my facts are things like the daily stock prices of various stocks over the last year. Queries can be things like: find me all pairs of stocks that had the same price on the same day at least 50 times this year.<br />
+Standard query languages like SQL are inspired by and are really subsets of Prolog. Of course, the reason we’re studying it is that its a radically different way of thinking about computation: “programming as proving”. You’ll be surprised at how many places this paradigm fits beautifully, or leads to very elegant and readable systems.</p>
+<h2 id="terms">Terms</h2>
+<p>Based on propositional logic. The entire program comprises three kinds of elements: facts, rules, and queries. The basic unit of each of these are terms.</p>
+<p>Terms are Prolog’s way of encoding data. They are very similar to the values of datatypes created in ML. There are three kinds of terms: constants, variables and compound terms.</p>
+<ol style="list-style-type: decimal">
+<li><strong>Constants</strong>: The simplest kind of terms are constants.</li>
+</ol>
+<ul>
+<li><p><em>integers</em> and <em>reals</em>: are constants.</p></li>
+<li><p><em>atoms</em>: are identifiers starting with a lowercase letter.</p>
+<p>For example:</p>
+<p><code>alice</code>, <code>bob</code>, <code>charlie</code></p>
+<p>are all atoms.</p>
+<p><strong>Atoms are NOT variables</strong> – the way to think of them is as TAGS, or special constants, or elements of a giant enum datatype. They are similar to the tags used in ML datatypes:</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml">    <span class="kw">type</span> day = <span class="dt">Alice</span> | <span class="dt">Bob</span> | Charlie <span class="kw">.</span>..</code></pre></div>
+<pre><code>Only in ML, the tags start with a capital letter.
+
+Atoms are *uninterpreted constants*:  nothing is known about each tag
+except that it is equal to itself.
+
+Intuitively, Prolog knows that:
+
+`alice = alice`
+
+as the tags are the same. However, to it,
+
+`alice = bob`
+
+*never* makes sense, as it has a strange notion of equality, that we
+will see shortly.
+
+There are some built-in atoms such as `[]` that signifies the empty
+list, `.` which is used for list concatenation and so on, that we will
+see shortly.</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Variables</strong>: Any identifier beginning with an upper case letter or an underscore is a variable.</li>
+</ol>
+<p>For example,</p>
+<p><code>X</code>, <code>Y</code>, <code>Head</code>, <code>Tail</code>, <code>Alfred</code></p>
+<p>are all variables.</p>
+<p>The variable <code>_</code> is like a <strong>wildcard&quot; variable</strong>, whose meaning is similar to the <code>_</code> in ML, but more on that when we see what a variable means.</p>
+<p>As we shall see:</p>
+<pre><code> --  `x = a` is nonsense (as x and a are two *different* constants/tags).
+ --  `X = a` has some sense (but isnt at all what one might think...).</code></pre>
+<p>WARNING: Upercase/Lowercase is a common source of error! Also, variables are NOT declared before use (so be careful!).</p>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>Compound Terms</strong>: These are terms of the form: atom(term,term,term,…) where each “term” is either an atom or a variable or a compound term. Examples include:</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode prolog"><code class="sourceCode prolog">      x(y<span class="kw">,</span>z)
+      parent(alice<span class="kw">,</span>bob)<span class="kw">.</span>   <span class="co">%here alice,bob are atoms</span>
+      parent(alice<span class="kw">,</span><span class="dt">Child</span>)<span class="kw">.</span> <span class="co">%here alice is an atom, Child is a variable</span></code></pre></div>
+<p>In other words, (compound) terms are generated by the following grammar:</p>
+<div class="sourceCode"><pre class="sourceCode prolog"><code class="sourceCode prolog">	<span class="dt">atom</span> := [a<span class="fu">-</span>z][<span class="dt">A</span><span class="fu">-</span>z,a<span class="fu">-</span>z,<span class="dv">0-9</span>]<span class="fu">*</span> | [<span class="dv">0-9</span>]<span class="fu">*</span> | ...
+
+	variable := [<span class="dt">A</span><span class="fu">-</span><span class="dt">Z</span>][a<span class="fu">-</span>z,<span class="dt">A</span><span class="fu">-</span><span class="dt">Z</span>,<span class="dv">0-9</span>]<span class="fu">*</span> | <span class="dt">_</span>
+
+	term := <span class="dt">atom</span> | variable | <span class="dt">atom</span>(term<span class="kw">,</span>term<span class="kw">,</span>term<span class="kw">,</span>...)</code></pre></div>
+<p>While you may be tempted to think of compound terms like:</p>
+<p><code>parent(alice, bob)</code></p>
+<p>as function calls, they are NOT! Instead, you should think about this in the same way as we thought of ML the recursive, one-of types in ML.</p>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml">   <span class="kw">type</span> term =   alice | bob | charlie | ... <span class="co">(* other atoms *)</span>
+             | <span class="dt">Var</span> <span class="kw">of</span> <span class="dt">string</span>
+	           | <span class="dt">Parent</span> <span class="kw">of</span> term * term</code></pre></div>
+<p>Thus, <code>parent(alice, bob)</code> in Prolog is “equivalent to” the ML value:</p>
+<p><code>Parent(alice, bob)</code></p>
+<p>which is just a tuple <code>alice, bob</code> with a tag <code>Parent</code> on it, or equivalently represented as a tree:</p>
+<pre><code>          Parent
+			     /  \
+			    /    \
+			  alice  bob</code></pre>
+<p>and parent(alice,Charlie) in Prolog is “equivalent to” the ML value: Parent(alice,Var (“Charlie”)), or represented as a tree:</p>
+<pre><code>			    Parent
+			     /  \
+			    /    \
+			  alice  Var
+				  |
+				  |
+				Charlie</code></pre>
+<p>Consider a term: <code>factorial(5)</code></p>
+<p>It is <strong>NOT a function</strong> (despite what it looks like).</p>
+<ul>
+<li>there is no associated function implementation</li>
+</ul>
+<p>Prolog has no idea of the meaning you intend for this term – to it, this is just a box containing <code>5</code> with a label <code>factorial</code>.</p>
+<p>Another way to view it is as a tree:</p>
+<pre><code>			factorial
+			    |
+			    |
+			    5</code></pre>
+<p>Thus, the only thing Prolog knows is that:</p>
+<p><code>factorial(5)=factorial(5)</code></p>
+<p>i.e. the two terms are the same. In particular, to Prolog, <code>factorial(5)=120</code> is NOT true.</p>
+<p>Thus Prolog compound terms are really just structured data – like values of a datatype in ML. Can also think of atoms that begin a compound term as <em>uninterpreted functions</em>: e.g., <code>factorial</code> is a function about which NOTHING is known, except that the result of applying this function to the atom x, is the term <code>factorial(x)</code>.</p>
+<p>These atoms are called <strong>function symbols</strong>.</p>
+<h2 id="facts">Facts</h2>
+<p>A fact is just a term, typically without any variables. You specify a fact by writing a term followed by a ‘.’. For example, here are a few facts that one might have in the system.</p>
+<div class="sourceCode"><pre class="sourceCode prolog"><code class="sourceCode prolog"><span class="co">% List of parent relationships</span>
+parent(kim<span class="kw">,</span>holly)<span class="kw">.</span>  
+parent(margaret<span class="kw">,</span>kim)<span class="kw">.</span>  
+parent(herbert<span class="kw">,</span>margaret)<span class="kw">.</span>
+parent(john<span class="kw">,</span>kim)<span class="kw">.</span>
+parent(felix<span class="kw">,</span>john)<span class="kw">.</span>  
+parent(albert<span class="kw">,</span>felix)<span class="kw">.</span></code></pre></div>
+<p>Note that <code>kim</code>, <code>holly</code>, <code>margaret</code>, <code>herbert</code>, <code>john</code>, <code>kim</code>, <code>felix</code>, <code>albert</code> are all atoms.</p>
+<p>The Prolog interpreter maintains a collection of facts like the above – think of it as the underlying data in the database over which queries will be asked.<br />
+You can define your own facts and add them to the database. The function symbols beginning a fact are called <em>predicates</em>: intuitively, they represent functions that evaluate to a boolean.</p>
+<p>Thus, (the atom) <code>parent</code> is a predicate that, intuitively, takes two arguements and returns a boolean – we say that <code>parent</code> is a predicate of arity 2.</p>
+<p>The key thing to note, is that predicates have <em>no intrinsic meaning</em>. However, they are generally designed and named so that the programmer can easily “interpret” them.</p>
+<p>For example, as a programmer, I will decide that</p>
+<div class="sourceCode"><pre class="sourceCode prolog"><code class="sourceCode prolog">parent(<span class="dt">X</span><span class="kw">,</span><span class="dt">Y</span>)</code></pre></div>
+<p>means that <code>X</code> is a parent of <code>Y</code>. In other words, I will specify the fact:</p>
+<div class="sourceCode"><pre class="sourceCode prolog"><code class="sourceCode prolog">parent(a<span class="kw">,</span>b)<span class="kw">.</span></code></pre></div>
+<p>only if the person corresponding to atom <code>a</code> is a parent of the person corresponding to atom <code>b</code>. Thus, the predicate is interpreted as a logical relation between <code>X</code> and <code>Y</code>.</p>
+<p>Prolog uses these facts to answer queries, as well as to infer new facts.</p>
+<p>Lets see how it does the first.</p>
+<h2 id="running-prolog-queries">Running Prolog : Queries</h2>
+<p>HEREHEREHEREHERE</p>
+<p>The standard interface to Prolog is in an interactive shell. To run it, first, lets put a bunch of facts into a file, and then load the file into the shell. Suppose the list of facts are stored in a file called “facts.pl”. First, we load prolog, and get the shell prompt:</p>
+<p>Prolog prompt: “?-”</p>
+<p>At this prompt, enter something like:</p>
+<p>?- consult(‘facts.prolog’).</p>
+<p>You can manually add the facts one by one by typing at the prompt:</p>
+<p>?- assert(parent(margaret,kim)).</p>
+<p>(or whatever fact you want to insert).</p>
+<p>Once this is done, the facts have been registered into the shell, we can query Prolog as follows:</p>
+<pre><code>1. Prompts you to type a query
+2. You type a query
+3. Prolog tries to prove your query
+4. Prints out the result (or 'failure')
+5. Repeat</code></pre>
+<p>The simplest query is a term followed by a ‘.’ (looks like a fact, but is just typed at the prompt). For example, suppose you type the following query:</p>
+<p>?- parent(margaret, john).</p>
+<p>The meaning of a query is “is this fact in your database or can it be inferred from your database”. In other words, we are asking Prolog if it can PROVE the fact. Prolog replies:</p>
+<p>No</p>
+<p>as this is not one of the facts (we have not yet given it any rules to infer new facts). Instead, if we were to ask:</p>
+<p>?- parent(margaret,kim).</p>
+<p>Prolog replies:</p>
+<p>Yes</p>
+<p>As this is in the database of facts we fed in. (Tip: If you forget the period then you can type it on the next line) Not bad, but not especially exciting – we gave it a bunch of facts, and basically each query is effectively asking if the query term was one of the facts we supplied.</p>
+<p>Things get more fun, when we toss variables into the queries.</p>
+<pre><code>  ?- parent(margaret,X).</code></pre>
+<p>This is where we Prolog departs radically from other paradigms. The meaning of this query is:</p>
+<p>“What value(s) can you plug in for X such that the fact becomes provable for that value ?” Prolog replies:</p>
+<pre><code>  X = kim 	[press enter if you're satisfied]
+Yes</code></pre>
+<p>This means that it can plug in “kim” for X, and thus, it can deduce the fact: parent(margaret,kim). Instead, you can enter the query:</p>
+<pre><code>  ?- parent(X,kim).</code></pre>
+<p>This asks prolog, for what values of X does the fact parent( _ , kim) hold. In other words, this innocent query is asking prolog – who are the (known) parents of kim ? It replies:</p>
+<pre><code>X = margaret   ;	[press ';' if you want another answer]
+    X = john  ;
+No</code></pre>
+<p>Thus, it returns, one-by-one, all the “solutions” for X that make the fact parent(X,kim) provable. We can make both the parameters variables:</p>
+<pre><code>  ?- parent(X,Y).  </code></pre>
+<p>This asks prolog – what are the pairs X,Y such that X is (provably) the parent of Y ? It responds:</p>
+<pre><code>X=kim  Y=holly ;
+X=margaret  Y=kim;
+...</code></pre>
+<p>Suppose you want to know if there are any strange circularities in your fact database – for example, does there exist any person who is their own parent ? The following query does the trick:</p>
+<pre><code>  ?- parent(X,X).  
+  	No</code></pre>
+<p>——————————- Unification ———————————–</p>
+<p>In most other languages, a function designed to look up things like this would be less flexible – it would require tedious parentOf() method or a childOf() method, loops, etc. With Prolog – the queries are very flexible, and work like magic. Whats going on ?</p>
+<p>Turns out that Prolog’s computational heart is a fancy pattern matching technique (also, btw, at the heart of ML’s type system) borrowed from logicians, called “Unification”. Regrettably, we won’t have time to go into the details of unification – and so, lets content ourselves with a cartoon version.</p>
+<pre><code>Intuitively, two terms can be unified   if there a
+way of assigning values to their variables so that
+the terms become identical.</code></pre>
+<p>This is really what &quot; = &quot; means in prolog – when you ask it:</p>
+<pre><code>?-  t1 = t2.</code></pre>
+<p>For any two terms t1 and t2, you are asking it whether the terms t1 and t2 can be unified. So, if you ask:</p>
+<p>?- foo(bar) = foo(bar). Yes</p>
+<p>Because there are no variables and the terms are the same. If instead you ask:</p>
+<p>?- foo(X) = foo(bar).</p>
+<p>It replies: X = bar Yes</p>
+<p>Meaning that foo(X) can be unified with foo(bar) by assigning the variable X to the term “bar”. Note that we can ask this from Prolog without “declaring” any of the above atoms. This is because everything is symbolic – everything is a term which is an arbitrary notation that can encode whatever concept. One can type the above right after starting the interpreter.</p>
+<p>The more interesting case is when there are several variable in the terms:</p>
+<p>?- p(X,dog) = p(cat,Y). X = cat Y = dog Yes</p>
+<p>meaning that one can unify the terms p(X,dog) and p(cat,Y) by assigning appropriate values to X and Y. However, if we were to ask:</p>
+<p>?- p(cat) = p(dog). No</p>
+<p>As the terms are different, and so, if we ask: ?- q(X,dog,X) = p(cat,Y,Y). No</p>
+<p>is the answer as to unify, X must be “cat” and Y must be “dog”, but this ensures that the last parameter of the term can never be the same!</p>
+<p>Similarly, the unification happens “deep” into the terms:</p>
+<p>?- a(W,foo(W,Y),Y) = a(2,foo(X,3),Z). W = 2 X = 2 Y = 3 Z = 3 Yes</p>
+<p>Intuitively, it first matches up the first position, and so W gets 2, next, it tries to match up the second position – i.e.</p>
+<pre><code>foo(W,Y) with foo(X,3).</code></pre>
+<p>now, W is already 2, so X also gets 2, and Y gets 3. Finally, it tries to match up the last position, and Y is 3 and so Z gets 3.</p>
+<p>Instead, the query:</p>
+<p>?- a(W,foo(W,Y),Y) = a(2,foo(X,3),X). No</p>
+<p>Thus, by using W,X,Y in two places, we are forcing it to find a solution where those two places get exactly the same value. As a result, the constraints ensure that all the variables must get the same value. However, W and Y must get 2 and 3 and so there is no solution.</p>
+<p>Thus, this innocent “pattern matching” operation actually does a lot under its hood, and it turns out to be a surprisingly powerful and flexible way to encode all kinds of computation! All the queries that we asked before, were answered via unification.</p>
+<p>When we ask:</p>
+<pre><code>?- parent(margaret, john).  </code></pre>
+<p>prolog checks if the term “parent(margaret,john)” can be unified with any of the known facts (that are also terms). If so, it says Yes, but as it cannot, it replies No.</p>
+<p>When we ask:</p>
+<pre><code>?- parent(margaret,kim).</code></pre>
+<p>it can unify the query term with a known fact term, and so it replies Yes.</p>
+<p>When we ask:</p>
+<pre><code>?- parent(margaret,X).</code></pre>
+<p>it tries to find all the known facts with which it can unify the query term – there is only one, and so it “answers the query” by returning the substitution required for unification: X = kim</p>
+<p>Similarly, when we ask:</p>
+<pre><code>  ?- parent(X,kim).</code></pre>
+<p>It attempts to find all the known terms with which this query can be unified – this time, there are several terms, and the different valid unifying substitutions (called unifiers) yield the different parents of kim: X = margaret ; X = john ; No</p>
+<p>Finally, to answer the query:</p>
+<pre><code>?- parent(X,Y).</code></pre>
+<p>It attempts to unify the query term with all known facts – and the list of resulting unifiers is exactly the set of known parent child pairs.</p>
+<p>——————————- Conjunction ——————————</p>
+<p>Often, its more useful to ask questions about several terms. For example, to determine if margaret is holly’s grandparent, we would like to find if there is some person who is both the child of margaret AND the parent of holly. To do so, we can issue a conjunctive query which is a list of terms separated by commas as follows:</p>
+<pre><code>  ?- parent(margaret, X), parent(X, holly).</code></pre>
+<p>To answer this query, Prolog attempts to find an X such that parent(margaret,X) unifies with the set of known facts, AND, parent(X,holly) unifies with the set of known facts. Upon finding a unifier that works, it replies:</p>
+<pre><code>X = kim
+Yes</code></pre>
+<p>Thus, as kim is the intermediate parent, we can conclude that margaret is indeed a grandparent of holly. Finally, consider the following query:</p>
+<pre><code>  ?- parent(X,Y), parent(Y,Z), parent(Z,kim).</code></pre>
+<p>It asks if there are X,Y,Z such that X is Y’s parent, Y is Z’s parent and Z is kim’s parent. In other words, the query determines if kim has any “great-grandparent”. Upon finding appropriate unifiers, prolog replies:</p>
+<pre><code>X = john
+Y = felix
+Z = albert
+Yes</code></pre>
+<p>——————————- Rules ————————————</p>
+<p>The above is quite nifty – it allows us to quickly mine the database to find interesting relationships. However, it gets somewhat cumbersome as we have to devise a complex conjunctive query ever time. Instead, it would be nice if we could define complex queries out of simpler queries.</p>
+<p>Rules serve exactly that purpose. They allow us to specify complex queries (i.e. predicates) using simpler ones. In general, the format of a rule is:</p>
+<pre><code> head :- condition1, condition2, condition3....</code></pre>
+<p>Intuitively, it means, that the “head” query is true if condition1, condition2, condition3,… are all true. In other words, it tells prolog, to prove the head query, prove the conditions 1,2,3.</p>
+<p>For example, suppose we’d like to define a grandparent relationship (predicate). We do so as:</p>
+<pre><code>grandparent(GP,GC) :- parent(GP,P), parent (P,GC).</code></pre>
+<p>Intuitively this states:</p>
+<p>“GP is a grandparent of GC if GP is a parent of P AND P is a parent of GC”.</p>
+<p>With this definition, we can now issue the following query:</p>
+<pre><code>  ?- grandparent(X,kim).</code></pre>
+<p>and prolog responds with:</p>
+<pre><code>X=herbert
+Yes</code></pre>
+<p>as it can find that parent(herbert,margaret) and parent(margaret,kim), therefore, applying the rule, grandparent(herbert,kim), to which fact the query term gets unified. We can use this predicate to write more predicates:</p>
+<pre><code>greatgrandparent(GGP,GGC) :- parent(GGP,GP) , grandparent (GP, GGC).</code></pre>
+<p>We can now issue the query:</p>
+<pre><code>?- greatgrandparent(X,holly).
+   X=herbert
+   Yes</code></pre>
+<h2 id="program-facts-rules">Program = Facts + Rules:</h2>
+<p>Facts and Rules are the two kinds of “Clauses” (intuitively, a fact is just a rule without any conditions). Thus, a prolog program is a set of clauses – partitioned into a database of facts and a set of rules for inferring new facts.</p>
+<h2 id="scope">Scope:</h2>
+<p>Notice that the same variable P appears twice in the grandparent rule. Indeed one may be tempted to reuse P across several rules. In Prolog, the scope of a variable is the clause (rule) that contains it. Thus, there is no connection whatsoever between variables across clauses.</p>
+<p>For example, consider the two clauses:</p>
+<pre><code>   foo(P) :- bar(P).        % There is no connection between P in
+   stuff(P) :- thing(P).    % the 2 clauses.</code></pre>
+<p>In other words, there are no global variables, all variables are local to the individual clauses.</p>
+<p>———— Multiple Clauses = Disjunction and Recursion —————</p>
+<p>Suppose we want to define a predicate that is true for all those persons that have some family – that is, those persons who have either a parent OR a child. We can do so as follows:</p>
+<pre><code>has_family(X) :- parent(X,_).
+has_family(X) :- parent(_,X).</code></pre>
+<p>If we have multiple rules for the same predicate, effectively we are specifying a disjunction. The first rule says:</p>
+<p>“X has a family if there is some _ such that X is the parent of _&quot;</p>
+<p>The second rule says:</p>
+<p>“X has a family if there is some _ such that _ is the parent of X”</p>
+<p>If either of these clauses fire then, has_family(X) becomes true. Like in ML, the symbol “_&quot; represents a “wildcard” or dont-care variable that we will use only in one place and so we not bother to name it.</p>
+<p>Thus, ?- has_family(holly). Yes</p>
+<p>as the second rule fires for holly. While,</p>
+<p>?- has_family(mugatu). No</p>
+<p>as neither rule fires for mugatu.</p>
+<p>For those of you who are economical with the keystrokes, there is another way to specify disjunctive rules – via a semicolon:</p>
+<p>has_family(X) :- parent(X,<em>) ; parent(</em>,X).</p>
+<p>Suppose you want to specify an predicate ancestor(X,Y) which is true if X is an ancestor of Y, i.e. if by following the parent relationship from Y one eventually reaches X. Intuitively, X is an ancestor of Y either if:</p>
+<pre><code>1. X is the parent of Y, or,
+2. Z is the parent of Y, and X is an ancestor of Z.</code></pre>
+<p>Thus, we can specify this predicate recursively as follows:</p>
+<pre><code>ancestor(X,Y) :- parent(X,Y).                %[Base case]
+ancestor(X,Y) :- parent(Z,Y),ancestor(X,Z)   %[Recursive case]</code></pre>
+<p>This works quite niftily:</p>
+<pre><code>?- ancestor(kim,X).
+   X = holly ;
+   No</code></pre>
+<p>i.e. holly is the only “descendant” of kim, and:</p>
+<pre><code>?- ancestor(X,kim).
+   X = margaret ;
+   X = john ;
+   X = herbert ;
+   X = felix ;
+   X = albert ;
+   No</code></pre>
+<p>i.e. kim has a long ancestry.</p>
+<p>—————————– Backtracking Search —————————</p>
+<p>At this point, its worth looking into how exactly prolog pulls off this trick of answering queries in this manner, as it has its limits, which one needs to know to phrase the queries appropriately. Turns out, there’s no real magic – just brute force “proof” search.</p>
+<p>We can view each clause as a “proof rule”:</p>
+<pre><code>  goal :- subgoal_1, subgoal_2,...</code></pre>
+<p>Thus, the rules for ancestor are as follows:</p>
+<p>ancestor(X,Y) :- parent(X,Y). %rule 1 ancestor(X,Y) :- parent(Z,Y),ancestor(X,Z). %rule 2</p>
+<p>To prolog, these rules mean the following – to prove ancestor(X,Y), try to:</p>
+<ol style="list-style-type: decimal">
+<li>prove the subgoal parent(X,Y), or, failing that,</li>
+<li>prove the subgoal parent(X,Z), and then the subgoal ancestor(X,Z).</li>
+</ol>
+<p>Thus, suppose we ask it the query:</p>
+<p>?- ancestor(felix,holly).</p>
+<p>To prove this query, it undertakes the following backtracking search:</p>
+<pre><code>	ancestor(felix,holly)?
+	  /		\
+ parent(felix,holly)    parent(Z,holly)
+  NO		    ancestor(felix,Z)
+			|
+			| Z = kim  (by fact)
+			|
+		  ancestor(felix,kim)
+		  /        \
+  parent(felix,kim)     parent(Z',kim)
+      NO                ancestor(felix,Z')  ----------|
+		         |                            | Z'=john
+	     Z'=margaret |                            |
+			 |                        ancestor(felix,john)
+	     ancestor(felix,margaret)                 |
+	        /        \                         parent(felix,john)
+parent(felix,margaret)   parent(Z'',margaret)         YES
+	    NO           ancestor(felix,Z'')
+                                 |
+	    Z'' = herbert    |
+	                     |
+		   ancestor(felix,herbet)
+		     /              |
+	 parent(felix,herbert)   parent(Z''',herbert)
+	      NO			NO</code></pre>
+<p>Thus, it first tries the base rule i.e. to prove the subgoal parent(felix,holly). As it cannot unify this query with any known fact, it fails (NO), and so it backtracks and tries the other recursive rule. The only Z such that parent(Z,holly) unifies with a known fact is when Z=kim, thus, it tries to prove the second subgoal ancestor(felix,kim). To do so, again it first applies the base rule, which fails, and so it backtracks and applies the recursive rule.</p>
+<p>This time, there are two different Z (written Z’ in the figure to distinguish from the upper part of the tree), such that parent(Z,kim) – namely Z=margaret and Z=john. It picks margaret first (as that is the first unification that succeeds, and tries to prove the the second subgoal ancestor(felix,margaret). As we can see, from the subtree, this search fails, (as margaret’s sole parent is herbert who has no parent).</p>
+<p>Thus, prolog backtracks and tries the second Z=john, and tries to prove the second subgoal, ancestor(felix,john). This time, the base rule works as parent(felix,john) is a known fact, and thus the proof search succeeds and prolog returns:</p>
+<p>?- ancestor(felix,holly). Yes</p>
+<p>This same process is repeated for any query. When there is a variable in the query, eg.</p>
+<p>?- ancestor(X,kim).</p>
+<p>Prolog attempts the proof search and returns all the unifiers for X for which the proof succeeds. Thus, prolog is literally programming by proving.</p>
+<p>Hint: Trace mode in prolog shows the tree:</p>
+<pre><code>?- trace.</code></pre>
+<p>The subsequent query is traced: use the on-line help on the ACS Prolog interpreter</p>
+<pre><code>?- help(trace).</code></pre>
+<h2 id="order-matters">Order Matters:</h2>
+<p>The rub is that the order of the clauses and terms influences greatly the order in which the unification and backtracking happens. This is because, to prove a particular goal query, the different clauses are selected in order, and further, within each clause, the subgoals are selected from left-to-right, which affects how the unification happens.</p>
+<p>In the above example, if we had entered the branch Z’=john rather than than the branch Z’=margaret, then we would have proven the query faster. Similarly, if we had swapped the order of the conjunctions (subgoals) in the recursive clause, we would have a rather different tree (try as an exercise). Thus, order matters for performance. Hint: Try simple things first!</p>
+<p>More importantly, there are cases where the program may not even work (may not terminate), depending on the order:</p>
+<pre><code>ancestor(X,Y) :- ancestor(X,Z), parent(Z,Y).
+ancestor(X,Y) :- parent(X,Y).</code></pre>
+<p>Now lets try the same query:</p>
+<pre><code>?- ancestor(felix,holly).
+ ERROR: Out of local stack</code></pre>
+<p>Why ? Well, if you try to build the search tree, you’ll see it goes forever:</p>
+<pre><code>	ancestor(felix,holly)?
+	        |
+		|
+		|
+	ancestor(felix,Z)  %prove first subgoal,
+		|          %then parent(Z,holly)
+		|
+		|
+	ancestor(felix,Z') %prove first subgoal,
+		|	   %then parent(Z',Z)
+		|
+		|
+	ancestor(felix,Z'')
+		.
+		.
+		.</code></pre>
+<p>So, to avoid this, we must place the parent subgoal first (in the recursive rule). If this is done, the unification with the base facts (parent), fix the possible unifiers for Z, thereby guaranteeing termination.</p>
+<p>Lets see another example. Suppose we want to define a sibling predicate, where sibling(X,Y) holds if X and Y have the same parent. How about:</p>
+<pre><code>sibling(X,Y) :- parent(P,X), parent(P,Y).</code></pre>
+<p>Almost:</p>
+<pre><code>? sibling(kim,kim).
+Yes</code></pre>
+<p>Ah, we have to ensure that X and Y are not the same. Ok, how about:</p>
+<pre><code>sibling(X,Y) :- not(X=Y), parent(P,X), parent(P,Y).</code></pre>
+<p>Surely this works ? Nope. The reason is prolog’s semantics of equality (i.e. unification). This clause is read by prolog as:</p>
+<p>first, find a X,Y such that X cannot be unified with Y, then, find a P such that parent(P,X), and parent(P,Y).</p>
+<p>Now the catch is that to process the first subgoal, prolog finds it can always unify (two unconstrained variables) X and Y, by simply assigning X to Y! ?- X=Y. X=Y Yes</p>
+<pre><code>?- not(X=Y).
+No</code></pre>
+<p>Thus, the very first subgoal always fails, thereby ensuring that:</p>
+<pre><code>?- sibling(X,Y).
+No</code></pre>
+<p>Thus, to get the rule right, we must make sure that the goal that ensures that X and Y are not the same, is fired AFTER X and Y have been unified with appropriate atoms. We can do so by simply placing the subgoal at the end. sibling(X,Y) :- parent(P,X), parent(P,Y), not(X=Y).</p>
+<pre><code>?- sibling(X,Y).
+X = john
+Y = maya ;
+
+X = felix
+Y = dana ;
+
+X = dana
+Y = felix ;
+
+X = maya
+Y = john ;
+No</code></pre>
+<p>This shows a major weakness: You can’s just rely on the logical meanings and you sort of need to know how things work. Oh well, nothing’s perfect. We’ll see that many, many things break down the pure philosophy that says: “Just write what you need logically”</p>
+<p>—————————- Numeric Computation ————————–</p>
+<p>Although Prolog is mostly symbolic, there is a need for numeric computation.</p>
+<ul>
+<li>‘=’ is the unification operator ?- X = 2+3. X = 2+3 Yes</li>
+<li><p>‘is’ evaluates arithmetic expressions before doing unification ?- X is 2+3. X = 5 Yes When prolog tries to solve an “is” goal it evalutes the second argument and then unifies, as opposed to “=” which just does the unification.</p>
+<p>?- Y is X+2, X=1. ERROR: Args are not sufficiently instantiated</p>
+<p>?- X=1, Y is X+2. X=1 Y=3 Yes</p></li>
+</ul>
+<p>Again, order of evaluation matters!</p>
+<h2 id="functions-are-predicates">Functions are Predicates:</h2>
+<p>Lets try to write a factorial function in Prolog. We need to somehow encode functions as predicates. Here’s the deal: Whenever you have a function f(x), you can write a predicate</p>
+<pre><code>pred_f(X,Y)</code></pre>
+<p>that captures the behavior of f by being true for all those pairs X,Y where Y is f(X).</p>
+<p>Thus, we can write a predicate capturing the input/output relationship of the factorial function – i.e. a predicate factorial(X,Y), that is true for those pairs X,Y where Y is the factorial of X.</p>
+<pre><code>factorial(0,1). % base case
+factorial(X,N):- X1 is X-1, factorial(X1,N1), N is X1*N1.</code></pre>
+<p>We “call” the function with a query.</p>
+<pre><code>?- factorial(0,X).
+X = 1
+Yes
+
+?- factorial(5,X).
+X = 120</code></pre>
+<p>—————————- Data Structures: Lists ——————————–</p>
+<p>Let us now see how we can encode lists in Prolog. Again, its useful to recall how lists were encoded as a datatype in ML. – There is a “base atom”: [] denoting the empty list – There is a “cons”tructor: | (different syntax for this).</p>
+<p>Thus, ML’s list Cons(1,Cons(2,Cons(3,Nil))) is equivalent to the prolog term:</p>
+<pre><code>[1|[2|[3|[]]]]</code></pre>
+<p>where (1) | is Cons, and (2) [] is Nil.</p>
+<p>Also, as they are heavily used, Prolog lets you write the above term as: [1,2,3].</p>
+<pre><code>?- [1,2,3] = [1|[2|[3|[]]]].
+Yes</code></pre>
+<p>To “deconstruct” a list into head and tail, we use pattern-matching (very much like in ML). So:</p>
+<p>[X|Y] unifies with any non-empty list (like h::t), X unified to the first element (head) Y unified to the rest of the list (tail).</p>
+<pre><code>?- [X|Y] = [1,2,3,4,5].
+X = 1
+Y = [2,3,4,5]
+Yes
+
+?- [X|Y] = [1].
+X = 1
+Yes
+
+?- [X|Y] = [].
+No</code></pre>
+<p>[1|Y] unifies with any list starting with 1 (like 1::t), Y unified to the rest of the list.</p>
+<p>However, prolog also lets you write:</p>
+<p>[1,2|X] which unifies with any list that starts with 1 and then 2. ?- [1,2|X] = [1,2,3,4,5]. X = [3,4,5] Yes</p>
+<pre><code>?- [1,2|X] = [1,2]
+   X = []
+   Yes
+
+?- [1,2|X] = [1,3]
+   No
+
+One can place variables wherever in the term, so:
+    ?- [X,Y|Z] = [1,2,3].
+       X = 1
+       Y = 2
+       Z = [3]</code></pre>
+<p>Ok – how do we do interesting things with lists. For example, how might we “append” two lists ? Well, there is no “concatenation” or sticking together. In prolog you write a predicate:</p>
+<pre><code>append(X,Y,Z)</code></pre>
+<p>which is true if Z is the result of appending the lists X and Y. Turns out such a predicate is built-in, so lets see what it does.</p>
+<pre><code>  ?- append([1,2],[3,4],Z).
+    Z=[1,2,3,4]
+Yes</code></pre>
+<p>It simply “solves” for the right Z that happens to be the result of appending [1,2] and [3,4], but wait, predicates can do more:</p>
+<pre><code>  ?- append(X,[3,4],[1,2,3,4]).
+    X=[1,2]</code></pre>
+<p>whoa! backwards computation – what X is such that when appended to [3,4] you get [1,2,3,4] ? And now, the full power of multiple solutions:</p>
+<pre><code>  ?- append(X,Y,[1,2,3]).
+    X = []
+    Y = [1,2,3] ;
+
+    X = [1]
+    Y = [2,3] ;
+
+    X = [1,2]
+    Y = [3] ;
+
+    X = [1,2,3]
+    Y = []
+    Yes</code></pre>
+<p>Try doing that in another language.</p>
+<p>There are several such predicates for reverse, sort, append, built-in, but lets try to roll our own.</p>
+<p>How would you write append(X,Y,Z) in Prolog?</p>
+<p>Well, the base case is that if X is empty then, Z is just Y.</p>
+<pre><code>  append([], Y, Y).         % base case</code></pre>
+<p>The recursive case is when X is of the form [H|Tx], in which case, Z must begin with H, and the tail of Z is obtained by appending Tx to Y:</p>
+<pre><code>  append([H|T], Y, [H|Tz]) :- append(Tx,Y,Tz).     % recursive case</code></pre>
+<p>Very different way of thinking than imperative languages. Lets see what happens with the query: ?- append([1],[2],Z).</p>
+<pre><code> Prolog tries to prove the term append([1],[2],Z)
+ ---&gt; recursive case fires.
+ H unifies to 1
+ Tx unifies to []
+ Y unifies to [2]
+ Z unifies to [1|Tz]
+   ---&gt; prove:      append(Tx,Y,Tz)
+   ---&gt; i.e. prove: append([], [2], Tz)
+   base case fires.
+          ---&gt; Tz unifies to [2]
+          ---&gt; therefore:  Z = [1,2]</code></pre>
+<p>But, because of the magic of pattern matching, proving and predicates, you get the backwards computations by the same “proving” process !</p>
+<p>Lets do a few more. Lets write a predicate tailof(X,Y) which is true if Y is the tail of the list X.</p>
+<pre><code>tailof([_|X],X).</code></pre>
+<p>Again, note the judicious use of the wildcard “_“. If you actually named the variable there, eg.</p>
+<pre><code>tailof([H|X],X).</code></pre>
+<p>The compiler would warn you that you named a variable but used it only once – a “Singleton Variable”.</p>
+<p>Lets write a predicate which is true of lists with three or more elements:</p>
+<pre><code>has3orMoreElements([_,_,_|_]).</code></pre>
+<p>What does this predicate do ?</p>
+<pre><code>foo([X,_,_,_,X|_]).</code></pre>
+<p>One more tricky one. Lets write a predicate isin(X,L) which is true if X is an element of the list L. How ?</p>
+<p>base case: if X is the first element of the list L.</p>
+<pre><code>isin(X,[X|_]).</code></pre>
+<p>recursive case: if X appears in the tail of the list L.</p>
+<pre><code>isin(X,[_|T]) :- isin(X,T).</code></pre>
+<p>Let’s give it a spin:</p>
+<pre><code>?- isin(2,[1,2,3]).
+Yes
+
+?- isin(X,[1,2]).
+X=1 ;
+X=2 ;
+No
+
+?- isin(1,[2,3]).
+No</code></pre>
+<p>Let’s write another predicate:</p>
+<pre><code>mylength(L,X)</code></pre>
+<p>which is true if X is the length of list L</p>
+<p>mylength([],0). mylength([_|Tail],Len) :- mylength(Tail,TailLen), Len is TailLen +1.</p>
+<p>?- mylength([1,2],L). does not unify with mylength([],0) unifies with mylength([_|Tail],Len) with the bindings: Tail = [2] and Len = L</p>
+<pre><code>   now I need to prove the two things:
+     mylength([2],TailLen)   and  Len is TailLen + 1
+
+     can I prove the first one?
+     mylength([2],TailLen)  does not unify with mylength([],0)
+     mylength([2],TailLen)  unifies with  mylength([_|Tail'],Len')
+           with the bindings:
+      Tail' = []   and Len' = TailLen
+
+    now I need to prove the two conditions:
+          mylength([],TailLen'') and Len' is TailLen'' + 1
+          can I prove the first one?
+          mylength([],TailLen'') unifies with mylength([],0)
+             with the bindings:  TailLen'' = 0
+          Len' is TailLen'' + 1  then leads to the binding
+             Len' = 1
+          therefore TailLen is equal to Len', and thus to 1
+        therefore Len is equal to Len' + 1, and thus to 2
+      therefore L is equal to Len, and thus to 2
+    Prolog answers L = 2.</code></pre>
+<p>———————————– Cuts ———————————-</p>
+<ul>
+<li>Ordering clauses and goals is a way to somewhat control the search and backtracking process, but it is very limited.</li>
+<li>There is something called a “cut” that prevents Prolog from backtracking.</li>
+<li>Example: Let’s say we’re writing a program to compute the following step function: X &lt; 3 phi(X) = 0 3 &lt;= X &lt; 6 phi(X) = 2<br />
+6 &lt;= X phi(X) = 4</li>
+</ul>
+<p>In Prolog we can implement this with a binary predicate, f(X,Y), which is true if Y is the function value at point X. For instance, f(0,0) is true, f(4,2) is true, but f(2,4) is false. Here is the program:</p>
+<pre><code>   f(X,0) :- X &lt; 3.                  [rule 1]
+   f(X,2) :- 3 =&lt; X, X &lt; 6.          [rule 2]     note '=&lt;'
+   f(X,4) :- 6 =&lt; X.                 [rule 3]</code></pre>
+<p>There are two sources of inefficiency in this program, that we’ll see on one example:</p>
+<pre><code> ?- f(1,Y), 2 &lt; Y.      [find a Y such that Y = f(1)  and 2 &lt; Y]  
+                        [ we can see this is going to fail]</code></pre>
+<p>what does Prolog do?</p>
+<pre><code>                f(1,Y)
+                2 &lt; Y ----------
+     rule 1  /    \             \
+     Y = 0  /      \  rule 2     \  rule 3
+           /        | Y = 2       |  Y = 4
+          |         |             |
+        1 &lt; 3      3 &lt;= 1        6 &lt;= 1
+        2 &lt; 0      1 &lt; 6         2 &lt; 4
+         |         2 &lt; 2          NO
+         |         NO
+        2 &lt; 0      
+         NO</code></pre>
+<p>There is really no point in trying rule 2 and rule 3 because since X &lt; 3, we know that rule 2 and rule 3 will fail. Basically, the three rules are mututally exclusive. We know that. Prolog doesn’t.</p>
+<p>So, we can “cut” the backtracking by using the ‘!’ operator:</p>
+<pre><code>   f(X,0) :- X &lt; 3, !.   
+   f(X,2) :- 3 &lt;= X, X &lt; 6, !.
+   f(X,4) :- 6 &lt;= X.      </code></pre>
+<p>The new execution looks like:</p>
+<pre><code>                f(1,Y)
+                2 &lt; Y
+     rule 1  /    
+     Y = 0  /    
+           /    
+          |    
+        1 &lt; 3
+        2 &lt; 0
+         |      
+         CUT
+         |   
+        2 &lt; 0      
+         NO
+
+Lessons: cuts can be used to prevent Prolog from going into branches
+         of the search tree that we know, due to our understanding and
+         knowledge of the problem, will not succedd anyway.</code></pre>
+<ul>
+<li>There are many more things possible with cuts and using them well is an art. A program with no cuts at all will run orders of magnitude slower than an equivalent program with a few ‘!’ thrown in.</li>
+</ul>
+<p>————————– Accumulators —————————</p>
+<ul>
+<li>There are cases in which you want to add an argument to a predicate just to keep track of useful information</li>
+</ul>
+<h2 id="example-list-reverse">Example: List Reverse:</h2>
+<p>We will now write a predicate:</p>
+<pre><code>rev(X,Y)</code></pre>
+<p>that is true if the list Y is the reverse of the list X. To do so, we will use an accumulator that tracks the elements seen so far in X.</p>
+<pre><code>rev(X,Y) :- acc_rev(X,Y,[]).</code></pre>
+<p>The third parameter is the “accumulator”. We will “push” elements into it in the order they appear in X. Thus, when we have pushed all the elements, the third parameter is the “reversed” version of X.</p>
+<pre><code>acc_rev([],Y,Y).  %base case
+acc_rev([H|T],Y,SoFar) :- acc_rev(T,Y,[H|SoFar]). %recursive case
+
+
+?- rev([1,2,3],Y).
+Y = [3,2,1]
+Yes
+
+?- rev(X,[3,2,1]).
+X = 1,2,3
+Yes</code></pre>
+<p>The nice thing about predicates, is one can go forwards or backwards! Its completely symmetric…</p>
+<h2 id="example-finding-all-solutions">Example: Finding all solutions:</h2>
+<p>Suppose we have a predicate foo(X), defined:</p>
+<pre><code>  foo(a).  
+  foo(b).
+  foo(c).
+  foo(d).</code></pre>
+<p>and say we want to find all the terms X such that foo(X) is true. We will use an accumulator to define a predicate:</p>
+<pre><code>allfoos(L)</code></pre>
+<p>that is true for a list of terms iff every term in the list satisfies foo.</p>
+<pre><code>  allfoos(L) :- listallfoos(L,[]).</code></pre>
+<p>listallfoos is a helper predicate, whose second argument is an accumulator that “tracks” which terms satisfying foo are already known. We shall then “add” those terms that satisfy foo, but are not in the “accumulator”.</p>
+<pre><code>  % recursive case
+  listallfoos([X|L],SoFar) :- foo(X),    
+                              not(isin(X,SoFar)),
+                              append(SoFar,[X],NewSoFar),
+                              listallfoos(L,NewSoFar).
+  % base case
+  listallfoos([],_).    
+
+  ?- allfoos(A).
+    must prove listalllfoos(A,[]).
+    unifies with listallfoos([X|L],[])
+      must prove four things: foo(X)
+                              not(isin(X,[])
+                              append([],[X],NewSoFar)
+                              listallfoos(L,NewSoFar)
+        foo(a) 			true   (X is bound to a)
+        not(isin(a,[])) 		true
+        append([],[a],NewSoFar)	true with NewSoFar=[a]
+        must prove listallfoos(L,[a])
+        unifies with liastallfoos([Y|L'],[a])
+         must prove four things: foo(Y)
+                                 not(isin(Y,[a]).
+                                 append([a],[Y],NewSoFar')
+                                 listallfoos(L',NewSoFar')
+           foo(a)		  true
+           not(isin(a,[a]))   false  BACKTRACK
+           foo(b)		  true  (Y is bound to b)
+       not(isin(b,[b]))   true
+           append([a],[b],NewSoFar')  true with NewSoFar' = [a,b]
+           must prove listallfoos(L',[a,b])
+           unifies with listallfoos([Z|L''],[a,b])
+             must prove four things: foo(Z)
+                                     not(isin(Z,[a,b])
+             one can see that will fail   BACKTRACK
+           unifies with listallfoos([],[a,b]).
+           therefore: L' unifies with []
+         therefore: [Y|L'] unifies with [b]
+         therefore L unifies with [b]
+         therefore [X|L] unifies with [a,b]
+       therefore A unifies with [a,b]
+     therefore  allfoos([a,b])</code></pre>
+<p>If you try this code, and hit ‘;’, you’ll get multiple answers Try to figure out why (using the “trace” mode) Solution: add a cut</p>
+<pre><code>  listallfoos_cut([X|L],SoFar) :-
+        foo(X),    
+        not(isin(X,SoFar)),
+        append(SoFar,[X],NewSoFar),
+        listallfoos(L,NewSoFar),!.
+
+  listallfoos_cut([],_).</code></pre>
+<p>What happens when you flip order of base case and recursion ?</p>
+<p>—————————- Puzzle Solving —————————-</p>
+<p>We now have a good feel for what Prolog programs look like. Lets finish, by seeing how succinctly and elegantly prolog allows us to write code to solve tricky logical puzzles.</p>
+<h2 id="towers-of-hanoi">Towers of Hanoi:</h2>
+<pre><code>              |            |           |
+             =|=           |           |
+           ===|===         |           |
+         =====|=====       |	         |
+         =======|=======     |           |
+   --------------------------------------------------		
+	Peg 1        Peg 2       Peg 3</code></pre>
+<p>Puzzle: There are three pegs. On the first one, there is a stack of rings of decreasing radius (that forms a tower). In each step, you are allowed to move the top ring from one peg to another, but only if the rings in the new peg form a conical tower – i.e. as long as the sequences of radii from top to bottom is increasing (as shown in the figure).</p>
+<ul>
+<li>Goal: Find the sequence of moves (move top ring from from peg X to peg Y) that moves the tower from peg 1 to peg 3.</li>
+<li><p>The basic action is to move 1 disk, with printing</p>
+<p>move(A,B) :- nl, write (‘Move topdisk from’), write(A), write(‘to’), write(B).</p></li>
+<li>the main predicate is transfer(N,A,B,X): represents “Move N disks from peg A to peg B by using peg X as a helper”</li>
+<li><p>base case: transfer(1,A,B,X) :- move(A,B). Better written as: transfer(1,A,B,_) :- move(A,B).</p></li>
+<li><p>inductive case: transfer(N,A,B,X) :- transfer the top N-1 disks to X transfer the (bottom) disk from A to B transfer the top N-1 disks from X to B</p>
+<p>transfer(N,A,B,X) :- M is N-1, transfer(M,A,X,B), move(A,B), transfer(M,X,B,A).</p></li>
+</ul>
+<p>Lets see how these work – lets name the pegs using atoms: peg1, peg2, peg3. Here’s the sequence of moves to transfer a tower of size 3 across (you can try this at home!).</p>
+<p>?- transfer(3,peg1,peg3,peg2). Move topdisk from peg1 to peg3 Move topdisk from peg1 to peg2 Move topdisk from peg3 to peg2 Move topdisk from peg1 to peg3 Move topdisk from peg2 to peg1 Move topdisk from peg2 to peg3 Move topdisk from peg1 to peg3</p>
+<h2 id="farmer-wolf-goat-cabbage">Farmer/ Wolf / Goat / Cabbage:</h2>
+<pre><code> *West*              *East*
+
+   Goat       |       |           Goat eats cabbage if no farmer
+   Wolf       | river |           Wolf eats goat if no farmer
+   Cabbage    |       |           Only one spot on the boat(farmer+1)</code></pre>
+<p>Configure the “state” of the program as a list with the location of the four objects (farmer, wolf, goat, cabbage). There are two locations: West (w) and East (e).</p>
+<pre><code>   initial state:        [w,w,w,w]
+
+   desired state:        [e,e,e,e]</code></pre>
+<p>There are four kinds of moves: with the cabbage, (move_cabbage) with the goat, (move_goat) with the wolf, (move_wolf) with nothing. (move_nothing)</p>
+<p>Here is how the “state” changes with a given move:</p>
+<p>For instance, [w,w,w,w] —“move wolf”–&gt; [e,e,w,w]</p>
+<p>We encode this as:</p>
+<pre><code>   move([w,w,w,w],move_wolf,[e,e,w,w]).
+
+      (this just says that the state transformation above is true)</code></pre>
+<p>We could write all the possible moves as facts, but there would be a lot. However, it is clear that when the farmer and wolf move, the goat and the cabbage do not move, so a more general fact is:</p>
+<pre><code>   move([w,w,P_Goat,P_Cabbage],move_wolf,[e,e,P_Goat,P_Cabbage]).
+   move([e,e,P_Goat,P_Cabbage],move_wolf,[w,w,P_Goat,P_Cabbage]).</code></pre>
+<p>therefore, a more general goal is:</p>
+<pre><code>   move([X,X,P_Goat,P_Cabbage],move_wolf,[Y,Y,P_Goat,P_Cabbage]) :- change(X,Y)</code></pre>
+<p>where we have: change(e,w). change(w,e).</p>
+<p>In addition to ensuring that X and Y are different, this predicate ensures that they cannot be any random atom – they must be either “e” or “w”.</p>
+<p>Now we can just write the whole program:</p>
+<pre><code>   move([X,X,P_Goat,P_Cabbage],move_wolf,[Y,Y,P_Goat,P_Cabbage]) :- change(X,Y).
+   move([X,P_Wolf,X,P_Cabbage],move_goat,[Y,P_Wolf,Y,P_Cabbage]) :- change(X,Y).
+   move([X,P_Wolf,P_Goat,X],move_cabbage,[Y,P_Wolf,P_Goat,Y]) :- change(X,Y).
+   move([X,P_Wolf,P_Goat,P_Cabbage],move_nothing,[Y,P_Wolf,P_Goat,P_Cabbage]) :- change(X,Y).</code></pre>
+<p>At this point we have encoded all the possible moves. But there is nothing about moves being safe or unsafe. We need a safe predicate that takes a state as input and is true if the state is sage (nobody eats nobody).</p>
+<p>“if at least one of the goat or the wolf is on the same bank as the farmer, AND at least one of the goat or cabbage is on the same bank as the farmer, then we’re safe”</p>
+<p>We define the one_equal(X,Y,Z) predicate that returns true if at least one of Y or Z is equal to X:</p>
+<pre><code>one_equal(X,X,_).
+one_equal(X,_,X).</code></pre>
+<p>then we can have:</p>
+<pre><code> safe([P_Farmer,P_Wolf,P_Goat,P_Cabbage]) :-
+     one_equal(P_Farmer,P_Goat,P_Wolf),
+ one_equal(P_Farmer,P_Goat,P_Cabbage).</code></pre>
+<p>this encodes the logical statement we made above.</p>
+<p>A solution is defined as a sequence of moves such that we are either: – in the target configuration, all on the east bank, or, – in a state from which there is a single move, which takes us into a safe state, from which we can get to the target configuration.</p>
+<pre><code>solution([e,e,e,e],[]).
+solution(State,[FirstMove|RemainingMoves]) :-
+   move(State,FirstMove,NextState),
+   safe(NextState),
+   solution(NextState,RemainingMoves).</code></pre>
+<p>The program is complete.</p>
+<p>Example run:</p>
+<p>If you just type solution([w,w,w,w],X), we get into an infinite loop as there are infinitely solutions. So:</p>
+<pre><code>?- length(X,7), solution([w,w,w,w],X).
+
+ X = [goat, nothing, wolf, goat, cabbage, nothing, goat]</code></pre>
+<p>In fact, 7 steps is the shortest solution.</p>
+<pre><code>?- length(X,12), solution([w,w,w,w],X).         (needs an odd number of moves)
+ No
+
+?- length(X,13423), solution([w,w,w,w],X).
+ [goat, goat, goat, goat, goat, goat, goat, ....., +7 steps] is one of the solutions</code></pre>
+                <hr>
+            </div>
+        </div>
+    </div>
+</article>
+
+        </div>
+        <div id="footer">
+        </div>
+      <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    <li>
+                        <a href="https://ucsd-cse130.github.io/web/feed.xml" data-datatype="json" data-type="GET" data-target="#frame" class="reload" id="clickme">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://twitter.com/ranjitjhala" data-datatype="json" data-type="GET" data-target="#frame" class="reload" id="clickme" target="_blank">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a href="https://plus.google.com/u/0/106612421534244742464" data-datatype="json" data-type="GET" data-target="#frame" class="reload" id="clickme" target="_blank">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a href="https://github.com/ucsd-progsys/130-web" target="_blank">
+                            <span class="fa-stack fa-lg">
+
+                              <i class="fa fa-arrow-circle-o-down"></i>
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+		    
+                </ul>
+                <p class="copyright text-muted">
+                
+                  Generated by <a href="http://jaspervdj.be/hakyll">Hakyll</a>,
+                  template by <a href="http://lucumr.pocoo.org">Armin Ronacher</a>,
+                  suggest improvements <a href="https://github.com/ucsd-progsys/liquidhaskell-blog/">here</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<!-- jQuery -->
+<script src="https://ucsd-cse130.github.io/web/static/js/jquery.min.js"></script>
+<script src="https://ucsd-cse130.github.io/web/static/js/spaceg.stylesheets.min.js"></script>
+<script src="https://ucsd-cse130.github.io/web/static/js/bootstrap.min.js"></script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+<script src="https://ucsd-cse130.github.io/web/static/js/anim.js"></script>
+<script src="https://ucsd-cse130.github.io/web/static/js/scripts.js"></script>
+
+    </body>
+</html>
