@@ -26,7 +26,8 @@ headerImg: books.jpg
 | 5/19       | contd.                        |                           | [.ml][ml-5-19]|
 | 5/22       | Lexing and Parsing            | [html][lec7]              | [.ml][ml-5-22]|
 | 5/24       | contd.                        |                           |               |
-| 5/26       | Polymorphism                  | [pdf][lec8] [pdf-small][lec8s] | [.ml][ml-2-25]|
+| 5/26       | Polymorphism                  | [pdf][lec8] [pdf-small][lec8s] | [.ml][ml-5-26]|
+| 5/31       | contd.                        |                                | [.ml][ml-5-31]|
 | 6/2        | Logic Programming             | [html][lec9] [md][md9]  [txt][txt9]  | [.pl][pl-5-2] |
 
 ## Interesting Piazza Questions
@@ -76,3 +77,8 @@ headerImg: books.jpg
 [ml-5-19]: http://github.com/ucsd-cse130/web/blob/master/static/raw/code-5-19.ml
 [ml-5-22]: http://github.com/ucsd-cse130/web/blob/master/static/raw/hw4/arith_notes/
 [pl-6-2]: http://github.com/ucsd-cse130/web/blob/master/static/raw/prolog.pl
+
+
+[ml-5-26]: http://github.com/ucsd-cse130/web/blob/master/static/raw/code-5-26.ml
+[ml-5-31]: http://github.com/ucsd-cse130/web/blob/master/static/raw/code-5-31.ml
+
