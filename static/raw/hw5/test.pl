@@ -8,7 +8,7 @@ print_exception(E) :- print_list(['exception: ',E]).
 
 run_test(T,Max,Pts) :- print_list(['testing ',T,'... ']),
 					   catch( ((not(not(T)),print('success'),Pts=Max);(print('fail'),Pts=0)), Ex, (print_exception(Ex),Pts=0) ),
-					   print_list([' (',Pts,'/',Max,')\n']),!.
+					   print_list([' (',Pts,'/',Max,')']),nl,!.
 
 run_tests([],Max,Pts) :- Max=0,Pts=0.
 run_tests([run_test(T,TMax)|Ts],Max,Pts) :- run_test(T,TMax,TPts), run_tests(Ts,TsMax,TsPts), Max is TMax + TsMax, Pts is TPts + TsPts.
@@ -66,4 +66,4 @@ run_all_tests(Max,Pts) :- run_tests(
 	run_test((find_items(X,[guacamole,cheese,salsa],[]),!,unordered_eq(X,[al_pastor_taco,combo_plate])),1)
     ],Max,Pts).
 		
-:- run_all_tests(Max,Pts), print_list(['Result: ',Pts,'/',Max,'\n']), halt.
+:- run_all_tests(Max,Pts), print_list(['Result: ',Pts,'/',Max]), nl, halt.
