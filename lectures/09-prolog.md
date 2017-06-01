@@ -282,7 +282,7 @@ parent(alice, Child) % alice is an atom, Child is a variable
 
 - More like **trees**
 
-- <img src="../static/prolog_tree1.png" width=400 align="middle"/>
+- <img src="../static/img/prolog_tree1.png" width=400 align="middle"/>
 
 <!--
 ## Prolog Terms: Compound Terms
@@ -355,7 +355,7 @@ Compound ("parent", [Atom "alice"; Var "Charlie"])
 
 ### Tree
 
-<img src="../static/prolog_tree2.png" width=300 align="middle"/>
+<img src="../static/img/prolog_tree2.png" width=300 align="middle"/>
 
 ## QUIZ: An Ocaml Type For Prolog Terms
 
@@ -383,13 +383,13 @@ What Ocaml value of type `term` represents Prolog term `factorial(5)` ?
 
 ## Prolog Terms
 
-Prolog term `factorial(5)` is simply the tree  <img src="../static/prolog_tree3.png" width=200 align="middle"/>
+Prolog term `factorial(5)` is simply the tree  <img src="../static/img/prolog_tree3.png" width=200 align="middle"/>
 
 - The term is just a box containing `5` labeled `factorial`
 
 ## Prolog Terms
 
-Prolog term `factorial(5)` is simply the tree  <img src="../static/prolog_tree3.png" width=200 align="middle"/>
+Prolog term `factorial(5)` is simply the tree  <img src="../static/img/prolog_tree3.png" width=200 align="middle"/>
 
 - The term is just a box containing `5` labeled `factorial`
 
@@ -969,7 +969,7 @@ How does Prolog respond to the following query?
 ?- p(X, dog, X) = p(cat, Y, Y).
 ~~~~~
 
-<img src="../static/prolog_unify_1.png" width=500 align="middle"/>
+<img src="../static/img/prolog_unify_1.png" width=500 align="middle"/>
 
 The **top** nodes of both trees have **same predicate** ... go inside.
 
@@ -981,7 +981,7 @@ The **top** nodes of both trees have **same predicate** ... go inside.
 ?- p(X, dog, X) = p(cat, Y, Y).
 ~~~~~
 
-<img src="../static/prolog_unify_2.png" width=500 align="middle"/>
+<img src="../static/img/prolog_unify_2.png" width=500 align="middle"/>
 
 To unify `X` and `cat` use **substitution** `X = cat`
 
@@ -993,7 +993,7 @@ To unify `X` and `cat` use **substitution** `X = cat`
 ?- p(X, dog, X) = p(cat, Y, Y).
 ~~~~~
 
-<img src="../static/prolog_unify_3.png" width=500 align="middle"/>
+<img src="../static/img/prolog_unify_3.png" width=500 align="middle"/>
 
 Apply substitution `X = cat` to both terms. Move on to next leaf...
 
@@ -1005,7 +1005,7 @@ Apply substitution `X = cat` to both terms. Move on to next leaf...
 ?- p(X, dog, X) = p(cat, Y, Y).
 ~~~~~
 
-<img src="../static/prolog_unify_4.png" width=500 align="middle"/>
+<img src="../static/img/prolog_unify_4.png" width=500 align="middle"/>
 
 To unify `dog` and `Y` use **substitution** `Y = dog` ...
 
@@ -1017,7 +1017,7 @@ To unify `dog` and `Y` use **substitution** `Y = dog` ...
 ?- p(X, dog, X) = p(cat, Y, Y).
 ~~~~~
 
-<img src="../static/prolog_unify_5.png" width=500 align="middle"/>
+<img src="../static/img/prolog_unify_5.png" width=500 align="middle"/>
 
 ... and apply substitution throughout **both** terms.
 
@@ -1029,7 +1029,7 @@ To unify `dog` and `Y` use **substitution** `Y = dog` ...
 ?- p(X, dog, X) = p(cat, Y, Y).
 ~~~~~
 
-<img src="../static/prolog_unify_6.png" width=500 align="middle"/>
+<img src="../static/img/prolog_unify_6.png" width=500 align="middle"/>
 
 Uh oh, now last leaf has **different** atoms...
 
@@ -1041,7 +1041,7 @@ Uh oh, now last leaf has **different** atoms...
 ?- p(X, dog, X) = p(cat, Y, Y).
 ~~~~~
 
-<img src="../static/prolog_unify_7.png" width=500 align="middle"/>
+<img src="../static/img/prolog_unify_7.png" width=500 align="middle"/>
 
 ... impossible to unify `cat` and `dog`. **Unification fails.**
 
@@ -1054,7 +1054,7 @@ Uh oh, now last leaf has **different** atoms...
 false.
 ~~~~~
 
-<img src="../static/prolog_unify_7.png" width=500 align="middle"/>
+<img src="../static/img/prolog_unify_7.png" width=500 align="middle"/>
 
 ## QUIZ: Recursively Unify Subtrees
 

@@ -448,7 +448,7 @@ parent(alice<span class="kw">,</span> <span class="dt">Child</span>) <span class
 <ul>
 <li><p>Terms are NOT Function Calls!</p></li>
 <li><p>More like <strong>trees</strong></p></li>
-<li><p><img src="../static/prolog_tree1.png" width="400" align="middle" /></p></li>
+<li><p><img src="../static/img/prolog_tree1.png" width="400" align="middle" /></p></li>
 </ul>
 <!--
 ## Prolog Terms: Compound Terms
@@ -496,7 +496,7 @@ term     := const | atom | variable | atom(term,term,term,...)
 <h3 id="ocaml-value">Ocaml Value</h3>
 <div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="dt">Compound</span> (<span class="st">&quot;parent&quot;</span>, [<span class="dt">Atom</span> <span class="st">&quot;alice&quot;</span>; <span class="dt">Var</span> <span class="st">&quot;Charlie&quot;</span>])</code></pre></div>
 <h3 id="tree">Tree</h3>
-<p><img src="../static/prolog_tree2.png" width="300" align="middle" /></p>
+<p><img src="../static/img/prolog_tree2.png" width="300" align="middle" /></p>
 <h2 id="quiz-an-ocaml-type-for-prolog-terms-1">QUIZ: An Ocaml Type For Prolog Terms</h2>
 <div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">type</span> term = <span class="dt">Constant</span> <span class="kw">of</span> <span class="dt">int</span>
           | <span class="dt">Atom</span>     <span class="kw">of</span> <span class="dt">string</span>
@@ -510,12 +510,12 @@ term     := const | atom | variable | atom(term,term,term,...)
 <p><strong>D.</strong> <code>Constant 120</code></p>
 <p><strong>E.</strong> <code>Compound (&quot;factorial&quot;, [Constant 5])</code></p>
 <h2 id="prolog-terms">Prolog Terms</h2>
-<p>Prolog term <code>factorial(5)</code> is simply the tree <img src="../static/prolog_tree3.png" width="200" align="middle" /></p>
+<p>Prolog term <code>factorial(5)</code> is simply the tree <img src="../static/img/prolog_tree3.png" width="200" align="middle" /></p>
 <ul>
 <li>The term is just a box containing <code>5</code> labeled <code>factorial</code></li>
 </ul>
 <h2 id="prolog-terms-1">Prolog Terms</h2>
-<p>Prolog term <code>factorial(5)</code> is simply the tree <img src="../static/prolog_tree3.png" width="200" align="middle" /></p>
+<p>Prolog term <code>factorial(5)</code> is simply the tree <img src="../static/img/prolog_tree3.png" width="200" align="middle" /></p>
 <ul>
 <li>The term is just a box containing <code>5</code> labeled <code>factorial</code></li>
 </ul>
@@ -854,43 +854,43 @@ and you are welcome to redistribute it under certain conditions<span class="kw">
 <h2 id="unification-with-multiple-variables-1">Unification With Multiple Variables</h2>
 <h3 id="two-terms-can-be-unified-if-we-can-substitute-values-for-variables-to-make-the-terms-identical-8">Two terms can be <em>unified</em> if we can <em>substitute</em> values for variables to make the terms <em>identical</em></h3>
 <div class="sourceCode"><pre class="sourceCode prolog"><code class="sourceCode prolog"><span class="fu">?-</span> p(<span class="dt">X</span><span class="kw">,</span> dog<span class="kw">,</span> <span class="dt">X</span>) <span class="kw">=</span> p(cat<span class="kw">,</span> <span class="dt">Y</span><span class="kw">,</span> <span class="dt">Y</span>)<span class="kw">.</span></code></pre></div>
-<p><img src="../static/prolog_unify_1.png" width="500" align="middle" /></p>
+<p><img src="../static/img/prolog_unify_1.png" width="500" align="middle" /></p>
 <p>The <strong>top</strong> nodes of both trees have <strong>same predicate</strong> … go inside.</p>
 <h2 id="unification-with-multiple-variables-2">Unification With Multiple Variables</h2>
 <h3 id="two-terms-can-be-unified-if-we-can-substitute-values-for-variables-to-make-the-terms-identical-9">Two terms can be <em>unified</em> if we can <em>substitute</em> values for variables to make the terms <em>identical</em></h3>
 <div class="sourceCode"><pre class="sourceCode prolog"><code class="sourceCode prolog"><span class="fu">?-</span> p(<span class="dt">X</span><span class="kw">,</span> dog<span class="kw">,</span> <span class="dt">X</span>) <span class="kw">=</span> p(cat<span class="kw">,</span> <span class="dt">Y</span><span class="kw">,</span> <span class="dt">Y</span>)<span class="kw">.</span></code></pre></div>
-<p><img src="../static/prolog_unify_2.png" width="500" align="middle" /></p>
+<p><img src="../static/img/prolog_unify_2.png" width="500" align="middle" /></p>
 <p>To unify <code>X</code> and <code>cat</code> use <strong>substitution</strong> <code>X = cat</code></p>
 <h2 id="unification-with-multiple-variables-3">Unification With Multiple Variables</h2>
 <h3 id="two-terms-can-be-unified-if-we-can-substitute-values-for-variables-to-make-the-terms-identical-10">Two terms can be <em>unified</em> if we can <em>substitute</em> values for variables to make the terms <em>identical</em></h3>
 <div class="sourceCode"><pre class="sourceCode prolog"><code class="sourceCode prolog"><span class="fu">?-</span> p(<span class="dt">X</span><span class="kw">,</span> dog<span class="kw">,</span> <span class="dt">X</span>) <span class="kw">=</span> p(cat<span class="kw">,</span> <span class="dt">Y</span><span class="kw">,</span> <span class="dt">Y</span>)<span class="kw">.</span></code></pre></div>
-<p><img src="../static/prolog_unify_3.png" width="500" align="middle" /></p>
+<p><img src="../static/img/prolog_unify_3.png" width="500" align="middle" /></p>
 <p>Apply substitution <code>X = cat</code> to both terms. Move on to next leaf…</p>
 <h2 id="unification-with-multiple-variables-4">Unification With Multiple Variables</h2>
 <h3 id="two-terms-can-be-unified-if-we-can-substitute-values-for-variables-to-make-the-terms-identical-11">Two terms can be <em>unified</em> if we can <em>substitute</em> values for variables to make the terms <em>identical</em></h3>
 <div class="sourceCode"><pre class="sourceCode prolog"><code class="sourceCode prolog"><span class="fu">?-</span> p(<span class="dt">X</span><span class="kw">,</span> dog<span class="kw">,</span> <span class="dt">X</span>) <span class="kw">=</span> p(cat<span class="kw">,</span> <span class="dt">Y</span><span class="kw">,</span> <span class="dt">Y</span>)<span class="kw">.</span></code></pre></div>
-<p><img src="../static/prolog_unify_4.png" width="500" align="middle" /></p>
+<p><img src="../static/img/prolog_unify_4.png" width="500" align="middle" /></p>
 <p>To unify <code>dog</code> and <code>Y</code> use <strong>substitution</strong> <code>Y = dog</code> …</p>
 <h2 id="unification-with-multiple-variables-5">Unification With Multiple Variables</h2>
 <h3 id="two-terms-can-be-unified-if-we-can-substitute-values-for-variables-to-make-the-terms-identical-12">Two terms can be <em>unified</em> if we can <em>substitute</em> values for variables to make the terms <em>identical</em></h3>
 <div class="sourceCode"><pre class="sourceCode prolog"><code class="sourceCode prolog"><span class="fu">?-</span> p(<span class="dt">X</span><span class="kw">,</span> dog<span class="kw">,</span> <span class="dt">X</span>) <span class="kw">=</span> p(cat<span class="kw">,</span> <span class="dt">Y</span><span class="kw">,</span> <span class="dt">Y</span>)<span class="kw">.</span></code></pre></div>
-<p><img src="../static/prolog_unify_5.png" width="500" align="middle" /></p>
+<p><img src="../static/img/prolog_unify_5.png" width="500" align="middle" /></p>
 <p>… and apply substitution throughout <strong>both</strong> terms.</p>
 <h2 id="unification-with-multiple-variables-6">Unification With Multiple Variables</h2>
 <h3 id="two-terms-can-be-unified-if-we-can-substitute-values-for-variables-to-make-the-terms-identical-13">Two terms can be <em>unified</em> if we can <em>substitute</em> values for variables to make the terms <em>identical</em></h3>
 <div class="sourceCode"><pre class="sourceCode prolog"><code class="sourceCode prolog"><span class="fu">?-</span> p(<span class="dt">X</span><span class="kw">,</span> dog<span class="kw">,</span> <span class="dt">X</span>) <span class="kw">=</span> p(cat<span class="kw">,</span> <span class="dt">Y</span><span class="kw">,</span> <span class="dt">Y</span>)<span class="kw">.</span></code></pre></div>
-<p><img src="../static/prolog_unify_6.png" width="500" align="middle" /></p>
+<p><img src="../static/img/prolog_unify_6.png" width="500" align="middle" /></p>
 <p>Uh oh, now last leaf has <strong>different</strong> atoms…</p>
 <h2 id="unification-with-multiple-variables-7">Unification With Multiple Variables</h2>
 <h3 id="two-terms-can-be-unified-if-we-can-substitute-values-for-variables-to-make-the-terms-identical-14">Two terms can be <em>unified</em> if we can <em>substitute</em> values for variables to make the terms <em>identical</em></h3>
 <div class="sourceCode"><pre class="sourceCode prolog"><code class="sourceCode prolog"><span class="fu">?-</span> p(<span class="dt">X</span><span class="kw">,</span> dog<span class="kw">,</span> <span class="dt">X</span>) <span class="kw">=</span> p(cat<span class="kw">,</span> <span class="dt">Y</span><span class="kw">,</span> <span class="dt">Y</span>)<span class="kw">.</span></code></pre></div>
-<p><img src="../static/prolog_unify_7.png" width="500" align="middle" /></p>
+<p><img src="../static/img/prolog_unify_7.png" width="500" align="middle" /></p>
 <p>… impossible to unify <code>cat</code> and <code>dog</code>. <strong>Unification fails.</strong></p>
 <h2 id="unification-with-multiple-variables-8">Unification With Multiple Variables</h2>
 <h3 id="two-terms-can-be-unified-if-we-can-substitute-values-for-variables-to-make-the-terms-identical-15">Two terms can be <em>unified</em> if we can <em>substitute</em> values for variables to make the terms <em>identical</em></h3>
 <div class="sourceCode"><pre class="sourceCode prolog"><code class="sourceCode prolog"><span class="fu">?-</span> p(<span class="dt">X</span><span class="kw">,</span> dog<span class="kw">,</span> <span class="dt">X</span>) <span class="kw">=</span> p(cat<span class="kw">,</span> <span class="dt">Y</span><span class="kw">,</span> <span class="dt">Y</span>)<span class="kw">.</span>
 <span class="kw">false.</span></code></pre></div>
-<p><img src="../static/prolog_unify_7.png" width="500" align="middle" /></p>
+<p><img src="../static/img/prolog_unify_7.png" width="500" align="middle" /></p>
 <h2 id="quiz-recursively-unify-subtrees">QUIZ: Recursively Unify Subtrees</h2>
 <h3 id="two-terms-can-be-unified-if-we-can-substitute-values-for-variables-to-make-the-terms-identical-16">Two terms can be <em>unified</em> if we can <em>substitute</em> values for variables to make the terms <em>identical</em></h3>
 <p>How does Prolog respond to the following unification query?</p>
