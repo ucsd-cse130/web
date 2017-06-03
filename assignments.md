@@ -10,7 +10,7 @@ mins over the deadline is equal to 1 late day.
 
 ## Assignments
 
-- [HW #0](https://github.com/ucsd-cse130/00-lambda/), due Fri 4/14 by 23:59pm
+- [HW #0](https://github.com/ucsd-cse130/00-lambda/), due Mon 4/17 by 23:59pm
 
 - [HW #1](assignments/01-ocaml.html),  due Mon 4/24 by 23:59pm
 
@@ -18,7 +18,7 @@ mins over the deadline is equal to 1 late day.
 
 - [HW #3](assignments/03-fold.html), due Wed 5/10  by 23:59pm
 
-- [HW #4](assignments/04-nanoml.html), due Mon 5/29 by 23:59pm
+- [HW #4](assignments/04-nanoml.html), due Wed 5/31 by 23:59pm
 
 - [HW #5](assignments/05-logic.html), due Sun 6/11 by 23:59pm
 

@@ -1,4 +1,4 @@
-# 131-web
+# 130-web
 
 Public course materials for [UCSD CSE 130](https://ucsd-cse130.github.io/web)
 
