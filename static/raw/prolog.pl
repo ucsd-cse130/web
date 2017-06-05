@@ -1,9 +1,29 @@
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
-% List of parent relationships parent(kim,holly).  parent(margaret,kim).  
-parent(herbert,margaret). parent(john,kim). parent(felix,john).  
-parent(albert,felix). parent(albert,dana). parent(felix,maya).
+% fact
+isMexican(pulpo).
+isMexican(barbacoa).
+isMexican(carnitas).
+
+% rule
+isDelicious(X) :- isMexican(X).
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% List of parent relationships
+parent(kim,holly).
+parent(margaret,kim).
+parent(herbert,margaret).
+parent(john,kim).
+parent(felix,john).
+parent(albert,felix).
+parent(albert,dana).
+parent(felix,maya).
 
 
 
@@ -69,7 +89,7 @@ sibling3(X,Y) :- X\=Y,parent(P,X),parent(P,Y).
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 fac(0,1).
 fac(N,K):- N1 is N-1, fac(N1,K1), K is K1 * N.
@@ -142,7 +162,7 @@ len([_|T],N) :- len(T,Nt), N is Nt + 1.
 
 
 rev(X,Y) :- acc_rev(X,Y,[]).
-acc_rev([],Y,Y).  
+acc_rev([],Y,Y).
 acc_rev([H|T],Y,SoFar) :- acc_rev(T,Y,[H|SoFar]).
 
 
@@ -150,8 +170,8 @@ acc_rev([H|T],Y,SoFar) :- acc_rev(T,Y,[H|SoFar]).
 
 
 
-foo(a).  
-foo(b). 
+foo(a).
+foo(b).
 foo(c).
 foo(d).
 
@@ -165,18 +185,18 @@ allfoos(L) :- listallfoos(L,[]).
 
 
 
-listallfoos([X|L],SoFar) :- 
-	foo(X),    
+listallfoos([X|L],SoFar) :-
+	foo(X),
         not(isin(X,SoFar)),
         append(SoFar,[X],NewSoFar),
         listallfoos(L,NewSoFar).
-     
-listallfoos([],_).    
+
+listallfoos([],_).
 
 
-move(A,B) :- 
+move(A,B) :-
 	nl, write('Move topdisk from '),
-        write(A), write(' to '), write(B). 
+        write(A), write(' to '), write(B).
 
 
 transfer(1,A,B,_) :- move(A,B).
@@ -198,7 +218,7 @@ transfer(N,A,B,X) :-
 
 
 change(e,w).
-change(w,e).     
+change(w,e).
 
 
 
@@ -218,7 +238,7 @@ one_equal(X,_,X).
 
 
 safe([P_Farmer,P_Wolf,P_Goat,P_Cabbage]) :-
-     one_equal(P_Farmer,P_Goat,P_Wolf), 
+     one_equal(P_Farmer,P_Goat,P_Wolf),
      one_equal(P_Farmer,P_Goat,P_Cabbage).
 
 
@@ -232,10 +252,5 @@ solution(State,[FirstMove|RemainingMoves]) :-
 
 
 
-     
+
 %    ?- length(X,7), solution([w,w,w,w],X).
-
-
-
-
-
