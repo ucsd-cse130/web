@@ -63,7 +63,7 @@ headerImg: books.jpg
 
 [lec9]: lectures/09-prolog.html
 [md9]: http://github.com/ucsd-cse130/web/blob/master/lectures/09-prolog.md
-[txt]: static/raw/prolog.txt
+[txt9]: static/raw/prolog.txt
 
 [lc-4-7]: http://github.com/ucsd-cse130/web/blob/master/static/raw/code-4-7.lc
 [lc-4-10]: http://github.com/ucsd-cse130/web/blob/master/static/raw/code-4-10.lc
@@ -81,4 +81,3 @@ headerImg: books.jpg
 
 [ml-5-26]: http://github.com/ucsd-cse130/web/blob/master/static/raw/code-5-26.ml
 [ml-5-31]: http://github.com/ucsd-cse130/web/blob/master/static/raw/code-5-31.ml
-
