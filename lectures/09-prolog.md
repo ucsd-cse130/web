@@ -1061,7 +1061,7 @@ Z = 3.
 How does Prolog respond to the following unification query?
 
 ~~~~~{.prolog}
-?- a(W, foo(W, Y), Y) = a(2, foo(X, 3), X).
+?- a(W, foo(W, Y), Y) = a(2, foo(X, 3), Z).
 ~~~~~
 
 <br><br>
@@ -1074,7 +1074,7 @@ How does Prolog respond to the following unification query?
 
 **D.** `W = 3, X = 3, Y = 2, Z = 2.`
 
-**C.** `W = 2, X = 3, Y = 2, Z = 3.`
+**E.** `W = 2, X = 3, Y = 2, Z = 3.`
 
 ## Recursively Unify Subtrees
 

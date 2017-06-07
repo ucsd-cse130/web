@@ -16,14 +16,26 @@ isDelicious(X) :- isMexican(X).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % List of parent relationships
-parent(kim,holly).
-parent(margaret,kim).
-parent(herbert,margaret).
-parent(john,kim).
-parent(felix,john).
-parent(albert,felix).
-parent(albert,dana).
-parent(felix,maya).
+
+parent(kim, holly).
+parent(margaret, kim).
+parent(herbert, margaret).
+parent(john, kim).
+parent(felix, john).
+parent(albert, felix).
+parent(albert, dana).
+parent(felix, maya).
+parent(alice, jum).
+
+hasManyKids(X) :- parent(X, Y), parent(X, Z), Y \= Z.
+
+isSibling(X, Y) :- parent(P, X), parent(P, Y), X \= Y.
+
+isGrandParent(GPar, GKid) :- parent(GPar, Par), parent(Par, GKid).
+
+% IF   parent(X, Y) and parent(X, Z) and Y \= Z
+% THEN hasManyKids(X)
+
 
 
 
