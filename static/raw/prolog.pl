@@ -27,6 +27,16 @@ parent(albert, dana).
 parent(felix, maya).
 parent(alice, jum).
 
+anc(X, Y) :- parent(X, Y).
+anc(X, Y) :- parent(X, Z1), anc(Z1, Y).
+
+ancLoop(X, Y) :- ancLoop(Z1, Y), parent(X, Z1).
+ancLoop(X, Y) :- parent(X, Y).
+
+
+sib1(X, Y) :- parent(P, X), parent(P, Y), not(X = Y).
+sib2(X, Y) :- not(X = Y), parent(P, X), parent(P, Y).
+
 hasManyKids(X) :- parent(X, Y), parent(X, Z), Y \= Z.
 
 isSibling(X, Y) :- parent(P, X), parent(P, Y), X \= Y.

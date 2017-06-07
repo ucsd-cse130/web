@@ -1061,7 +1061,7 @@ Z = 3.
 How does Prolog respond to the following unification query?
 
 ~~~~~{.prolog}
-?- a(W, foo(W, Y), Y) = a(2, foo(X, 3), Z).
+?- a(W, foo(W, Y), Y) = a(2, foo(X, 3), X).
 ~~~~~
 
 <br><br>
@@ -1472,7 +1472,9 @@ P = john .
 
 Which of the following is a valid `greatgrandparent` predicate?
 
-(Btw, **greatgrandparent**  is the  **parent** of a **grandparent**.)
+(Btw, **greatgrandparent** is the  **parent** of a **grandparent**.)
+
+bob -> sachin -> krishna -> ranjit
 
 ~~~~~{.prolog}
 % A
@@ -1491,6 +1493,19 @@ greatgrandparent(X, Y) :- parent(X, Z), parent(Z, Y).
 greatgrandparent(X, Y) :- parent(X, Z), parent(Z, Z1), parent(Z1, Y).
 ~~~~~
 
+anc(albert,DESC)
+  parent(albert, felix) ==> anc(felix, DESC)
+  parent(albert, dana)  ==> anc(dana, DESC)
+
+
+anc(X, Y) :- anc(Z1, Y), parent(X, Z1).
+
+
+anc(albert,DESC)
+  anc(Z1, DESC)
+    anc(Z1', DESC)
+      anc(Z1'', DESC)
+        anc(Z1''', DESC)
 
 
 ## Rules: Complex Predicates from Simple Queries
@@ -1802,6 +1817,11 @@ X = albert    .
 4. Rules
 5. Programs (Implementation: **Backtracking Search**)
 
+################################################################################
+################################################################################
+################################################################################
+
+
 ### Backtracking Search
 
 TBD
@@ -1824,13 +1844,389 @@ TBD
 - Data Structures
 - Puzzle Solving
 
+### Backtracking Search
+
+How does prolog answer recursive queries?
+
+- Brute force *backtracking search*
+
+View each clause as a **proof rule**:
+
+~~~~~{.prolog}
+goal :- subgoal_1, subgoal_2,...
+~~~~~
+
+Thus, the rules for ancestor are as follows:
+
+~~~~~{.prolog}
+ancestor(X,Y) :- parent(X,Y).			%rule 1
+ancestor(X,Y) :- parent(Z,Y),ancestor(X,Z).	%rule 2
+~~~~~
+
+To prolog, these rules mean "to prove `ancestor(X,Y)`, try to:
+
+1. Prove the *subgoal* `parent(X,Y)`, or, **failing that**,
+2. Prove the *subgoal* `parent(X,Z), **and then** the subgoal `ancestor(X,Z)`.
+
+Suppose we ask it the query:
+
+
+~~~~~{.prolog}
+?- ancestor(felix,holly).
+~~~~~
+
+To prove this query, it undertakes the following backtracking search:
+
+- **NOTE** there are multiple `Z` variables (`Z'` and `Z''` ...)
+- These are introduced each time the corresponding sub-goals are triggered.
+
+~~~~~
+		ancestor(felix,holly)?
+		  /		                \
+  parent(felix,holly)    parent(Z,holly)
+	  NO		               ancestor(felix,Z)
+				|
+				| Z = kim  (by fact)
+				|
+			  ancestor(felix,kim)
+			  /                \
+	  parent(felix,kim)     parent(Z',kim)
+	      NO                ancestor(felix,Z')  ----------|
+			                     |                            | Z'=john
+		           Z'=margaret |                            |
+				          |                             ancestor(felix,john)
+		      ancestor(felix,margaret)                      |
+		              /        \                      parent(felix,john)
+	parent(felix,margaret)   parent(Z'',margaret)         YES
+		          NO           ancestor(felix,Z'')
+                                      |
+		                    Z'' = herbert |
+		                                  |
+			                  ancestor(felix, herbert)
+			                 /              |
+		 parent(felix,herbert)   parent(Z''',herbert)
+		            NO			             NO
+~~~~~
+
+### Queries with Variables
+
+*Backtracking Search* is done for **every** query.
+
+~~~~~{.prolog}
+  ?- ancestor(X,kim).
+~~~~~
+
+- Prolog does the proof search
+- Returns **all** unifiers for `X` for which the proof succeeds with `YES`.
+
+That is, literally programming by proving.
+
+**Hint:** Trace mode in prolog shows the tree:
+
+~~~~~{.prolog}
+?- trace.
+?- help(trace).
+~~~~~
+
+The subsequent query is traced...
+
+### Order is Very Important!
+
+- Order of clauses & terms influences unification & backtracking.
+
+For each
+
+- **goal** different clauses are selected in order,
+- **clause** subgoals unified from **left-to-right**.
+
+### Bad Order Causes Non-Termination!
+
+So, different orders of recursive sub-query can cause **non-termination**
+
+Suppose we wrote:
+
+~~~~~{.prolog}
+ancestor(X,Y) :- ancestor(X,Z), parent(Z,Y).
+ancestor(X,Y) :- parent(X,Y).
+~~~~~
+
+Then we see:
+
+~~~~~{.prolog}
+    ?- ancestor(felix,holly).
+~~~~~
+
+Why? The search tree looks like this now!
+
+~~~~~
+		ancestor(felix,holly)?
+		  |
+			|
+			|
+		ancestor(felix,Z)  %prove first subgoal,
+			|          %then parent(Z,holly)
+			|
+			|
+		ancestor(felix,Z') %prove first subgoal,
+			|	   %then parent(Z',Z)
+			|
+			|
+		ancestor(felix,Z'')
+			.
+			.
+			.
+~~~~~~
+
+### To Avoid Stack Overflow
+
+- Place the `parent` subgoal **first** (in the recursive rule).
+
+- Then unification with the base facts (parent), **fixes** `Z`
+
+- Thereby guaranteeing termination.
+
+### QUIZ
+
+Which of these will terminate?
+
+~~~~~{.prolog}
+% A
+ancestor(X,Y) :- ancestor(X,Z), parent(Z,Y).
+ancestor(X,Y) :- parent(X,Y).
+
+% B
+ancestor(X,Y) :- parent(X,Y).
+ancestor(X,Y) :- ancestor(X,Z), parent(Z,Y).
+
+% C
+ancestor(X,Y) :- parent(X,Y).
+ancestor(X,Y) :- parent(Z,Y), ancestor(X,Z).
+
+% D
+ancestor(X,Y) :- parent(Z,Y), ancestor(X,Z).
+ancestor(X,Y) :- parent(X,Y).
+~~~~~
+
+### QUIZ
+
+Lets define a `sibling` predicate:
+
+- `sibling(X, Y)` if `X` and `Y` have the same `parent`.
+
+~~~~~{.prolog}
+% A
+sibling(X, Y) :- parent(P, X), parent(P, Y).
+
+% B
+sibling(X, Y) :- parent(P, X), parent(P, Y), not(X = Y).
+
+% C
+sibling(X, Y) :- not(X = Y), parent(P, X), parent(P, Y).
+~~~~~
+
+
+
+### Ordering and Unification
+
+Unfortunately to `prolog`
+
+~~~~~{.prolog}
+?- X = Y.
+X = Y
+~~~~~
+
+is **always true**, and so the `not` **always fails**
+
+~~~~~{.prolog}
+?- not(X = Y).
+false.
+~~~~~
+
+So the following query **always fails**
+
+- if `X` and `Y` are variables!
+
+~~~~~{.prolog}
+sibling(X, Y) :- not(X = Y), parent(P, X), parent(P, Y).
+~~~~~
+
+### Ensure Disequality Check After Unification
+
+**Solution**
+
+- Ensure goal `not(X=Y)` fires **after** `X` and `Y` are **unified to atoms**
+
+~~~~~{.prolog}
+sibling(X, Y) :- parent(P, X), parent(P, Y), not(X = Y).
+~~~~~
+
+and now we get:
+
+~~~~~{.prolog}
+    ?- sibling(X,Y).
+    X = john
+    Y = maya ;
+
+    X = felix
+    Y = dana ;
+
+    X = dana
+    Y = felix ;
+
+    X = maya
+    Y = john ;
+    No
+~~~~~
+
+## Programming
+
+Next, lets do some _programmaing_ in prolog.
+
+- **Numeric Computation**
+- Data Structures
+- Puzzle Solving
+
 ### Numeric Computation
 
-TBD
+Two big problems:
+
+1. How do we even *evaluate*? e.g. `2 + 3` ?
+
+2. How do we write **functions** e.g. `let add x y = x + y` ?
+
+### Problem 1: How to Evaluate?
+
+- Everything is a _term_ and `=` is a **unification** operator:
+
+~~~~~{.prolog}
+?- X = 2 + 3.
+X = 2 + 3
+~~~~~
+
+- Pfft. To "compute" we need some **evaluation** mechanism!
+
+### Evaluation with the `is` Operator
+
+The `is` operator lets us **evaluate** terms:
+
+~~~~~{.prolog}
+?- X is 2 + 3.
+X = 5.
+~~~~~
+
+To solve `is` goal `TERM1 is TERM2`, prolog:
+
+1. **Evaluates* `TERM2` and _then_
+2. **Unifies** result with `TERM1`.
+
+However, watch out!
+
+~~~~~{.prolog}
+?- Y is X+2, X=1.
+ERROR: Args are not sufficiently instantiated
+
+?- X=1, Y is X+2.
+X=1
+Y=3
+~~~~~
+
+- Variables must solved to numbers **before** evaluation.
+
+- **Order of evaluation matters!**
+
+
+### Numeric Computation
+
+Two big problems:
+
+1. How do we even *evaluate*? e.g. `2 + 1` ?
+
+2. How do we write **functions** e.g. `let incr x = x + 1` ?
+
+
+### Problem 2: How to Write Functions?
+
+Oops. **Everything is a predicate** in prolog!
+
+- Facts are the basic predicates, and
+- Rules let us get new facts from the basic ones.
+
+How can we even _represent_ a **function** e.g.
+
+~~~~~{.ocaml}
+let add x y = x + y
+~~~~~
+
+using predicates?
+
+
+### QUIZ
+
+Which of the following represents `let add x y = x + y`?
+
+~~~~~{.prolog}
+% A
+addP(X, Y) :- Z is X + Y.         % wtf is Z ?
+
+% B
+addP(X, Y, Z) :- Z is X + Y.      % wtf is Z ?
+
+% C
+addP(X, Y, X + Y).
+
+% D
+addP(X, Y) :- X + Y.
+
+% E
+addP(X, Y, Z) :- X + Y is Z.
+~~~~~
+
 
 ### Functions as Predicates
 
-TBD
+Every **function** of the form:
+
+~~~~~{.ocaml}
+let foo x y = out
+~~~~~
+
+corresponds to a **predicate** of the form:
+
+~~~~~{.ocaml}
+fooP(X, Y, OUT).
+~~~~~
+
+i.e. a predicate that is `True` for those triples `(X, Y, OUT)` s.t.
+
+- The function `foo X Y` evaluated to `OUT`!
+
+The `predicate` captures the **input-output relation** of the function.
+
+
+### Factorial
+
+Lets write a predicate capturing the IO relationship of `factorial`:
+
+~~~~~{.prolog}
+factorial(X, OUT)
+~~~~~
+
+holds only when `OUT` is the factorial of `X`.
+
+~~~~~{.prolog}
+**DO IN CLASS**
+~~~~~
+
+When we are done, we can **call** the function with a query:
+
+~~~~~{.prolog}
+	?- factorial(0, OUT).
+	OUT = 1
+
+	?- factorial(5, OUT).
+	OUT = 120
+~~~~~
+
 
 ### Programming
 

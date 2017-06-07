@@ -737,30 +737,30 @@ To prove this query, it undertakes the following backtracking search:
 
 
 		ancestor(felix,holly)?
-		  /		\
-     parent(felix,holly)    parent(Z,holly)
-	  NO		    ancestor(felix,Z)
+		  /		                \
+  parent(felix,holly)    parent(Z,holly)
+	  NO		               ancestor(felix,Z)
 				|
 				| Z = kim  (by fact)
 				|
 			  ancestor(felix,kim)
-			  /        \
+			  /                \
 	  parent(felix,kim)     parent(Z',kim)
 	      NO                ancestor(felix,Z')  ----------|
-			         |                            | Z'=john
-		     Z'=margaret |                            |
-				 |                        ancestor(felix,john)
-		     ancestor(felix,margaret)                 |
-		        /        \                         parent(felix,john)
+			                     |                            | Z'=john
+		           Z'=margaret |                            |
+				          |                             ancestor(felix,john)
+		      ancestor(felix,margaret)                      |
+		              /        \                      parent(felix,john)
 	parent(felix,margaret)   parent(Z'',margaret)         YES
-		    NO           ancestor(felix,Z'')
-                                     |
-		    Z'' = herbert    |
-		                     |
-			   ancestor(felix,herbet)
-			     /              |
+		          NO           ancestor(felix,Z'')
+                                      |
+		                    Z'' = herbert |
+		                                  |
+			                  ancestor(felix, herbert)
+			                 /              |
 		 parent(felix,herbert)   parent(Z''',herbert)
-		      NO			NO
+		            NO			             NO
 
 Thus, it first tries the base rule i.e. to prove the subgoal parent(felix,holly).
 As it cannot unify this query with any known fact, it fails (NO),
@@ -832,7 +832,7 @@ Now lets try the same query:
 Why ? Well, if you try to build the search tree, you'll see it goes forever:
 
 		ancestor(felix,holly)?
-		        |
+		  |
 			|
 			|
 		ancestor(felix,Z)  %prove first subgoal,
@@ -851,6 +851,8 @@ Why ? Well, if you try to build the search tree, you'll see it goes forever:
 So, to avoid this, we must place the parent subgoal first (in the recursive
 rule). If this is done, the unification with the base facts (parent),
 fix the possible unifiers for Z, thereby guaranteeing termination.
+
+HEREHEREHEREHERE
 
 Lets see another example. Suppose we want to define a sibling predicate,
 where sibling(X,Y) holds if X and Y have the same parent. How about:
@@ -908,7 +910,9 @@ end.
 
 This shows a major weakness: You can's just rely on the logical
 meanings and you sort of need to know how things work.
+
 Oh well, nothing's perfect.
+
 We'll see that many, many things break down the pure philosophy
 that says: "Just write what you need logically"
 
@@ -925,7 +929,8 @@ computation.
 	?- X is 2+3.
 	    X = 5
 	    Yes
-When prolog tries to solve an "is" goal it evalutes the second argument
+
+When prolog tries to solve an "is" goal it evaluates the second argument
 and then unifies, as opposed to "=" which just does the unification.
 
 	?- Y is X+2, X=1.

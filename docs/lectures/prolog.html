@@ -540,30 +540,9 @@ ancestor(X,Y) :- parent(Z,Y),ancestor(X,Z)   %[Recursive case]</code></pre>
 <p>?- ancestor(felix,holly).</p>
 <p>To prove this query, it undertakes the following backtracking search:</p>
 <pre><code>	ancestor(felix,holly)?
-	  /		\
- parent(felix,holly)    parent(Z,holly)
-  NO		    ancestor(felix,Z)
-			|
-			| Z = kim  (by fact)
-			|
-		  ancestor(felix,kim)
-		  /        \
-  parent(felix,kim)     parent(Z',kim)
-      NO                ancestor(felix,Z')  ----------|
-		         |                            | Z'=john
-	     Z'=margaret |                            |
-			 |                        ancestor(felix,john)
-	     ancestor(felix,margaret)                 |
-	        /        \                         parent(felix,john)
-parent(felix,margaret)   parent(Z'',margaret)         YES
-	    NO           ancestor(felix,Z'')
-                                 |
-	    Z'' = herbert    |
-	                     |
-		   ancestor(felix,herbet)
-		     /              |
-	 parent(felix,herbert)   parent(Z''',herbert)
-	      NO			NO</code></pre>
+	  /		                \</code></pre>
+<p>parent(felix,holly) parent(Z,holly) NO ancestor(felix,Z) | | Z = kim (by fact) | ancestor(felix,kim) /<br />
+parent(felix,kim) parent(Z’,kim) NO ancestor(felix,Z’) ———-| | | Z’=john Z’=margaret | | | ancestor(felix,john) ancestor(felix,margaret) | /   parent(felix,john) parent(felix,margaret) parent(Z’‘,margaret) YES NO ancestor(felix,Z’‘) | Z’‘= herbert | | ancestor(felix, herbert) / | parent(felix,herbert) parent(Z’’’,herbert) NO NO</p>
 <p>Thus, it first tries the base rule i.e. to prove the subgoal parent(felix,holly). As it cannot unify this query with any known fact, it fails (NO), and so it backtracks and tries the other recursive rule. The only Z such that parent(Z,holly) unifies with a known fact is when Z=kim, thus, it tries to prove the second subgoal ancestor(felix,kim). To do so, again it first applies the base rule, which fails, and so it backtracks and applies the recursive rule.</p>
 <p>This time, there are two different Z (written Z’ in the figure to distinguish from the upper part of the tree), such that parent(Z,kim) – namely Z=margaret and Z=john. It picks margaret first (as that is the first unification that succeeds, and tries to prove the the second subgoal ancestor(felix,margaret). As we can see, from the subtree, this search fails, (as margaret’s sole parent is herbert who has no parent).</p>
 <p>Thus, prolog backtracks and tries the second Z=john, and tries to prove the second subgoal, ancestor(felix,john). This time, the base rule works as parent(felix,john) is a known fact, and thus the proof search succeeds and prolog returns:</p>
@@ -586,7 +565,7 @@ ancestor(X,Y) :- parent(X,Y).</code></pre>
  ERROR: Out of local stack</code></pre>
 <p>Why ? Well, if you try to build the search tree, you’ll see it goes forever:</p>
 <pre><code>	ancestor(felix,holly)?
-	        |
+	  |
 		|
 		|
 	ancestor(felix,Z)  %prove first subgoal,
@@ -602,6 +581,7 @@ ancestor(X,Y) :- parent(X,Y).</code></pre>
 		.
 		.</code></pre>
 <p>So, to avoid this, we must place the parent subgoal first (in the recursive rule). If this is done, the unification with the base facts (parent), fix the possible unifiers for Z, thereby guaranteeing termination.</p>
+<p>HEREHEREHEREHERE</p>
 <p>Lets see another example. Suppose we want to define a sibling predicate, where sibling(X,Y) holds if X and Y have the same parent. How about:</p>
 <pre><code>sibling(X,Y) :- parent(P,X), parent(P,Y).</code></pre>
 <p>Almost:</p>
@@ -631,15 +611,22 @@ Y = felix ;
 X = maya
 Y = john ;
 No</code></pre>
-<p>This shows a major weakness: You can’s just rely on the logical meanings and you sort of need to know how things work. Oh well, nothing’s perfect. We’ll see that many, many things break down the pure philosophy that says: “Just write what you need logically”</p>
+<p>This shows a major weakness: You can’s just rely on the logical meanings and you sort of need to know how things work.</p>
+<p>Oh well, nothing’s perfect.</p>
+<p>We’ll see that many, many things break down the pure philosophy that says: “Just write what you need logically”</p>
 <p>—————————- Numeric Computation ————————–</p>
 <p>Although Prolog is mostly symbolic, there is a need for numeric computation.</p>
 <ul>
 <li>‘=’ is the unification operator ?- X = 2+3. X = 2+3 Yes</li>
-<li><p>‘is’ evaluates arithmetic expressions before doing unification ?- X is 2+3. X = 5 Yes When prolog tries to solve an “is” goal it evalutes the second argument and then unifies, as opposed to “=” which just does the unification.</p>
-<p>?- Y is X+2, X=1. ERROR: Args are not sufficiently instantiated</p>
-<p>?- X=1, Y is X+2. X=1 Y=3 Yes</p></li>
+<li>‘is’ evaluates arithmetic expressions before doing unification ?- X is 2+3. X = 5 Yes</li>
 </ul>
+<p>When prolog tries to solve an “is” goal it evaluates the second argument and then unifies, as opposed to “=” which just does the unification.</p>
+<pre><code>?- Y is X+2, X=1.</code></pre>
+<p>ERROR: Args are not sufficiently instantiated</p>
+<pre><code>?- X=1, Y is X+2.
+      X=1
+      Y=3
+      Yes</code></pre>
 <p>Again, order of evaluation matters!</p>
 <h2 id="functions-are-predicates">Functions are Predicates:</h2>
 <p>Lets try to write a factorial function in Prolog. We need to somehow encode functions as predicates. Here’s the deal: Whenever you have a function f(x), you can write a predicate</p>
