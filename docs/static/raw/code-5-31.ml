@@ -53,6 +53,9 @@ let func2 xs = match xs with
       -------------------------------
       THEN | e1 e2  : OUT
 
+
+
+
       [x:IN] e : OUT
       ------------------------
       (fun x -> e) : IN -> OUT

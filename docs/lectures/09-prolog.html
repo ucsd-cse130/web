@@ -883,13 +883,13 @@ and you are welcome to redistribute it under certain conditions<span class="kw">
 <h2 id="quiz-recursively-unify-subtrees-1">QUIZ: Recursively Unify Subtrees</h2>
 <h3 id="two-terms-can-be-unified-if-we-can-substitute-values-for-variables-to-make-the-terms-identical-19">Two terms can be <em>unified</em> if we can <em>substitute</em> values for variables to make the terms <em>identical</em></h3>
 <p>How does Prolog respond to the following unification query?</p>
-<div class="sourceCode"><pre class="sourceCode prolog"><code class="sourceCode prolog"><span class="fu">?-</span> a(<span class="dt">W</span><span class="kw">,</span> foo(<span class="dt">W</span><span class="kw">,</span> <span class="dt">Y</span>)<span class="kw">,</span> <span class="dt">Y</span>) <span class="kw">=</span> a(<span class="dv">2</span><span class="kw">,</span> foo(<span class="dt">X</span><span class="kw">,</span> <span class="dv">3</span>)<span class="kw">,</span> <span class="dt">X</span>)<span class="kw">.</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode prolog"><code class="sourceCode prolog"><span class="fu">?-</span> a(<span class="dt">W</span><span class="kw">,</span> foo(<span class="dt">W</span><span class="kw">,</span> <span class="dt">Y</span>)<span class="kw">,</span> <span class="dt">Y</span>) <span class="kw">=</span> a(<span class="dv">2</span><span class="kw">,</span> foo(<span class="dt">X</span><span class="kw">,</span> <span class="dv">3</span>)<span class="kw">,</span> <span class="dt">Z</span>)<span class="kw">.</span></code></pre></div>
 <p><br><br></p>
 <p><strong>A.</strong> <code>false.</code> (No unification possible)</p>
 <p><strong>B.</strong> <code>W = 2, X = 2, Y = 2, Z = 2.</code></p>
 <p><strong>C.</strong> <code>W = 2, X = 2, Y = 3, Z = 3.</code></p>
 <p><strong>D.</strong> <code>W = 3, X = 3, Y = 2, Z = 2.</code></p>
-<p><strong>C.</strong> <code>W = 2, X = 3, Y = 2, Z = 3.</code></p>
+<p><strong>E.</strong> <code>W = 2, X = 3, Y = 2, Z = 3.</code></p>
 <h2 id="recursively-unify-subtrees-2">Recursively Unify Subtrees</h2>
 <h3 id="two-terms-can-be-unified-if-we-can-substitute-values-for-variables-to-make-the-terms-identical-20">Two terms can be <em>unified</em> if we can <em>substitute</em> values for variables to make the terms <em>identical</em></h3>
 <p>How does Prolog respond to the following unification query?</p>
