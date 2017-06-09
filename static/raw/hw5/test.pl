@@ -52,7 +52,7 @@ run_all_tests(Max,Pts) :- run_tests(
 	run_test((bagof(X,overworked(X),Y),!,unordered_eq(Y,[maria,miguel])),1),
 	run_test(not(total_cost(carnitas_taco,3)),1),
 	run_test((total_cost(carnitas_taco,X),!,X=5),1),
-	run_test((bagof(X,total_cost(X,5),Y),!,unordered_eq(Y,[carnitas_taco,birria_taco])),1),
+	run_test((bagof(X,total_cost(X,5),Y),!,unordered_eq(Y,[carnitas_taco,birria_taco,lengua_sopa])),1),
 	run_test(not(has_ingredients(lengua_sopa,[cheese,lengua])),1),
 	run_test((bagof(X,has_ingredients(X,[salsa,guacamole,cheese]),Y),!,unordered_eq(Y,[al_pastor_taco,combo_plate])),1),
 	run_test(not(avoids_ingredients(lengua_sopa,[cheese,lengua])),1),
