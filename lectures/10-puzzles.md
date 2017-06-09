@@ -1,140 +1,265 @@
+---
+title: Logic Programming II
+headerImg: sea.jpg
+---
 
-% Sum %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+## Numeric Computations: `add`
 
-	add(X,Y,Z) :- Z is X+Y.
+~~~~~{.prolog}
+add(X,Y,Z) :- Z is X+Y.
+~~~~~
 
-% Fib %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+We "call" the function with a query:
 
-  fib(0, 1).
-  fib(1, 1).
-  fib(N, R) :- N1 is N-1, N2 is N-2, fib(N1, R1), fib(N2,R2), R is R1+R2.
+~~~~~{.prolog}
+?- add(1,5,Z).
+Z=6.
 
-% Factorial %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+?- add(10,20,Z).
+Z=30.
+~~~~~
 
-	factorial(0,1). % base case
-	factorial(X,N):- X1 is X-1, factorial(X1,N1), N is X1*N1.
+## Numeric Computations: `fibonacci`
 
-We "call" the function with a query.
+First attempt.
 
-	?- factorial(0,X).
-	X = 1
-	True
+~~~~~{.prolog}
+fib(N, 0) :- 1.
+fib(N, 1) :- 1.
+fib(N, R) :- N1 is N-1, N2 is N-2, fib(N1, R1), fib(N2,R2), R is R1+R2.
+~~~~~
 
-	?- factorial(5,X).
-	X = 12
+Lets "call" it with a query:
 
-	fac(0,1).
-	fac(N,K):- N1 is N-1, fac(N1,K1), K is K1 * N.
+~~~~~{.prolog}
+?- fib(5, R).
+R = 8
+ERROR: Out of local stack
+~~~~~
 
+Oops. Why?
 
-% List-Basics %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+## Numeric Computations: `fibonacci`
 
-	headOf([H|_],H).
+Second attempt.
 
-	tailOf([_|X],X).
+~~~~~{.prolog}
+fib(N, 1) :- N < 2.
+fib(N, R) :- N1 is N-1, N2 is N-2, fib(N1, R1), fib(N2,R2), R is R1+R2.
+~~~~~
 
-	has3ormore([_,_,_|_]).
+Lets "call" it with a query:
 
-	barbaz([X,_,_,_,_,X|_]).
+~~~~~{.prolog}
+?- fib(5, R).
+R = 8
+R = 9
+R = 10
+R = 11
+R = 12
+R = 13
+R = 14
+R = 15 .
+~~~~~
 
+Say whaaaaaaaat?!
 
-% List-Sum %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-	app([],Y,Y).
-	app([Hx|Tx],Y,[Hx|T]) :- app(Tx,Y,T).
+## Numeric Computations: `fibonacci`
 
-% List-Append %%%%%%%%%%%%%%%%%%
+Third attempt!
 
-	app([],Y,Y).
-	app([Hx|Tx],Y,[Hx|T]) :- app(Tx,Y,T).
+~~~~~{.prolog}
+fib(N, 1) :- N < 2.
+fib(N, R) :- 1 < N, N1 is N-1, N2 is N-2, fib(N1, R1), fib(N2,R2), R is R1+R2.
+~~~~~
 
+Again, "call" it with a query
 
-% List-Member %%%%%%%%%%%%%%%%%%
+~~~~~{.prolog}
+?- fib(5, R).
+R = 8.
+~~~~~
 
+Fingers crossed!
 
-	isin(X,[X|_]).
-	isin(X,[_|T]) :- isin(X,T).
+~~~~~{.prolog}
+?- fib(5, R).
+R = 8
+false.
+~~~~~
 
+## Numeric Computations: `factorial`
 
+Which of the following is a _correct_ implementation of `factorial`?
 
-% List-Length %%%%%%%%%%%%%%%%%%
+~~~~~{.prolog}
+% A
+factorial(1,1).
+factorial(N,R) :- N1 is N-1, factorial(N1,R1), R is N * R1.
 
+% B
+factorial(N,1) :- N < 2.
+factorial(N,R) :- N1 is N-1, factorial(N1,R1), R is N * R1.
 
+% C
+factorial(N,1) :- N < 2.
+factorial(N,R) :- 1 < N, N1 is N-1, factorial(N1,R1), R is N * R1.
 
-	len([],0).
-	len([_|T],N) :- len(T,Nt), N is Nt + 1.
+% D
+factorial(N,R) :- 1 < N, N1 is N-1, factorial(N1,R1), R is N * R1.
+factorial(N,1) :- N < 2.
+~~~~~
 
 
+## Lists
 
+In prolog a list is "built-in".
 
+- Of course, also _just a term_.
 
+~~~~~{.prolog}
+?- [H|T] = [1,2,3].
+H = 1,
+T = [2, 3].
+~~~~~
 
+Feels just like ML style pattern matching!
 
+## Lists: `head` and `tail`
 
+We have to write them as predicates
 
-% List-Reverse %%%%%%%%%%%%%%%%%%
+- With an extra output parameter
 
+~~~~~{.prolog}
+headOf([H|_], H).
 
-	rev(X,Y) :- acc_rev(X,Y,[]).
-	acc_rev([],Y,Y).
-	acc_rev([H|T],Y,SoFar) :- acc_rev(T,Y,[H|SoFar]).
+tailOf([_|T], T]).
+~~~~~
 
 
-% Hanoi %%%%%%%%%%%%%%%%%%
+## Lists: `hasThreeOrMore`
 
-	move(A,B) :-
-		nl, write('Move topdisk from '),
-	        write(A), write(' to '), write(B).
+We want a predicate such that:
 
+~~~~~{.prolog}
+?- hasThreeOrMore([]).
+false.
 
-	transfer(1,A,B,_) :- move(A,B).
-	transfer(N,A,B,X) :-
-		M is N-1,
-		transfer(M,A,X,B),
-		move(A,B),
-		transfer(M,X,B,A).
+?- hasThreeOrMore([1]).
+false.
 
+?- hasThreeOrMore([1,two]).
+false.
 
+?- hasThreeOrMore([1,two,dog]).
+true
 
+?- hasThreeOrMore([1,two,dog,[7]]).
+true.
+~~~~~
 
 
+Which of these is an implementation of such a predicate?
 
-% Farmer %%%%%%%%%%%%%%%%%%
+~~~~~{.prolog}
+?- hasThreeOrMore([_|_]).					% A
+?- hasThreeOrMore([_,_|_]).				% B
+?- hasThreeOrMore([_,_,_|_]).     % C
+?- hasThreeOrMore([_,_,_,_|_]).   % D
+?- hasThreeOrMore([_,_,_]).       % E
+~~~~~~
 
-		change(e,w).
-		change(w,e).
+## Lists: `isIn`
 
+Lets write a predicate to check if `X` is in some list `Xs`.
 
+~~~~~{.prolog}
+isIn(X,Xs) :- TODO-IN-CLASS.
+~~~~~
 
+## Lists: `len`
 
-		move([X,X,P_Goat,P_Cabbage],move_wolf,[Y,Y,P_Goat,P_Cabbage]) :- change(X,Y).
-		move([X,P_Wolf,X,P_Cabbage],move_goat,[Y,P_Wolf,Y,P_Cabbage]) :- change(X,Y).
-		move([X,P_Wolf,P_Goat,X],move_cabbage,[Y,P_Wolf,P_Goat,Y]) :- change(X,Y).
-		move([X,P_Wolf,P_Goat,P_Cabbage],move_nothing,[Y,P_Wolf,P_Goat,P_Cabbage]) :- change(X,Y).
+Lets write a "function" to add up the elements of a list
 
+~~~~~{.prolog}
+len(Xs, R).
+~~~~~
 
-		one_equal(X,X,_).
-		one_equal(X,_,X).
+## Lists: `sum`
 
+Lets write a "function" to add up the elements of a list
 
+~~~~~{.prolog}
+sum(Xs, R) :- TODO-IN-CLASS.
+~~~~~
 
+## Lists: `append`
 
+Lets write a "function" to append *two* lists.
 
+~~~~~{.prolog}
+append(Xs, Yz, R) :- TODO-IN-CLASS.
+~~~~~
 
-		safe([P_Farmer,P_Wolf,P_Goat,P_Cabbage]) :-
-		     one_equal(P_Farmer,P_Goat,P_Wolf),
-		     one_equal(P_Farmer,P_Goat,P_Cabbage).
+Unlike elsewhere, the prolog append is a **magical**.
 
+~~~~~{.prolog}
+  ?- append([1,2,3], [4,5,6], R).
+~~~~~
 
+## Lists: `reverse`
 
-		solution([e,e,e,e],[]).
-		solution(State,[FirstMove|RemainingMoves]) :-
-		     move(State,FirstMove,NextState),
-		     safe(NextState),
-		     solution(NextState,RemainingMoves).
+~~~~~{.prolog}
+reverse(X, Y) :- revAcc(X,Y,[]).
 
+revAcc([], Y, Y).
+revAcc([H|T], Y, Acc) :- revAcc(T, Y, [H|Acc]).
+~~~~~
 
 
+## Puzzle: Farmer, Wolf, Goat, Cabbage.
 
+![Gotham](/static/img/gotham.jpg){#fig:gotham .align-center width=35%}
+![Fargo](/static/img/fargo.jpg){#fig:fargo .align-center width=35%}
 
-		%    ?- length(X,7), solution([w,w,w,w],X).
+
+## Puzzle Farmer, Wolf, Goat, Cabbage
+
+~~~~~{.prolog}
+change(east, west).
+change(west, east).
+~~~~~
+
+
+~~~~~{.prolog}
+move([X,X,P_Goat,P_Cabbage],move_wolf,[Y,Y,P_Goat,P_Cabbage]) :- change(X,Y).
+move([X,P_Wolf,X,P_Cabbage],move_goat,[Y,P_Wolf,Y,P_Cabbage]) :- change(X,Y).
+move([X,P_Wolf,P_Goat,X],move_cabbage,[Y,P_Wolf,P_Goat,Y]) :- change(X,Y).
+move([X,P_Wolf,P_Goat,P_Cabbage],move_nothing,[Y,P_Wolf,P_Goat,P_Cabbage]) :- change(X,Y).
+~~~~~
+
+
+~~~~~{.prolog}
+safe([P_Farmer,P_Wolf,P_Goat,P_Cabbage]) :-
+	one_equal(P_Farmer,P_Wolf,P_Goat),
+	one_equal(P_Farmer,P_Goat,P_Cabbage).
+
+one_equal(X,X,_).
+one_equal(X,_,X).
+~~~~~
+
+~~~~~{.prolog}
+solution([east,east,east,east],[]).
+solution(State,[FirstMove|RemainingMoves]) :-
+	move(State,FirstMove,NextState),
+	safe(NextState),
+	solution(NextState,RemainingMoves).
+~~~~~
+
+And now we solve it!
+
+~~~~~{.prolog}
+?- length(Moves, 7), solution([west,west,west,west], Moves).
+~~~~~

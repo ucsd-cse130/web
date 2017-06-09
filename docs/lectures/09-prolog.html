@@ -1118,6 +1118,7 @@ and you are welcome to redistribute it under certain conditions<span class="kw">
 <h2 id="quiz-complex-predicates-from-simple-queries">QUIZ: Complex Predicates from Simple Queries</h2>
 <p>Which of the following is a valid <code>greatgrandparent</code> predicate?</p>
 <p>(Btw, <strong>greatgrandparent</strong> is the <strong>parent</strong> of a <strong>grandparent</strong>.)</p>
+<p>bob -&gt; sachin -&gt; krishna -&gt; ranjit</p>
 <div class="sourceCode"><pre class="sourceCode prolog"><code class="sourceCode prolog"><span class="co">% A</span>
 greatgrandparent(<span class="dt">X</span><span class="kw">,</span> <span class="dt">Y</span>) <span class="kw">:-</span> parent(<span class="dt">X</span><span class="kw">,</span> <span class="dt">Y</span>)<span class="kw">,</span> grandparent(<span class="dt">X</span><span class="kw">,</span> <span class="dt">Y</span>)<span class="kw">.</span>
 
@@ -1132,6 +1133,9 @@ greatgrandparent(<span class="dt">X</span><span class="kw">,</span> <span class=
 
 <span class="co">% E  </span>
 greatgrandparent(<span class="dt">X</span><span class="kw">,</span> <span class="dt">Y</span>) <span class="kw">:-</span> parent(<span class="dt">X</span><span class="kw">,</span> <span class="dt">Z</span>)<span class="kw">,</span> parent(<span class="dt">Z</span><span class="kw">,</span> <span class="dt">Z1</span>)<span class="kw">,</span> parent(<span class="dt">Z1</span><span class="kw">,</span> <span class="dt">Y</span>)<span class="kw">.</span></code></pre></div>
+<p>anc(albert,DESC) parent(albert, felix) ==&gt; anc(felix, DESC) parent(albert, dana) ==&gt; anc(dana, DESC)</p>
+<p>anc(X, Y) :- anc(Z1, Y), parent(X, Z1).</p>
+<p>anc(albert,DESC) anc(Z1, DESC) anc(Z1’, DESC) anc(Z1’‘, DESC) anc(Z1’’’, DESC)</p>
 <h2 id="rules-complex-predicates-from-simple-queries-7">Rules: Complex Predicates from Simple Queries</h2>
 <h3 id="an-example-defining-a-greatgrandparent-predicate">An Example: Defining a <code>greatgrandparent</code> predicate</h3>
 <div class="sourceCode"><pre class="sourceCode prolog"><code class="sourceCode prolog">greatgrandparent(<span class="dt">GGP</span><span class="kw">,</span> <span class="dt">GC</span>) <span class="kw">:-</span> parent(<span class="dt">GGP</span><span class="kw">,</span> <span class="dt">GP</span>)<span class="kw">,</span> grandparent(<span class="dt">GP</span><span class="kw">,</span> <span class="dt">GC</span>)<span class="kw">.</span></code></pre></div>
@@ -1469,10 +1473,7 @@ sibling(<span class="dt">X</span><span class="kw">,</span> <span class="dt">Y</s
 sibling(<span class="dt">X</span><span class="kw">,</span> <span class="dt">Y</span>) <span class="kw">:-</span> parent(<span class="dt">P</span><span class="kw">,</span> <span class="dt">X</span>)<span class="kw">,</span> parent(<span class="dt">P</span><span class="kw">,</span> <span class="dt">Y</span>)<span class="kw">,</span> not(<span class="dt">X</span> <span class="kw">=</span> <span class="dt">Y</span>)<span class="kw">.</span>
 
 <span class="co">% C</span>
-sibling(<span class="dt">X</span><span class="kw">,</span> <span class="dt">Y</span>) <span class="kw">:-</span> not(<span class="dt">X</span> <span class="kw">=</span> <span class="dt">Y</span>)<span class="kw">,</span> parent(<span class="dt">P</span><span class="kw">,</span> <span class="dt">X</span>)<span class="kw">,</span> parent(<span class="dt">P</span><span class="kw">,</span> <span class="dt">Y</span>)<span class="kw">.</span>
-
-<span class="co">% D</span>
-sibling(<span class="dt">X</span><span class="kw">,</span> <span class="dt">Y</span>) <span class="kw">:-</span> parent(<span class="dt">X</span><span class="kw">,</span> <span class="dt">P</span>)<span class="kw">,</span> parent(<span class="dt">P</span><span class="kw">,</span> <span class="dt">Y</span>)<span class="kw">.</span></code></pre></div>
+sibling(<span class="dt">X</span><span class="kw">,</span> <span class="dt">Y</span>) <span class="kw">:-</span> not(<span class="dt">X</span> <span class="kw">=</span> <span class="dt">Y</span>)<span class="kw">,</span> parent(<span class="dt">P</span><span class="kw">,</span> <span class="dt">X</span>)<span class="kw">,</span> parent(<span class="dt">P</span><span class="kw">,</span> <span class="dt">Y</span>)<span class="kw">.</span></code></pre></div>
 <h3 id="ordering-and-unification">Ordering and Unification</h3>
 <p>Unfortunately to <code>prolog</code></p>
 <div class="sourceCode"><pre class="sourceCode prolog"><code class="sourceCode prolog"><span class="fu">?-</span> <span class="dt">X</span> <span class="kw">=</span> <span class="dt">Y</span><span class="kw">.</span>
@@ -1550,8 +1551,8 @@ sibling(<span class="dt">X</span><span class="kw">,</span> <span class="dt">Y</s
 <h3 id="numeric-computation-1">Numeric Computation</h3>
 <p>Two big problems:</p>
 <ol style="list-style-type: decimal">
-<li><p>How do we even <em>evaluate</em>? e.g. <code>2 + 3</code> ?</p></li>
-<li><p>How do we write <strong>functions</strong> e.g. <code>let add x y = x + y</code> ?</p></li>
+<li><p>How do we even <em>evaluate</em>? e.g. <code>2 + 1</code> ?</p></li>
+<li><p>How do we write <strong>functions</strong> e.g. <code>let incr x = x + 1</code> ?</p></li>
 </ol>
 <h3 id="problem-2-how-to-write-functions">Problem 2: How to Write Functions?</h3>
 <p>Oops. <strong>Everything is a predicate</strong> in prolog!</p>
@@ -1565,10 +1566,10 @@ sibling(<span class="dt">X</span><span class="kw">,</span> <span class="dt">Y</s
 <h3 id="quiz-2">QUIZ</h3>
 <p>Which of the following represents <code>let add x y = x + y</code>?</p>
 <div class="sourceCode"><pre class="sourceCode prolog"><code class="sourceCode prolog"><span class="co">% A</span>
-addP(<span class="dt">X</span><span class="kw">,</span> <span class="dt">Y</span>) <span class="kw">:-</span> <span class="dt">Z</span> <span class="dt">is</span> <span class="dt">X</span> <span class="dt">+</span> <span class="dt">Y</span><span class="kw">.</span>
+addP(<span class="dt">X</span><span class="kw">,</span> <span class="dt">Y</span>) <span class="kw">:-</span> <span class="dt">Z</span> <span class="dt">is</span> <span class="dt">X</span> <span class="dt">+</span> <span class="dt">Y</span><span class="kw">.</span>         <span class="co">% wtf is Z ?</span>
 
 <span class="co">% B</span>
-addP(<span class="dt">X</span><span class="kw">,</span> <span class="dt">Y</span><span class="kw">,</span> <span class="dt">Z</span>) <span class="kw">:-</span> <span class="dt">Z</span> <span class="dt">is</span> <span class="dt">X</span> <span class="dt">+</span> <span class="dt">Y</span><span class="kw">.</span>
+addP(<span class="dt">X</span><span class="kw">,</span> <span class="dt">Y</span><span class="kw">,</span> <span class="dt">Z</span>) <span class="kw">:-</span> <span class="dt">Z</span> <span class="dt">is</span> <span class="dt">X</span> <span class="dt">+</span> <span class="dt">Y</span><span class="kw">.</span>      <span class="co">% wtf is Z ?</span>
 
 <span class="co">% C</span>
 addP(<span class="dt">X</span><span class="kw">,</span> <span class="dt">Y</span><span class="kw">,</span> <span class="dt">X</span> <span class="fu">+</span> <span class="dt">Y</span>)<span class="kw">.</span>

@@ -113,16 +113,16 @@ sibling3(X,Y) :- X\=Y,parent(P,X),parent(P,Y).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-fac(0,1).
-fac(N,K):- N1 is N-1, fac(N1,K1), K is K1 * N.
+factorial(N,R) :- 1 < N, N1 is N-1, factorial(N1,R1), R is N * R1.
+factorial(N,1) :- N < 2.
+
+
+fib(N, 1) :- N < 2.
+fib(N, R) :- 1 < N, N1 is N-1, N2 is N-2, fib(N1, R1), fib(N2,R2), R is R1+R2.
 
 
 app([],Y,Y).
 app([Hx|Tx],Y,[Hx|T]) :- app(Tx,Y,T).
-
-
-
-
 
 
 
