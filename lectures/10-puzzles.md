@@ -221,8 +221,11 @@ revAcc([H|T], Y, Acc) :- revAcc(T, Y, [H|Acc]).
 
 ## Puzzle: Farmer, Wolf, Goat, Cabbage.
 
-![Gotham](/static/img/gotham.jpg){#fig:gotham .align-center width=35%}
-![Fargo](/static/img/fargo.jpg){#fig:fargo .align-center width=35%}
+![Gotham](/static/img/gotham.jpg){#fig:gotham .align-center width=75%}
+
+<br>
+
+![Fargo](/static/img/fargo.jpg){#fig:fargo .align-center width=75%}
 
 
 ## Puzzle Farmer, Wolf, Goat, Cabbage
