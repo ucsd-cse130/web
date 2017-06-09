@@ -37,6 +37,7 @@ cost(cheese,1).
 cost(sour_cream,1).
 cost(taco,1).
 cost(tortilla,1).
+cost(sopa,1).
 
 
 ingredients(carnitas_taco, [taco,carnitas, salsa, guacamole]).
