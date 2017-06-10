@@ -28,7 +28,8 @@ headerImg: books.jpg
 | 5/24       | contd.                        |                           |               |
 | 5/26       | Polymorphism                  | [pdf][lec8] [pdf-small][lec8s] | [.ml][ml-5-26]|
 | 5/31       | contd.                        |                                | [.ml][ml-5-31]|
-| 6/2        | Logic Programming             | [html][lec9] [md][md9]  [txt][txt9]  | [.pl][pl-5-2] |
+| 6/2        | Prolog: Basics                | [html][lec9] [md][md9]  [txt][txt9]  | [.pl][pl-5-2] |
+| 6/9        | Prolog: Programs              | [html][lec10] [md][md10]  | [.pl][pl-5-2] |
 
 ## Interesting Piazza Questions
 
@@ -64,6 +65,12 @@ headerImg: books.jpg
 [lec9]: lectures/09-prolog.html
 [md9]: http://github.com/ucsd-cse130/web/blob/master/lectures/09-prolog.md
 [txt9]: static/raw/prolog.txt
+[lec10]: lectures/10-puzzles.html
+[md10]: http://github.com/ucsd-cse130/web/blob/master/lectures/10-puzzles.md
+
+
+
+
 
 [lc-4-7]: http://github.com/ucsd-cse130/web/blob/master/static/raw/code-4-7.lc
 [lc-4-10]: http://github.com/ucsd-cse130/web/blob/master/static/raw/code-4-10.lc

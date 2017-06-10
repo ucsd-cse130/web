@@ -1,4 +1,26 @@
+append([]   , Ys, Ys).
+append([H|T], Ys, [H|R]) :- append(T, Ys, R).
 
+isIn(X,[X|_]).
+isIn(X,[_|T]) :- isIn(X,T).
+
+headP([H|_],H).
+
+tailP([_|T],T).
+
+fibP(0, 1).
+fibP(1, 1).
+fibP(N, R) :- 1 < N
+            , N1 is N-1
+            , N2 is N-2
+						, fibP(N1, R1)
+						, fibP(N2,R2)
+            , R is R1+R2.
+
+
+% term1 is term2
+
+addP(X,Y,Out) :- Out is X + Y.
 
 % fact
 isMexican(pulpo).

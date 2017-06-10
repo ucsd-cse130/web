@@ -5,8 +5,12 @@ headerImg: sea.jpg
 
 ## Numeric Computations: `add`
 
+~~~~~{.ocaml}
+let add x y = x + y
+~~~~~
+
 ~~~~~{.prolog}
-add(X,Y,Z) :- Z is X+Y.
+addP(X,Y,Out) :- Out is X+Y.
 ~~~~~
 
 We "call" the function with a query:
@@ -23,11 +27,21 @@ Z=30.
 
 First attempt.
 
+let rec fib n = match n with
+  | 0 -> 1
+	| 1 -> 1
+	| n -> fib (n-1) + fib (n-2)
+
 ~~~~~{.prolog}
-fib(N, 0) :- 1.
-fib(N, 1) :- 1.
-fib(N, R) :- N1 is N-1, N2 is N-2, fib(N1, R1), fib(N2,R2), R is R1+R2.
+fibP(0, 1).
+fibP(1, 1).
+fibP(N, R) :- N1 is N-1
+            , N2 is N-2
+						, fibP(N1, R1)
+						, fibP(N2,R2)
+            , R is R1+R2.
 ~~~~~
+
 
 Lets "call" it with a query:
 
@@ -133,9 +147,9 @@ We have to write them as predicates
 - With an extra output parameter
 
 ~~~~~{.prolog}
-headOf([H|_], H).
+headP([H|_], H).
 
-tailOf([_|T], T]).
+tailP([_|T], T]).
 ~~~~~
 
 
@@ -160,7 +174,6 @@ true
 true.
 ~~~~~
 
-
 Which of these is an implementation of such a predicate?
 
 ~~~~~{.prolog}
@@ -175,8 +188,14 @@ Which of these is an implementation of such a predicate?
 
 Lets write a predicate to check if `X` is in some list `Xs`.
 
+isIn(1, []) == FALSE
+isIn(1, [1]) == TRUE
+isIn(1, [2,1]) == TRUE
+isIn(1, [2,4]) == FALSE
+
 ~~~~~{.prolog}
-isIn(X,Xs) :- TODO-IN-CLASS.
+isIn(X,[X|_]).
+isIn(X,[_|T]) :- isIn(X,T).
 ~~~~~
 
 ## Lists: `len`
@@ -191,16 +210,27 @@ len(Xs, R).
 
 Lets write a "function" to add up the elements of a list
 
+let rec sum xs = match xs with
+  | []     -> 0
+	| (h::t) -> h + sum t
+
 ~~~~~{.prolog}
-sum(Xs, R) :- TODO-IN-CLASS.
+sumP([], 0).
+sumP([H|T], R) :- sumP(T, R1), R is H + R1.  
 ~~~~~
 
 ## Lists: `append`
 
+let rec append xs ys = match xs with
+  | []     -> ys
+	| (h::t) -> h :: (append t ys)
+
+
 Lets write a "function" to append *two* lists.
 
 ~~~~~{.prolog}
-append(Xs, Yz, R) :- TODO-IN-CLASS.
+append([]   , Ys, Ys).
+append([H|T], Ys, [H|R]) :- append(T, Ys, R).
 ~~~~~
 
 Unlike elsewhere, the prolog append is a **magical**.

@@ -233,7 +233,8 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 			<h2 id="numeric-computations-add">Numeric Computations: <code>add</code></h2>
-<div class="sourceCode"><pre class="sourceCode prolog"><code class="sourceCode prolog">add(<span class="dt">X</span><span class="kw">,</span><span class="dt">Y</span><span class="kw">,</span><span class="dt">Z</span>) <span class="kw">:-</span> <span class="dt">Z</span> <span class="dt">is</span> <span class="dt">X+Y</span><span class="kw">.</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">let</span> add x y = x + y</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode prolog"><code class="sourceCode prolog">addP(<span class="dt">X</span><span class="kw">,</span><span class="dt">Y</span><span class="kw">,</span><span class="dt">Out</span>) <span class="kw">:-</span> <span class="dt">Out</span> <span class="dt">is</span> <span class="dt">X+Y</span><span class="kw">.</span></code></pre></div>
 <p>We “call” the function with a query:</p>
 <div class="sourceCode"><pre class="sourceCode prolog"><code class="sourceCode prolog"><span class="fu">?-</span> add(<span class="dv">1</span><span class="kw">,</span><span class="dv">5</span><span class="kw">,</span><span class="dt">Z</span>)<span class="kw">.</span>
 <span class="dt">Z</span><span class="kw">=</span><span class="dv">6</span><span class="kw">.</span>
@@ -242,9 +243,14 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <span class="dt">Z</span><span class="kw">=</span><span class="dv">30</span><span class="kw">.</span></code></pre></div>
 <h2 id="numeric-computations-fibonacci">Numeric Computations: <code>fibonacci</code></h2>
 <p>First attempt.</p>
-<div class="sourceCode"><pre class="sourceCode prolog"><code class="sourceCode prolog">fib(<span class="dt">N</span><span class="kw">,</span> <span class="dv">0</span>) <span class="kw">:-</span> <span class="dv">1</span><span class="kw">.</span>
-fib(<span class="dt">N</span><span class="kw">,</span> <span class="dv">1</span>) <span class="kw">:-</span> <span class="dv">1</span><span class="kw">.</span>
-fib(<span class="dt">N</span><span class="kw">,</span> <span class="dt">R</span>) <span class="kw">:-</span> <span class="dt">N1</span> <span class="dt">is</span> <span class="dt">N</span><span class="dv">-1</span><span class="kw">,</span> <span class="dt">N2</span> <span class="dt">is</span> <span class="dt">N</span><span class="dv">-2</span><span class="kw">,</span> fib(<span class="dt">N1</span><span class="kw">,</span> <span class="dt">R1</span>)<span class="kw">,</span> fib(<span class="dt">N2</span><span class="kw">,</span><span class="dt">R2</span>)<span class="kw">,</span> <span class="dt">R</span> <span class="dt">is</span> <span class="dt">R1+R2</span><span class="kw">.</span></code></pre></div>
+<p>let rec fib n = match n with | 0 -&gt; 1 | 1 -&gt; 1 | n -&gt; fib (n-1) + fib (n-2)</p>
+<div class="sourceCode"><pre class="sourceCode prolog"><code class="sourceCode prolog">fibP(<span class="dv">0</span><span class="kw">,</span> <span class="dv">1</span>)<span class="kw">.</span>
+fibP(<span class="dv">1</span><span class="kw">,</span> <span class="dv">1</span>)<span class="kw">.</span>
+fibP(<span class="dt">N</span><span class="kw">,</span> <span class="dt">R</span>) <span class="kw">:-</span> <span class="dt">N1</span> <span class="dt">is</span> <span class="dt">N</span><span class="dv">-1</span>
+            <span class="kw">,</span> <span class="dt">N2</span> <span class="dt">is</span> <span class="dt">N</span><span class="dv">-2</span>
+						<span class="kw">,</span> fibP(<span class="dt">N1</span><span class="kw">,</span> <span class="dt">R1</span>)
+						<span class="kw">,</span> fibP(<span class="dt">N2</span><span class="kw">,</span><span class="dt">R2</span>)
+            <span class="kw">,</span> <span class="dt">R</span> <span class="dt">is</span> <span class="dt">R1+R2</span><span class="kw">.</span></code></pre></div>
 <p>Lets “call” it with a query:</p>
 <div class="sourceCode"><pre class="sourceCode prolog"><code class="sourceCode prolog"><span class="fu">?-</span> fib(<span class="dv">5</span><span class="kw">,</span> <span class="dt">R</span>)<span class="kw">.</span>
 <span class="dt">R</span> <span class="kw">=</span> <span class="dv">8</span>
@@ -307,9 +313,9 @@ factorial(<span class="dt">N</span><span class="kw">,</span><span class="dv">1</
 <ul>
 <li>With an extra output parameter</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode prolog"><code class="sourceCode prolog">headOf([<span class="dt">H</span><span class="fu">|</span><span class="dt">_</span>]<span class="kw">,</span> <span class="dt">H</span>)<span class="kw">.</span>
+<div class="sourceCode"><pre class="sourceCode prolog"><code class="sourceCode prolog">headP([<span class="dt">H</span><span class="fu">|</span><span class="dt">_</span>]<span class="kw">,</span> <span class="dt">H</span>)<span class="kw">.</span>
 
-tailOf([<span class="dt">_</span><span class="fu">|</span><span class="dt">T</span>]<span class="kw">,</span> <span class="dt">T</span><span class="er">]</span>)<span class="kw">.</span></code></pre></div>
+tailP([<span class="dt">_</span><span class="fu">|</span><span class="dt">T</span>]<span class="kw">,</span> <span class="dt">T</span><span class="er">]</span>)<span class="kw">.</span></code></pre></div>
 <h2 id="lists-hasthreeormore">Lists: <code>hasThreeOrMore</code></h2>
 <p>We want a predicate such that:</p>
 <div class="sourceCode"><pre class="sourceCode prolog"><code class="sourceCode prolog"><span class="fu">?-</span> hasThreeOrMore([])<span class="kw">.</span>
@@ -334,16 +340,22 @@ tailOf([<span class="dt">_</span><span class="fu">|</span><span class="dt">T</sp
 <span class="fu">?-</span> hasThreeOrMore([<span class="dt">_</span>,<span class="dt">_</span>,<span class="dt">_</span>])<span class="kw">.</span>       <span class="co">% E</span></code></pre></div>
 <h2 id="lists-isin">Lists: <code>isIn</code></h2>
 <p>Lets write a predicate to check if <code>X</code> is in some list <code>Xs</code>.</p>
-<div class="sourceCode"><pre class="sourceCode prolog"><code class="sourceCode prolog">isIn(<span class="dt">X</span><span class="kw">,</span><span class="dt">Xs</span>) <span class="kw">:-</span> <span class="dt">TODO</span><span class="fu">-</span><span class="dt">IN</span><span class="fu">-</span><span class="dt">CLASS</span><span class="kw">.</span></code></pre></div>
+<p>isIn(1, []) == FALSE isIn(1, [1]) == TRUE isIn(1, [2,1]) == TRUE isIn(1, [2,4]) == FALSE</p>
+<div class="sourceCode"><pre class="sourceCode prolog"><code class="sourceCode prolog">isIn(<span class="dt">X</span><span class="kw">,</span>[<span class="dt">X</span><span class="fu">|</span><span class="dt">_</span>])<span class="kw">.</span>
+isIn(<span class="dt">X</span><span class="kw">,</span>[<span class="dt">_</span><span class="fu">|</span><span class="dt">T</span>]) <span class="kw">:-</span> isIn(<span class="dt">X</span><span class="kw">,</span><span class="dt">T</span>)<span class="kw">.</span></code></pre></div>
 <h2 id="lists-len">Lists: <code>len</code></h2>
 <p>Lets write a “function” to add up the elements of a list</p>
 <div class="sourceCode"><pre class="sourceCode prolog"><code class="sourceCode prolog">len(<span class="dt">Xs</span><span class="kw">,</span> <span class="dt">R</span>)<span class="kw">.</span></code></pre></div>
 <h2 id="lists-sum">Lists: <code>sum</code></h2>
 <p>Lets write a “function” to add up the elements of a list</p>
-<div class="sourceCode"><pre class="sourceCode prolog"><code class="sourceCode prolog">sum(<span class="dt">Xs</span><span class="kw">,</span> <span class="dt">R</span>) <span class="kw">:-</span> <span class="dt">TODO</span><span class="fu">-</span><span class="dt">IN</span><span class="fu">-</span><span class="dt">CLASS</span><span class="kw">.</span></code></pre></div>
+<p>let rec sum xs = match xs with | [] -&gt; 0 | (h::t) -&gt; h + sum t</p>
+<div class="sourceCode"><pre class="sourceCode prolog"><code class="sourceCode prolog">sumP([]<span class="kw">,</span> <span class="dv">0</span>)<span class="kw">.</span>
+sumP([<span class="dt">H</span><span class="fu">|</span><span class="dt">T</span>]<span class="kw">,</span> <span class="dt">R</span>) <span class="kw">:-</span> sumP(<span class="dt">T</span><span class="kw">,</span> <span class="dt">R1</span>)<span class="kw">,</span> <span class="dt">R</span> <span class="dt">is</span> <span class="dt">H</span> <span class="dt">+</span> <span class="dt">R1</span><span class="kw">.</span>  </code></pre></div>
 <h2 id="lists-append">Lists: <code>append</code></h2>
+<p>let rec append xs ys = match xs with | [] -&gt; ys | (h::t) -&gt; h :: (append t ys)</p>
 <p>Lets write a “function” to append <em>two</em> lists.</p>
-<div class="sourceCode"><pre class="sourceCode prolog"><code class="sourceCode prolog">append(<span class="dt">Xs</span><span class="kw">,</span> <span class="dt">Yz</span><span class="kw">,</span> <span class="dt">R</span>) <span class="kw">:-</span> <span class="dt">TODO</span><span class="fu">-</span><span class="dt">IN</span><span class="fu">-</span><span class="dt">CLASS</span><span class="kw">.</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode prolog"><code class="sourceCode prolog">append([]   <span class="kw">,</span> <span class="dt">Ys</span><span class="kw">,</span> <span class="dt">Ys</span>)<span class="kw">.</span>
+append([<span class="dt">H</span><span class="fu">|</span><span class="dt">T</span>]<span class="kw">,</span> <span class="dt">Ys</span><span class="kw">,</span> [<span class="dt">H</span><span class="fu">|</span><span class="dt">R</span>]) <span class="kw">:-</span> append(<span class="dt">T</span><span class="kw">,</span> <span class="dt">Ys</span><span class="kw">,</span> <span class="dt">R</span>)<span class="kw">.</span></code></pre></div>
 <p>Unlike elsewhere, the prolog append is a <strong>magical</strong>.</p>
 <div class="sourceCode"><pre class="sourceCode prolog"><code class="sourceCode prolog">  <span class="fu">?-</span> append([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]<span class="kw">,</span> [<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>]<span class="kw">,</span> <span class="dt">R</span>)<span class="kw">.</span></code></pre></div>
 <h2 id="lists-reverse">Lists: <code>reverse</code></h2>
