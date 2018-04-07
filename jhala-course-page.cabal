@@ -18,4 +18,5 @@ executable homepage
   ghc-options:         -threaded
   build-depends:       base,
                        hakyll,
-                       pandoc
+                       pandoc,
+                       pandoc-types

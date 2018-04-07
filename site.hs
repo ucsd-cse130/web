@@ -1,8 +1,14 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
 import Data.Monoid (mappend)
+import Data.List
 import Hakyll
 import Text.Pandoc
+import Text.Pandoc.Walk (walk)
+import System.Environment
+
+mode = "lecture"
+-- mode = "final"
 
 crunchWithCtx ctx = do
   route   $ setExtension "html"
@@ -11,7 +17,26 @@ crunchWithCtx ctx = do
             >>= loadAndApplyTemplate "templates/default.html" ctx
             >>= relativizeUrls
 
+crunchWithCtxOpt ctx opt = do
+  route   $ setExtension "html"
+  compile $ pandocCompilerWithTransform
+              defaultHakyllReaderOptions
+              defaultHakyllWriterOptions
+              (walk $ toggleMode)
+            >>= loadAndApplyTemplate "templates/page.html"    ctx
+            >>= loadAndApplyTemplate "templates/default.html" ctx
+            >>= relativizeUrls
 
+-- | Treat an ordered list with uppercase roman numerals as a map:
+-- in each item, the first paragraph is the key, and the second is the value;
+-- pick the value with key `mode` and discard all other items
+toggleMode :: Block -> Block
+toggleMode (OrderedList (_, UpperRoman, _) items) = select items
+  where
+    select ([Para [Str key], payload] : rest) =
+      if key == mode then payload else select rest
+    select _ = Null
+toggleMode b = b
 
 --------------------------------------------------------------------------------
 main :: IO ()
@@ -19,7 +44,7 @@ main = hakyll $ do
   match "static/*/*"    $ do route idRoute
                              compile copyFileCompiler
   match (fromList tops) $ crunchWithCtx siteCtx
-  match "lectures/*"    $ crunchWithCtx postCtx
+  match "lectures/*"    $ crunchWithCtxOpt postCtx mode
   match "assignments/*" $ crunchWithCtx postCtx
   match "templates/*"   $ compile templateCompiler
 
