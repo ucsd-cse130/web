@@ -23,7 +23,7 @@ crunchWithCtxOpt ctx opt = do
   compile $ pandocCompilerWithTransform
               defaultHakyllReaderOptions
               defaultHakyllWriterOptions
-              (walk $ toggleMode)
+              (walk (toggleMode . haskellizeBlock) . walk haskellizeInline)
             >>= loadAndApplyTemplate "templates/page.html"    ctx
             >>= loadAndApplyTemplate "templates/default.html" ctx
             >>= relativizeUrls
@@ -38,6 +38,16 @@ toggleMode (OrderedList (_, UpperRoman, _) items) = select items
       if key == mode then payload else select rest
     select _ = Null
 toggleMode b = b
+
+-- | Make inline code Haskell by default
+haskellizeInline :: Inline -> Inline
+haskellizeInline (Code (ident, [], kvs) str) = Code (ident, ["haskell"], kvs) str
+haskellizeInline i = i
+
+-- | Make code blocks Haskell by default
+haskellizeBlock :: Block -> Block
+haskellizeBlock (CodeBlock (ident, [], kvs) str) = CodeBlock (ident, ["haskell"], kvs) str
+haskellizeBlock b = b
 
 --------------------------------------------------------------------------------
 main :: IO ()
