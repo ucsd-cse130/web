@@ -4,7 +4,7 @@ date: 2018-04-23
 headerImg: books.jpg
 ---
 
-# Plan 
+# Higher-Order Functions 
 
 - More on *recursion*
 
