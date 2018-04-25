@@ -244,11 +244,213 @@ range 0 3
 
 Can you think of how to make list in increasing order?
 
+## Recursion is good... 
 
-## Higher-Order Functions
+- More practice with recursion 
+  - Base pattern -> Base Expression 
+  - Induction pattern -> Induction Expression 
 
-## Map 
+## ... Higher-Order Functions are Better
 
-## Filter 
+Why have functions take/return functions? 
+
+## Lets write: `evens`
+
+```haskell
+-- >>> evens []        == []
+-- >>> evens [1,2,3,4] == [2,4]
+```
+
+(I) lecture 
+
+```haskell
+evens       :: [Int] -> [Int]
+evens []     = ... 
+evens (x:xs) = ...
+```
+
+(I) final 
+
+```haskell
+evens       :: [Int] -> [Int]
+evens []         = []
+evens (x:xs)
+  | x mod 2 == 0 = x : evens xs
+  | otherwise    =     evens xs
+```
+
+## Lets write: `fourLetters`
+
+```haskell
+-- >>> fourChars [] == []
+-- >>> fourChars ["i","must","do","work"] == ["must","work"]
+```
+
+(I) lecture
+
+```haskell
+fourChars :: [String] -> [String]
+fourChars []     = ... 
+fourChars (x:xs) = ...
+```
+
+(I) final 
+
+```haskell
+fourChars :: [Int] -> [Int]
+fourChars []      = []
+fourChars (x:xs)
+  | length x == 4 = x : fourChars xs
+  | otherwise     =     fourChars xs
+```
+
+## Yikes, Most Code is the Same
+
+Lets **rename** the functions to ... `foo` 
+
+```haskell
+foo :: [Int] -> [Int]
+foo []            = []
+foo (x:xs)
+  | x mod 2 == 0  = x : foo xs
+  | otherwise     =     foo xs
+
+foo :: [Int] -> [Int]
+foo []            = []
+foo (x:xs)
+  | length x == 4 = x : foo xs
+  | otherwise     =     foo xs
+```
+
+Only difference is **condition**
+
+- `x mod 2 == 0` vs `length x == 4`
+
+## Moral of the day
+
+**D.R.Y.** Don't Repeat Yourself!
+
+## HOFs allow Factoring
+
+General **Pattern** + Specific **Operation**
+
+## The `filter` Pattern
+
+![The Filter Pattern](/static/img/filter-pattern.png)
+
+General Pattern 
+
+- Recursively traverse list 
+
+Specific Operations
+
+- `isEven` and `isFour` 
+
+![The Filter Instance](/static/img/filter-pattern-instance.png)
+
+**Avoid duplicating code!**
+
+## Lets write: `shout`
+
+```haskell
+-- >>> shout []                    == []
+-- >>> shout ['h','e','l','l','o'] == ['H','E','L','L','O'] 
+```
+
+(I) lecture
+
+```haskell
+shout :: [Char] -> [Char]
+shout []     = ...
+shout (x:xs) = ... 
+```
+
+(I) final 
+
+```haskell
+shout :: [Char] -> [Char]
+shout []     = [] 
+shout (x:xs) = toUpper x : shout xs 
+```
+
+## Lets write: `listSquare`
+
+```haskell
+-- >>> squares []        == []
+-- >>> squares [1,2,3,4] == [1,4,9,16] 
+```
+
+(I) lecture
+
+```haskell
+squares :: [Int] -> [Int]
+squares []     = ...
+squares (x:xs) = ... 
+```
+
+(I) final 
+
+```haskell
+squares :: [Int] -> [Int]
+squares []     = []
+squares (x:xs) = (x * x) : squares xs
+```
+
+## Oops, Most Code is the Same
+
+Lets **rename** the functions to ... `foo` 
+
+```haskell
+-- shout
+foo []     = []
+foo (x:xs) = toUpper x : foo xs
+
+-- squares
+foo []     = []
+foo (x:xs) = (x * x)   : foo xs
+```
+
+Lets **refactor** into the **common pattern**
+
+(I) lecture
+
+```haskell
+pattern = ...
+```
+
+(I) final
+
+```haskell
+pattern f []     = []
+pattern f (x:xs) = f x : pattern f xs
+```
+
+## The `map` Pattern
+
+**Apply a transformation `f` to each element of a list**
+
+```haskell
+map f []     = []
+map f (x:xs) = f x : map f xs
+```
+
+## Lets refactor `shout` and `squares`
+
+(I) lecture
+
+```haskell
+shout   = map ...
+squares = map ...
+```
+
+(I) final
+
+```haskell
+shout   = map (\x -> toUpper x)
+squares = map (\x -> x * x    )
+```
+
+**Moral** Don't repeat yourself! 
+
 
 ## Fold
