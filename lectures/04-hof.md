@@ -336,7 +336,7 @@ General **Pattern** + Specific **Operation**
 
 ## The `filter` Pattern
 
-![The Filter Pattern](/static/img/filter-pattern.png)
+![The `filter` Pattern](/static/img/filter-pattern.png)
 
 General Pattern 
 
@@ -344,9 +344,9 @@ General Pattern
 
 Specific Operations
 
-- `isEven` and `isFour` 
+- `isEven` and `isFour`
 
-![The Filter Instance](/static/img/filter-pattern-instance.png)
+![`filter` instances](/static/img/filter-pattern-instance.png)
 
 **Avoid duplicating code!**
 
@@ -425,6 +425,8 @@ pattern f []     = []
 pattern f (x:xs) = f x : pattern f xs
 ```
 
+![The `map` Pattern](/static/img/map-pattern.png)
+
 ## The `map` Pattern
 
 **Apply a transformation `f` to each element of a list**
@@ -450,7 +452,419 @@ shout   = map (\x -> toUpper x)
 squares = map (\x -> x * x    )
 ```
 
-**Moral** Don't repeat yourself! 
+![`map` instances](/static/img/map-pattern-instance.png)
+
+## Moral
+
+Don't repeat yourself!
+
+## QUIZ: What is the type of `map`
+
+```haskell
+map f []     = []
+map f (x:xs) = f x : map f xs
+```
+
+(I) lecture
+
+```haskell
+-- (A)  map :: (a -> b) -> [a] -> [b]
+-- (B)  map :: (Int -> Int) -> [Int] -> [Int]
+-- (C)  map :: (String -> String) -> [String] -> [String]
+-- (D)  map :: (a -> a) -> [a] -> [a]
+-- (E)  map :: (a -> b) -> [c] -> [d]
+```
+
+(I) final
+
+```haskell
+-- (A)  map :: (a -> b) -> [a] -> [b]
+```
+
+Type says it all!
+
+- Apply `f` to each `a` element in input list `[a]`
+- Return a list `[b]` of the results
+
+## QUIZ: What is the value of `quiz`
+
+```haskell
+map f []     = []
+map f (x:xs) = f x : map f xs
+
+quiz = map (\(x, y) -> x + y) [1, 2, 3]
+```
+
+(I) lecture
+
+```haskell
+-- (A)  [2, 4, 6]
+-- (B)  [3, 5]
+-- (C)  Syntax Error
+-- (D)  Type Error
+-- (E)  None of the above
+```
+
+(I) final
+
+```haskell
+-- (D)  Type Error
+```
+
+## Don't Repeat Yourself
+
+Benefits of **Factored** Code
+
+- Reuse iteration template
+
+- Avoid bugs due to repetition
+
+- Fix bug in one place
+
+## Recall: Length of a List
+
+```haskell
+len :: [a] -> Int
+len []     = 0
+len (x:xs) = 1 + len xs
+```
+
+So that
+
+```haskell
+len []                 ==> 0
+len ["asada"]          ==> 1 + len []        ==> 1 + 0 ==> 1
+len ["carne", "asada"] ==> 1 + len ["asada"] ==> 1 + 1 ==> 2
+```
 
 
-## Fold
+## Recall: Summing the Elements of a List
+
+```haskell
+sum :: [Int] -> Int
+sum []     = 0
+sum (x:xs) = x + sum xs
+```
+
+So that
+
+```haskell
+sum []      ==> 0
+sum [3]     ==> 3 + sum []    ==> 3 + 0 ==> 3
+sum [2,3]   ==> 2 + sum [3]   ==> 2 + 3 ==> 5
+sum [1,2,3] ==> 1 + sum [2,3] ==> 1 + 5 ==> 6
+```
+
+## Lets Write: String Concatenation `cat`
+
+```haskell
+cat [] ==> ""
+cat ["carne","asada","torta"] ==> "carneasadatorta"
+```
+
+(I) lecture
+
+```haskell
+cat :: [String] -> String
+cat = ...
+```
+
+(I) final
+
+```haskell
+cat :: [String] -> String
+cat []     = ""
+cat (x:xs) = x ++ cat xs
+```
+
+## Lets Spot The Pattern
+
+```haskell
+-- len
+foo []     = 0
+foo (x:xs) = 1 + foo xs
+
+-- sum
+foo []     = 0
+foo (x:xs) = x + foo xs
+
+-- cat
+foo []     = ""
+foo (x:xs) = x ++ foo xs
+```
+
+(I) lecture
+
+```haskell
+pattern = ...
+pattern = ...
+```
+
+(I) final
+
+```haskell
+pattern f b []     = b
+pattern f b (x:xs) = f x (pattern op b xs)
+```
+
+![The `foldr` Pattern](/static/img/foldr-pattern.png)
+
+## The `foldr` Pattern
+
+Recurse on tail, and combine result with the head.
+
+```haskell
+foldr f b []     = b
+foldr f b (x:xs) = f x (foldr op b xs)
+```
+
+## Lets refactor `sum`, `len` and `cat` 
+
+Factor the recursion out!
+
+```haskell
+sum = foldr ...  ...
+cat = foldr ...  ...
+len = foldr ...  ...
+```
+
+(I) final
+
+```haskell
+len = foldr (\x n -> 1 +  n) 0
+sum = foldr (\x n -> x +  n) 0
+cat = foldr (\x s -> x ++ s) ""
+```
+
+You can write it more clearly as
+
+```haskell
+sum = foldr (+) 0
+cat = foldr (++) ""
+```
+
+![`foldr` instances](/static/img/foldr-pattern-instance.png)
+
+## QUIZ: What does this evaluate to?
+
+```haskell
+foldr f b []     = b
+foldr f b (x:xs) = f x (foldr op b xs)
+
+quiz = foldr (\x r -> x:r) [] [1,2,3]
+
+-- (A)  [1,2,3]
+-- (B)  [3,2,1]
+-- (C)  []
+-- (D)  [[3],[2],[1]]
+-- (E)  [[1],[2],[3]]
+```
+
+## The Fold-Right Pattern 
+
+```haskell
+foldr f b [x1, x2, x3, x4]
+  ==> f x1 (foldr f b [x2, x3, x4])
+  ==> f x1 (f x2 (foldr f b [x3, x4]))
+  ==> f x1 (f x2 (f x3 (foldr f b [x4])))
+  ==> f x1 (f x2 (f x3 (f x4 (foldr f b []))))
+  ==> f x1 (f x2 (f x3 (f x4 b)))
+```
+
+Accumulate the values from the **right**
+
+
+Is `foldr` **Tail Recursive**?
+
+(I) final
+
+**NO**
+
+## Lets write Tail Recursive `sum`
+
+(I) lecture
+
+```haskell
+sumTR :: [Int] -> Int
+sumTR = ...
+```
+
+(I) final
+
+```haskell
+sumTR :: [Int] -> Int
+sumTR xs              = helper 0 xs
+  where
+    helper acc []     = acc
+    helper acc (x:xs) = helper (acc + x) xs
+```
+
+Lets run `sumTR` to see how it works
+
+```haskell
+sumTR [1,2,3]
+  ==> helper 0 [1,2,3]
+  ==> helper 1 [2,3]    -- 0 + 1 ==> 1
+  ==> helper 3 [3]      -- 1 + 2 ==> 3
+  ==> helper 6 []       -- 3 + 3 ==> 6 
+  ==> 6
+```
+
+**Note:** `helper` directly returns the result of recursive call! 
+
+## Lets write Tail Recursive `cat`
+
+(I) lecture
+
+```haskell
+catTR :: [String] -> String 
+catTR = ...
+```
+
+(I) final
+
+```haskell
+catTR :: [String] -> String 
+catTR xs              = helper "" xs
+  where
+    helper acc []     = acc
+    helper acc (x:xs) = helper (acc ++ x) xs
+```
+
+**OMG!** Almost identical to `sumTR` 
+
+Lets run `catTR` to see how it works
+
+```haskell
+catTR                 ["carne", "asada", "torta"]
+
+  ==> helper ""       ["carne", "asada", "torta"]
+
+  ==> helper "carne"           ["asada", "torta"]
+
+  ==> helper "carneasada"               ["torta"]
+
+  ==> helper "carneasadatorta"                 []
+
+  ==> "carneasadatorta"
+```
+
+**Note:** `helper` directly returns the result of recursive call! 
+
+## Can you spot the pattern?
+
+```haskell
+-- sumTR
+foo xs                = helper 0 xs
+  where
+    helper acc []     = acc
+    helper acc (x:xs) = helper (acc + x) xs
+
+
+-- catTR
+foo xs                = helper "" xs
+  where
+    helper acc []     = acc
+    helper acc (x:xs) = helper (acc ++ x) xs
+```
+
+Lets figure out the pattern! 
+
+(I) lecture
+
+```haskell
+pattern = ...
+```
+
+(I) final
+
+```haskell
+foldl f b xs          = helper b xs
+  where
+    helper acc []     = acc
+    helper acc (x:xs) = helper (f acc x) xs
+```
+
+![The `foldl` Pattern](/static/img/foldl-pattern.png)
+
+## Lets refactor `sumTR`, `catTR`
+
+Factor the recursion out!
+
+```haskell
+sumTR = foldl ...  ...
+catTR = foldl ...  ...
+```
+
+(I) final
+
+```haskell
+sumTR = foldl (+)  0
+catTR = foldl (++) ""
+```
+
+![`foldl` instances](/static/img/foldl-pattern-instance.png)
+
+## QUIZ: What does this evaluate to?
+
+```haskell
+foldl f b xs          = helper b xs
+  where
+    helper acc []     = acc
+    helper acc (x:xs) = helper (f acc x) xs
+
+quiz = foldl (\x r -> x:r) [] [1,2,3]
+
+-- (A)  [1,2,3]
+-- (B)  [3,2,1]
+-- (C)  []
+-- (D)  [[3],[2],[1]]
+-- (E)  [[1],[2],[3]]
+```
+
+## The Fold-Left Pattern
+
+```haskell
+foldl f b                     [x1, x2, x3, x4]
+  ==> helper b                [x1, x2, x3, x4]
+  ==> helper (f b x1)             [x2, x3, x4]
+  ==> helper (f (f b x1) x2)          [x3, x4]
+  ==> helper (f (f (f b x1) x2) x3)       [x4]
+  ==> helper (f (f (f (f b x1) x2) x3) x4)  []
+  ==> (f (f (f (f b x1) x2) x3) x4)
+```
+
+Accumulate the values from the **left**
+
+## Folding Left vs. Right
+
+```haskell
+foldl f b [x1, x2, x3]  ==> f (f (f b x1) x2) x3  -- Left
+
+foldr f b [x1, x2, x3]  ==> f x1 (f x2 (f x3 b))  -- Right
+```
+
+## Higher Order Functions
+
+Functions taking and returning functions
+
+- *Filter* values in a set, list, tree ...
+- *Iterate* a function over a set, list, tree ...
+- *Accumulate* some value over a set, list, tree ... 
+
+Pull out (factor) common strategies into code
+
+- Computation Patterns
+- Re-use in many different situations
+
+## HOFs Enable Modular Programs
+
+Factor HOFs into **Libraries** 
+
+- Enabled the "big data" revolution e.g. _MapReduce_, _Spark_
+
+![HOFs enable modular code](/static/img/hofs-modular.png)
+
+Easy to perform fancy computations in **Clients** 
+
+- e.g. Computing aggregates over list of _all web pages_
